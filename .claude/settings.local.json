@@ -4,7 +4,30 @@
       "WebFetch(domain:zorge9.estate)",
       "Bash(npm -v)",
       "Bash(git --version)",
-      "Bash(npx create-next-app@latest *)"
+      "Bash(npx create-next-app@latest *)",
+      "Bash(npm install *)",
+      "Bash(curl -s \"https://zorge9.estate/\")",
+      "Bash(mkdir -p public/assets/fonts public/assets/images/intro public/assets/images/about public/assets/images/location public/assets/images/architecture public/assets/images/gallery public/assets/images/advantages public/assets/images/fitness public/assets/images/infrastructure public/assets/images/park public/assets/images/apartments public/assets/images/penthouses public/assets/images/menu)",
+      "Bash(mkdir -p app/components/layout app/components/sections app/components/ui app/lib)",
+      "Bash(curl -s -o public/assets/fonts/Gilroy-SemiBold.woff2 \"https://zorge9.estate/assets/fonts/Gilroy-SemiBold.woff2\")",
+      "Bash(curl -s -o public/assets/fonts/Gilroy-SemiBold.woff \"https://zorge9.estate/assets/fonts/Gilroy-SemiBold.woff\")",
+      "Bash(curl -s -o public/assets/images/intro/bg-1.webp \"https://zorge9.estate/media/cache/homepage_intro_bg_xs/uploads/39/6_final_4_1777386791.webp\")",
+      "Bash(curl -s -o public/assets/images/intro/bg-2.webp \"https://zorge9.estate/media/cache/homepage_intro_bg_xs/uploads/39/6_final_5_1777386791.webp\")",
+      "Bash(curl -s -o public/assets/images/intro/decor.webp \"https://zorge9.estate/assets/images/media/landing/1.intro/decor-xs.webp?v=1779376336\")",
+      "Bash(curl -s -o public/assets/images/menu/decor.webp \"https://zorge9.estate/assets/images/media/menu/decor@xs.webp?v=1779376336\")",
+      "Bash(curl -s -o public/assets/images/about/bg.webp \"https://zorge9.estate/assets/images/media/landing/2.about/background@xs.webp\")",
+      "Bash(sed 's/.*=\"\\\\\\(.*\\\\\\)\"/\\\\1/')",
+      "Bash(npm run *)",
+      "Bash(pkill -f \"next dev\")",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://localhost:3000)",
+      "Bash(ffmpeg -version)",
+      "Bash(ffmpeg -i \"c:/Users/i7/Downloads/Business class apartments Zorge 9_Luxury Real Estate.mp4\")",
+      "Bash(mkdir -p /tmp/frames)",
+      "Bash(ffmpeg -i \"c:/Users/i7/Downloads/Business class apartments Zorge 9_Luxury Real Estate.mp4\" -vf \"fps=1/4,scale=960:-1\" /tmp/frames/frame_%03d.jpg -y)",
+      "Bash(ffmpeg -i \"c:/Users/i7/Downloads/Business class apartments Zorge 9_Luxury Real Estate.mp4\" -vf \"fps=1/4,scale=960:-1\" \"C:/Users/i7/AppData/Local/Temp/frames/frame_%03d.jpg\" -y)",
+      "Bash(ffmpeg -i \"c:/Users/i7/Downloads/Business class apartments Zorge 9_Luxury Real Estate.mp4\" -vf \"fps=1/2,scale=960:-1\" -ss 0 -t 15 \"C:/Users/i7/AppData/Local/Temp/frames2/frame_%03d.jpg\" -y)",
+      "Bash(mkdir -p \"C:/Users/i7/AppData/Local/Temp/frames2\")",
+      "Bash(ffmpeg -i \"c:/Users/i7/Downloads/Business class apartments Zorge 9_Luxury Real Estate.mp4\" -vf \"fps=1/2,scale=960:-1\" -t 16 \"C:/Users/i7/AppData/Local/Temp/frames2/f_%03d.jpg\" -y)"
     ]
   }
 }

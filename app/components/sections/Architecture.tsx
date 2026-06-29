@@ -1,0 +1,232 @@
+'use client'
+import { useRef } from 'react'
+import Image from 'next/image'
+import { motion, useScroll, useTransform } from 'framer-motion'
+
+// Remote style images from reference site
+const IMG = {
+  image1: '/images/Full Screen_001.jpg',
+  image2: 'https://zorge9.estate/assets/images/media/landing/6.style/image-2@xxl.webp?v=1779376336',
+  image3: 'https://zorge9.estate/assets/images/media/landing/6.style/image-3@xxl.webp?v=1779376336',
+  image4: 'https://zorge9.estate/assets/images/media/landing/6.style/image-4@xxl.webp?v=1779376336',
+  image5: 'https://zorge9.estate/assets/images/media/landing/6.style/image-5@xxl.webp?v=1779376336',
+  decor1: '/images/3d-hoarding.png',
+  decor2: '/images/3d-Brochure.png',
+  decor3: '/images/3d-letterhead.png',
+  decor4: '/images/3d-Logo.png',
+  decor5: '/images/3d-magazine.png',
+  decor6: '/images/3d-mobile app.png',
+}
+
+function ParallaxImg({ src, style, imgStyle }: {
+  src: string
+  style?: React.CSSProperties
+  imgStyle?: React.CSSProperties
+}) {
+  const ref = useRef<HTMLDivElement>(null)
+  const { scrollYProgress } = useScroll({ target: ref, offset: ['start end', 'end start'] })
+  const y = useTransform(scrollYProgress, [0, 1], ['8%', '-8%'])
+
+  return (
+    <div ref={ref} style={{ overflow: 'hidden', ...style }}>
+      <motion.div style={{ y, position: 'relative', height: '116%', top: '-8%' }}>
+        {/* eslint-disable-next-line @next/next/no-img-element */}
+        <img
+          src={src}
+          alt=""
+          style={{
+            width: '100%', height: '100%',
+            objectFit: 'cover', display: 'block',
+            ...imgStyle,
+          }}
+        />
+      </motion.div>
+    </div>
+  )
+}
+
+function fadeUp(delay = 0) {
+  return {
+    initial: { opacity: 0, y: 24 },
+    whileInView: { opacity: 1, y: 0 },
+    viewport: { once: true },
+    transition: { duration: 0.85, ease: [0.7, 0, 0.3, 1] as [number, number, number, number], delay },
+  }
+}
+
+export default function Architecture() {
+  return (
+    <section
+      id="style"
+      style={{ background: '#fff', color: '#000', overflow: 'hidden' }}
+    >
+      {/* ─────────────────────────────────────────────────────────────
+          BLOCK 1 — large paragraph (right half) + image-1 full width
+      ───────────────────────────────────────────────────────────── */}
+      <div style={{ padding: '10rem 4rem 6rem' }}>
+        {/* Heading — right 50% */}
+        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '4rem', marginBottom: '6rem' }}>
+          <div /> {/* empty left */}
+          <motion.p {...fadeUp(0)} style={{
+            fontSize: 'clamp(2.4rem, 3.2vw, 4.4rem)',
+            fontWeight: 600, lineHeight: 1.1,
+            letterSpacing: '0.01em',
+            textTransform: 'uppercase',
+            margin: 0,
+          }}>
+            Three buildings in the style of elegant New York skyscrapers reflect the perfect
+            combination of sophistication and a modern approach to life.
+          </motion.p>
+        </div>
+      </div>
+
+      {/* image-1 — full width, tall */}
+      <ParallaxImg
+        src={IMG.image1}
+        style={{ width: '100%', aspectRatio: '16/7' }}
+      />
+
+      {/* "Panoramic windows / architectural lighting" — left padded */}
+      <div style={{ padding: '4rem 4rem 8rem' }}>
+        <motion.p {...fadeUp(0.05)} style={{
+          fontSize: 'clamp(3.2rem, 5vw, 7.2rem)',
+          fontWeight: 600, lineHeight: 1.0,
+          letterSpacing: '0.01em',
+          textTransform: 'uppercase',
+          margin: 0,
+        }}>
+          Panoramic windows<br />
+          and architectural<br />
+          lighting
+        </motion.p>
+      </div>
+
+      {/* ─────────────────────────────────────────────────────────────
+          BLOCK 2 — image-2 (portrait, left) + image-3 (square, right)
+                    with "Premium materials" label bottom-right
+      ───────────────────────────────────────────────────────────── */}
+      <div style={{
+        display: 'grid',
+        gridTemplateColumns: '1fr 1fr',
+        alignItems: 'end',
+        gap: 0,
+      }}>
+        {/* Left: narrow portrait shifted right */}
+        <div style={{ paddingLeft: '25%', paddingBottom: '6rem' }}>
+          <ParallaxImg src={IMG.image2} style={{ aspectRatio: '5/6' }} />
+        </div>
+
+        {/* Right: large square */}
+        <ParallaxImg src={IMG.image3} style={{ aspectRatio: '1/1' }} />
+      </div>
+
+      {/* "Premium materials" — right-aligned */}
+      <div style={{ padding: '4rem 4rem 8rem', textAlign: 'right' }}>
+        <motion.p {...fadeUp(0)} style={{
+          fontSize: 'clamp(3.2rem, 5vw, 7.2rem)',
+          fontWeight: 600, lineHeight: 1.0,
+          letterSpacing: '0.01em',
+          textTransform: 'uppercase',
+          margin: 0,
+        }}>
+          Premium<br />materials
+        </motion.p>
+      </div>
+
+      {/* ─────────────────────────────────────────────────────────────
+          BLOCK 3 — decorative materials collage (stacked parallax layers)
+      ───────────────────────────────────────────────────────────── */}
+      <div style={{ position: 'relative', padding: '0 4rem 8rem' }}>
+        <DecorLayers />
+      </div>
+
+      {/* ─────────────────────────────────────────────────────────────
+          BLOCK 4 — luxury text (small, left half)
+      ───────────────────────────────────────────────────────────── */}
+      <div style={{ padding: '0 4rem 6rem' }}>
+        <motion.p {...fadeUp(0)} style={{
+          fontSize: 'clamp(1.2rem, 1.4vw, 1.6rem)',
+          fontWeight: 600, lineHeight: 1.6,
+          letterSpacing: '0.06em',
+          textTransform: 'uppercase',
+          maxWidth: '52%',
+          margin: 0,
+        }}>
+          Luxury is embodied in every detail of the finishing materials. It is imprinted in the
+          delicate pattern of the porcelain stoneware, fused into the gold of the frames, and
+          interspersed in the crystal waterfall of the chandeliers.
+        </motion.p>
+      </div>
+
+      {/* ─────────────────────────────────────────────────────────────
+          BLOCK 5 — image-4 + image-5 side by side (square)
+      ───────────────────────────────────────────────────────────── */}
+      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 0 }}>
+        <ParallaxImg src={IMG.image4} style={{ aspectRatio: '1/1' }} />
+        <ParallaxImg src={IMG.image5} style={{ aspectRatio: '1/1' }} />
+      </div>
+    </section>
+  )
+}
+
+// Decorative material collage — multiple parallax layers stacked
+function DecorLayers() {
+  const ref = useRef<HTMLDivElement>(null)
+  const { scrollYProgress } = useScroll({ target: ref, offset: ['start end', 'end start'] })
+
+  const y1 = useTransform(scrollYProgress, [0, 1], ['8%', '-8%'])
+  const y2 = useTransform(scrollYProgress, [0, 1], ['12%', '-12%'])
+  const y3 = useTransform(scrollYProgress, [0, 1], ['16%', '-16%'])
+  const y4 = useTransform(scrollYProgress, [0, 1], ['20%', '-20%'])
+  const y5 = useTransform(scrollYProgress, [0, 1], ['24%', '-24%'])
+  const y6 = useTransform(scrollYProgress, [0, 1], ['28%', '-28%'])
+
+  const layers = [
+    { src: IMG.decor1, y: y1, size: '22%', top: '2%', left: '2%', shadow: '0 15px 40px rgba(0,0,0,0.15)' },        // Logo - top far left
+    { src: IMG.decor2, y: y2, size: '26%', top: '5%', left: '28%', shadow: '0 20px 50px rgba(0,0,0,0.2)' },       // Brochure - top left-center
+    { src: IMG.decor3, y: y3, size: '20%', top: '0%', left: '60%', shadow: '0 12px 35px rgba(0,0,0,0.12)' },      // Letterhead - top right-center
+    { src: IMG.decor6, y: y6, size: '21%', top: '60%', left: '0%', shadow: '0 18px 45px rgba(0,0,0,0.18)' },      // Mobile app - bottom far left
+    { src: IMG.decor5, y: y5, size: '24%', top: '56%', left: '26%', shadow: '0 22px 55px rgba(0,0,0,0.22)' },     // Magazine - bottom left-center
+    { src: IMG.decor4, y: y4, size: '28%', top: '50%', left: '56%', shadow: '0 25px 60px rgba(0,0,0,0.25)' },     // Hoarding - bottom right-center (largest)
+  ]
+
+  return (
+    <div
+      ref={ref}
+      style={{
+        position: 'relative',
+        width: '100%',
+        aspectRatio: '16/7',
+        overflow: 'hidden',
+        background: '#fff',
+      }}
+    >
+      {layers.map((layer, i) => (
+        <motion.div
+          key={i}
+          style={{
+            position: 'absolute',
+            top: layer.top,
+            left: layer.left,
+            width: layer.size,
+            height: 'auto',
+            y: layer.y,
+            filter: `drop-shadow(${layer.shadow})`,
+          }}
+        >
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src={layer.src}
+            alt=""
+            style={{
+              width: '100%',
+              height: 'auto',
+              objectFit: 'contain',
+              display: 'block',
+            }}
+          />
+        </motion.div>
+      ))}
+    </div>
+  )
+}
