@@ -4,13 +4,16 @@ import { motion } from 'framer-motion'
 import Lenis from 'lenis'
 
 const IMG = {
-  i1: 'https://zorge9.estate/assets/images/media/landing/11.fitness/image-1@xxl.webp?v=1779376336',
-  i2: 'https://zorge9.estate/assets/images/media/landing/11.fitness/image-2@xxl.webp?v=1779376336',
-  i3: 'https://zorge9.estate/assets/images/media/landing/11.fitness/image-3@xxl.webp?v=1779376336',
-  i4: 'https://zorge9.estate/assets/images/media/landing/11.fitness/image-4@xxl.webp?v=1779376336',
-  i5: 'https://zorge9.estate/assets/images/media/landing/11.fitness/image-5@xxl.webp?v=1779376336',
-  i6: 'https://zorge9.estate/assets/images/media/landing/11.fitness/image-6@xxl.webp?v=1779376336',
-  i7: 'https://zorge9.estate/assets/images/media/landing/11.fitness/image-7@xxl.webp?v=1779376336',
+  i1: '/images/Services_001.jpg',
+  i2: '/images/Services_002.jpg',
+  i3: '/images/Services_003.jpg',
+  i4: '/images/Services_004.jpg',
+  i5: '/images/Services_005.jpg',
+  i6: '/images/Services_006.jpg',
+  i7: '/images/Services_007.jpg',
+  i8: '/images/Services_008.jpg',
+  i9: '/images/Services_009.jpg',
+  i10: '/images/Services_010.jpg',
 }
 
 export default function Fitness() {
@@ -179,11 +182,11 @@ export default function Fitness() {
 
           {/* PANEL 4 */}
           <div style={{ display: 'flex', height: '100vh', alignItems: 'center', padding: '0 4rem', gap: '3rem', flexShrink: 0 }}>
-            <div style={{ flexShrink: 0, width: '20vw', height: '72vh', overflow: 'hidden' }}>
+            <div style={{ flexShrink: 0, width: '28vw', height: '72vh', overflow: 'hidden' }}>
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img src={IMG.i6} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
             </div>
-            <div style={{ flexShrink: 0, width: '38vw', height: '78vh', overflow: 'hidden' }}>
+            <div style={{ flexShrink: 0, width: '48vw', height: '78vh', overflow: 'hidden' }}>
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img src={IMG.i7} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: '50% 20%' }} />
             </div>
@@ -193,6 +196,44 @@ export default function Fitness() {
               </p>
             </div>
             <div style={{ flexShrink: 0, width: '6vw' }} />
+          </div>
+
+          <div style={{ display: 'flex', height: '100vh', alignItems: 'center', padding: '0 4rem', gap: '3rem', flexShrink: 0 }}>
+            <div style={{ flexShrink: 0, width: '28vw', height: '72vh', overflow: 'hidden' }}>
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src={IMG.i8} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+            </div>
+            <div style={{ flexShrink: 0, width: '48vw', height: '78vh', overflow: 'hidden' }}>
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src={IMG.i9} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: '50% 20%' }} />
+            </div>
+            <div style={{ flexShrink: 0, width: '20vw' }}>
+              <p style={{ fontSize: 'clamp(1.4rem, 1.8vw, 2.4rem)', fontWeight: 600, lineHeight: 1.25, letterSpacing: '0.02em', textTransform: 'uppercase', color: '#000' }}>
+                The yoga studio offers a smooth transition to relaxation, bringing your mind and body into harmony. Soft lighting, the relaxing voice of the instructor, and the calm rhythm of the movements will help you find your balance.
+              </p>
+            </div>
+            <div style={{ flexShrink: 0, width: '6vw' }} />
+          </div>
+
+          {/* PANEL 10 */}
+          <div style={{ display: 'flex', height: '100vh', alignItems: 'center', padding: '0 6rem', gap: '5rem', flexShrink: 0 }}>
+            <div style={{ flexShrink: 0, width: '20vw' }}>
+              <h2 style={{ fontSize: 'clamp(2rem, 2.8vw, 3.6rem)', fontWeight: 600, lineHeight: 1.1, letterSpacing: '0.02em', textTransform: 'uppercase', color: '#000', margin: 0 }}>
+                FITNESS CLUB<br />WITH A 25M<br />SWIMMING POOL
+              </h2>
+            </div>
+            <div style={{ flexShrink: 0, width: '38vw', height: '78vh', overflow: 'hidden' }}>
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img src={IMG.i10} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: '80% 20%' }} />
+            </div>
+            <div style={{ flexShrink: 0, width: '22vw' }}>
+              <p style={{ fontSize: 'clamp(1.1rem, 1.1vw, 1.4rem)', lineHeight: 1.65, letterSpacing: '0.04em', textTransform: 'uppercase', color: '#000' }}>
+                Sport and luxury combine in the design of the spacious 25-meter swimming pool with 3 lanes.
+                Crystal clear water, soft comfortable sun loungers, light that dissolves the contours.
+                An active workout in sporty chic style, relaxed relaxation with a detox cocktail,
+                or meditation to the gentle sound of waves — what appeals to you today?
+              </p>
+            </div>
           </div>
 
         </div>
