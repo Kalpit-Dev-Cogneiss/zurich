@@ -5,44 +5,44 @@ import SvgIcon from '@/app/components/ui/SvgIcon'
 
 const ITEMS = [
   {
-    time: '07:00',
+    time: 'DISCOVER',
     image: '/images/Work Process_001.jpg',
     text: 'ENJOY THE FIRST RAYS OF DAWN AS THE CITY UNFOLDS BEFORE YOU IN PANORAMIC WINDOWS, FILLING YOUR HOME WITH LIGHT AND SERENITY.',
     // hour hand degrees (360/12 * hour + 360/12/60 * min)
-    hourDeg: -150, // 07:00
+    hourDeg: -50, // 07:00
   },
   {
-    time: '08:00',
+    time: 'DEFINE',
     image: '/images/Work Process_002.jpg',
     text: 'Feel the ease of movement and harmony as you start your morning with yoga in the open air. Fresh air, soft rays of sunshine, and smooth movements in rhythm. There is no hustle and bustle here — just you and the perfect start to your morning.',
     hourDeg: -120,
   },
   {
-    time: '11:00',
+    time: 'RESEARCH',
     image: '/images/Work Process_003.jpg',
     text: 'FEEL THE ATTENTION FROM THE FIRST STEP IN THE LOBBY, WHERE THE STAFF IS READY TO PROVIDE YOU WITH UNIQUE SERVICE: FROM ORGANIZING TRANSPORTATION AND BOOKING SERVICES TO SOLVING SMALL DAILY TASKS.',
     hourDeg: -30,
   },
   {
-    time: '14:00',
+    time: 'CREATE',
     image: '/images/Work Process_004.jpg',
     text: 'CREATE THE PERFECT MOMENT FOR WORK IN A PRIVATE CO-WORKING SPACE. HERE IT IS EASY TO FOCUS ON YOUR TASKS, HOLD A MEETING WITH A CLIENT, OR DISCUSS STRATEGY WITH YOUR TEAM.',
     hourDeg: 60,
   },
   {
-    time: '21:00',
+    time: 'REFINE',
     image: '/images/Work Process_005.jpg',
     text: 'End the day in the tea room in the grand lobby, where every gesture becomes part of a ritual: unhurried, mindful, filled with silence.',
     hourDeg: 270,
   },
   {
-    time: '21:00',
+    time: 'DELIVER',
     image: '/images/Work Process_006.jpg',
     text: 'End the day in the tea room in the grand lobby, where every gesture becomes part of a ritual: unhurried, mindful, filled with silence.',
     hourDeg: 270,
   },
   {
-    time: '21:00',
+    time: 'SUPPORT',
     image: '/images/Work Process_007.jpg',
     text: 'End the day in the tea room in the grand lobby, where every gesture becomes part of a ritual: unhurried, mindful, filled with silence.',
     hourDeg: 270,
@@ -67,6 +67,7 @@ export default function DailySchedule() {
     <section
       id="schedule"
       style={{
+        position: 'relative',
         display: 'grid',
         gridTemplateColumns: '50% 50%',
         width: '100%',
@@ -76,6 +77,58 @@ export default function DailySchedule() {
         overflow: 'hidden',
       }}
     >
+      {/* Clock positioned at the center divider */}
+      <div style={{
+        position: 'absolute',
+        left: '50%',
+        top: '50%',
+        transform: 'translate(-50%, -50%)',
+        width: '100vh',
+        height: '100vh',
+        zIndex: 10,
+        pointerEvents: 'none',
+        overflow: 'hidden',
+        borderRadius: '50%',
+      }}>
+        {/* Clock circle */}
+        <div style={{
+          position: 'absolute',
+          inset: 0,
+          borderRadius: '50%',
+          border: '1px solid rgba(255,255,255,0.15)',
+        }} />
+
+        {/* Fixed vertical line (always pointing up) - starts from center, extends to top */}
+        <div style={{
+          position: 'absolute',
+          left: '50%',
+          top: '50%',
+          width: '50%',
+          height: '1px',
+          background: '#fff',
+          transformOrigin: 'left center',
+          transform: 'translateY(-50%) rotate(-90deg)',
+        }} />
+
+        {/* Rotating line (changes with slider) - starts from center, rotates */}
+        <motion.div
+          key={`hand-${active}`}
+          initial={{ rotate: item.hourDeg - 30 }}
+          animate={{ rotate: item.hourDeg }}
+          transition={{ duration: 0.8, ease: [0.7, 0, 0.3, 1] }}
+          style={{
+            position: 'absolute',
+            left: '50%',
+            top: '50%',
+            width: '50%',
+            height: '1px',
+            background: '#fff',
+            transformOrigin: 'left center',
+            transform: 'translateY(-50%)',
+          }}
+        />
+      </div>
+
       {/* ── LEFT — tall image only, no text overlay ── */}
       <div style={{ position: 'relative', overflow: 'hidden' }}>
         <AnimatePresence mode="sync" custom={direction}>
@@ -98,7 +151,7 @@ export default function DailySchedule() {
         </AnimatePresence>
       </div>
 
-      {/* ── RIGHT — black panel: circle + time + text bottom-left + arrows ── */}
+      {/* ── RIGHT — black panel: time + text bottom-left + arrows ── */}
       <div style={{
         background: '#000',
         position: 'relative',
@@ -107,19 +160,6 @@ export default function DailySchedule() {
         justifyContent: 'center',
         overflow: 'hidden',
       }}>
-        {/* Large background circle — half visible on right edge */}
-        <div style={{
-          position: 'absolute',
-          right: '-10%',
-          top: '50%',
-          transform: 'translateY(-50%)',
-          width: '90%',
-          aspectRatio: '1/1',
-          borderRadius: '50%',
-          border: '1px solid rgba(255,255,255,0.08)',
-          pointerEvents: 'none',
-        }} />
-
         {/* Time digits — centred */}
         <div style={{ position: 'relative', zIndex: 2, marginRight: '8%' }}>
           <AnimatePresence mode="wait">
