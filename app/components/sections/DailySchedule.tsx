@@ -6,44 +6,44 @@ import SvgIcon from '@/app/components/ui/SvgIcon'
 const ITEMS = [
   {
     time: 'DISCOVER',
-    image: '/images/Work Process_001.jpg',
+    image: '/daily-schedule/w1.jpg',
     text: 'ENJOY THE FIRST RAYS OF DAWN AS THE CITY UNFOLDS BEFORE YOU IN PANORAMIC WINDOWS, FILLING YOUR HOME WITH LIGHT AND SERENITY.',
     // hour hand degrees (360/12 * hour + 360/12/60 * min)
     hourDeg: -50, // 07:00
   },
   {
     time: 'DEFINE',
-    image: '/images/Work Process_002.jpg',
+    image: '/daily-schedule/w2.jpg',
     text: 'Feel the ease of movement and harmony as you start your morning with yoga in the open air. Fresh air, soft rays of sunshine, and smooth movements in rhythm. There is no hustle and bustle here — just you and the perfect start to your morning.',
     hourDeg: -120,
   },
   {
     time: 'RESEARCH',
-    image: '/images/Work Process_003.jpg',
+    image: '/daily-schedule/w3.jpg',
     text: 'FEEL THE ATTENTION FROM THE FIRST STEP IN THE LOBBY, WHERE THE STAFF IS READY TO PROVIDE YOU WITH UNIQUE SERVICE: FROM ORGANIZING TRANSPORTATION AND BOOKING SERVICES TO SOLVING SMALL DAILY TASKS.',
     hourDeg: -30,
   },
   {
     time: 'CREATE',
-    image: '/images/Work Process_004.jpg',
+    image: '/daily-schedule/w4.jpg',
     text: 'CREATE THE PERFECT MOMENT FOR WORK IN A PRIVATE CO-WORKING SPACE. HERE IT IS EASY TO FOCUS ON YOUR TASKS, HOLD A MEETING WITH A CLIENT, OR DISCUSS STRATEGY WITH YOUR TEAM.',
     hourDeg: 60,
   },
   {
     time: 'REFINE',
-    image: '/images/Work Process_005.jpg',
+    image: '/daily-schedule/w5.jpg',
     text: 'End the day in the tea room in the grand lobby, where every gesture becomes part of a ritual: unhurried, mindful, filled with silence.',
     hourDeg: 270,
   },
   {
     time: 'DELIVER',
-    image: '/images/Work Process_006.jpg',
+    image: '/daily-schedule/w6.jpg',
     text: 'End the day in the tea room in the grand lobby, where every gesture becomes part of a ritual: unhurried, mindful, filled with silence.',
     hourDeg: 270,
   },
   {
     time: 'SUPPORT',
-    image: '/images/Work Process_007.jpg',
+    image: '/daily-schedule/w7.jpg',
     text: 'End the day in the tea room in the grand lobby, where every gesture becomes part of a ritual: unhurried, mindful, filled with silence.',
     hourDeg: 270,
   },

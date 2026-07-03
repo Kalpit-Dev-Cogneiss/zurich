@@ -4,12 +4,12 @@ import { motion, AnimatePresence, useScroll, useTransform, useMotionValue, useSp
 import SvgIcon from '@/app/components/ui/SvgIcon'
 
 const IMAGES = [
-  { id: 1, src: '/images/Gallery_001.jpg', aspect: '4/8', moveFactor: 0.8 },
-  { id: 2, src: '/images/Gallery_002.jpg', aspect: '3/3', moveFactor: 0.9 },
-  { id: 3, src: '/images/Gallery_003.jpg', aspect: '5/6', moveFactor: 0.6 },
-  { id: 4, src: '/images/Gallery_004.jpg', aspect: '1/1', moveFactor: 1.0 },
-  { id: 5, src: '/images/Gallery_005.jpg', aspect: '5/4', moveFactor: 0.7 },
-  { id: 6, src: '/images/Gallery_006.jpg', aspect: '3/4', moveFactor: 0.8 },
+  { id: 1, src: '/gallery-image/g1.jpg', aspect: '4/8', moveFactor: 0.8 },
+  { id: 2, src: '/gallery-image/g2.jpg', aspect: '3/3', moveFactor: 0.9 },
+  { id: 3, src: '/gallery-image/g3.jpg', aspect: '5/6', moveFactor: 0.6 },
+  { id: 4, src: '/gallery-image/g4.jpg', aspect: '1/1', moveFactor: 1.0 },
+  { id: 5, src: '/gallery-image/g5.jpg', aspect: '5/4', moveFactor: 0.7 },
+  { id: 6, src: '/gallery-image/g6.jpg', aspect: '3/4', moveFactor: 0.8 },
 ]
 
 const POSITIONS: Array<{
@@ -160,7 +160,7 @@ export default function Gallery() {
             color: 'rgba(255,255,255,0.6)', whiteSpace: 'nowrap',
             alignSelf: 'flex-end', paddingBottom: '0.8rem',
           }}>
-            /11 photos
+            /6 photos
           </p>
         </div>
 

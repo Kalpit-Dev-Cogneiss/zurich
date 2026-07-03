@@ -5,7 +5,7 @@ import { motion, useScroll, useTransform } from 'framer-motion'
 import SvgIcon from '@/app/components/ui/SvgIcon'
 
 // Remote image URLs from reference site
-const BG_NIGHT = '/images/Herobanner bg Imaage.jpg'
+const BG_NIGHT = '/herobanner-image.jpg'
 const DECOR_MODEL = '/images/Herobanner Model.png'
 
 export default function Hero() {

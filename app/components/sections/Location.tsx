@@ -2,8 +2,17 @@
 import { useKeenSlider } from 'keen-slider/react'
 import 'keen-slider/keen-slider.min.css'
 import { motion } from 'framer-motion'
+import TurnJSBook from '@/app/components/ui/TurnJSBook'
+
 
 const HERO_IMAGE = 'https://zorge9.estate/assets/images/media/landing/3.location/hero@xxxl.webp'
+
+// Gallery images for book animation (pairs of left/right pages)
+const BOOK_PAGES = [
+  { left: '/images/Gallery_001.jpg', right: '/images/Gallery_002.jpg' },
+  { left: '/images/Gallery_003.jpg', right: '/images/Gallery_004.jpg' },
+  { left: '/images/Gallery_005.jpg', right: '/images/Gallery_006.jpg' },
+]
 
 const CARDS = [
   { label: 'Residential Projects',    image: '/images/Residential Projects.jpg' },
@@ -43,6 +52,9 @@ export default function Location() {
           style={{ width: '100%', height: 'auto', display: 'block', objectFit: 'cover' }}
         />
       </div>
+
+      {/* ── Book Animation ── */}
+      <TurnJSBook />
 
       {/* ── Label + body text ── */}
       <div style={{ padding: '3.2rem 4rem 0', marginLeft: '25%' }}>
