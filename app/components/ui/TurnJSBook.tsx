@@ -18,6 +18,7 @@ export default function TurnJSBook() {
   useEffect(() => {
     let isMounted = true
     let $flipbook: any = null
+    let isInitialized = false
 
     const initTurnJS = async () => {
       if (typeof window === 'undefined' || !flipbookRef.current) return
@@ -30,9 +31,10 @@ export default function TurnJSBook() {
         console.log('jQuery loaded')
         
         // Make jQuery available globally
-        if (!(window as any).$) {
-          (window as any).$ = $
-          (window as any).jQuery = $
+        const win = window as unknown as Record<string, unknown>
+        if (!win.$) {
+          win.$ = $
+          win['jQuery'] = $
         }
         
         // Import turn.js
@@ -46,6 +48,14 @@ export default function TurnJSBook() {
 
         $flipbook = $(flipbookRef.current!)
         console.log('Flipbook element:', $flipbook.length)
+        
+        // Check if already initialized (React Strict Mode double mount)
+        if ($flipbook.data('turn')) {
+          console.log('TurnJS already initialized, skipping...')
+          isInitialized = true
+          setIsReady(true)
+          return
+        }
         
         // Clear any existing content
         $flipbook.empty()
@@ -115,6 +125,7 @@ export default function TurnJSBook() {
         console.log('TurnJS initialized successfully with', $flipbook.turn('pages'), 'pages')
         console.log('Current display mode:', $flipbook.turn('display'))
         
+        isInitialized = true
         if (isMounted) {
           setIsReady(true)
         }
@@ -127,13 +138,14 @@ export default function TurnJSBook() {
 
     return () => {
       isMounted = false
-      if ($flipbook && $flipbook.length > 0) {
+      if ($flipbook && $flipbook.length > 0 && isInitialized) {
         try {
           // Check if turn is initialized before destroying
           if (typeof $flipbook.turn === 'function') {
             const turnData = $flipbook.data('turn')
             if (turnData) {
               $flipbook.turn('destroy')
+              $flipbook.empty()
               console.log('Turn.js destroyed successfully')
             }
           }
@@ -142,7 +154,7 @@ export default function TurnJSBook() {
         }
       }
     }
-  }, [allImages])
+  }, [])
 
   const goToNextPage = () => {
     if (flipbookRef.current && (window as any).$) {

@@ -105,20 +105,18 @@ export default function Architecture() {
           BLOCK 2 — image-2 (portrait, left) + image-3 (square, right)
                     with "Premium materials" label bottom-right
       ───────────────────────────────────────────────────────────── */}
-      <div style={{
+      {/* <div style={{
         display: 'grid',
         gridTemplateColumns: '1fr 1fr',
         alignItems: 'end',
         gap: 0,
       }}>
-        {/* Left: narrow portrait shifted right */}
         <div style={{ paddingLeft: '25%', paddingBottom: '6rem' }}>
           <ParallaxImg src={IMG.image2} style={{ aspectRatio: '5/6' }} />
         </div>
 
-        {/* Right: large square */}
         <ParallaxImg src={IMG.image3} style={{ aspectRatio: '1/1' }} />
-      </div>
+      </div> */}
 
       {/* "Premium materials" — right-aligned */}
       <div style={{ padding: '4rem 4rem 8rem', textAlign: 'right' }}>
