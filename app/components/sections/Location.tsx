@@ -44,14 +44,6 @@ export default function Location() {
     <section id="location" style={{ background: '#fff', color: '#000', overflow: 'hidden' }}>
 
       {/* ── Hero image — offset right, ~75% width ── */}
-      <div style={{ position: 'relative', marginLeft: '25%', overflow: 'hidden' }}>
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
-          src={HERO_IMAGE}
-          alt="Location"
-          style={{ width: '100%', height: 'auto', display: 'block', objectFit: 'cover' }}
-        />
-      </div>
 
       {/* ── Book Animation ── */}
       <TurnJSBook />
