@@ -55,6 +55,9 @@ export default function PortfolioHero({
             height: '80vh',
             minHeight: '500px',
             maxHeight: '800px',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
           }}
         >
           {/* eslint-disable-next-line @next/next/no-img-element */}
@@ -62,9 +65,11 @@ export default function PortfolioHero({
             src={imageSrc}
             alt={imageAlt}
             style={{
-              width: '100%',
-              height: '100%',
-              objectFit: 'cover',
+              maxWidth: '100%',
+              maxHeight: '100%',
+              width: 'auto',
+              height: 'auto',
+              objectFit: 'contain',
               objectPosition: 'center',
               borderRadius: '4px',
               boxShadow: '0 20px 60px rgba(0,0,0,0.4)',
