@@ -1,19 +1,53 @@
 'use client'
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useRef, useState, useCallback } from 'react'
 import SvgIcon from './SvgIcon'
+
+// How many pages ahead/behind the current page to preload
+const PRELOAD_RADIUS = 2
 
 export default function TurnJSBook() {
   const flipbookRef = useRef<HTMLDivElement>(null)
   const [currentPage, setCurrentPage] = useState(1)
   const [isReady, setIsReady] = useState(false)
+  // Track which page indices have already had their image loaded
+  const loadedPages = useRef<Set<number>>(new Set())
 
-  // Generate all page paths from Brochure-image folder
   const totalImages = 70
   const allImages = Array.from({ length: totalImages }, (_, i) => {
     const num = String(i + 1).padStart(2, '0')
-    // Handle the space in "09 .jpg"
     return `/Brochure-image/${i === 8 ? '09 ' : num}.jpg`
   })
+
+  // Load images for pages within PRELOAD_RADIUS of `page` (1-indexed)
+  const loadPagesAround = useCallback((page: number) => {
+    if (!flipbookRef.current) return
+    const $ = (window as unknown as Record<string, unknown>).$ as ((s: unknown) => any) | undefined
+    if (!$) return
+
+    const $book = $(flipbookRef.current)
+    const pageCount = allImages.length
+
+    for (let i = page - PRELOAD_RADIUS; i <= page + PRELOAD_RADIUS; i++) {
+      if (i < 1 || i > pageCount) continue
+      if (loadedPages.current.has(i)) continue
+
+      // turn.js wraps each page in .page — select by data-page attribute we set
+      const $pageDiv = $book.find(`[data-page-index="${i}"]`)
+      if ($pageDiv.length === 0) continue
+
+      const src = allImages[i - 1]
+      // Replace the placeholder with the real image
+      $pageDiv.html(`
+        <img
+          src="${src}"
+          alt="Page ${i}"
+          draggable="false"
+          style="width:100%;height:100%;object-fit:cover;display:block;user-select:none;pointer-events:none;"
+        />
+      `)
+      loadedPages.current.add(i)
+    }
+  }, [allImages])
 
   useEffect(() => {
     let isMounted = true
@@ -24,61 +58,45 @@ export default function TurnJSBook() {
       if (typeof window === 'undefined' || !flipbookRef.current) return
 
       try {
-        console.log('Initializing TurnJS...')
-        
-        // Dynamically import jQuery
         const $ = (await import('jquery')).default
-        console.log('jQuery loaded')
-        
-        // Make jQuery available globally
+
         const win = window as unknown as Record<string, unknown>
         if (!win.$) {
           win.$ = $
           win['jQuery'] = $
         }
-        
-        // Import turn.js
+
         await import('turn.js')
-        console.log('Turn.js loaded')
 
-        // Small delay to ensure DOM is ready
         await new Promise(resolve => setTimeout(resolve, 100))
-
         if (!isMounted || !flipbookRef.current) return
 
         $flipbook = $(flipbookRef.current!)
-        console.log('Flipbook element:', $flipbook.length)
-        
-        // Check if already initialized (React Strict Mode double mount)
+
+        // Already initialized (React Strict Mode double-mount guard)
         if ($flipbook.data('turn')) {
-          console.log('TurnJS already initialized, skipping...')
           isInitialized = true
-          setIsReady(true)
+          if (isMounted) setIsReady(true)
           return
         }
-        
-        // Clear any existing content
+
         $flipbook.empty()
-        
-        // Add all pages to the flipbook before initialization
-        allImages.forEach((imagePath, index) => {
+
+        // Add all pages as lightweight placeholders — no images yet
+        allImages.forEach((_, index) => {
+          const pageNum = index + 1
           $flipbook.append(`
-            <div style="background: #fff; overflow: hidden; position: relative; width: 100%; height: 100%;">
-              <img
-                src="${imagePath}"
-                alt="Page ${index + 1}"
-                draggable="false"
-                style="width: 100%; height: 100%; object-fit: cover; display: block; user-select: none; pointer-events: none;"
-              />
+            <div
+              data-page-index="${pageNum}"
+              style="background:#f0f0f0;overflow:hidden;position:relative;width:100%;height:100%;display:flex;align-items:center;justify-content:center;"
+            >
+              <span style="color:#bbb;font-size:1rem;">${pageNum}</span>
             </div>
           `)
         })
-        
-        console.log('Added', allImages.length, 'pages to flipbook')
-        
-        // Initialize turn.js with single page for closed book
+
         $flipbook.turn({
-          width: 450, // Half width for single page
+          width: 450,
           height: 600,
           autoCenter: true,
           acceleration: true,
@@ -86,29 +104,26 @@ export default function TurnJSBook() {
           elevation: 50,
           duration: 1200,
           page: 1,
-          display: 'single', // Start with single page (closed book)
+          display: 'single',
           when: {
             turning: function(this: any, _event: any, page: number) {
               $(this).css('cursor', 'grabbing')
-              
-              // When turning from page 1 to 2, switch to double display
               if (page === 2) {
                 $(this).turn('display', 'double')
-                $(this).turn('size', 900, 600) // Expand to full width
+                $(this).turn('size', 900, 600)
               }
             },
             turned: function(this: any, _event: any, page: number) {
-              if (isMounted) {
-                setCurrentPage(page)
-              }
+              if (isMounted) setCurrentPage(page)
               $(this).css('cursor', 'grab')
-              console.log('Turned to page:', page)
-              
-              // If we go back to page 1, switch back to single display
+
               if (page === 1) {
                 $(this).turn('display', 'single')
-                $(this).turn('size', 450, 600) // Shrink to half width
+                $(this).turn('size', 450, 600)
               }
+
+              // Lazy-load images around the new page
+              loadPagesAround(page)
             },
             start: function(this: any) {
               $(this).css('cursor', 'grabbing')
@@ -119,16 +134,14 @@ export default function TurnJSBook() {
           },
         })
 
-        // Set initial cursor
         $flipbook.css('cursor', 'grab')
 
-        console.log('TurnJS initialized successfully with', $flipbook.turn('pages'), 'pages')
-        console.log('Current display mode:', $flipbook.turn('display'))
-        
         isInitialized = true
-        if (isMounted) {
-          setIsReady(true)
-        }
+        if (isMounted) setIsReady(true)
+
+        // Load the first batch right away (pages 1–3)
+        loadPagesAround(1)
+
       } catch (error) {
         console.error('Error initializing turn.js:', error)
       }
@@ -140,37 +153,26 @@ export default function TurnJSBook() {
       isMounted = false
       if ($flipbook && $flipbook.length > 0 && isInitialized) {
         try {
-          // Check if turn is initialized before destroying
-          if (typeof $flipbook.turn === 'function') {
-            const turnData = $flipbook.data('turn')
-            if (turnData) {
-              $flipbook.turn('destroy')
-              $flipbook.empty()
-              console.log('Turn.js destroyed successfully')
-            }
+          if (typeof $flipbook.turn === 'function' && $flipbook.data('turn')) {
+            $flipbook.turn('destroy')
+            $flipbook.empty()
           }
-        } catch (e) {
-          // Silently fail - component is unmounting anyway
+        } catch {
+          // silently ignore on unmount
         }
       }
     }
-  }, [])
+  }, [allImages, loadPagesAround])
 
   const goToNextPage = () => {
-    if (flipbookRef.current && (window as any).$) {
-      const $ = (window as any).$
-      $(flipbookRef.current).turn('next')
-    }
+    const $ = (window as unknown as Record<string, unknown>).$ as ((s: unknown) => any) | undefined
+    if (flipbookRef.current && $) $(flipbookRef.current).turn('next')
   }
 
   const goToPrevPage = () => {
-    if (flipbookRef.current && (window as any).$) {
-      const $ = (window as any).$
-      $(flipbookRef.current).turn('previous')
-    }
+    const $ = (window as unknown as Record<string, unknown>).$ as ((s: unknown) => any) | undefined
+    if (flipbookRef.current && $) $(flipbookRef.current).turn('previous')
   }
-
-  const totalPages = totalImages // Total number of pages in the book
 
   return (
     <div style={{
@@ -225,7 +227,7 @@ export default function TurnJSBook() {
         </button>
       )}
 
-      {/* Book container - dynamic width based on page */}
+      {/* Book container */}
       <div style={{
         position: 'relative',
         width: currentPage === 1 ? '450px' : '900px',
@@ -234,18 +236,15 @@ export default function TurnJSBook() {
         background: '#fff',
         transition: 'width 0.6s cubic-bezier(0.7, 0, 0.3, 1)',
       }}>
-        <div 
-          ref={flipbookRef} 
-          style={{ 
-            width: '100%', 
+        <div
+          ref={flipbookRef}
+          style={{
+            width: '100%',
             height: '100%',
             display: isReady ? 'block' : 'none',
           }}
-        >
-          {/* Pages are added dynamically by turn.js initialization */}
-        </div>
+        />
 
-        {/* Loading state */}
         {!isReady && (
           <div style={{
             position: 'absolute',
@@ -266,7 +265,7 @@ export default function TurnJSBook() {
       {isReady && (
         <button
           onClick={goToNextPage}
-          disabled={currentPage === totalPages}
+          disabled={currentPage === totalImages}
           aria-label="Next page"
           style={{
             position: 'absolute',
@@ -278,24 +277,24 @@ export default function TurnJSBook() {
             borderRadius: '50%',
             width: '60px',
             height: '60px',
-            cursor: currentPage === totalPages ? 'not-allowed' : 'pointer',
+            cursor: currentPage === totalImages ? 'not-allowed' : 'pointer',
             color: '#fff',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
-            opacity: currentPage === totalPages ? 0.3 : 1,
+            opacity: currentPage === totalImages ? 0.3 : 1,
             transition: 'all 0.3s',
             zIndex: 100,
             boxShadow: '0 4px 12px rgba(0,0,0,0.3)',
           }}
           onMouseEnter={e => {
-            if (currentPage < totalPages) {
+            if (currentPage < totalImages) {
               e.currentTarget.style.opacity = '0.7'
               e.currentTarget.style.transform = 'translateY(-50%) scale(1.1)'
             }
           }}
           onMouseLeave={e => {
-            if (currentPage < totalPages) {
+            if (currentPage < totalImages) {
               e.currentTarget.style.opacity = '1'
               e.currentTarget.style.transform = 'translateY(-50%) scale(1)'
             }
@@ -305,7 +304,7 @@ export default function TurnJSBook() {
         </button>
       )}
 
-      {/* Page counter - bottom center */}
+      {/* Page counter */}
       {isReady && (
         <div style={{
           position: 'absolute',
@@ -322,7 +321,7 @@ export default function TurnJSBook() {
           boxShadow: '0 4px 12px rgba(0,0,0,0.1)',
           zIndex: 100,
         }}>
-          {currentPage} / {totalPages}
+          {currentPage} / {totalImages}
         </div>
       )}
     </div>
