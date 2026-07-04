@@ -32,6 +32,7 @@ export default function PortfolioInfo({
         color: '#ffffff',
         padding: '8rem 16rem',
       }}
+      className="portfolio-info"
     >
       <div
         style={{
@@ -41,6 +42,7 @@ export default function PortfolioInfo({
           gridTemplateColumns: '1fr 1.5fr',
           gap: '8rem',
         }}
+        className="portfolio-info-container"
       >
         {/* Left Column - Project Details */}
         <motion.div
@@ -157,19 +159,6 @@ export default function PortfolioInfo({
           ))}
         </motion.div>
       </div>
-
-      {/* Responsive Styles */}
-      <style jsx>{`
-        @media (max-width: 968px) {
-          section {
-            padding: 6rem 2rem !important;
-          }
-          section > div {
-            grid-template-columns: 1fr !important;
-            gap: 4rem !important;
-          }
-        }
-      `}</style>
     </section>
   )
 }

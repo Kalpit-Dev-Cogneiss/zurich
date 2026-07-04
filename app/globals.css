@@ -116,3 +116,26 @@ button {
   white-space: nowrap;
   border: 0;
 }
+
+/* Portfolio Grid Responsive */
+@media (max-width: 768px) {
+  .portfolio-grid {
+    grid-template-columns: 1fr !important;
+    gap: 3rem !important;
+  }
+  
+  .portfolio-gallery {
+    padding: 3rem 2rem 6rem !important;
+  }
+}
+
+@media (max-width: 968px) {
+  .portfolio-info {
+    padding: 6rem 2rem !important;
+  }
+  
+  .portfolio-info-container {
+    grid-template-columns: 1fr !important;
+    gap: 4rem !important;
+  }
+}

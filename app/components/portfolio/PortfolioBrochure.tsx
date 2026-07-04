@@ -39,7 +39,7 @@ export default function PortfolioBrochure({
           y,
           opacity,
           position: 'relative',
-          maxWidth: '500px',
+          maxWidth: '550px',
           width: '100%',
         }}
       >

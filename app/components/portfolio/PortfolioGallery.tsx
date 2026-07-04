@@ -23,6 +23,7 @@ export default function PortfolioGallery({ images }: PortfolioGalleryProps) {
         width: '100%',
         padding: '0rem 8rem',
       }}
+      className="portfolio-gallery"
     >
       <div
         style={{
@@ -61,15 +62,6 @@ export default function PortfolioGallery({ images }: PortfolioGalleryProps) {
           </motion.div>
         ))}
       </div>
-
-      {/* Responsive Styles */}
-      <style jsx>{`
-        @media (max-width: 768px) {
-          section {
-            padding: 3rem 2rem 6rem !important;
-          }
-        }
-      `}</style>
     </section>
   )
 }

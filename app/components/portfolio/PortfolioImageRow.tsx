@@ -55,15 +55,6 @@ export default function PortfolioImageRow({
           />
         </motion.div>
       ))}
-
-      {/* Responsive Styles */}
-      <style jsx>{`
-        @media (max-width: 968px) {
-          div {
-            grid-template-columns: 1fr !important;
-          }
-        }
-      `}</style>
     </div>
   )
 }
