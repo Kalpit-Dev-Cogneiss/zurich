@@ -321,7 +321,7 @@ const farmhouseProjects: ProjectData[] = [
     images: createImages('farmhouse', 'the-lakeview', {
       hero: '01.jpg', brochure: '02.png', single: '03.jpg',
       row: ['04.jpg', '05.jpg', '06.png'],
-      remaining: []
+      remaining: ['07.png', '08.png']
     }),
   },
 ]
