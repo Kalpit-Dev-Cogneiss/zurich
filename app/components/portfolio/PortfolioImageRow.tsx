@@ -24,8 +24,9 @@ export default function PortfolioImageRow({
         display: 'grid',
         gridTemplateColumns: `repeat(${images.length}, 1fr)`,
         width: '100%',
-        padding:'0rem 8rem',
+        padding: '0rem 8rem',
       }}
+      className="portfolio-image-row"
     >
       {images.map((image, index) => (
         <motion.div

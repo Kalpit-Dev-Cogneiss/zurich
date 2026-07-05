@@ -1,11 +1,11 @@
 import Header from '@/app/components/layout/Header'
 import Footer from '@/app/components/layout/Footer'
-import PortfolioCard from '@/app/components/portfolio/PortfolioCard'
-import { portfolioProjects } from '@/app/lib/portfolioData'
+import PortfolioTabs from '@/app/components/portfolio/PortfolioTabs'
+import { residentialProjects, commercialProjects, farmhouseProjects } from '@/app/lib/portfolioData'
 
 export const metadata = {
   title: 'Portfolio | Our Projects',
-  description: 'Explore our portfolio of luxury residential and commercial projects',
+  description: 'Explore our portfolio of luxury residential, commercial, and farmhouse projects',
 }
 
 export default function PortfolioPage() {
@@ -42,33 +42,18 @@ export default function PortfolioPage() {
               lineHeight: 1.6,
             }}
           >
-            Explore our collection of exceptional residential and commercial projects
+            Explore our collection of exceptional residential, commercial, and farmhouse projects
           </p>
         </section>
 
-        {/* Portfolio Grid */}
-        <section style={{ padding: '4rem 4rem 8rem', background: '#000' }}>
-          <div
-            style={{
-              maxWidth: '1600px',
-              margin: '0 auto',
-              display: 'grid',
-              gridTemplateColumns: 'repeat(auto-fit, minmax(450px, 1fr))',
-              gap: '4rem',
-            }}
-            className="portfolio-grid"
-          >
-            {portfolioProjects.map((project, index) => (
-              <PortfolioCard
-                key={project.slug}
-                title={project.title}
-                slug={project.slug}
-                imageSrc={project.images.hero}
-                projectType={project.projectType.replace('\n', ' ')}
-                location={project.location}
-                index={index}
-              />
-            ))}
+        {/* Portfolio Tabs */}
+        <section style={{ padding: '4rem 4rem 8rem', background: '#0a0a0a' }}>
+          <div style={{ maxWidth: '1600px', margin: '0 auto' }}>
+            <PortfolioTabs
+              residential={residentialProjects}
+              commercial={commercialProjects}
+              farmhouse={farmhouseProjects}
+            />
           </div>
         </section>
       </main>
