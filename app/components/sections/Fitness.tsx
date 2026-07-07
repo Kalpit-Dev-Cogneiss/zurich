@@ -126,7 +126,7 @@ export default function Fitness() {
           <div style={{ display: 'flex', height: '100vh', alignItems: 'center', padding: '0 6rem', gap: '5rem', flexShrink: 0 }}>
             <div style={{ flexShrink: 0, width: '20vw' }}>
               <h2 style={{ fontSize: 'clamp(2rem, 2.8vw, 3.6rem)', fontWeight: 600, lineHeight: 1.1, letterSpacing: '0.02em', textTransform: 'uppercase', color: '#000', margin: 0 }}>
-                FITNESS CLUB<br />WITH A 25M<br />SWIMMING POOL
+                Our Work
               </h2>
             </div>
             <div style={{ flexShrink: 0, width: '38vw', height: '78vh', overflow: 'hidden' }}>

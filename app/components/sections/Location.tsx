@@ -100,7 +100,7 @@ export default function Location() {
               textTransform: 'uppercase',
             }}
           >
-            Location
+            Project
           </motion.p>
         </div>
         <hr style={{ border: 'none', borderTop: '1px solid rgba(0,0,0,0.15)', margin: 0 }} />

@@ -27,14 +27,25 @@ export default function Home() {
         <Architecture />
         <Gallery />
         <DailySchedule />
+        <div style={{ marginBottom: '2rem', padding: '40px' }}>
+            <h3 style={{
+              fontSize: 'clamp(2rem, 3vw, 3.5rem)',
+              fontWeight: 600,
+              color: '#fff',
+              letterSpacing: '0.1em',
+              textTransform: 'uppercase',
+              margin: 0,
+              marginBottom: '1rem',
+            }}>
+              Our Services
+            </h3>
+          </div>        
         <Advantages />
         <Fitness />
         {/* Sections after Fitness need z-index to scroll over the fixed Fitness panel */}
         <div style={{ position: 'relative', zIndex: 20 }}>
-          <Infrastructure />
-          <Park />
-          <Apartments />
           <Technologies />
+          <Apartments />
           <Penthouses />
         </div>
       </main>

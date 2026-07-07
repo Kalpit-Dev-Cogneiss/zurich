@@ -141,8 +141,10 @@ export default function Advantages() {
           padding: '4rem',
           overflow: 'hidden',
         }}>
+
           {/* Counter */}
           <div style={{ display: 'flex', alignItems: 'center', gap: '1.2rem' }}>
+            
             <motion.span
               key={`num-${active}`}
               initial={{ opacity: 0, y: 8 }}

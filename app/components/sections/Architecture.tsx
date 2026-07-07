@@ -159,10 +159,10 @@ export default function Architecture() {
       {/* ─────────────────────────────────────────────────────────────
           BLOCK 5 — image-4 + image-5 side by side (square)
       ───────────────────────────────────────────────────────────── */}
-      <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 0 }}>
+      {/* <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: 0 }}>
         <ParallaxImg src={IMG.image4} style={{ aspectRatio: '1/1' }} />
         <ParallaxImg src={IMG.image5} style={{ aspectRatio: '1/1' }} />
-      </div>
+      </div> */}
     </section>
   )
 }

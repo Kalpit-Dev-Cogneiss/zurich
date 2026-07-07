@@ -1,115 +1,128 @@
 'use client'
 import { useState } from 'react'
-import Image from 'next/image'
-import { motion, AnimatePresence } from 'framer-motion'
-import AnimateReveal from '@/app/components/ui/AnimateReveal'
-import SplitText from '@/app/components/ui/SplitText'
+import { motion } from 'framer-motion'
 import { TECHNOLOGY_ITEMS } from '@/app/lib/data'
 
 export default function Technologies() {
   const [active, setActive] = useState(0)
 
   return (
-    <section id="services" style={{
-      display: 'grid', gridTemplateColumns: '1fr 1fr',
-      minHeight: '100vh', background: '#000',
-    }} className="tech-outer-grid">
-
-      {/* LEFT — full portrait image */}
-      <div style={{ position: 'relative', overflow: 'hidden', minHeight: '60vh' }}>
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={active}
-            initial={{ opacity: 0, scale: 1.05 }}
-            animate={{ opacity: 1, scale: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.7, ease: [0.7, 0, 0.3, 1] }}
-            style={{ position: 'absolute', inset: 0 }}
-          >
-            <Image
-              src={TECHNOLOGY_ITEMS[active].image}
-              alt={TECHNOLOGY_ITEMS[active].title}
-              fill style={{ objectFit: 'cover' }}
-            />
-          </motion.div>
-        </AnimatePresence>
-      </div>
-
-      {/* RIGHT — section title + stacked bordered cards */}
-      <div style={{
-        background: '#000', color: '#fff',
-        display: 'flex', flexDirection: 'column',
-        padding: '6rem 4rem',
-        borderLeft: '1px solid rgba(255,255,255,0.06)',
-      }}>
-        {/* Top: section heading (top-right in video) */}
-        <AnimateReveal>
-          <SplitText
-            text="Technologies and Services"
-            as="h2"
-            mode="lines"
-            style={{
-              fontSize: 'clamp(2rem, 2.8vw, 3.6rem)',
-              letterSpacing: '0.06em', textTransform: 'uppercase',
-              lineHeight: 1.1, marginBottom: '5.6rem',
-              textAlign: 'right',
-            }}
-          />
-        </AnimateReveal>
-
-        {/* Stacked cards */}
-        <div style={{ display: 'flex', flexDirection: 'column', gap: '1.6rem', flex: 1 }}>
-          {TECHNOLOGY_ITEMS.map((item, i) => (
-            <AnimateReveal key={item.title} delay={i * 0.08}>
-              <button
-                onClick={() => setActive(i)}
-                style={{
-                  display: 'flex', flexDirection: 'column',
-                  justifyContent: 'space-between',
-                  width: '100%', textAlign: 'left',
-                  padding: '2.8rem',
-                  border: `1px solid ${i === active ? 'rgba(255,255,255,0.3)' : 'rgba(255,255,255,0.1)'}`,
-                  background: i === active ? 'rgba(255,255,255,0.04)' : 'transparent',
-                  cursor: 'pointer',
-                  transition: 'border-color 0.4s ease, background 0.4s ease',
-                  flex: 1,
-                }}
-              >
-                <p style={{
-                  fontSize: '1.1rem', letterSpacing: '0.1em',
-                  textTransform: 'uppercase',
-                  color: i === active ? 'rgba(255,255,255,0.5)' : 'rgba(255,255,255,0.25)',
-                  marginBottom: '1.2rem',
-                  transition: 'color 0.4s ease',
-                }}>
-                  {item.title}
-                </p>
-                <AnimatePresence>
-                  {i === active && (
-                    <motion.p
-                      initial={{ opacity: 0, height: 0 }}
-                      animate={{ opacity: 1, height: 'auto' }}
-                      exit={{ opacity: 0, height: 0 }}
-                      transition={{ duration: 0.4, ease: [0.7, 0, 0.3, 1] }}
-                      style={{
-                        fontSize: '1.4rem', lineHeight: 1.65,
-                        color: 'rgba(255,255,255,0.55)',
-                        overflow: 'hidden',
-                      }}
-                    >
-                      {item.body}
-                    </motion.p>
-                  )}
-                </AnimatePresence>
-              </button>
-            </AnimateReveal>
+    <section
+      id="services"
+      style={{
+        background: '#000',
+        color: '#fff',
+        minHeight: '100vh',
+        padding: '4rem 0',
+      }}
+    >
+      <div
+        style={{
+          display: 'grid',
+          gridTemplateColumns: '50% 50%',
+          minHeight: '100vh',
+        }}
+      >
+        {/* LEFT - Image */}
+        <div style={{ position: 'relative', overflow: 'hidden' }}>
+          {TECHNOLOGY_ITEMS.map((tech, i) => (
+            <motion.div
+              key={tech.title}
+              animate={{ opacity: i === active ? 1 : 0 }}
+              transition={{ duration: 0.7, ease: [0.7, 0, 0.3, 1] as [number,number,number,number] }}
+              style={{ 
+                position: 'absolute', 
+                inset: 0, 
+                zIndex: i === active ? 1 : 0 
+              }}
+            >
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src={tech.image}
+                alt={tech.title}
+                style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
+              />
+            </motion.div>
           ))}
         </div>
-      </div>
 
-      <style>{`
-        @media (max-width: 768px) { .tech-outer-grid { grid-template-columns: 1fr !important; } }
-      `}</style>
+        {/* RIGHT - Title and Cards */}
+        <div
+          style={{
+            background: '#000',
+            color: '#fff',
+            display: 'flex',
+            flexDirection: 'column',
+            padding: '4rem',
+          }}
+        >
+          {/* Title */}
+          <div style={{ textAlign: 'right', marginBottom: '4rem' }}>
+            <h2
+              style={{
+                fontSize: 'clamp(2.5rem, 3.5vw, 4rem)',
+                fontWeight: 600,
+                lineHeight: 1.1,
+                letterSpacing: '0.05em',
+                textTransform: 'uppercase',
+                margin: 0,
+              }}
+            >
+              Testimonails
+            </h2>
+          </div>
+
+          {/* Service Cards */}
+          <div style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: '2rem' }}>
+            {TECHNOLOGY_ITEMS.map((tech, i) => (
+              <motion.div
+                key={tech.title}
+                animate={{
+                  borderColor: i === active ? 'rgba(255,255,255,0.3)' : 'rgba(255,255,255,0.1)',
+                  backgroundColor: i === active ? 'rgba(255,255,255,0.05)' : 'transparent',
+                }}
+                transition={{ duration: 0.4 }}
+                style={{
+                  flex: 1,
+                  border: '1px solid rgba(255,255,255,0.1)',
+                  padding: '2.5rem',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  justifyContent: 'space-between',
+                  cursor: 'pointer',
+                }}
+                onClick={() => setActive(i)}
+              >
+                <p
+                  style={{
+                    fontSize: '1.2rem',
+                    textTransform: 'uppercase',
+                    letterSpacing: '0.1em',
+                    color: 'rgba(255,255,255,0.5)',
+                    marginBottom: '1rem',
+                  }}
+                >
+                  {tech.title}
+                </p>
+                <motion.p
+                  key={`desc-${i}-${active}`}
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: i === active ? 1 : 0 }}
+                  transition={{ duration: 0.5, delay: i === active ? 0.2 : 0 }}
+                  style={{
+                    fontSize: '1.4rem',
+                    lineHeight: 1.6,
+                    color: 'rgba(255,255,255,0.6)',
+                    display: i === active ? 'block' : 'none',
+                  }}
+                >
+                  {tech.body}
+                </motion.p>
+              </motion.div>
+            ))}
+          </div>
+        </div>
+      </div>
     </section>
   )
 }
