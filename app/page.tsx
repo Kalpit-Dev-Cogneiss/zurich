@@ -13,6 +13,7 @@ import Infrastructure from '@/app/components/sections/Infrastructure'
 import Park from '@/app/components/sections/Park'
 import Apartments from '@/app/components/sections/Apartments'
 import Technologies from '@/app/components/sections/Technologies'
+import IndiaMap from '@/app/components/sections/IndiaMap'
 import Penthouses from '@/app/components/sections/Penthouses'
 
 export default function Home() {
@@ -46,6 +47,7 @@ export default function Home() {
         <div style={{ position: 'relative', zIndex: 20 }}>
           <Technologies />
           <Apartments />
+          <IndiaMap />
           <Penthouses />
         </div>
       </main>
