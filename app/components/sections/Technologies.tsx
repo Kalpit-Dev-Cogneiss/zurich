@@ -2,6 +2,7 @@
 import { useState } from 'react'
 import { motion } from 'framer-motion'
 import { TECHNOLOGY_ITEMS } from '@/app/lib/data'
+import ParallaxImage from '@/app/components/ui/ParallaxImage'
 
 export default function Technologies() {
   const [active, setActive] = useState(0)
@@ -36,12 +37,7 @@ export default function Technologies() {
                 zIndex: i === active ? 1 : 0 
               }}
             >
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src={tech.image}
-                alt={tech.title}
-                style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
-              />
+              <ParallaxImage src={tech.image} alt={tech.title} strength={8} />
             </motion.div>
           ))}
         </div>

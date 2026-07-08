@@ -2,6 +2,7 @@
 import { useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import SvgIcon from '@/app/components/ui/SvgIcon'
+import ParallaxImage from '@/app/components/ui/ParallaxImage'
 
 const SLIDES = [
   {
@@ -47,10 +48,7 @@ export default function Infrastructure() {
               transition={{ duration: 0.8, ease: [0.7, 0, 0.3, 1] as [number,number,number,number] }}
               style={{ position: 'absolute', inset: 0, zIndex: i === active ? 1 : 0 }}
             >
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src={s.image} alt={s.title}
-                style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
-              />
+              <ParallaxImage src={s.image} alt={s.title} strength={8} />
             </motion.div>
           ))}
         </div>

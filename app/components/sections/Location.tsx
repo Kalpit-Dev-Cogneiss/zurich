@@ -1,7 +1,8 @@
 'use client'
+import { useRef } from 'react'
 import { useKeenSlider } from 'keen-slider/react'
 import 'keen-slider/keen-slider.min.css'
-import { motion } from 'framer-motion'
+import { motion, useScroll, useTransform } from 'framer-motion'
 import TurnJSBook from '@/app/components/ui/TurnJSBook'
 
 
@@ -24,6 +25,59 @@ const CARDS = [
   { label: 'Industrial Projects',     image: '/images/Industrial Projects.jpg' },
   { label: 'Corporate Projects',      image: '/images/Corporate Projects.jpg' },
 ]
+
+function LocationCard({ image, label }: { image: string; label: string }) {
+  const ref = useRef<HTMLDivElement>(null)
+  const { scrollYProgress } = useScroll({ target: ref, offset: ['start end', 'end start'] })
+  const y = useTransform(scrollYProgress, [0, 1], ['8%', '-8%'])
+
+  return (
+    <div
+      key={label}
+      className="keen-slider__slide"
+      style={{ overflow: 'hidden' }}
+    >
+      <div ref={ref} style={{ position: 'relative', width: '100%', aspectRatio: '4/3', overflow: 'hidden' }}>
+        <motion.div style={{ y, position: 'absolute', inset: '-12% 0' }}>
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src={image}
+            alt={label}
+            style={{
+              position: 'absolute', inset: 0,
+              width: '100%', height: '100%',
+              objectFit: 'cover',
+              transition: 'transform 0.9s cubic-bezier(.7,0,.3,1)',
+            }}
+            className="loc-slide-img"
+          />
+        </motion.div>
+        {/* dark gradient overlay */}
+        <div style={{
+          position: 'absolute', inset: 0,
+          background: 'linear-gradient(0deg, rgba(0,0,0,0.65) 0%, rgba(0,0,0,0.05) 50%)',
+        }} />
+        {/* label */}
+        <div style={{
+          position: 'absolute',
+          bottom: '3.2rem', left: '3.2rem',
+          color: '#fff',
+        }}>
+          <p style={{
+            fontSize: 'clamp(2rem, 3vw, 3.6rem)',
+            fontWeight: 600,
+            letterSpacing: '0.04em',
+            textTransform: 'uppercase',
+            lineHeight: 1,
+            margin: 0,
+          }}>
+            {label}
+          </p>
+        </div>
+      </div>
+    </div>
+  )
+}
 
 export default function Location() {
   const [sliderRef] = useKeenSlider<HTMLDivElement>({
@@ -113,48 +167,7 @@ export default function Location() {
         style={{ marginTop: '0.8rem', cursor: 'grab' }}
       >
         {CARDS.map((card) => (
-          <div
-            key={card.label}
-            className="keen-slider__slide"
-            style={{ overflow: 'hidden' }}
-          >
-            <div style={{ position: 'relative', width: '100%', aspectRatio: '4/3', overflow: 'hidden' }}>
-              {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img
-                src={card.image}
-                alt={card.label}
-                style={{
-                  position: 'absolute', inset: 0,
-                  width: '100%', height: '100%',
-                  objectFit: 'cover',
-                  transition: 'transform 0.9s cubic-bezier(.7,0,.3,1)',
-                }}
-                className="loc-slide-img"
-              />
-              {/* dark gradient overlay */}
-              <div style={{
-                position: 'absolute', inset: 0,
-                background: 'linear-gradient(0deg, rgba(0,0,0,0.65) 0%, rgba(0,0,0,0.05) 50%)',
-              }} />
-              {/* label */}
-              <div style={{
-                position: 'absolute',
-                bottom: '3.2rem', left: '3.2rem',
-                color: '#fff',
-              }}>
-                <p style={{
-                  fontSize: 'clamp(2rem, 3vw, 3.6rem)',
-                  fontWeight: 600,
-                  letterSpacing: '0.04em',
-                  textTransform: 'uppercase',
-                  lineHeight: 1,
-                  margin: 0,
-                }}>
-                  {card.label}
-                </p>
-              </div>
-            </div>
-          </div>
+          <LocationCard key={card.label} image={card.image} label={card.label} />
         ))}
       </div>
 

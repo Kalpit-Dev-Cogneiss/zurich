@@ -1,141 +1,157 @@
-'use client'
-import { useRef } from 'react'
-import { motion, useScroll, useTransform } from 'framer-motion'
+"use client";
+import { useRef } from "react";
+import { motion, useScroll, useTransform } from "framer-motion";
 
-const BG_IMAGE = '/images/Full Screen.jpg'
+const BG_IMAGE = "/zurich-bg-image.jpeg";
 
 export default function Panorama() {
-  const ref = useRef<HTMLElement>(null)
+  const ref = useRef<HTMLElement>(null);
 
   const { scrollYProgress } = useScroll({
     target: ref,
-    offset: ['start end', 'end start'],
-  })
+    offset: ["start end", "end start"],
+  });
 
-  const imgY = useTransform(scrollYProgress, [0, 1], ['8%', '-8%'])
+  const imgY = useTransform(scrollYProgress, [0, 1], ["8%", "-8%"]);
 
   return (
     <>
       <section
         ref={ref}
-      id="panorama"
-      style={{
-        position: 'relative',
-        width: '100%',
-        minHeight: '140svh',
-        overflow: 'hidden',
-        background: '#0a1628',
-        color: '#fff',
-      }}
-    >
-      {/* ── Background image with parallax ── */}
-      <motion.div
+        id="panorama"
         style={{
-          position: 'absolute',
-          inset: '-15% 0',
-          y: imgY,
+          position: "relative",
+          width: "100%",
+          minHeight: "140svh",
+          overflow: "hidden",
+          background: "#0a1628",
+          color: "#fff",
         }}
       >
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
-          src={BG_IMAGE}
-          alt=""
+        {/* ── Background image with parallax ── */}
+        <motion.div
           style={{
-            width: '100%',
-            height: '100%',
-            objectFit: 'cover',
-            objectPosition: 'center top',
-            display: 'block',
+            position: "absolute",
+            inset: "-15% 0",
+            y: imgY,
           }}
-        />
-      </motion.div>
-
-      {/* ── Dark overlay ── */}
-      <div style={{
-        position: 'absolute', inset: 0,
-        background: 'linear-gradient(180deg, rgba(10,22,40,0.72) 0%, rgba(10,22,40,0.25) 45%, rgba(10,22,40,0.15) 70%, rgba(10,22,40,0.6) 100%)',
-        zIndex: 1,
-      }} />
-
-      {/* ── Content ── */}
-      <div style={{
-        position: 'relative',
-        zIndex: 2,
-        padding: '8rem 4rem 12rem',
-        minHeight: '140svh',
-        display: 'flex',
-        flexDirection: 'column',
-      }}>
-
-        {/* Top row: small label left, nothing right */}
-        <div style={{
-          display: 'grid',
-          gridTemplateColumns: '1fr 1fr',
-          gap: '4rem',
-          alignItems: 'start',
-        }}>
-          {/* Left — small heading */}
-          <motion.h2
-            initial={{ opacity: 0, y: 16 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8, ease: [0.7, 0, 0.3, 1] }}
+        >
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            src={BG_IMAGE}
+            alt=""
             style={{
-              fontSize: 'clamp(1.2rem, 1.3vw, 1.6rem)',
-              fontWeight: 600,
-              lineHeight: 1.3,
-              letterSpacing: '0.04em',
-              textTransform: 'uppercase',
-              color: '#fff',
-              margin: 0,
-              maxWidth: 200,
+              width: "100%",
+              height: "100%",
+              objectFit: "cover",
+              objectPosition: "center top",
+              display: "block",
             }}
-          >
-            IT&apos;S A WORLD THAT<br />ADAPTS TO YOU
-          </motion.h2>
-        </div>
+          />
+        </motion.div>
 
-        {/* Full-width horizontal rule */}
-        <motion.hr
-          initial={{ scaleX: 0, originX: 0 }}
-          whileInView={{ scaleX: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 1.0, ease: [0.7, 0, 0.3, 1], delay: 0.1 }}
+        {/* ── Dark overlay ── */}
+        <div
           style={{
-            border: 'none',
-            borderTop: '1px solid rgba(255,255,255,0.25)',
-            margin: '3.2rem 0 4rem',
+            position: "absolute",
+            inset: 0,
+            background:
+              "linear-gradient(180deg, rgba(10,22,40,0.72) 0%, rgba(10,22,40,0.25) 45%, rgba(10,22,40,0.15) 70%, rgba(10,22,40,0.6) 100%)",
+            zIndex: 1,
           }}
         />
 
-        {/* Body text — right half only */}
-        <div style={{
-          display: 'grid',
-          gridTemplateColumns: '1fr 0.5fr',
-          gap: '4rem',
-        }}>
-          <div>{/* empty left column */}</div>
-          <motion.p
-            initial={{ opacity: 0, y: 24 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.9, ease: [0.7, 0, 0.3, 1], delay: 0.15 }}
+        {/* ── Content ── */}
+        <div
+          style={{
+            position: "relative",
+            zIndex: 2,
+            padding: "8rem 4rem 12rem",
+            minHeight: "140svh",
+            display: "flex",
+            flexDirection: "column",
+          }}
+        >
+          {/* Top row: small label left, nothing right */}
+          <div
             style={{
-              fontSize: 'clamp(2rem, 2.8vw, 3rem)',
-              fontWeight: 600,
-              lineHeight: 1.15,
-              letterSpacing: '0.02em',
-              textTransform: 'uppercase',
-              color: '#fff',
-              margin: 0,
+              display: "grid",
+              gridTemplateColumns: "1fr 1fr",
+              gap: "4rem",
+              alignItems: "start",
             }}
           >
-            It is not just a trio of luxurious buildings and the premium service of a grand hotel.
-            It is a home where reality plays by your rules and follows your desires.
-          </motion.p>
+            {/* Left — small heading */}
+            <motion.h2
+              initial={{ opacity: 0, y: 16 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{ duration: 0.8, ease: [0.7, 0, 0.3, 1] }}
+              style={{
+                fontSize: "clamp(1.2rem, 1.3vw, 1.6rem)",
+                fontWeight: 600,
+                lineHeight: 1.3,
+                letterSpacing: "0.04em",
+                textTransform: "uppercase",
+                color: "#fff",
+                margin: 0,
+                maxWidth: 200,
+              }}
+            >
+              IT&apos;S A WORLD THAT
+              <br />
+              ADAPTS TO YOU
+            </motion.h2>
+          </div>
+
+          {/* Full-width horizontal rule */}
+          <motion.hr
+            initial={{ scaleX: 0, originX: 0 }}
+            whileInView={{ scaleX: 1 }}
+            viewport={{ once: true }}
+            transition={{ duration: 1.0, ease: [0.7, 0, 0.3, 1], delay: 0.1 }}
+            style={{
+              border: "none",
+              borderTop: "1px solid rgba(255,255,255,0.25)",
+              margin: "3.2rem 0 4rem",
+            }}
+          />
+
+          {/* Body text — right half only */}
+          <div
+            style={{
+              display: "grid",
+              gridTemplateColumns: "1fr 0.5fr",
+              gap: "4rem",
+            }}
+          >
+            <div>{/* empty left column */}</div>
+            <motion.p
+              initial={{ opacity: 0, y: 24 }}
+              whileInView={{ opacity: 1, y: 0 }}
+              viewport={{ once: true }}
+              transition={{
+                duration: 0.9,
+                ease: [0.7, 0, 0.3, 1],
+                delay: 0.15,
+              }}
+              style={{
+                fontSize: "clamp(2rem, 2.8vw, 3rem)",
+                fontWeight: 600,
+                lineHeight: 1.15,
+                letterSpacing: "0.02em",
+                textTransform: "uppercase",
+                color: "#fff",
+                margin: 0,
+              }}
+            >
+              It is not just a trio of luxurious buildings and the premium
+              service of a grand hotel. It is a home where reality plays by your
+              rules and follows your desires.
+            </motion.p>
+          </div>
         </div>
-      </div>
-    </section>
+      </section>
     </>
-  )
+  );
 }

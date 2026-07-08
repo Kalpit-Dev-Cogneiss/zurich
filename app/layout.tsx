@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import './globals.css'
 import Preloader from '@/app/components/ui/Preloader'
 import SmoothScroll from '@/app/components/ui/SmoothScroll'
+import ScrollSnap from '@/app/components/ui/ScrollSnap'
 
 export const metadata: Metadata = {
   title: 'Business class apartments Zorge 9 | Luxury Real Estate',
@@ -22,6 +23,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body>
         <Preloader />
         <SmoothScroll />
+        <ScrollSnap />
         {children}
       </body>
     </html>

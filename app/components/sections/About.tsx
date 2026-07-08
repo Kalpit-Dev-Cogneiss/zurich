@@ -1,13 +1,17 @@
 'use client'
-import { useState } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
+import { useState, useRef } from 'react'
+import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion'
 import SvgIcon from '@/app/components/ui/SvgIcon'
 
 export default function About() {
   const [videoOpen, setVideoOpen] = useState(false)
+  const sectionRef = useRef<HTMLElement>(null)
+  const { scrollYProgress } = useScroll({ target: sectionRef, offset: ['start end', 'end start'] })
+  const videoY = useTransform(scrollYProgress, [0, 1], ['-8%', '8%'])
 
   return (
     <section
+      ref={sectionRef}
       id="about"
       style={{
         position: 'relative',
@@ -25,23 +29,25 @@ export default function About() {
         overflow: 'hidden',
         zIndex: 0,
       }}>
-        <iframe
-          src="https://player.vimeo.com/video/1185877284?loop=1&muted=1&autoplay=1&autopause=0&background=1"
-          allow="autoplay; encrypted-media"
-          allowFullScreen
-          style={{
-            position: 'absolute',
-            // oversized to fill any aspect ratio — centre it
-            top: '50%', left: '50%',
-            transform: 'translate(-50%, -50%)',
-            width: 'calc(100% + 200px)',
-            height: 'calc(100% + 200px)',
-            minWidth: '177.78vh',  /* 16/9 ratio */
-            minHeight: '56.25vw',
-            border: 'none',
-            pointerEvents: 'none',
-          }}
-        />
+        <motion.div style={{ position: 'absolute', inset: '-8% 0', y: videoY, willChange: 'transform' }}>
+          <iframe
+            src="https://player.vimeo.com/video/1185877284?loop=1&muted=1&autoplay=1&autopause=0&background=1"
+            allow="autoplay; encrypted-media"
+            allowFullScreen
+            style={{
+              position: 'absolute',
+              // oversized to fill any aspect ratio — centre it
+              top: '50%', left: '50%',
+              transform: 'translate(-50%, -50%)',
+              width: 'calc(100% + 200px)',
+              height: 'calc(100% + 200px)',
+              minWidth: '177.78vh',  /* 16/9 ratio */
+              minHeight: '56.25vw',
+              border: 'none',
+              pointerEvents: 'none',
+            }}
+          />
+        </motion.div>
         {/* dark overlay so content stays readable */}
         <div style={{
           position: 'absolute', inset: 0,

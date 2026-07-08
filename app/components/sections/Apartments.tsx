@@ -2,6 +2,7 @@
 import { useState, useRef, useEffect } from 'react'
 import { motion } from 'framer-motion'
 import { APARTMENT_TYPES } from '@/app/lib/data'
+import ParallaxImage from '@/app/components/ui/ParallaxImage'
 
 export default function Apartments() {
   const [activeTab, setActiveTab] = useState(0)
@@ -159,24 +160,12 @@ export default function Apartments() {
             height: '100vh',
           }}
         >
-          <div
-            style={{
-              position: 'absolute',
-              inset: 0,
-            }}
-          >
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src="/assets/images/apartments/hero.webp"
-              alt="Splendid Apartments"
-              style={{
-                width: '100%',
-                height: '100%',
-                objectFit: 'cover',
-                objectPosition: 'center',
-              }}
-            />
-          </div>
+          <ParallaxImage
+            src="/assets/images/apartments/hero.webp"
+            alt="Splendid Apartments"
+            strength={10}
+            style={{ position: 'absolute', inset: 0 }}
+          />
 
           {/* Text Overlay */}
           <div

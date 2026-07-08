@@ -1,6 +1,6 @@
 'use client'
-import { useState } from 'react'
-import { motion, AnimatePresence } from 'framer-motion'
+import { useState, useRef } from 'react'
+import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion'
 import SvgIcon from '@/app/components/ui/SvgIcon'
 
 const ITEMS = [
@@ -53,6 +53,10 @@ export default function DailySchedule() {
   const [active, setActive] = useState(0)
   const [direction, setDirection] = useState(1) // 1 = next (right→left), -1 = prev (left→right)
   const item = ITEMS[active]
+
+  const leftRef = useRef<HTMLDivElement>(null)
+  const { scrollYProgress } = useScroll({ target: leftRef, offset: ['start end', 'end start'] })
+  const imgY = useTransform(scrollYProgress, [0, 1], ['10%', '-10%'])
 
   const prev = () => {
     setDirection(-1)
@@ -130,7 +134,7 @@ export default function DailySchedule() {
       </div>
 
       {/* ── LEFT — tall image only, no text overlay ── */}
-      <div style={{ position: 'relative', overflow: 'hidden' }}>
+      <div ref={leftRef} style={{ position: 'relative', overflow: 'hidden' }}>
         <AnimatePresence mode="sync" custom={direction}>
           <motion.div
             key={`img-${active}`}
@@ -141,12 +145,14 @@ export default function DailySchedule() {
             transition={{ duration: 0.7, ease: [0.7, 0, 0.3, 1] }}
             style={{ position: 'absolute', inset: 0, willChange: 'transform' }}
           >
-            {/* eslint-disable-next-line @next/next/no-img-element */}
-            <img
-              src={item.image}
-              alt={item.time}
-              style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
-            />
+            <motion.div style={{ y: imgY, position: 'absolute', inset: '-14% 0' }}>
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src={item.image}
+                alt={item.time}
+                style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
+              />
+            </motion.div>
           </motion.div>
         </AnimatePresence>
       </div>
