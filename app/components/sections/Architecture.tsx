@@ -1,6 +1,5 @@
 'use client'
 import { useRef } from 'react'
-import Image from 'next/image'
 import { motion, useScroll, useTransform } from 'framer-motion'
 
 // Remote style images from reference site
@@ -180,12 +179,12 @@ function DecorLayers() {
   const y6 = useTransform(scrollYProgress, [0, 1], ['28%', '-28%'])
 
   const layers = [
-    { src: IMG.decor1, y: y1, size: '22%', top: '2%', left: '2%', shadow: '0 15px 40px rgba(0,0,0,0.15)' },        // Logo - top far left
-    { src: IMG.decor2, y: y2, size: '26%', top: '5%', left: '28%', shadow: '0 20px 50px rgba(0,0,0,0.2)' },       // Brochure - top left-center
-    { src: IMG.decor3, y: y3, size: '20%', top: '0%', left: '60%', shadow: '0 12px 35px rgba(0,0,0,0.12)' },      // Letterhead - top right-center
-    { src: IMG.decor6, y: y6, size: '21%', top: '60%', left: '0%', shadow: '0 18px 45px rgba(0,0,0,0.18)' },      // Mobile app - bottom far left
-    { src: IMG.decor5, y: y5, size: '24%', top: '56%', left: '26%', shadow: '0 22px 55px rgba(0,0,0,0.22)' },     // Magazine - bottom left-center
-    { src: IMG.decor4, y: y4, size: '28%', top: '50%', left: '56%', shadow: '0 25px 60px rgba(0,0,0,0.25)' },     // Hoarding - bottom right-center (largest)
+    { src: IMG.decor1, y: y1, size: '33%', top: '15%', left: '10%', shadow: '0 15px 40px rgba(0,0,0,0.15)' },        // Logo - top far left
+    { src: IMG.decor2, y: y2, size: '20%', top: '42%', left: '48%', shadow: '0 20px 50px rgba(0,0,0,0.2)' },       // Brochure - top left-center
+    { src: IMG.decor3, y: y3, size: '20%', top: '41.5%', left: '69%', shadow: '0 12px 35px rgba(0,0,0,0.12)' },      // Letterhead - top right-center
+    { src: IMG.decor6, y: y6, size: '8%', top: '15%', left: '48%', shadow: '0 18px 45px rgba(0,0,0,0.18)' },      // Mobile app - bottom far left
+    { src: IMG.decor5, y: y5, size: '15%', top: '65%', left: '32%', shadow: '0 22px 55px rgba(0,0,0,0.22)' },     // Magazine - bottom left-center
+    { src: IMG.decor4, y: y4, size: '12%', top: '15%', left: '58%', shadow: '0 25px 60px rgba(0,0,0,0.25)' },     // Hoarding - bottom right-center (largest)
   ]
 
   return (
@@ -194,7 +193,7 @@ function DecorLayers() {
       style={{
         position: 'relative',
         width: '100%',
-        aspectRatio: '16/7',
+        aspectRatio: '16/9', // Increased height from 16/7 to 16/9
         overflow: 'hidden',
         background: '#fff',
       }}
@@ -209,6 +208,7 @@ function DecorLayers() {
             width: layer.size,
             height: 'auto',
             y: layer.y,
+            // Enhanced 3D shadow with multiple layers for depth
             filter: `drop-shadow(${layer.shadow})`,
           }}
         >
@@ -221,6 +221,12 @@ function DecorLayers() {
               height: 'auto',
               objectFit: 'contain',
               display: 'block',
+              // Additional 3D shadow effect through box-shadow
+              filter: `
+                drop-shadow(0 4px 6px rgba(0,0,0,0.1))
+                drop-shadow(0 10px 15px rgba(0,0,0,0.15))
+                drop-shadow(0 20px 40px rgba(0,0,0,0.2))
+              `,
             }}
           />
         </motion.div>

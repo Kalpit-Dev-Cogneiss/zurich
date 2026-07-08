@@ -1,4 +1,4 @@
-export type ProjectCategory = 'residential' | 'commercial' | 'farmhouse'
+export type ProjectCategory = 'residential' | 'commercial' | 'farmhouse' | 'mall' | 'duplex-villa' | 'open-plot' | 'industrial-park' | 'corporate-brochure'
 
 export interface ProjectData {
   slug: string
@@ -148,38 +148,69 @@ const residentialProjects: ProjectData[] = [
       remaining: ['V7.jpg', 'V8.jpg', 'V9.jpg', 'V10.jpg', 'V11.jpg']
     }),
   },
+  // NEW PROJECTS
+  {
+    slug: 'aatlantis-the-castle',
+    title: 'Aatlantis The Castle',
+    location: '@mumbai',
+    projectType: 'MAJESTIC\nCASTLE RESIDENCES',
+    client: 'AATLANTIS GROUP',
+    category: 'residential',
+    description: desc,
+    images: createImages('residencial-projects', 'aatlantis the castle', {
+      hero: 'a1.jpg', brochure: 'a2.png', single: 'a3.jpg',
+      row: ['a4.jpg', 'a5.jpg', 'a6.png'],
+      remaining: ['a7.jpg', 'a8.jpg', 'a9.jpg', 'a10.jpg']
+    }),
+  },
+
+  {
+    slug: 'greenleaf-heritage',
+    title: 'Greenleaf Heritage',
+    location: '@mumbai',
+    projectType: 'ECO-FRIENDLY\nHERITAGE HOMES',
+    client: 'GREENLEAF GROUP',
+    category: 'residential',
+    description: desc,
+    images: createImages('residencial-projects', 'greenleaf heritage', {
+      hero: 'g1.jpg', brochure: 'g2.png', single: 'g3.jpg',
+      row: ['g4.jpg', 'g5.jpg', 'g6.png'],
+      remaining: ['g7.jpg', 'g8.jpg', 'g9.jpg', 'g10.jpg', 'g11.jpg', 'g12.jpg', 'g13.jpg']
+    }),
+  },
+
+  {
+    slug: 'vivera',
+    title: 'Vivera',
+    location: '@mumbai',
+    projectType: 'MODERN\nLIVING EXPERIENCE',
+    client: 'VIVERA GROUP',
+    category: 'residential',
+    description: desc,
+    images: createImages('residencial-projects', 'VIVERA', {
+      hero: 'v1.jpg', brochure: 'v2.png', single: 'v3.jpg',
+      row: ['v4.jpg', 'v5.jpg', 'v6.png'],
+      remaining: ['v7.jpg', 'v8.jpg', 'v9.jpg', 'v10.jpg', 'v11.jpg']
+    }),
+  },
+  {
+    slug: 'vyom-by-balajee',
+    title: 'Vyom by Balajee',
+    location: '@mumbai',
+    projectType: 'CELESTIAL\nRESIDENTIAL TOWER',
+    client: 'BALAJEE GROUP',
+    category: 'residential',
+    description: desc,
+    images: createImages('residencial-projects', 'vyom by balajee', {
+      hero: 'v1.jpg', brochure: 'v2.png', single: 'v3.jpg',
+      row: ['v4.jpg', 'v5.jpg', 'v6.png'],
+      remaining: ['v7.jpg', 'v8.jpg', 'v9.jpg', 'v10.jpg', 'v11.jpg', 'v12.jpg']
+    }),
+  },
 ]
 
 // COMMERCIAL PROJECTS
 const commercialProjects: ProjectData[] = [
-  {
-    slug: 'darshanam-kingsville-2',
-    title: 'Darshanam Kingsville 2',
-    location: '@mumbai',
-    projectType: 'COMMERCIAL\nDEVELOPMENT',
-    client: 'DARSHANAM GROUP',
-    category: 'commercial',
-    description: desc,
-    images: createImages('commercial-projects', 'darshanam-kingsville-2', {
-      hero: 'DARSHANAM KINGSVILLE 2_001.jpg', brochure: 'DARSHANAM KINGSVILLE 2_002.png', single: 'DARSHANAM KINGSVILLE 2_003.jpg',
-      row: ['DARSHANAM KINGSVILLE 2_004.jpg', 'DARSHANAM KINGSVILLE 2_005.png'],
-      remaining: ['DARSHANAM KINGSVILLE 2_006.jpg', 'DARSHANAM KINGSVILLE 2_007.jpg', 'DARSHANAM KINGSVILLE 2_008.jpg', 'DARSHANAM KINGSVILLE 2_009.jpg', 'DARSHANAM KINGSVILLE 2_010.jpg', 'DARSHANAM KINGSVILLE 2_011.jpg', 'DARSHANAM KINGSVILLE 2_012.jpg']
-    }),
-  },
-  {
-    slug: 'keystone-51',
-    title: 'Keystone 51',
-    location: '@mumbai',
-    projectType: 'COMMERCIAL\nCOMPLEX',
-    client: 'KEYSTONE GROUP',
-    category: 'commercial',
-    description: desc,
-    images: createImages('commercial-projects', 'keystone-51', {
-      hero: 'Keystone 51_001.jpg', brochure: 'Keystone 51_002.png', single: 'Keystone 51_003.jpg',
-      row: ['Keystone 51_004.jpg', 'Keystone 51_005.jpg', 'Keystone 51_006.png'],
-      remaining: ['Keystone 51_007.jpg', 'Keystone 51_008.jpg', 'Keystone 51_009.jpg', 'Keystone 51_010.jpg']
-    }),
-  },
   {
     slug: 'krupa-aspire',
     title: 'Krupa Aspire',
@@ -195,20 +226,6 @@ const commercialProjects: ProjectData[] = [
     }),
   },
   {
-    slug: 'manogya',
-    title: 'Manogya',
-    location: '@mumbai',
-    projectType: 'COMMERCIAL\nSPACE',
-    client: 'MANOGYA GROUP',
-    category: 'commercial',
-    description: desc,
-    images: createImages('commercial-projects', 'manogya', {
-      hero: 'manogya_001.jpg', brochure: 'manogya_002.png', single: 'manogya_003.jpg',
-      row: ['manogya_004.jpg', 'manogya_005.jpg', 'manogya_006.png'],
-      remaining: ['manogya_007.jpg', 'manogya_008.jpg', 'manogya_009.jpg', 'manogya_010.jpg']
-    }),
-  },
-  {
     slug: 'rk-landmark',
     title: 'RK Landmark',
     location: '@mumbai',
@@ -220,20 +237,6 @@ const commercialProjects: ProjectData[] = [
       hero: '01.jpg', brochure: '02.png', single: '03.jpg',
       row: ['04.jpg', '05.jpg', '06.png'],
       remaining: ['07.jpg', '08.jpg', '09.jpg', '10.jpg', '11.jpg']
-    }),
-  },
-  {
-    slug: 'siddheshwar-happy-mall',
-    title: 'Siddheshwar Happy Mall',
-    location: '@mumbai',
-    projectType: 'SHOPPING\nMALL',
-    client: 'SIDDHESHWAR GROUP',
-    category: 'commercial',
-    description: desc,
-    images: createImages('commercial-projects', 'siddheshwar-happy-mall', {
-      hero: 'M1.jpg', brochure: 'M2.png', single: 'M3.jpg',
-      row: ['M4.jpg', 'M5.jpg', 'M6.png'],
-      remaining: ['M7.jpg', 'M8.jpg', 'M9.jpg', 'M10.jpg', 'M11.jpg', 'M12.jpg']
     }),
   },
   {
@@ -265,20 +268,6 @@ const commercialProjects: ProjectData[] = [
     }),
   },
   {
-    slug: 'vinod-city-mall',
-    title: 'Vinod City Mall',
-    location: '@mumbai',
-    projectType: 'CITY\nMALL',
-    client: 'VINOD GROUP',
-    category: 'commercial',
-    description: desc,
-    images: createImages('commercial-projects', 'vinod-city-mall', {
-      hero: 'V1.jpg', brochure: 'V2.png', single: 'V3.jpg',
-      row: ['V4.jpg', 'V5.jpg', 'V6.png'],
-      remaining: ['V8.jpg', 'V9.jpg', 'V10.jpg', 'V11.jpg']
-    }),
-  },
-  {
     slug: 'vs-monolith',
     title: 'VS Monolith',
     location: '@mumbai',
@@ -290,6 +279,208 @@ const commercialProjects: ProjectData[] = [
       hero: '01.jpg', brochure: '02.jpg', single: '03.jpg',
       row: ['04.jpg', '05.jpg', '06.png'],
       remaining: ['07.jpg', '08.jpg', '09.jpg', '10.jpg']
+    }),
+  },
+]
+
+// MALL PROJECTS
+const mallProjects: ProjectData[] = [
+  {
+    slug: 'happy-mall',
+    title: 'Happy Mall',
+    location: '@mumbai',
+    projectType: 'SHOPPING\nMALL',
+    client: 'SIDDHESHWAR GROUP',
+    category: 'mall',
+    description: desc,
+    images: createImages('mall-projects', 'happy-mall', {
+      hero: 'M1.jpg', brochure: 'M2.png', single: 'M3.jpg',
+      row: ['M4.jpg', 'M5.jpg', 'M6.png'],
+      remaining: ['M7.jpg', 'M8.jpg', 'M9.jpg', 'M10.jpg', 'M11.jpg', 'M12.jpg']
+    }),
+  },
+  {
+    slug: 'vcm',
+    title: 'Vinod City Mall',
+    location: '@mumbai',
+    projectType: 'CITY\nMALL',
+    client: 'VINOD GROUP',
+    category: 'mall',
+    description: desc,
+    images: createImages('mall-projects', 'vcm', {
+      hero: 'V1.jpg', brochure: 'V2.png', single: 'V3.jpg',
+      row: ['V4.jpg', 'V5.jpg', 'V6.png'],
+      remaining: ['V8.jpg', 'V9.jpg', 'V10.jpg', 'V11.jpg']
+    }),
+  },
+]
+
+// DUPLEX/VILLA PROJECTS
+const duplexVillaProjects: ProjectData[] = [
+  {
+    slug: 'manogya',
+    title: 'Manogya',
+    location: '@mumbai',
+    projectType: 'LUXURY\nDUPLEX VILLAS',
+    client: 'MANOGYA GROUP',
+    category: 'duplex-villa',
+    description: desc,
+    images: createImages('duplex-villa-projects', 'manogya', {
+      hero: 'manogya_001.jpg', brochure: 'manogya_002.png', single: 'manogya_003.jpg',
+      row: ['manogya_004.jpg', 'manogya_005.jpg', 'manogya_006.png'],
+      remaining: ['manogya_007.jpg', 'manogya_008.jpg', 'manogya_009.jpg', 'manogya_010.jpg']
+    }),
+  },
+  {
+    slug: 'atc',
+    title: 'Darshanam Kingsville 2',
+    location: '@mumbai',
+    projectType: 'VILLA\nDEVELOPMENT',
+    client: 'DARSHANAM GROUP',
+    category: 'duplex-villa',
+    description: desc,
+    images: createImages('duplex-villa-projects', 'atc', {
+      hero: 'DARSHANAM KINGSVILLE 2_001.jpg', brochure: 'DARSHANAM KINGSVILLE 2_002.png', single: 'DARSHANAM KINGSVILLE 2_003.jpg',
+      row: ['DARSHANAM KINGSVILLE 2_004.jpg', 'DARSHANAM KINGSVILLE 2_005.png'],
+      remaining: ['DARSHANAM KINGSVILLE 2_006.jpg', 'DARSHANAM KINGSVILLE 2_007.jpg', 'DARSHANAM KINGSVILLE 2_008.jpg', 'DARSHANAM KINGSVILLE 2_009.jpg', 'DARSHANAM KINGSVILLE 2_010.jpg', 'DARSHANAM KINGSVILLE 2_011.jpg', 'DARSHANAM KINGSVILLE 2_012.jpg']
+    }),
+  },
+  {
+    slug: 'keystone-51',
+    title: 'Keystone 51',
+    location: '@mumbai',
+    projectType: 'DUPLEX\nVILLAS',
+    client: 'KEYSTONE GROUP',
+    category: 'duplex-villa',
+    description: desc,
+    images: createImages('duplex-villa-projects', 'keystone-51', {
+      hero: 'Keystone 51_001.jpg', brochure: 'Keystone 51_002.png', single: 'Keystone 51_003.jpg',
+      row: ['Keystone 51_004.jpg', 'Keystone 51_005.jpg', 'Keystone 51_006.png'],
+      remaining: ['Keystone 51_007.jpg', 'Keystone 51_008.jpg', 'Keystone 51_009.jpg', 'Keystone 51_010.jpg']
+    }),
+  },
+  {
+    slug: 'oceanic-villa',
+    title: 'Oceanic Villa',
+    location: '@mumbai',
+    projectType: 'OCEANFRONT\nVILLA ESTATES',
+    client: 'OCEANIC GROUP',
+    category: 'duplex-villa',
+    description: desc,
+    images: createImages('duplex-villa-projects', 'oceanic-villa', {
+      hero: 'O1.jpg', brochure: 'O2.png', single: 'O3.jpg',
+      row: ['O4.jpg', 'O5.jpg', 'O6.png'],
+      remaining: ['O7.jpg', 'O8.jpg', 'O9.jpg', 'O10.jpg', 'O11.jpg']
+    }),
+  },
+]
+
+// OPEN PLOT PROJECTS
+const openPlotProjects: ProjectData[] = [
+  {
+    slug: 'reva-allizza',
+    title: 'Reva Allizza',
+    location: '@mumbai',
+    projectType: 'OPEN PLOT\nDEVELOPMENT',
+    client: 'REVA GROUP',
+    category: 'open-plot',
+    description: desc,
+    images: createImages('open-plot-projects', 'reva-allizza', {
+      hero: 'r1.jpg', brochure: 'r2.png', single: 'r3.jpg',
+      row: ['r4.jpg', 'r5.jpg', 'r6.png'],
+      remaining: ['r7.jpg', 'r8.jpg', 'r9.jpg', 'r10.jpg', 'r11.jpg']
+    }),
+  },
+  {
+    slug: 'raamah-eldoraa',
+    title: 'Raamah Eldoraa',
+    location: '@mumbai',
+    projectType: 'PREMIUM\nOPEN PLOTS',
+    client: 'RAAMAH GROUP',
+    category: 'open-plot',
+    description: desc,
+    images: createImages('open-plot-projects', 'raamah-eldoraa', {
+      hero: 'r1.jpg', brochure: 'r2.png', single: 'r3.jpg',
+      row: ['r4.jpg', 'r5.jpg', 'r6.png'],
+      remaining: ['r7.jpg', 'r8.jpg', 'r9.jpg', 'r10.jpg', 'r11.jpg', 'r12.jpg']
+    }),
+  },
+  {
+    slug: 'keystone-woods',
+    title: 'Keystone Woods',
+    location: '@mumbai',
+    projectType: 'WOODLAND\nPLOTS',
+    client: 'KEYSTONE GROUP',
+    category: 'open-plot',
+    description: desc,
+    images: createImages('open-plot-projects', 'keystone-woods', {
+      hero: 'K1.jpg', brochure: 'K2.png', single: 'K3.jpg',
+      row: ['K4.jpg', 'K5.jpg', 'K6.png'],
+      remaining: ['K7.jpg', 'K8.jpg', 'K9.jpg']
+    }),
+  },
+]
+
+// INDUSTRIAL PARK PROJECTS
+const industrialParkProjects: ProjectData[] = [
+  {
+    slug: 'aatmiya-industrial-park',
+    title: 'Aatmiya Industrial Park',
+    location: '@mumbai',
+    projectType: 'INDUSTRIAL\nPARK DEVELOPMENT',
+    client: 'AATMIYA GROUP',
+    category: 'industrial-park',
+    description: desc,
+    images: createImages('industrial-park', 'aatmiya-industrial-park', {
+      hero: 'a1.jpg', brochure: 'a2.png', single: 'a3.jpg',
+      row: ['a4.jpg', 'a5.jpg', 'a6.png'],
+      remaining: ['a7.jpg', 'a8.jpg', 'a9.jpg', 'a10.jpg', 'a11.jpg', 'a12.jpg']
+    }),
+  },
+  {
+    slug: 'shivbhumi-industrial-park',
+    title: 'Shivbhumi Industrial Park',
+    location: '@mumbai',
+    projectType: 'INDUSTRIAL\nPARK COMPLEX',
+    client: 'BROOKFIELDS GROUP',
+    category: 'industrial-park',
+    description: desc,
+    images: createImages('industrial-park', 'shivbhumi-industrial-park', {
+      hero: 'B1.jpg', brochure: 'B2.png', single: 'B3.jpg',
+      row: ['B4.jpg', 'B5.jpg', 'B6.png'],
+      remaining: ['B7.jpg', 'B8.jpg', 'B9.jpg', 'B10.jpg']
+    }),
+  },
+]
+
+// CORPORATE BROCHURE PROJECTS
+const corporateBrochureProjects: ProjectData[] = [
+  {
+    slug: 'samruddhi',
+    title: 'Samruddhi',
+    location: '@mumbai',
+    projectType: 'CORPORATE\nBROCHURE',
+    client: 'SAMRUDDHI GROUP',
+    category: 'corporate-brochure',
+    description: desc,
+    images: createImages('corporate-brochure', 'samruddhi', {
+      hero: '01.jpg', brochure: '02.png', single: '03.jpg',
+      row: ['04.jpg', '05.jpg', '06.png'],
+      remaining: ['07.jpg', '08.jpg', '09.jpg', '10.jpg', '11.jpg', '12.jpg']
+    }),
+  },
+  {
+    slug: 'krrish-group',
+    title: 'Krrish Group',
+    location: '@mumbai',
+    projectType: 'CORPORATE\nBROCHURE',
+    client: 'KRRISH GROUP',
+    category: 'corporate-brochure',
+    description: desc,
+    images: createImages('corporate-brochure', 'krrish-group', {
+      hero: 'k1.jpg', brochure: 'k2.png', single: 'k3.jpg',
+      row: ['k4.jpg', 'k5.jpg', 'k6.png'],
+      remaining: ['k7.jpg', 'k8.jpg', 'k9.jpg', 'k10.jpg', 'k11.jpg']
     }),
   },
 ]
@@ -330,6 +521,11 @@ const farmhouseProjects: ProjectData[] = [
 export const portfolioProjects: ProjectData[] = [
   ...residentialProjects,
   ...commercialProjects,
+  ...mallProjects,
+  ...duplexVillaProjects,
+  ...openPlotProjects,
+  ...industrialParkProjects,
+  ...corporateBrochureProjects,
   ...farmhouseProjects,
 ]
 
@@ -345,4 +541,13 @@ export function getProjectsByCategory(category: ProjectCategory): ProjectData[] 
   return portfolioProjects.filter((project) => project.category === category)
 }
 
-export { residentialProjects, commercialProjects, farmhouseProjects }
+export { 
+  residentialProjects, 
+  commercialProjects, 
+  mallProjects,
+  duplexVillaProjects,
+  openPlotProjects,
+  industrialParkProjects,
+  corporateBrochureProjects,
+  farmhouseProjects 
+}
