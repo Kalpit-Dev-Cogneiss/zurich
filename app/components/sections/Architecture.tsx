@@ -176,7 +176,7 @@ function DecorLayers() {
   const y3 = useTransform(scrollYProgress, [0, 1], ['16%', '-16%'])
   const y4 = useTransform(scrollYProgress, [0, 1], ['20%', '-20%'])
   const y5 = useTransform(scrollYProgress, [0, 1], ['24%', '-24%'])
-  const y6 = useTransform(scrollYProgress, [0, 1], ['28%', '-28%'])
+  const y6 = useTransform(scrollYProgress, [0, 1], ['28%', '-28%']) 
 
   const layers = [
     { src: IMG.decor1, y: y1, size: '33%', top: '15%', left: '10%', shadow: '0 15px 40px rgba(0,0,0,0.15)' },        // Logo - top far left
