@@ -77,11 +77,11 @@ export default function Hero() {
       }}>
         <motion.div style={{ scale: imgScale, transformOrigin: 'bottom center' }}>
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img
+          {/* <img
             src={DECOR_MODEL}
             alt=""
             style={{ width: '100%', height: 'auto', display: 'block' }}
-          />
+          /> */}
         </motion.div>
       </div>
 
