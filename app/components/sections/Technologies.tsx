@@ -75,7 +75,7 @@ export default function Technologies() {
                 key={tech.title}
                 animate={{
                   borderColor: i === active ? 'rgba(255,255,255,0.3)' : 'rgba(255,255,255,0.1)',
-                  backgroundColor: i === active ? 'rgba(255,255,255,0.05)' : 'transparent',
+                  backgroundColor: i === active ? 'rgba(255,255,255,0.05)' : 'rgba(0,0,0,0)',
                 }}
                 transition={{ duration: 0.4 }}
                 style={{

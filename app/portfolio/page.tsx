@@ -1,11 +1,32 @@
+import { Suspense } from 'react'
 import Header from '@/app/components/layout/Header'
 import Footer from '@/app/components/layout/Footer'
 import PortfolioTabs from '@/app/components/portfolio/PortfolioTabs'
-import { residentialProjects, commercialProjects, farmhouseProjects } from '@/app/lib/portfolioData'
+import {
+  residentialProjects,
+  commercialProjects,
+  mallProjects,
+  duplexVillaProjects,
+  openPlotProjects,
+  industrialParkProjects,
+  corporateBrochureProjects,
+  farmhouseProjects,
+} from '@/app/lib/portfolioData'
 
 export const metadata = {
   title: 'Portfolio | Our Projects',
   description: 'Explore our portfolio of luxury residential, commercial, and farmhouse projects',
+}
+
+const projectsByCategory = {
+  residential: residentialProjects,
+  commercial: commercialProjects,
+  'duplex-villa': duplexVillaProjects,
+  mall: mallProjects,
+  farmhouse: farmhouseProjects,
+  'open-plot': openPlotProjects,
+  'industrial-park': industrialParkProjects,
+  'corporate-brochure': corporateBrochureProjects,
 }
 
 export default function PortfolioPage() {
@@ -13,7 +34,6 @@ export default function PortfolioPage() {
     <>
       <Header />
       <main style={{ background: '#000', minHeight: '100vh' }}>
-        {/* Hero Section */}
         <section
           style={{
             padding: '12rem 4rem 6rem',
@@ -42,18 +62,15 @@ export default function PortfolioPage() {
               lineHeight: 1.6,
             }}
           >
-            Explore our collection of exceptional residential, commercial, and farmhouse projects
+            Explore our collection of exceptional residential, commercial, and specialty projects
           </p>
         </section>
 
-        {/* Portfolio Tabs */}
         <section style={{ padding: '4rem 4rem 8rem', background: '#0a0a0a' }}>
           <div style={{ maxWidth: '1600px', margin: '0 auto' }}>
-            <PortfolioTabs
-              residential={residentialProjects}
-              commercial={commercialProjects}
-              farmhouse={farmhouseProjects}
-            />
+            <Suspense fallback={<div style={{ color: '#fff', textAlign: 'center' }}>Loading portfolio...</div>}>
+              <PortfolioTabs projectsByCategory={projectsByCategory} />
+            </Suspense>
           </div>
         </section>
       </main>

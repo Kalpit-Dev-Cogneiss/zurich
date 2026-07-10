@@ -1,38 +1,69 @@
 'use client'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
+import { useSearchParams } from 'next/navigation'
 import { motion } from 'framer-motion'
 import PortfolioCard from './PortfolioCard'
-import type { ProjectData, ProjectCategory } from '@/app/lib/portfolioData'
+import type { ProjectCategory, ProjectData } from '@/app/lib/portfolioData'
 
 interface PortfolioTabsProps {
-  residential: ProjectData[]
-  commercial: ProjectData[]
-  farmhouse: ProjectData[]
+  projectsByCategory: Record<ProjectCategory, ProjectData[]>
 }
 
-export default function PortfolioTabs({
-  residential,
-  commercial,
-  farmhouse,
-}: PortfolioTabsProps) {
-  const [activeTab, setActiveTab] = useState<ProjectCategory>('residential')
+const CATEGORY_LABELS: Record<ProjectCategory, string> = {
+  residential: 'Residential',
+  commercial: 'Commercial',
+  'duplex-villa': 'Duplex / Villa',
+  mall: 'Mall',
+  farmhouse: 'Farmhouse',
+  'open-plot': 'Open Plot',
+  'industrial-park': 'Industrial',
+  'corporate-brochure': 'Corporate',
+}
 
-  const tabs = [
-    { id: 'residential' as ProjectCategory, label: 'Residential', projects: residential },
-    { id: 'commercial' as ProjectCategory, label: 'Commercial', projects: commercial },
-    { id: 'farmhouse' as ProjectCategory, label: 'Farmhouse', projects: farmhouse },
-  ]
+const CATEGORY_ORDER: ProjectCategory[] = [
+  'residential',
+  'commercial',
+  'duplex-villa',
+  'mall',
+  'farmhouse',
+  'open-plot',
+  'industrial-park',
+  'corporate-brochure',
+]
 
-  const activeProjects = tabs.find((tab) => tab.id === activeTab)?.projects || []
+function isProjectCategory(value: string | null): value is ProjectCategory {
+  return value !== null && value in CATEGORY_LABELS
+}
+
+export default function PortfolioTabs({ projectsByCategory }: PortfolioTabsProps) {
+  const searchParams = useSearchParams()
+  const categoryParam = searchParams.get('category')
+  const initialTab = isProjectCategory(categoryParam) ? categoryParam : 'residential'
+  const [activeTab, setActiveTab] = useState<ProjectCategory>(initialTab)
+
+  useEffect(() => {
+    if (isProjectCategory(categoryParam)) {
+      setActiveTab(categoryParam)
+    }
+  }, [categoryParam])
+
+  const tabs = CATEGORY_ORDER.map((id) => ({
+    id,
+    label: CATEGORY_LABELS[id],
+    projects: projectsByCategory[id],
+  })).filter((tab) => tab.projects.length > 0)
+
+  const activeProjects = tabs.find((tab) => tab.id === activeTab)?.projects
+    ?? tabs[0]?.projects
+    ?? []
 
   return (
     <div>
-      {/* Tab Buttons */}
       <div
         style={{
           display: 'flex',
           justifyContent: 'center',
-          gap: '2rem',
+          gap: '1.2rem',
           marginBottom: '6rem',
           flexWrap: 'wrap',
         }}
@@ -42,8 +73,8 @@ export default function PortfolioTabs({
             key={tab.id}
             onClick={() => setActiveTab(tab.id)}
             style={{
-              padding: '1.5rem 4rem',
-              fontSize: '1.8rem',
+              padding: '1.2rem 2.4rem',
+              fontSize: '1.4rem',
               fontWeight: 600,
               letterSpacing: '0.1em',
               textTransform: 'uppercase',
@@ -56,14 +87,13 @@ export default function PortfolioTabs({
             }}
           >
             {tab.label}
-            <span style={{ marginLeft: '1rem', opacity: 0.7 }}>
+            <span style={{ marginLeft: '0.8rem', opacity: 0.7 }}>
               ({tab.projects.length})
             </span>
           </button>
         ))}
       </div>
 
-      {/* Projects Grid */}
       <motion.div
         key={activeTab}
         initial={{ opacity: 0, y: 20 }}
