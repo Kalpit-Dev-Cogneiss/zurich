@@ -126,7 +126,7 @@ export default function TurnJSBook() {
           autoCenter: false,
           acceleration: true,
           gradients: true,
-          elevation: 50,
+          elevation: 120,
           duration: 1000,
           page: 1,
           display: 'double',
@@ -232,7 +232,7 @@ export default function TurnJSBook() {
         </button>
       )}
 
-      <div style={{
+      <div className="book-stage" style={{
         position: 'relative',
         width: '100%',
         maxWidth: `${SPREAD_WIDTH}px`,
@@ -240,19 +240,40 @@ export default function TurnJSBook() {
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
-        overflow: 'hidden',
+        overflow: 'visible',
       }}>
+        {/* Soft ground shadow beneath the book */}
+        <div
+          className={`book-ground-shadow${isCover ? ' is-cover' : ''}`}
+          aria-hidden="true"
+        />
+
         <div style={{
           transform: isCover ? `translateX(-${COVER_OFFSET}px)` : 'translateX(0)',
           transition: 'transform 0.7s cubic-bezier(0.7, 0, 0.3, 1)',
           height: `${BOOK_HEIGHT}px`,
+          position: 'relative',
         }}>
+          {/* Page-stack lip beneath the book block (hidden on cover) */}
+          {!isCover && <div className="book-page-stack" aria-hidden="true" />}
+
+          {/* Spine crease shadow when open */}
+          <div
+            className={`book-spine-shadow${isCover ? '' : ' is-open'}`}
+            aria-hidden="true"
+          />
+
+          {/* Cover-only shadow on page 1 (right panel) */}
+          {isCover && (
+            <div className="book-cover-only-shadow" aria-hidden="true" />
+          )}
+
           <div
             ref={flipbookRef}
+            className={`book-flipbook${isCover ? ' is-cover' : ''}`}
             style={{
               width: `${SPREAD_WIDTH}px`,
               height: `${BOOK_HEIGHT}px`,
-              boxShadow: isReady ? '0 25px 80px rgba(0,0,0,0.2)' : 'none',
               visibility: isReady ? 'visible' : 'hidden',
             }}
           />
@@ -324,6 +345,138 @@ export default function TurnJSBook() {
           {currentPage} / {TOTAL_IMAGES}
         </div>
       )}
+
+      <style>{`
+        .book-ground-shadow {
+          position: absolute;
+          bottom: -28px;
+          left: 50%;
+          transform: translateX(-50%);
+          width: 88%;
+          height: 36px;
+          background: radial-gradient(
+            ellipse at center,
+            rgba(0, 0, 0, 0.32) 0%,
+            rgba(0, 0, 0, 0.14) 42%,
+            transparent 72%
+          );
+          pointer-events: none;
+          z-index: 0;
+          transition: width 0.7s cubic-bezier(0.7, 0, 0.3, 1), opacity 0.7s ease;
+        }
+        .book-ground-shadow.is-cover {
+          width: 46%;
+        }
+        .book-page-stack {
+          position: absolute;
+          bottom: -4px;
+          left: 10px;
+          right: 10px;
+          height: 8px;
+          background: linear-gradient(180deg, #ececec 0%, #d4d4d4 100%);
+          border-radius: 0 0 3px 3px;
+          box-shadow:
+            0 3px 6px rgba(0, 0, 0, 0.12),
+            0 8px 16px rgba(0, 0, 0, 0.08);
+          pointer-events: none;
+          z-index: 0;
+        }
+        .book-cover-only-shadow {
+          position: absolute;
+          top: 0;
+          right: 0;
+          width: ${COVER_WIDTH}px;
+          height: 100%;
+          pointer-events: none;
+          z-index: 15;
+          border-radius: 0 3px 3px 0;
+          box-shadow:
+            0 2px 4px rgba(0, 0, 0, 0.08),
+            0 8px 20px rgba(0, 0, 0, 0.12),
+            0 20px 40px rgba(0, 0, 0, 0.14),
+            0 36px 72px rgba(0, 0, 0, 0.1);
+        }
+        .book-cover-only-shadow::before {
+          content: '';
+          position: absolute;
+          left: 0;
+          top: 0;
+          width: 36px;
+          height: 100%;
+          background: linear-gradient(
+            90deg,
+            rgba(0, 0, 0, 0.18) 0%,
+            rgba(0, 0, 0, 0.08) 35%,
+            rgba(0, 0, 0, 0.02) 70%,
+            transparent 100%
+          );
+          pointer-events: none;
+        }
+        .book-cover-only-shadow::after {
+          content: '';
+          position: absolute;
+          top: 8px;
+          right: -7px;
+          width: 12px;
+          height: calc(100% - 16px);
+          background: linear-gradient(
+            90deg,
+            rgba(0, 0, 0, 0.06) 0%,
+            rgba(0, 0, 0, 0.22) 50%,
+            rgba(0, 0, 0, 0.14) 100%
+          );
+          border-radius: 0 2px 2px 0;
+          box-shadow: 3px 0 10px rgba(0, 0, 0, 0.12);
+          pointer-events: none;
+        }
+        .book-spine-shadow {
+          position: absolute;
+          top: 0;
+          left: 50%;
+          transform: translateX(-50%);
+          width: 56px;
+          height: 100%;
+          background: linear-gradient(
+            90deg,
+            transparent 0%,
+            rgba(0, 0, 0, 0.05) 18%,
+            rgba(0, 0, 0, 0.22) 50%,
+            rgba(0, 0, 0, 0.05) 82%,
+            transparent 100%
+          );
+          pointer-events: none;
+          z-index: 12;
+          opacity: 0;
+          transition: opacity 0.6s ease;
+        }
+        .book-spine-shadow.is-open {
+          opacity: 1;
+        }
+        .book-flipbook.is-cover {
+          box-shadow: none;
+        }
+        .book-flipbook.is-cover .turn-page-wrapper,
+        .book-flipbook.is-cover .turn-page {
+          box-shadow: none;
+          filter: none;
+        }
+        .book-flipbook:not(.is-cover) {
+          position: relative;
+          z-index: 2;
+          box-shadow:
+            0 1px 2px rgba(0, 0, 0, 0.06),
+            0 4px 12px rgba(0, 0, 0, 0.1),
+            0 16px 32px rgba(0, 0, 0, 0.14),
+            0 32px 64px rgba(0, 0, 0, 0.12),
+            inset -2px 0 6px rgba(0, 0, 0, 0.04);
+        }
+        .book-flipbook:not(.is-cover) .turn-page {
+          box-shadow: inset 0 0 20px rgba(0, 0, 0, 0.03);
+        }
+        .book-flipbook:not(.is-cover) .turn-page-wrapper {
+          filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.08));
+        }
+      `}</style>
     </div>
   )
 }
