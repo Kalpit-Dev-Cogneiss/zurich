@@ -2,6 +2,7 @@ import type { Metadata } from 'next'
 import './globals.css'
 import Preloader from '@/app/components/ui/Preloader'
 import SmoothScroll from '@/app/components/ui/SmoothScroll'
+import ScrollToTop from '@/app/components/ui/ScrollToTop'
 import ScrollSnap from '@/app/components/ui/ScrollSnap'
 
 export const metadata: Metadata = {
@@ -23,6 +24,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
       <body>
         <Preloader />
         <SmoothScroll />
+        <ScrollToTop />
         {/* <ScrollSnap /> */}
         {children}
       </body>
