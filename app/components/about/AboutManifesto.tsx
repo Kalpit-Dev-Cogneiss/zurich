@@ -1,0 +1,226 @@
+'use client'
+import { useEffect, useRef, useState } from 'react'
+import { motion, useScroll, useTransform, useMotionValue, useSpring } from 'framer-motion'
+import SvgIcon from '@/app/components/ui/SvgIcon'
+
+const EASE: [number, number, number, number] = [0.7, 0, 0.3, 1]
+
+// Floating cluster: each image lives at its own depth — a different mouse
+// parallax factor and scroll drift — so the hero reads as layered space.
+const FLOATERS = [
+  {
+    src: '/portfolio/residencial-projects/greenleaf heritage/g7.jpg',
+    width: 'clamp(160px, 17vw, 300px)',
+    aspect: '3 / 4',
+    pos: { top: '9%', right: '7%' } as React.CSSProperties,
+    mouse: -28,
+    drift: '-18%',
+    delay: 0.9,
+  },
+  {
+    src: '/portfolio/commercial-projects/krupa-aspire/09.jpg',
+    width: 'clamp(130px, 13vw, 230px)',
+    aspect: '4 / 3',
+    pos: { bottom: '34%', left: '5%' } as React.CSSProperties,
+    mouse: 40,
+    drift: '14%',
+    delay: 1.05,
+  },
+  {
+    src: '/portfolio/corporate-brochure/krrish-group/07.jpg',
+    width: 'clamp(110px, 10vw, 190px)',
+    aspect: '1 / 1',
+    pos: { bottom: '13%', right: '16%' } as React.CSSProperties,
+    mouse: 18,
+    drift: '-10%',
+    delay: 1.2,
+  },
+]
+
+export default function AboutManifesto() {
+  const ref = useRef<HTMLElement>(null)
+  const [mounted, setMounted] = useState(false)
+
+  const { scrollYProgress } = useScroll({ target: ref, offset: ['start start', 'end start'] })
+  const x1 = useTransform(scrollYProgress, [0, 1], ['0%', '-9%'])
+  const x2 = useTransform(scrollYProgress, [0, 1], ['0%', '7%'])
+  const x3 = useTransform(scrollYProgress, [0, 1], ['0%', '-5%'])
+
+  // normalized cursor position (-0.5 … 0.5), smoothed
+  const mx = useMotionValue(0)
+  const my = useMotionValue(0)
+  const smx = useSpring(mx, { stiffness: 60, damping: 18 })
+  const smy = useSpring(my, { stiffness: 60, damping: 18 })
+
+  const onMouseMove = (e: React.MouseEvent) => {
+    mx.set(e.clientX / window.innerWidth - 0.5)
+    my.set(e.clientY / window.innerHeight - 0.5)
+  }
+
+  useEffect(() => { setMounted(true) }, [])
+
+  const lineStyle: React.CSSProperties = {
+    fontSize: 'clamp(6rem, 13vw, 15rem)',
+    fontWeight: 600,
+    lineHeight: 0.94,
+    letterSpacing: '0.02em',
+    textTransform: 'uppercase',
+    color: '#fff',
+    whiteSpace: 'nowrap',
+    margin: 0,
+  }
+
+  const lines: { text: string; x: typeof x1; align: string; outlined?: boolean }[] = [
+    { text: 'We make', x: x1, align: 'flex-start' },
+    { text: 'brands', x: x2, align: 'center', outlined: true },
+    { text: 'unforgettable', x: x3, align: 'flex-end' },
+  ]
+
+  return (
+    <section
+      ref={ref}
+      id="about-manifesto"
+      onMouseMove={onMouseMove}
+      style={{
+        position: 'relative',
+        height: '100svh',
+        minHeight: 600,
+        background: '#000',
+        color: '#fff',
+        overflow: 'hidden',
+        display: 'flex',
+        flexDirection: 'column',
+        justifyContent: 'center',
+        padding: '0 4rem',
+      }}
+    >
+      {/* floating image cluster — behind the type */}
+      {FLOATERS.map(f => (
+        <FloatingImage key={f.src} {...f} smx={smx} smy={smy} progress={scrollYProgress} mounted={mounted} />
+      ))}
+
+      {/* eyebrow */}
+      {mounted && (
+        <motion.span
+          initial={{ opacity: 0, y: 14 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, ease: EASE, delay: 0.2 }}
+          style={{
+            position: 'absolute',
+            top: '2.8rem',
+            left: '4rem',
+            fontSize: '1.1rem',
+            letterSpacing: '0.22em',
+            textTransform: 'uppercase',
+            color: 'var(--c-brown)',
+            zIndex: 2,
+          }}
+        >
+          Premium branding · print · exhibitions — since 1994
+        </motion.span>
+      )}
+
+      {/* manifesto lines */}
+      <div style={{ position: 'relative', zIndex: 1, display: 'flex', flexDirection: 'column', gap: '1.2rem' }}>
+        {lines.map((line, i) => (
+          <div key={line.text} style={{ display: 'flex', justifyContent: line.align, overflow: 'hidden' }}>
+            {mounted && (
+              <motion.p
+                initial={{ y: '110%' }}
+                animate={{ y: '0%' }}
+                transition={{ duration: 1.2, ease: EASE, delay: 0.15 + i * 0.14 }}
+                style={{ ...lineStyle, x: line.x, ...(line.outlined ? {
+                  color: 'transparent',
+                  WebkitTextStroke: '1.5px rgba(255,255,255,0.85)',
+                } : {}) }}
+              >
+                {line.text}
+              </motion.p>
+            )}
+          </div>
+        ))}
+      </div>
+
+      {/* bottom row — intro + scroll cue */}
+      {mounted && (
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.9, ease: EASE, delay: 0.9 }}
+          style={{
+            position: 'absolute',
+            bottom: '3.2rem',
+            left: '4rem',
+            right: '4rem',
+            display: 'flex',
+            alignItems: 'flex-end',
+            justifyContent: 'space-between',
+            gap: '4rem',
+            zIndex: 2,
+          }}
+        >
+          <p style={{
+            fontSize: '1.4rem',
+            lineHeight: 1.7,
+            letterSpacing: '0.04em',
+            color: 'rgba(255,255,255,0.55)',
+            maxWidth: 380,
+            margin: 0,
+          }}>
+            Zurich Graphics is a premium branding, design, print media, and
+            exhibition company for real estate, architecture, and high-value
+            businesses. 32 years. 4000+ projects. One standard.
+          </p>
+          <a href="#about-story" aria-label="Scroll down" style={{ color: '#fff', lineHeight: 0, flexShrink: 0 }}>
+            <SvgIcon id="long-arrow-down" width={14} height={41} style={{ color: '#fff' }} />
+          </a>
+        </motion.div>
+      )}
+    </section>
+  )
+}
+
+function FloatingImage({
+  src, width, aspect, pos, mouse, drift, delay, smx, smy, progress, mounted,
+}: (typeof FLOATERS)[number] & {
+  smx: ReturnType<typeof useSpring>
+  smy: ReturnType<typeof useSpring>
+  progress: ReturnType<typeof useScroll>['scrollYProgress']
+  mounted: boolean
+}) {
+  const px = useTransform(smx, (v: number) => v * mouse * 2)
+  const py = useTransform(smy, (v: number) => v * mouse * 1.4)
+  const scrollDrift = useTransform(progress, [0, 1], ['0%', drift])
+
+  return (
+    <motion.div
+      style={{
+        position: 'absolute',
+        ...pos,
+        width,
+        aspectRatio: aspect,
+        zIndex: 0,
+        y: scrollDrift,
+      }}
+    >
+      <motion.div style={{ x: px, y: py, width: '100%', height: '100%' }}>
+        {mounted && (
+          <motion.div
+            initial={{ clipPath: 'inset(100% 0 0 0)', scale: 1.15 }}
+            animate={{ clipPath: 'inset(0% 0 0 0)', scale: 1 }}
+            transition={{ duration: 1.1, ease: [0.7, 0, 0.3, 1], delay }}
+            style={{ width: '100%', height: '100%', overflow: 'hidden' }}
+          >
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src={src}
+              alt=""
+              aria-hidden="true"
+              style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block', opacity: 0.85 }}
+            />
+          </motion.div>
+        )}
+      </motion.div>
+    </motion.div>
+  )
+}

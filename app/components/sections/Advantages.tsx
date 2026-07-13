@@ -6,47 +6,58 @@ import Lenis from 'lenis'
 const ITEMS = [
   {
     num: 1,
-    title: 'Brochure Design',
-    description: 'Spacious and elegant lobbies welcome residents with impeccable interiors and a cozy lounge area, embodying the idea of impeccable style and understated luxury. Immerse yourself in an atmosphere of refined comfort comparable to the world\'s finest hotels.',
-    image: '/images/Services_Brochure Design.jpg',
+    title: 'Brand Strategy\n & Positioning',
+    description: 'Giving your project a sharper position and a stronger reason to be chosen.',
+    image: '/images/Services_001.jpg',
   },
   {
     num: 2,
-    title: 'Corporate Brochur\n Design',
-    description: 'A secluded corner in the very center of the complex. Greenery, stylish design solutions, and cozy relaxation areas create an atmosphere of calm and harmony.',
-    image: '/images/Services_Corporate Brochure Design.jpg',
+    title: 'Naming & Brand\n Identity',
+    description: 'We give projects names people remember and identities competitors notice.',
+    image: '/images/Services_002.jpg',
   },
   {
     num: 3,
-    title: 'Campaign Design',
-    description: 'A personal assistant who takes care of your time and comfort. Transportation arrangements, ticket reservations, or everyday tasks — everything will be done with attention and professionalism.',
-    image: '/images/Services_Campaign Design.jpg',
+    title: 'Brochure Design',
+    description: 'We give every feature a reason to matter and every page a reason to turn.',
+    image: '/images/Services_Brochure Design.jpg',
   },
   {
     num: 4,
-    title: '360 Branding\n Design',
-    description: 'Playing, forgetting about everything in the world, sharing secrets with friends, drawing cartoon characters — the children\'s room opens the door to another world.',
-    image: '/images/Services_360 Branding Design.jpg',
+    title: 'Campaign Design',
+    description: 'Creative that cuts through clutter and gives the project an unfair share of attention.',
+    image: '/images/Services_Campaign Design.jpg',
   },
   {
     num: 5,
-    title: 'Reels',
-    description: 'If you have a brilliant business idea, discuss it with your colleagues without leaving your home. Spacious meeting rooms with high panoramic windows will help you present your project in the best light.',
-    image: '/images/Services_Reels_2.jpg',
+    title: '360° Project\n Branding',
+    description: 'We make one powerful brand speak fluently across every physical and digital touchpoint.',
+    image: '/images/Services_360 Branding Design.jpg',
   },
   {
     num: 6,
-    title: 'Corporate\n Video',
-    description: 'A secluded corner in the very center of the complex. Greenery, stylish design solutions, and cozy relaxation areas create an atmosphere of calm and harmony.',
-    image: '/images/Services_Corporate Video.jpg',
+    title: 'Reels & Digital\n Communication',
+    description: 'Scroll-stopping content that moves fast, speaks sharp and keeps the project in conversation.',
+    image: '/images/Services_Reels_2.jpg',
   },
   {
     num: 7,
-    title: 'Print\n Media',
-    description: 'A secluded corner in the very center of the complex. Greenery, stylish design solutions, and cozy relaxation areas create an atmosphere of calm and harmony.',
+    title: 'Corporate &\n Project Films',
+    description: 'We give corporate vision a voice and project stories a powerful screen presence.',
+    image: '/images/Services_Corporate Video.jpg',
+  },
+  {
+    num: 8,
+    title: 'Print &\n Outdoor Media',
+    description: 'Turning every hoarding, newspaper and site surface into a reason to look.',
     image: '/images/Services_Print Media.jpg',
   },
-  
+  {
+    num: 9,
+    title: 'Exhibition &\n Stall Designs',
+    description: 'Designed to turn heads before the conversation even begins.',
+    image: '/images/Services_003.jpg',
+  },
 ]
 
 const TOTAL = ITEMS.length
@@ -120,6 +131,7 @@ export default function Advantages() {
         position: 'relative',
         height: `${(TOTAL + 2) * 100}vh`,
         background: '#000',
+        zIndex: 9,
       }}
     >
       {/* Panel — fixed when pinned, absolute otherwise */}

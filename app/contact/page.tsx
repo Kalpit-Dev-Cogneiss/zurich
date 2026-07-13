@@ -1,0 +1,35 @@
+import Header from '@/app/components/layout/Header'
+import Footer from '@/app/components/layout/Footer'
+import StackReveal from '@/app/components/ui/StackReveal'
+import Marquee from '@/app/components/ui/Marquee'
+import ContactMain from '@/app/components/contact/ContactMain'
+import ContactForm from '@/app/components/contact/ContactForm'
+
+export const metadata = {
+  title: 'Contact Us | Zurich Graphics',
+  description:
+    'Tell us about your project. Zurich Graphics — real estate branding: brochures, campaigns, films, and 360° identities.',
+}
+
+export default function ContactPage() {
+  return (
+    <>
+      <Header />
+      <main>
+        <StackReveal zIndex={1}><ContactMain /></StackReveal>
+        <StackReveal zIndex={2}><ContactForm /></StackReveal>
+        <div style={{ position: 'relative', zIndex: 3, background: '#000', padding: '6rem 0' }}>
+          <Marquee
+            items={["Let's talk", 'New project', "Let's talk", 'New launch']}
+            reverse
+            itemStyle={{
+              color: 'transparent',
+              WebkitTextStroke: '1px rgba(255,255,255,0.5)',
+            }}
+          />
+        </div>
+      </main>
+      <Footer />
+    </>
+  )
+}

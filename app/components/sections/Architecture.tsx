@@ -64,17 +64,20 @@ export default function Architecture() {
       ───────────────────────────────────────────────────────────── */}
       <div style={{ padding: '10rem 4rem 6rem' }}>
         {/* Heading — right 50% */}
-        <div style={{ display: 'grid', gridTemplateColumns: '1fr 1fr', gap: '4rem', marginBottom: '6rem' }}>
+        <div style={{ display: 'grid', gridTemplateColumns: '1fr', gap: '4rem', marginBottom: '6rem' }}>
           <div /> {/* empty left */}
           <motion.p {...fadeUp(0)} style={{
-            fontSize: 'clamp(2.4rem, 3.2vw, 4.4rem)',
-            fontWeight: 600, lineHeight: 1.1,
+            fontSize: 'clamp(2.4rem, 3.2vw, 2rem)',
+            fontWeight: 600, lineHeight: 1.3,
             letterSpacing: '0.01em',
             textTransform: 'uppercase',
             margin: 0,
           }}>
-            Three buildings in the style of elegant New York skyscrapers reflect the perfect
-            combination of sophistication and a modern approach to life.
+            We build the complete creative journey of a real estate brand. Every strategy,
+            design and message works together to create a consistent market impact. Naming,
+            identity, brochures, campaigns and digital experiences: all brought together under
+            one roof. The result is one powerful brand story, carried seamlessly across every
+            buyer touchpoint.
           </motion.p>
         </div>
       </div>
@@ -94,9 +97,8 @@ export default function Architecture() {
           textTransform: 'uppercase',
           margin: 0,
         }}>
-          Panoramic windows<br />
-          and architectural<br />
-          lighting
+          Think sharp<br />
+          Create brave
         </motion.p>
       </div>
 
@@ -126,7 +128,7 @@ export default function Architecture() {
           textTransform: 'uppercase',
           margin: 0,
         }}>
-          Premium<br />materials
+          Deliver results<br />Be remembered
         </motion.p>
       </div>
 
@@ -149,9 +151,7 @@ export default function Architecture() {
           maxWidth: '52%',
           margin: 0,
         }}>
-          Luxury is embodied in every detail of the finishing materials. It is imprinted in the
-          delicate pattern of the porcelain stoneware, fused into the gold of the frames, and
-          interspersed in the crystal waterfall of the chandeliers.
+          Built in the studio. Tested in the market. Remembered across cities.
         </motion.p>
       </div>
 

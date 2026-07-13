@@ -17,10 +17,10 @@ const POSITIONS: Array<{
   left?: string; right?: string
   width: string; parallaxFactor: number
 }> = [
-  { top: '0%',    left: '0%',  width: '17%', parallaxFactor: 0.8 },
-  { top: '2%',    left: '40%', width: '34%', parallaxFactor: 0.9 },
+  { top: '-10%',    left: '0%',  width: '17%', parallaxFactor: 0.8 },
+  { top: '-50%',    left: '30%', width: '34%', parallaxFactor: 0.9 },
   { top: '5%',    right: '0%', width: '17%', parallaxFactor: 0.6 },
-  { top: '42%',   left: '19%', width: '34%', parallaxFactor: 1.0 },
+  { top: '20%',   left: '40%', width: '34%', parallaxFactor: 1.0 },
   { bottom: '0%', left: '0%',  width: '25%', parallaxFactor: 0.7 },
   { bottom: '0%', right: '0%', width: '17%', parallaxFactor: 0.8 },
 ]
@@ -62,7 +62,7 @@ function ParallaxItem({
       <motion.div style={{ y: cursorY }}>
         <div style={{ position: 'relative', width: '100%', aspectRatio: aspect, overflow: 'hidden' }}>
           {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src={src} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
+          <img src={src} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block', opacity: 0.6 }} />
         </div>
       </motion.div>
     </motion.div>
@@ -82,10 +82,19 @@ export default function Gallery() {
   const mouseX = useSpring(rawMouseX, { stiffness: 60, damping: 20 })
   const mouseY = useSpring(rawMouseY, { stiffness: 60, damping: 20 })
 
-  // Lock body scroll when modal is open
+  // Lock scroll when modal is open — body overflow alone isn't enough because
+  // Lenis drives smooth scroll via its own rAF loop on window, bypassing
+  // native overflow entirely, so it must be paused/resumed explicitly too.
   useEffect(() => {
     document.body.style.overflow = modalOpen ? 'hidden' : ''
-    return () => { document.body.style.overflow = '' }
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const lenis = (window as any).__lenis as { stop: () => void; start: () => void } | undefined
+    if (modalOpen) lenis?.stop()
+    else lenis?.start()
+    return () => {
+      document.body.style.overflow = ''
+      lenis?.start()
+    }
   }, [modalOpen])
 
   const handleMouseMove = useCallback((e: React.MouseEvent<HTMLElement>) => {
@@ -105,8 +114,6 @@ export default function Gallery() {
 
   return (
     <>
-      {/* Gap from Architecture section */}
-      <div style={{ height: '8rem', background: '#fff' }} />
 
       <section
         ref={sectionRef}
@@ -143,25 +150,37 @@ export default function Gallery() {
 
         {/* Title + photo count */}
         <div style={{
-          position: 'absolute', bottom: '22%', left: 0, right: 0,
+          position: 'absolute', top: '35%', left: '20%', right: '0%',
           zIndex: 10, display: 'flex', alignItems: 'baseline',
           gap: '2rem', padding: '0 4rem', pointerEvents: 'none',
         }}>
-          <div style={{ flex: '0 0 25%' }} />
+          <div>
           <h2 style={{
-            fontSize: 'clamp(5rem, 9vw, 12rem)', fontWeight: 600,
+            fontSize: 'clamp(5rem, 9vw, 6rem)', fontWeight: 600,
             letterSpacing: '0.01em', textTransform: 'uppercase',
             lineHeight: 1, margin: 0, color: '#fff',
           }}>
-            Gallery
+            The Proof Is In The Work
           </h2>
           <p style={{
+              fontSize: 'clamp(0.9rem, 1vw, 2rem)',
+              lineHeight: 1.6,
+              letterSpacing: '0.03em',
+              color: '#fff',
+              marginTop: '1rem',
+            }}>
+              Over three decades of experience, a deep understanding of Indian
+              realty and a strategy-first <br /> approach are reflected in every
+              project you see here.
+            </p>
+          </div>
+          {/* <p style={{
             fontSize: '1.1rem', letterSpacing: '0.1em',
             color: 'rgba(255,255,255,0.6)', whiteSpace: 'nowrap',
             alignSelf: 'flex-end', paddingBottom: '0.8rem',
           }}>
             /6 photos
-          </p>
+          </p> */}
         </div>
 
         {/* Custom cursor — "VIEW →" follows mouse */}
@@ -179,23 +198,52 @@ export default function Gallery() {
                 transform: 'translate(-50%, -50%)',
                 zIndex: 20,
                 pointerEvents: 'none',
-                display: 'flex',
-                alignItems: 'center',
-                gap: '0.8rem',
-                padding: '1rem 1.8rem',
-                border: '1px solid rgba(255,255,255,0.5)',
+                width: '9rem',
+                height: '9rem',
                 background: 'rgba(0,0,0,0.4)',
                 backdropFilter: 'blur(4px)',
                 color: '#fff',
+              }}
+            >
+              {/* Animated outline — draws itself in, like the reference site's cursor button */}
+              <svg
+                width="100%"
+                height="100%"
+                style={{ position: 'absolute', inset: 0, overflow: 'visible' }}
+                aria-hidden="true"
+              >
+                <motion.rect
+                  x={0.5}
+                  y={0.5}
+                  width="calc(100% - 1px)"
+                  height="calc(100% - 1px)"
+                  fill="none"
+                  stroke="#fff"
+                  strokeWidth={1}
+                  initial={{ pathLength: 0 }}
+                  animate={{ pathLength: 1 }}
+                  transition={{ duration: 0.5, ease: [0.7, 0, 0.3, 1] }}
+                />
+              </svg>
+
+              {/* View — top-left */}
+              <span style={{
+                position: 'absolute',
+                top: '0.9rem',
+                left: '0.9rem',
                 fontSize: '1.1rem',
                 letterSpacing: '0.12em',
                 textTransform: 'uppercase',
                 fontWeight: 600,
                 whiteSpace: 'nowrap',
-              }}
-            >
-              View
-              <SvgIcon id="arrow-right" width={7} height={12} style={{ color: '#fff' }} />
+              }}>
+                View
+              </span>
+
+              {/* Arrow — bottom-right */}
+              <span style={{ position: 'absolute', bottom: '0.9rem', right: '0.9rem', lineHeight: 0 }}>
+                <SvgIcon id="arrow-right" width={7} height={12} style={{ color: '#fff' }} />
+              </span>
             </motion.div>
           )}
         </AnimatePresence>
@@ -216,7 +264,7 @@ export default function Gallery() {
           >
             {/* LEFT — fixed black panel */}
             <div style={{
-              width: '30%', flexShrink: 0,
+              width: '40%', flexShrink: 0,
               background: '#000',
               position: 'relative',
               height: '100dvh',
@@ -254,47 +302,55 @@ export default function Gallery() {
               </div>
             </div>
 
-            {/* RIGHT — scrollable images, isolated from page scroll */}
+            {/* RIGHT — 2-column image grid */}
             <div
               style={{
-                flex: 1,
+                width: '60%',
+                flexShrink: 0,
                 height: '100dvh',
-                overflowY: 'scroll',
-                background: '#111',
-                // isolate scroll from page
+                overflowY: 'auto',
+                background: '#000',
                 overscrollBehavior: 'contain',
+                display: 'grid',
+                gridTemplateColumns: '1fr 1fr',
+                gap: '1.2rem',
+                padding: '1.2rem',
+                boxSizing: 'border-box',
               }}
               onWheel={e => e.stopPropagation()}
             >
               {IMAGES.map((img, i) => (
-                <div key={img.id} style={{ position: 'relative', width: '100%' }} className="gallery-modal-item">
+                <div
+                  key={img.id}
+                  className="gallery-modal-item"
+                  style={{
+                    position: 'relative',
+                    width: '100%',
+                    height: 'calc(100dvh - 2.4rem)',
+                    display: 'flex',
+                    alignItems: 'center',
+                    justifyContent: 'center',
+                    background: '#000',
+                  }}
+                >
                   {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img src={img.src} alt={`Gallery photo ${i + 1}`} style={{ width: '100%', height: 'auto', display: 'block' }} />
-                  <div className="gallery-modal-overlay" style={{
-                    position: 'absolute', inset: 0,
-                    display: 'flex', alignItems: 'center', justifyContent: 'center',
-                    background: 'rgba(0,0,0,0)', transition: 'background 0.3s ease',
-                    pointerEvents: 'none',
-                  }}>
-                    <div className="gallery-modal-plus" style={{
-                      width: 48, height: 48,
-                      border: '1px solid rgba(255,255,255,0.7)',
-                      display: 'flex', alignItems: 'center', justifyContent: 'center',
-                      opacity: 0, transition: 'opacity 0.3s ease',
-                      color: '#fff', fontSize: '2.4rem', fontWeight: 300,
-                    }}>+</div>
-                  </div>
+                  <img
+                    src={img.src}
+                    alt={`Gallery photo ${i + 1}`}
+                    style={{
+                      width: '100%',
+                      height: '100%',
+                      objectFit: 'contain',
+                      objectPosition: 'center',
+                      display: 'block',
+                    }}
+                  />
                 </div>
               ))}
             </div>
           </motion.div>
         )}
       </AnimatePresence>
-
-      <style>{`
-        .gallery-modal-item:hover .gallery-modal-overlay { background: rgba(0,0,0,0.25) !important; }
-        .gallery-modal-item:hover .gallery-modal-plus { opacity: 1 !important; }
-      `}</style>
     </>
   )
 }

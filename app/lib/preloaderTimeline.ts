@@ -16,6 +16,7 @@ interface PreloaderElements {
   bottomPolygon: SVGPolygonElement;
   diagonalGroup: SVGGElement;
   topGroup: SVGGElement;
+  tagline: HTMLElement;
 }
 
 const LOAD_Y = 5;
@@ -35,6 +36,7 @@ export function createPreloaderTimeline(
     circleFill,
     zSvg,
     counter,
+    tagline,
   } = elements;
 
   const circumference = circleOutline.getTotalLength();
@@ -70,6 +72,7 @@ export function createPreloaderTimeline(
     opacity: 0,
     transformOrigin: "0% 100%",
   });
+  gsap.set(tagline, { autoAlpha: 0, y: 8 });
 
   const tl = gsap.timeline({
     onComplete,
@@ -145,7 +148,17 @@ export function createPreloaderTimeline(
       },
       "zGrow+=2.0",
     )
-    .to({}, { duration: 0.8 })
+    .to(
+      tagline,
+      {
+        autoAlpha: 1,
+        y: 0,
+        duration: 0.6,
+        ease: "power2.out",
+      },
+      "zGrow+=2.3",
+    )
+    .to({}, { duration: 0.6 })
     .addLabel("exit")
     .to(
       elements.stage,

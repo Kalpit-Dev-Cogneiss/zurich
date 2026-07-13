@@ -36,6 +36,7 @@ export default function Preloader() {
   const bottomPolygonRef = useRef<SVGPolygonElement>(null);
   const diagonalGroupRef = useRef<SVGGElement>(null);
   const topGroupRef = useRef<SVGGElement>(null);
+  const taglineRef = useRef<HTMLDivElement>(null);
 
   useGSAP(() => {
     const refs = {
@@ -53,6 +54,7 @@ export default function Preloader() {
       bottomPolygon: bottomPolygonRef.current,
       diagonalGroup: diagonalGroupRef.current,
       topGroup: topGroupRef.current,
+      tagline: taglineRef.current,
     };
 
     if (Object.values(refs).some((el) => !el)) {
@@ -254,6 +256,25 @@ export default function Preloader() {
                   strokeLinecap="butt"
                 />
               </svg>
+            </div>
+
+            <div
+              ref={taglineRef}
+              style={{
+                position: "absolute",
+                top: `calc(50% + ${CIRCLE_RADIUS + 32}px)`,
+                left: "50%",
+                transform: "translateX(-50%)",
+                whiteSpace: "nowrap",
+                color: "#fff",
+                fontSize: "1rem",
+                fontWeight: 600,
+                letterSpacing: "0.24em",
+                textTransform: "uppercase",
+                opacity: 0,
+              }}
+            >
+              Realty. Creativity. Impact.
             </div>
           </div>
         </div>

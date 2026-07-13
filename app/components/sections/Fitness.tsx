@@ -98,7 +98,7 @@ export default function Fitness() {
     <div
       ref={spacerRef}
       id="fitness"
-      style={{ position: 'relative', height: spacerH, background: '#000' }}
+      style={{ position: 'relative', height: spacerH, background: '#000', zIndex: 10 }}
     >
       <div
         style={{
@@ -135,10 +135,8 @@ export default function Fitness() {
             </div>
             <div style={{ flexShrink: 0, width: '22vw' }}>
               <p style={{ fontSize: 'clamp(1.1rem, 1.1vw, 1.4rem)', lineHeight: 1.65, letterSpacing: '0.04em', textTransform: 'uppercase', color: '#000' }}>
-                Sport and luxury combine in the design of the spacious 25-meter swimming pool with 3 lanes.
-                Crystal clear water, soft comfortable sun loungers, light that dissolves the contours.
-                An active workout in sporty chic style, relaxed relaxation with a detox cocktail,
-                or meditation to the gentle sound of waves — what appeals to you today?
+                We&apos;ll let it do the talking. Inside are identities that found their edge,
+                campaigns that owned their space and projects that became brands.
               </p>
             </div>
           </div>
@@ -153,12 +151,12 @@ export default function Fitness() {
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img src={IMG.i3} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
               <p style={{ fontSize: 'clamp(1rem, 1vw, 1.25rem)', lineHeight: 1.6, letterSpacing: '0.04em', textTransform: 'uppercase', color: '#000', marginTop: '2rem' }}>
-                The soothing scent of wood and the crackling of hot stones in the sauna restore your strength and create a resort atmosphere any day you wish.
+                Built in the studio. Tested in the market. Remembered across cities.
               </p>
             </div>
             <div style={{ flexShrink: 0, width: '20vw' }}>
               <p style={{ fontSize: 'clamp(1.4rem, 1.8vw, 2.4rem)', fontWeight: 600, lineHeight: 1.25, letterSpacing: '0.02em', textTransform: 'uppercase', color: '#000' }}>
-                Smart trainers with artificial intelligence will help you maintain your beauty, strength, and flexibility. Crossovers with horizontal bars, power frames, butterfly machines — here, fitness becomes premium.
+                The skyline remembers great architecture. The market remembers great branding. This is where we made our mark.
               </p>
             </div>
           </div>
@@ -175,7 +173,8 @@ export default function Fitness() {
             </div>
             <div style={{ flexShrink: 0, width: '18vw' }}>
               <p style={{ fontSize: 'clamp(1rem, 1vw, 1.25rem)', lineHeight: 1.65, letterSpacing: '0.04em', textTransform: 'uppercase', color: '#000' }}>
-                Feel ironclad confidence and knock out all doubts about your own abilities. Precisely balanced leather punching bags, hanging Thai boxing bags, modern equipment for developing coordination and agility — become not just the best, but the most powerful version of yourself.
+                Every project becomes a case study our clients are proud to share — from first
+                sketch to the finished brand on the ground.
               </p>
             </div>
           </div>
@@ -192,7 +191,7 @@ export default function Fitness() {
             </div>
             <div style={{ flexShrink: 0, width: '20vw' }}>
               <p style={{ fontSize: 'clamp(1.4rem, 1.8vw, 2.4rem)', fontWeight: 600, lineHeight: 1.25, letterSpacing: '0.02em', textTransform: 'uppercase', color: '#000' }}>
-                The yoga studio offers a smooth transition to relaxation, bringing your mind and body into harmony. Soft lighting, the relaxing voice of the instructor, and the calm rhythm of the movements will help you find your balance.
+                From naming to launch — one connected creative journey, across every touchpoint.
               </p>
             </div>
             <div style={{ flexShrink: 0, width: '6vw' }} />
@@ -209,7 +208,7 @@ export default function Fitness() {
             </div>
             <div style={{ flexShrink: 0, width: '20vw' }}>
               <p style={{ fontSize: 'clamp(1.4rem, 1.8vw, 2.4rem)', fontWeight: 600, lineHeight: 1.25, letterSpacing: '0.02em', textTransform: 'uppercase', color: '#000' }}>
-                The yoga studio offers a smooth transition to relaxation, bringing your mind and body into harmony. Soft lighting, the relaxing voice of the instructor, and the calm rhythm of the movements will help you find your balance.
+                A compelling position. A powerful story. A brand built to be chosen.
               </p>
             </div>
             <div style={{ flexShrink: 0, width: '6vw' }} />
@@ -219,7 +218,7 @@ export default function Fitness() {
           <div style={{ display: 'flex', height: '100vh', alignItems: 'center', padding: '0 6rem', gap: '5rem', flexShrink: 0 }}>
             <div style={{ flexShrink: 0, width: '20vw' }}>
               <h2 style={{ fontSize: 'clamp(2rem, 2.8vw, 3.6rem)', fontWeight: 600, lineHeight: 1.1, letterSpacing: '0.02em', textTransform: 'uppercase', color: '#000', margin: 0 }}>
-                FITNESS CLUB<br />WITH A 25M<br />SWIMMING POOL
+                THE WORK<br />SPEAKS
               </h2>
             </div>
             <div style={{ flexShrink: 0, width: '38vw', height: '78vh', overflow: 'hidden' }}>
@@ -228,10 +227,9 @@ export default function Fitness() {
             </div>
             <div style={{ flexShrink: 0, width: '22vw' }}>
               <p style={{ fontSize: 'clamp(1.1rem, 1.1vw, 1.4rem)', lineHeight: 1.65, letterSpacing: '0.04em', textTransform: 'uppercase', color: '#000' }}>
-                Sport and luxury combine in the design of the spacious 25-meter swimming pool with 3 lanes.
-                Crystal clear water, soft comfortable sun loungers, light that dissolves the contours.
-                An active workout in sporty chic style, relaxed relaxation with a detox cocktail,
-                or meditation to the gentle sound of waves — what appeals to you today?
+                Over three decades of experience, a deep understanding of Indian realty and a
+                strategy-first approach — identities that found their edge, campaigns that owned
+                their space and projects that became brands.
               </p>
             </div>
           </div>

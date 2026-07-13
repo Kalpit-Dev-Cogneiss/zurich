@@ -1,4 +1,4 @@
-export type ProjectCategory = 'residential' | 'commercial' | 'farmhouse' | 'mall' | 'duplex-villa' | 'open-plot' | 'industrial-park' | 'corporate-brochure'
+export type ProjectCategory = 'residential' | 'commercial' | 'farmhouse' | 'mall' | 'duplex-villa' | 'open-plot' | 'industrial-park' | 'corporate-brochure' | 'campaign'
 
 export interface ProjectData {
   slug: string
@@ -456,6 +456,48 @@ const industrialParkProjects: ProjectData[] = [
 // CORPORATE BROCHURE PROJECTS
 const corporateBrochureProjects: ProjectData[] = [
   {
+    slug: 'accord-design',
+    title: 'Accord Design',
+    location: '@mumbai',
+    projectType: 'CORPORATE\nBROCHURE',
+    client: 'ACCORD GROUP',
+    category: 'corporate-brochure',
+    description: desc,
+    images: createImages('corporate-brochure', 'Accord Design', {
+      hero: '1.jpg', brochure: '2.jpg', single: '3.jpg',
+      row: ['4.jpg', '5.jpg', '6.png'],
+      remaining: ['7.jpg', '8.jpg', '9.jpg', '10.jpg', '11.jpg', '12.jpg']
+    }),
+  },
+  {
+    slug: 'elite-design',
+    title: 'Elite Design',
+    location: '@mumbai',
+    projectType: 'CORPORATE\nBROCHURE',
+    client: 'ELITE GROUP',
+    category: 'corporate-brochure',
+    description: desc,
+    images: createImages('corporate-brochure', 'Elite Design', {
+      hero: '01.jpg', brochure: '02.png', single: '03.jpg',
+      row: ['04.jpg', '05.jpg', '06.png'],
+      remaining: ['07.jpg', '08.jpg', '09.jpg', '10.jpg', '11.jpg', '12.jpg']
+    }),
+  },
+  {
+    slug: 'ratnam',
+    title: 'Ratnam',
+    location: '@mumbai',
+    projectType: 'CORPORATE\nBROCHURE',
+    client: 'RATNAM GROUP',
+    category: 'corporate-brochure',
+    description: desc,
+    images: createImages('corporate-brochure', 'ratnam', {
+      hero: 'r1.jpg', brochure: 'r2.png', single: 'r3.jpg',
+      row: ['r4.jpg', 'r5.jpg', 'r6.png'],
+      remaining: ['r7.jpg', 'r8.jpg', 'r9.jpg', 'r10.jpg']
+    }),
+  },
+  {
     slug: 'samruddhi',
     title: 'Samruddhi',
     location: '@mumbai',
@@ -481,6 +523,76 @@ const corporateBrochureProjects: ProjectData[] = [
       hero: 'k1.jpg', brochure: 'k2.png', single: 'k3.jpg',
       row: ['k4.jpg', 'k5.jpg', 'k6.png'],
       remaining: ['k7.jpg', 'k8.jpg', 'k9.jpg', 'k10.jpg', 'k11.jpg']
+    }),
+  },
+]
+
+// CAMPAIGN PROJECTS
+const campaignProjects: ProjectData[] = [
+  {
+    slug: 'greenleaf-heritage-campaign',
+    title: 'Greenleaf Heritage',
+    location: '@mumbai',
+    projectType: 'CAMPAIGN\nDESIGN',
+    client: 'GREENLEAF GROUP',
+    category: 'campaign',
+    description: desc,
+    images: createImages('campaign', 'GREENLEAF HERITAGE', {
+      hero: 'GREENLEAF HERITAGE_001.jpg', 
+      brochure: 'RESIDENCIAL PORTFOLIO_002.png', 
+      single: 'GREENLEAF HERITAGE_003.jpg',
+      row: [], // No row images for campaign
+      remaining: [
+        'GREENLEAF HERITAGE_004.jpg', 
+        'GREENLEAF HERITAGE_005.jpg', 
+        'GREENLEAF HERITAGE_006.jpg', 
+        'GREENLEAF HERITAGE_007.jpg', 
+        'GREENLEAF HERITAGE_008.jpg', 
+        'GREENLEAF HERITAGE_009.jpg', 
+        'GREENLEAF HERITAGE_010.jpg', 
+        'GREENLEAF HERITAGE_011.jpg',
+        'GREENLEAF HERITAGE_012.jpg',
+        'GREENLEAF HERITAGE_013.jpg',
+        'GREENLEAF HERITAGE_014.jpg',
+        'GREENLEAF HERITAGE_015.jpg',
+        'GREENLEAF HERITAGE_016.jpg',
+        'GREENLEAF HERITAGE_017.jpg',
+        'GREENLEAF HERITAGE_018.jpg',
+        'GREENLEAF HERITAGE_019.jpg',
+        'GREENLEAF HERITAGE_020.jpg'
+      ]
+    }),
+  },
+  {
+    slug: 'sky-gateway',
+    title: 'Sky Gateway',
+    location: '@mumbai',
+    projectType: 'CAMPAIGN\nDESIGN',
+    client: 'SKY GATEWAY GROUP',
+    category: 'campaign',
+    description: desc,
+    images: createImages('campaign', 'Sky Gateway', {
+      hero: 'Sky Gateway_001.jpg', 
+      brochure: 'Sky Gateway_002.png', 
+      single: 'Sky Gateway_003.jpg',
+      row: [], // No row images for campaign
+      remaining: [
+        'Sky Gateway_005.jpg',
+        'Sky Gateway_006.jpg',
+        'Sky Gateway_007.jpg',
+        'Sky Gateway_008.jpg',
+        'Sky Gateway_009.jpg',
+        'Sky Gateway_010.jpg',
+        'Sky Gateway_011.jpg',
+        'Sky Gateway_012.jpg',
+        'Sky Gateway_013.jpg',
+        'Sky Gateway_014.jpg',
+        'Sky Gateway_015.jpg',
+        'Sky Gateway_016.jpg',
+        'Sky Gateway_017.jpg',
+        'Sky Gateway_018.jpg',
+        'Sky Gateway_019.jpg'
+      ]
     }),
   },
 ]
@@ -526,6 +638,7 @@ export const portfolioProjects: ProjectData[] = [
   ...openPlotProjects,
   ...industrialParkProjects,
   ...corporateBrochureProjects,
+  ...campaignProjects,
   ...farmhouseProjects,
 ]
 
@@ -549,5 +662,6 @@ export {
   openPlotProjects,
   industrialParkProjects,
   corporateBrochureProjects,
+  campaignProjects,
   farmhouseProjects 
 }

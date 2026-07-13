@@ -109,7 +109,7 @@ export default function Hero() {
               whiteSpace: 'pre-line',
             }}
           >
-            {'Premium residence —\nthe embodiment\nof your status'}
+            India&apos;s premier agency for powerful real estate brands
           </motion.p>
 
           <motion.a

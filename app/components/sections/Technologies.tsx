@@ -1,124 +1,263 @@
 'use client'
-import { useState } from 'react'
-import { motion } from 'framer-motion'
+import { useEffect, useRef, useState } from 'react'
+import Lenis from 'lenis'
 import { TECHNOLOGY_ITEMS } from '@/app/lib/data'
-import ParallaxImage from '@/app/components/ui/ParallaxImage'
+
+const TOTAL = TECHNOLOGY_ITEMS.length
+const STEPS = Math.max(1, TOTAL - 1) // transitions between consecutive items
+const BOX_WIDTH = 364
+const BOX_HEIGHT = 330
+const BOX_GAP = 40 // vertical space between the stacked boxes (px)
+const BOX_STEP = BOX_HEIGHT + BOX_GAP
 
 export default function Technologies() {
-  const [active, setActive] = useState(0)
+  const spacerRef = useRef<HTMLDivElement>(null)
+  const [phase, setPhase] = useState<'before' | 'pinned' | 'after'>('before')
+  const [afterTop, setAfterTop] = useState(0)
+  const [index, setIndex] = useState(0)
+  const [progress, setProgress] = useState(0)
+  // 0 while still far above; ramps 0→1 across the last viewport before pinning,
+  // driving a full-height slide-up cover so the panel is never partially shown.
+  const [enter, setEnter] = useState(0)
+  const idleTimerRef = useRef<ReturnType<typeof setTimeout> | null>(null)
+
+  useEffect(() => {
+    const spacer = spacerRef.current
+    if (!spacer) return
+
+    const snapTo = (targetRaw: number, sectionTop: number, viewH: number) => {
+      const targetScrollY = sectionTop + targetRaw * viewH
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const lenis = (window as any).__lenis as Lenis | undefined
+      if (lenis) lenis.scrollTo(targetScrollY, { duration: 0.6 })
+      else window.scrollTo({ top: targetScrollY, behavior: 'smooth' })
+    }
+
+    const scheduleSnap = (sectionTop: number, viewH: number) => {
+      if (idleTimerRef.current) clearTimeout(idleTimerRef.current)
+      idleTimerRef.current = setTimeout(() => {
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
+        const currentScrollY = (window as any).__lenis?.scroll ?? window.scrollY
+        const entryStart = sectionTop - viewH
+        const sectionBottom = sectionTop + (STEPS + 2) * viewH
+
+        if (currentScrollY >= entryStart && currentScrollY < sectionTop) {
+          // Entry zone: the panel is sliding into view but hasn't pinned yet.
+          // Settle to fully-out (previous section) or fully-in (pinned) so it
+          // never rests in a half-revealed state.
+          const f = (currentScrollY - entryStart) / viewH
+          if (f > 0.02 && f < 0.98) {
+            snapTo(f > 0.5 ? 0 : -1, sectionTop, viewH)
+          }
+        } else if (currentScrollY >= sectionTop && currentScrollY < sectionBottom) {
+          // Interior: snap between consecutive boxes at the 50% mark.
+          const raw = (currentScrollY - sectionTop) / viewH
+          const idx = Math.min(STEPS - 1, Math.floor(raw))
+          const prog = raw - idx
+          if (prog > 0.02 && prog < 0.98) {
+            snapTo(prog > 0.5 ? idx + 1 : idx, sectionTop, viewH)
+          }
+        }
+      }, 150)
+    }
+
+    const update = (scrollY: number) => {
+      const sectionTop = spacer.offsetTop
+      const viewH = window.innerHeight
+      const scrollDistance = (STEPS + 2) * viewH
+      const sectionBottom = sectionTop + scrollDistance
+
+      if (scrollY < sectionTop) {
+        setPhase('before')
+        setIndex(0)
+        setProgress(0)
+        // Slide-up cover: 0 until one viewport out, then ramps to 1 at the top.
+        setEnter(Math.max(0, Math.min(1, (scrollY - (sectionTop - viewH)) / viewH)))
+        // Within one viewport of the top, we're in the slide-in entry zone —
+        // let the snap resolve a half-revealed rest here too.
+        if (scrollY >= sectionTop - viewH) scheduleSnap(sectionTop, viewH)
+      } else if (scrollY < sectionBottom) {
+        setPhase('pinned')
+        setEnter(1)
+        const raw = Math.min(STEPS, (scrollY - sectionTop) / viewH)
+        const idx = Math.min(STEPS - 1, Math.floor(raw))
+        setIndex(idx)
+        setProgress(Math.min(1, Math.max(0, raw - idx)))
+        scheduleSnap(sectionTop, viewH)
+      } else {
+        setPhase('after')
+        setEnter(1)
+        setAfterTop(sectionBottom - viewH)
+        setIndex(STEPS - 1)
+        setProgress(1)
+      }
+    }
+
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const lenis = (window as any).__lenis as Lenis | undefined
+    if (lenis) {
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      const handler = (e: any) => update(e.scroll)
+      lenis.on('scroll', handler)
+      update(lenis.scroll)
+      return () => {
+        lenis.off('scroll', handler)
+        if (idleTimerRef.current) clearTimeout(idleTimerRef.current)
+      }
+    }
+
+    const onScroll = () => update(window.scrollY)
+    window.addEventListener('scroll', onScroll, { passive: true })
+    update(window.scrollY)
+    return () => {
+      window.removeEventListener('scroll', onScroll)
+      if (idleTimerRef.current) clearTimeout(idleTimerRef.current)
+    }
+  }, [])
+
+  const hasNext = index + 1 < TOTAL
+  const current = TECHNOLOGY_ITEMS[index]
+  const next = hasNext ? TECHNOLOGY_ITEMS[index + 1] : null
+
+  const panelStyle: React.CSSProperties =
+    phase === 'pinned'
+      ? { position: 'fixed', top: 0, left: 0, right: 0, height: '100vh' }
+      : phase === 'after'
+      ? { position: 'absolute', top: afterTop, left: 0, right: 0, height: '100vh' }
+      : // before: full-height fixed panel that slides up over the previous
+        // section, so it's never shown partially in normal flow.
+        {
+          position: 'fixed',
+          top: 0,
+          left: 0,
+          right: 0,
+          height: '100vh',
+          transform: `translateY(${(1 - enter) * 100}%)`,
+        }
 
   return (
-    <section
+    <div
+      ref={spacerRef}
       id="services"
       style={{
+        position: 'relative',
+        height: `${(STEPS + 2) * 100}vh`,
         background: '#000',
-        color: '#fff',
-        minHeight: '100vh',
-        padding: '4rem 0',
+        zIndex: 11,
       }}
     >
       <div
         style={{
+          ...panelStyle,
           display: 'grid',
           gridTemplateColumns: '50% 50%',
-          minHeight: '100vh',
+          overflow: 'hidden',
+          background: '#000',
+          zIndex: 11,
         }}
       >
-        {/* LEFT - Image */}
+        {/* LEFT — next image slides up from the bottom, covering the current one */}
         <div style={{ position: 'relative', overflow: 'hidden' }}>
-          {TECHNOLOGY_ITEMS.map((tech, i) => (
-            <motion.div
-              key={tech.title}
-              animate={{ opacity: i === active ? 1 : 0 }}
-              transition={{ duration: 0.7, ease: [0.7, 0, 0.3, 1] as [number,number,number,number] }}
-              style={{ 
-                position: 'absolute', 
-                inset: 0, 
-                zIndex: i === active ? 1 : 0 
+          <div style={{ position: 'absolute', inset: 0 }}>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src={current.image}
+              alt={current.title}
+              style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
+            />
+          </div>
+          {next && (
+            <div
+              style={{
+                position: 'absolute',
+                inset: 0,
+                transform: `translateY(${(1 - progress) * 100}%)`,
+                willChange: 'transform',
               }}
             >
-              <ParallaxImage src={tech.image} alt={tech.title} strength={8} />
-            </motion.div>
-          ))}
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src={next.image}
+                alt={next.title}
+                style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
+              />
+            </div>
+          )}
         </div>
 
-        {/* RIGHT - Title and Cards */}
+        {/* RIGHT — heading stays fixed top-right; only the box and image change */}
         <div
           style={{
-            background: '#000',
-            color: '#fff',
-            display: 'flex',
-            flexDirection: 'column',
+            position: 'relative',
+            height: '100%',
             padding: '4rem',
+            color: '#fff',
           }}
         >
-          {/* Title */}
-          <div style={{ textAlign: 'right', marginBottom: '4rem' }}>
-            <h2
+          <div style={{ position: 'relative', width: BOX_WIDTH, height: '100%', overflow: 'hidden' }}>
+            {/* One strip holding every box; it slides up so the active box sits
+                centred. All boxes are always mounted — nothing loads on demand. */}
+            <div
               style={{
-                fontSize: 'clamp(2.5rem, 3.5vw, 4rem)',
-                fontWeight: 600,
-                lineHeight: 1.1,
-                letterSpacing: '0.05em',
-                textTransform: 'uppercase',
-                margin: 0,
+                position: 'absolute',
+                left: 0,
+                right: 0,
+                top: `calc(50% - ${BOX_HEIGHT / 2}px)`,
+                display: 'flex',
+                flexDirection: 'column',
+                gap: `${BOX_GAP}px`,
+                transform: `translateY(-${(index + progress) * BOX_STEP}px)`,
+                willChange: 'transform',
               }}
             >
-              Testimonails
-            </h2>
+              {TECHNOLOGY_ITEMS.map((tech, i) => {
+                const isActive = i === Math.round(index + progress)
+                return (
+                  <div
+                    key={tech.title}
+                    style={{
+                      height: BOX_HEIGHT,
+                      flexShrink: 0,
+                      background: '#000',
+                      border: '1px solid rgba(255,255,255,1)',
+                      padding: '2rem',
+                      display: 'flex',
+                      flexDirection: 'column',
+                      justifyContent: 'space-between',
+                      opacity: isActive ? 1 : 1,
+                      transition: 'opacity 0.4s ease',
+                    }}
+                  >
+                    <p style={{ fontSize: '1.5rem', textTransform: 'uppercase', letterSpacing: '0.1em', color: '#fff', margin: 0 }}>
+                      {tech.title}
+                    </p>
+                    <p style={{ fontSize: '1.3rem', lineHeight: 1.5, color: 'rgba(255,255,255,1)', textTransform: 'uppercase', margin: 0 }}>
+                      {tech.body}
+                    </p>
+                  </div>
+                )
+              })}
+            </div>
           </div>
 
-          {/* Service Cards */}
-          <div style={{ flex: 1, display: 'flex', flexDirection: 'column', gap: '2rem' }}>
-            {TECHNOLOGY_ITEMS.map((tech, i) => (
-              <motion.div
-                key={tech.title}
-                animate={{
-                  borderColor: i === active ? 'rgba(255,255,255,0.3)' : 'rgba(255,255,255,0.1)',
-                  backgroundColor: i === active ? 'rgba(255,255,255,0.05)' : 'rgba(0,0,0,0)',
-                }}
-                transition={{ duration: 0.4 }}
-                style={{
-                  flex: 1,
-                  border: '1px solid rgba(255,255,255,0.1)',
-                  padding: '2.5rem',
-                  display: 'flex',
-                  flexDirection: 'column',
-                  justifyContent: 'space-between',
-                  cursor: 'pointer',
-                }}
-                onClick={() => setActive(i)}
-              >
-                <p
-                  style={{
-                    fontSize: '1.2rem',
-                    textTransform: 'uppercase',
-                    letterSpacing: '0.1em',
-                    color: 'rgba(255,255,255,0.5)',
-                    marginBottom: '1rem',
-                  }}
-                >
-                  {tech.title}
-                </p>
-                <motion.p
-                  key={`desc-${i}-${active}`}
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: i === active ? 1 : 0 }}
-                  transition={{ duration: 0.5, delay: i === active ? 0.2 : 0 }}
-                  style={{
-                    fontSize: '1.4rem',
-                    lineHeight: 1.6,
-                    color: 'rgba(255,255,255,0.6)',
-                    display: i === active ? 'block' : 'none',
-                  }}
-                >
-                  {tech.body}
-                </motion.p>
-              </motion.div>
-            ))}
-          </div>
+          <h2
+            style={{
+              position: 'absolute',
+              top: '4rem',
+              right: '4rem',
+              fontSize: 'clamp(2.5rem, 3.5vw, 4rem)',
+              fontWeight: 600,
+              lineHeight: 1.1,
+              letterSpacing: '0.05em',
+              textTransform: 'uppercase',
+              margin: 0,
+              textAlign: 'right',
+            }}
+          >
+            The Reviews<br />Are In
+          </h2>
         </div>
       </div>
-    </section>
+    </div>
   )
 }

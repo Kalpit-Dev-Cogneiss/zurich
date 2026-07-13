@@ -18,6 +18,7 @@ const CATEGORY_LABELS: Record<ProjectCategory, string> = {
   'open-plot': 'Open Plot',
   'industrial-park': 'Industrial',
   'corporate-brochure': 'Corporate',
+  campaign: 'Campaign',
 }
 
 const CATEGORY_ORDER: ProjectCategory[] = [
@@ -29,6 +30,7 @@ const CATEGORY_ORDER: ProjectCategory[] = [
   'open-plot',
   'industrial-park',
   'corporate-brochure',
+  'campaign',
 ]
 
 function isProjectCategory(value: string | null): value is ProjectCategory {

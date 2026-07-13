@@ -77,13 +77,15 @@ export default async function PortfolioDetailPage({
               images={[{ src: project.images.single, alt: `${project.title} Interior` }]}
             />
 
-            {/* Row of 3 Images */}
-            <PortfolioImageRow
-              images={project.images.row.map((src, index) => ({
-                src,
-                alt: `${project.title} Interior ${index + 2}`,
-              }))}
-            />
+            {/* Row of Images - Only show if row images exist */}
+            {project.images.row.length > 0 && (
+              <PortfolioImageRow
+                images={project.images.row.map((src, index) => ({
+                  src,
+                  alt: `${project.title} Interior ${index + 2}`,
+                }))}
+              />
+            )}
 
             {/* Remaining Single Images */}
             <PortfolioGallery

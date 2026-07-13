@@ -10,6 +10,7 @@ import {
   openPlotProjects,
   industrialParkProjects,
   corporateBrochureProjects,
+  campaignProjects,
   farmhouseProjects,
 } from '@/app/lib/portfolioData'
 
@@ -27,6 +28,7 @@ const projectsByCategory = {
   'open-plot': openPlotProjects,
   'industrial-park': industrialParkProjects,
   'corporate-brochure': corporateBrochureProjects,
+  campaign: campaignProjects,
 }
 
 export default function PortfolioPage() {

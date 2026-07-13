@@ -1,13 +1,52 @@
 'use client'
-import { useState, useRef } from 'react'
+import { useState, useRef, useEffect } from 'react'
 import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion'
 import SvgIcon from '@/app/components/ui/SvgIcon'
 
 export default function About() {
   const [videoOpen, setVideoOpen] = useState(false)
   const sectionRef = useRef<HTMLElement>(null)
+  const bgVideoRef = useRef<HTMLIFrameElement>(null)
   const { scrollYProgress } = useScroll({ target: sectionRef, offset: ['start end', 'end start'] })
   const videoY = useTransform(scrollYProgress, [0, 1], ['-8%', '8%'])
+
+  // The background embed uses autopause=0 so Vimeo never stops it on its
+  // own — left alone it decodes video for the whole session, dragging FPS
+  // down everywhere. Pause it whenever the section can't be seen: scrolled
+  // out of the viewport, or covered by a later stacked section (StackReveal
+  // hides covered wrappers, which this section inherits as visibility:
+  // hidden).
+  useEffect(() => {
+    const section = sectionRef.current
+    const iframe = bgVideoRef.current
+    if (!section || !iframe) return
+
+    let playing = true
+    let raf = 0
+    const command = (method: 'play' | 'pause') =>
+      iframe.contentWindow?.postMessage(JSON.stringify({ method }), '*')
+
+    const check = () => {
+      raf = 0
+      const rect = section.getBoundingClientRect()
+      const onScreen = rect.bottom > 0 && rect.top < window.innerHeight
+      const shouldPlay = onScreen && getComputedStyle(section).visibility !== 'hidden'
+      if (shouldPlay !== playing) {
+        playing = shouldPlay
+        command(shouldPlay ? 'play' : 'pause')
+      }
+    }
+    const onScroll = () => {
+      if (!raf) raf = requestAnimationFrame(check)
+    }
+
+    window.addEventListener('scroll', onScroll, { passive: true })
+    check()
+    return () => {
+      window.removeEventListener('scroll', onScroll)
+      if (raf) cancelAnimationFrame(raf)
+    }
+  }, [])
 
   return (
     <section
@@ -31,6 +70,7 @@ export default function About() {
       }}>
         <motion.div style={{ position: 'absolute', inset: '-8% 0', y: videoY, willChange: 'transform' }}>
           <iframe
+            ref={bgVideoRef}
             src="https://player.vimeo.com/video/1185877284?loop=1&muted=1&autoplay=1&autopause=0&background=1"
             allow="autoplay; encrypted-media"
             allowFullScreen
@@ -74,16 +114,16 @@ export default function About() {
             viewport={{ once: true }}
             transition={{ duration: 0.9, ease: [0.7, 0, 0.3, 1] }}
             style={{
-              fontSize: 'clamp(3.6rem, 5.5vw, 7.2rem)',
+              fontSize: 'clamp(3.6rem, 2vw, 7.2rem)',
               fontWeight: 600,
-              lineHeight: 1.0,
+              lineHeight: 1.2,
               letterSpacing: '0.02em',
               textTransform: 'uppercase',
               color: '#fff',
               margin: 0,
             }}
           >
-            Life on Your<br />Own Terms
+            Over Three Decades.<br />360° Solutions.<br />Concept to Conversion.
           </motion.h2>
         </div>
 
@@ -125,7 +165,7 @@ export default function About() {
               textAlign: 'left',
               lineHeight: 1.3,
             }}>
-              About the Project
+              Plug In
             </span>
             {/* Play icon centered */}
             <div style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center', width: '100%' }}>
@@ -135,7 +175,7 @@ export default function About() {
 
           {/* Card 2 — white, Installment / Special Offers / Watch */}
           <motion.a
-            href="#"
+            href="#gallery"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -160,7 +200,7 @@ export default function About() {
               lineHeight: 1.4,
               margin: 0,
             }}>
-              Installment<br />and Mortgage
+              Plug In :
             </p>
 
             {/* center heading */}
@@ -173,7 +213,7 @@ export default function About() {
               margin: 0,
               textAlign: 'center',
             }}>
-              Special<br />Offers
+              Discover<br />Zurich Graphics
             </p>
 
             {/* bottom CTA */}
@@ -187,7 +227,7 @@ export default function About() {
               textDecoration: 'underline',
               textUnderlineOffset: 3,
             }}>
-              Watch
+              View
             </p>
           </motion.a>
         </div>

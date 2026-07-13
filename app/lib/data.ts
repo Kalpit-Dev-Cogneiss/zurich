@@ -1,4 +1,6 @@
 export const NAV_ITEMS = [
+  { label: 'About Us', href: '/about' },
+  { label: 'Contact Us', href: '/contact' },
   { label: 'Location', href: '#location' },
   { label: 'Design', href: '#design' },
   { label: 'Infrastructure', href: '#infrastructure' },
@@ -137,22 +139,22 @@ export const TECHNOLOGY_ITEMS = [
   {
     number: '1',
     total: '3',
-    title: 'digital elevator',
-    body: 'The intelligent system can independently determine when the resident is returning home and call the lift to the correct floor.',
+    title: 'Good work gets noticed',
+    body: 'Great partnerships get talked about. These words come from the people we’ve had the privilege of building brands with.',
     image: '/assets/images/services/1.webp',
   },
   {
     number: '2',
     total: '3',
-    title: 'Home control center',
-    body: 'Video cameras in the complex send data to a single control room, while the Alpha Open software platform collects and processes data on the operation of engineering communications.',
+    title: 'Trusted across realty',
+    body: 'From residential towers to industrial parks, our partners come back project after project — a standard of work that travels across cities.',
     image: '/assets/images/services/2.webp',
   },
   {
     number: '3',
     total: '3',
-    title: 'Bellman service',
-    body: 'Take the first step into your new home with ease and confidence. We will provide professional support in arranging official registration, accompanying you at every stage.',
+    title: 'Hear from our clients',
+    body: 'Client stories from the brands we’ve built with — coming soon.',
     image: '/assets/images/services/3.webp',
   },
 ]

@@ -25,7 +25,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <Preloader />
         <SmoothScroll />
         <ScrollToTop />
-        {/* <ScrollSnap /> */}
+        <ScrollSnap />
         {children}
       </body>
     </html>

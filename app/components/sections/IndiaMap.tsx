@@ -12,6 +12,7 @@ const CITIES = [
   { name: 'Kolkata', state: 'West Bengal', projects: 6, x: 69, y: 46 },
   { name: 'Pune', state: 'Maharashtra', projects: 9, x: 19, y: 59 },
   { name: 'Ahmedabad', state: 'Gujarat', projects: 5, x: 17, y: 46 },
+  { name: 'Vadodara', state: 'Gujarat', projects: 4, x: 20, y: 50 },
 ]
 
 export default function IndiaMap() {
@@ -40,7 +41,7 @@ export default function IndiaMap() {
               marginBottom: '1.5rem',
             }}
           >
-            OUR PRESENCE ACROSS INDIA
+            THE MAP OF OUR WORK
           </h2>
           <p
             style={{
@@ -49,7 +50,8 @@ export default function IndiaMap() {
               letterSpacing: '0.05em',
             }}
           >
-            Creating exceptional real estate projects in major cities
+            Across India, we&apos;ve helped real estate projects find their position, voice and
+            market presence. Different cities. Different challenges. One standard of work.
           </p>
         </div>
 

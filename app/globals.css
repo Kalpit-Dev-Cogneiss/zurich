@@ -32,8 +32,12 @@
 
 html {
   font-size: 62.5%;
-  overflow-x: hidden;
-  scroll-behavior: smooth;
+  /* `clip` (not `hidden`): hidden turns html/body into scroll containers,
+     which stops position: sticky descendants from pinning to the viewport */
+  overflow-x: clip;
+  /* No scroll-behavior: smooth — Lenis writes the scroll position every
+     frame, and CSS smoothing turns each write into its own animation,
+     making the page lag behind and stutter. Lenis provides the smoothing. */
   height: 100%;
 }
 
@@ -46,7 +50,7 @@ body {
   -webkit-font-smoothing: antialiased;
   background: var(--t-background);
   color: var(--t-text);
-  overflow-x: hidden;
+  overflow-x: clip; /* see html note above */
 }
 
 /* Prevent white flash between sections */

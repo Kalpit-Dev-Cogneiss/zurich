@@ -98,9 +98,9 @@ export default function Panorama() {
                 maxWidth: 200,
               }}
             >
-              IT&apos;S A WORLD THAT
+              OUR OPERATING
               <br />
-              ADAPTS TO YOU
+              SYSTEM
             </motion.h2>
           </div>
 
@@ -121,7 +121,7 @@ export default function Panorama() {
           <div
             style={{
               display: "grid",
-              gridTemplateColumns: "1fr 0.5fr",
+              gridTemplateColumns: "1fr 0.6fr",
               gap: "4rem",
             }}
           >
@@ -136,18 +136,19 @@ export default function Panorama() {
                 delay: 0.15,
               }}
               style={{
-                fontSize: "clamp(2rem, 2.8vw, 3rem)",
+                fontSize: "clamp(2rem, 2vw, 2.5rem)",
                 fontWeight: 600,
-                lineHeight: 1.15,
+                lineHeight: 1.3,
                 letterSpacing: "0.02em",
                 textTransform: "uppercase",
                 color: "#fff",
                 margin: 0,
               }}
             >
-              It is not just a trio of luxurious buildings and the premium
-              service of a grand hotel. It is a home where reality plays by your
-              rules and follows your desires.
+              We think before we create, position before we promote and connect
+              every touchpoint. Strategy defines the project&apos;s place in the
+              market, while creativity turns it into a distinct brand experience.
+              Every element works together to create one powerful impression.
             </motion.p>
           </div>
         </div>

@@ -3,55 +3,65 @@ import { useState, useRef } from 'react'
 import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion'
 import SvgIcon from '@/app/components/ui/SvgIcon'
 
+// hour is 0–11 on a 12-hour face (0 stands in for 12, so we never store the literal 12)
 const ITEMS = [
   {
     time: 'DISCOVER',
     image: '/daily-schedule/w1.jpg',
-    text: 'ENJOY THE FIRST RAYS OF DAWN AS THE CITY UNFOLDS BEFORE YOU IN PANORAMIC WINDOWS, FILLING YOUR HOME WITH LIGHT AND SERENITY.',
-    // hour hand degrees (360/12 * hour + 360/12/60 * min)
-    hourDeg: -50, // 07:00
+    text: 'WE START BY UNDERSTANDING THE PROJECT, THE MARKET AND THE BUYER — WHAT MAKES THIS REALTY DIFFERENT, AND WHO IT NEEDS TO SPEAK TO.',
+    hour: 10,
   },
   {
     time: 'DEFINE',
     image: '/daily-schedule/w2.jpg',
-    text: 'Feel the ease of movement and harmony as you start your morning with yoga in the open air. Fresh air, soft rays of sunshine, and smooth movements in rhythm. There is no hustle and bustle here — just you and the perfect start to your morning.',
-    hourDeg: -120,
+    text: 'We define the project\'s place in the market before a single design element is created. Strategy first — position, then promotion.',
+    hour: 11,
   },
   {
     time: 'RESEARCH',
     image: '/daily-schedule/w3.jpg',
-    text: 'FEEL THE ATTENTION FROM THE FIRST STEP IN THE LOBBY, WHERE THE STAFF IS READY TO PROVIDE YOU WITH UNIQUE SERVICE: FROM ORGANIZING TRANSPORTATION AND BOOKING SERVICES TO SOLVING SMALL DAILY TASKS.',
-    hourDeg: -30,
+    text: 'THREE DECADES OF EXPERIENCE AND A DEEP UNDERSTANDING OF INDIAN REALTY SHAPE EVERY BRIEF, FROM RESIDENTIAL TO INDUSTRIAL PROJECTS.',
+    hour: 0,
   },
   {
     time: 'CREATE',
     image: '/daily-schedule/w4.jpg',
-    text: 'CREATE THE PERFECT MOMENT FOR WORK IN A PRIVATE CO-WORKING SPACE. HERE IT IS EASY TO FOCUS ON YOUR TASKS, HOLD A MEETING WITH A CLIENT, OR DISCUSS STRATEGY WITH YOUR TEAM.',
-    hourDeg: 60,
+    text: 'NAMING, IDENTITY, BROCHURES, CAMPAIGNS AND DIGITAL EXPERIENCES COME TOGETHER UNDER ONE ROOF — ONE SHARP IDEA RUNS THROUGH EVERY PIECE.',
+    hour: 1,
   },
   {
     time: 'REFINE',
     image: '/daily-schedule/w5.jpg',
-    text: 'End the day in the tea room in the grand lobby, where every gesture becomes part of a ritual: unhurried, mindful, filled with silence.',
-    hourDeg: 270,
+    text: 'Every element is tested against the market — sharpened until the brand experience feels inevitable, not accidental.',
+    hour: 2,
   },
   {
     time: 'DELIVER',
     image: '/daily-schedule/w6.jpg',
-    text: 'End the day in the tea room in the grand lobby, where every gesture becomes part of a ritual: unhurried, mindful, filled with silence.',
-    hourDeg: 270,
+    text: 'From concept to conversion — the brand goes live across every physical and digital touchpoint, ready to make the market notice.',
+    hour: 3,
   },
   {
     time: 'SUPPORT',
     image: '/daily-schedule/w7.jpg',
-    text: 'End the day in the tea room in the grand lobby, where every gesture becomes part of a ritual: unhurried, mindful, filled with silence.',
-    hourDeg: 270,
+    text: 'We stay connected past launch, carrying one consistent brand story seamlessly across every buyer touchpoint.',
+    hour: 4,
   },
 ]
+
+// Converts a clock hour (0–11) to the rotate() degrees this hand's coordinate
+// system uses, normalised to 0–359 (0 = 3 o'clock, -90/270 = 12 o'clock).
+function hourToDeg(hour: number) {
+  return (((hour * 30 - 90) % 360) + 360) % 360
+}
 
 export default function DailySchedule() {
   const [active, setActive] = useState(0)
   const [direction, setDirection] = useState(1) // 1 = next (right→left), -1 = prev (left→right)
+  // Raw, unclamped rotation for the hand — keeps accumulating in whichever
+  // direction was last clicked so the hand always sweeps forward on "next"
+  // and backward on "prev", including across the wrap between last and first.
+  const [rotation, setRotation] = useState(() => hourToDeg(ITEMS[0].hour))
   const item = ITEMS[active]
 
   const leftRef = useRef<HTMLDivElement>(null)
@@ -59,12 +69,24 @@ export default function DailySchedule() {
   const imgY = useTransform(scrollYProgress, [0, 1], ['10%', '-10%'])
 
   const prev = () => {
+    const prevIndex = (active - 1 + ITEMS.length) % ITEMS.length
+    const targetDeg = hourToDeg(ITEMS[prevIndex].hour)
+    const current = ((rotation % 360) + 360) % 360
+    let delta = targetDeg - current
+    if (delta >= 0) delta -= 360 // always sweep backward
     setDirection(-1)
-    setActive(a => (a - 1 + ITEMS.length) % ITEMS.length)
+    setRotation(r => r + delta)
+    setActive(prevIndex)
   }
   const next = () => {
+    const nextIndex = (active + 1) % ITEMS.length
+    const targetDeg = hourToDeg(ITEMS[nextIndex].hour)
+    const current = ((rotation % 360) + 360) % 360
+    let delta = targetDeg - current
+    if (delta <= 0) delta += 360 // always sweep forward
     setDirection(1)
-    setActive(a => (a + 1) % ITEMS.length)
+    setRotation(r => r + delta)
+    setActive(nextIndex)
   }
 
   return (
@@ -116,9 +138,7 @@ export default function DailySchedule() {
 
         {/* Rotating line (changes with slider) - starts from center, rotates */}
         <motion.div
-          key={`hand-${active}`}
-          initial={{ rotate: item.hourDeg - 30 }}
-          animate={{ rotate: item.hourDeg }}
+          animate={{ rotate: rotation }}
           transition={{ duration: 0.8, ease: [0.7, 0, 0.3, 1] }}
           style={{
             position: 'absolute',
