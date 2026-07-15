@@ -11,8 +11,8 @@ import {
 import type Lenis from 'lenis'
 
 const EASE: [number, number, number, number] = [0.7, 0, 0.3, 1]
-// long, decelerating settle — the spin visibly slows down into place
-const SPIN_EASE: [number, number, number, number] = [0.16, 1, 0.3, 1]
+// Smooth, slow deceleration — the spin gradually slows down into place
+const SPIN_EASE: [number, number, number, number] = [0.25, 0.1, 0.25, 1]
 const SPIN_DURATION = 1.1
 
 const STATS = [
@@ -48,16 +48,31 @@ function ReelRow({ pos, rowValue, significant }: { pos: MotionValue<number>; row
  * real digit for the current stat; every other row sits at one flat dim
  * opacity. Non-significant columns (leading places that aren't part of the
  * current stat's number, e.g. the "00" in "0032") never light up at all.
+ * 
+ * Each column independently animates to its target digit via the shortest
+ * path (up or down), regardless of other columns.
  */
-function ReelColumn({ display, place, significant }: { display: MotionValue<number>; place: number; significant: boolean }) {
-  const pos = useTransform(display, v => {
-    const value = Math.max(0, v)
-    const digit = Math.floor(value / place) % 10
-    const roll = Math.max(0, (value % place) - (place - 1))
-    return digit + roll
-  })
+function ReelColumn({ targetDigit, significant }: { targetDigit: number; significant: boolean }) {
+  const pos = useMotionValue(0)
   const y = useTransform(pos, p => `${-(p - CENTER_ROW)}em`)
   const rows = Array.from({ length: 10 + PAD * 2 }, (_, j) => j - PAD)
+
+  useEffect(() => {
+    const current = pos.get() % 10
+    const target = targetDigit
+    
+    // Calculate shortest distance considering wrap-around
+    let distance = target - current
+    if (distance > 5) distance -= 10
+    if (distance < -5) distance += 10
+    
+    const newPos = pos.get() + distance
+    
+    animate(pos, newPos, {
+      duration: SPIN_DURATION,
+      ease: SPIN_EASE,
+    })
+  }, [targetDigit, pos])
 
   return (
     <div style={{ position: 'relative', height: `${WINDOW_ROWS}em`, width: '1.05ch', overflow: 'hidden' }}>
@@ -84,7 +99,6 @@ export default function AboutStats() {
   const lockedRef = useRef(false)
   const engagedRef = useRef(false)
   const exitingRef = useRef(false)
-  const display = useMotionValue(STATS[0].value)
 
   useEffect(() => {
     const section = sectionRef.current
@@ -137,11 +151,8 @@ export default function AboutStats() {
       armEngageTimeout()
       stepIndexRef.current = index
       setStepIndex(index)
-      animate(display, STATS[index].value, {
-        duration: SPIN_DURATION,
-        ease: SPIN_EASE,
-        onComplete: () => { lockedRef.current = false },
-      })
+      // Animation duration handled by individual ReelColumns
+      setTimeout(() => { lockedRef.current = false }, SPIN_DURATION * 1000)
     }
 
     const release = () => {
@@ -258,11 +269,19 @@ export default function AboutStats() {
       clearEngageTimeout()
       if (engagedRef.current) lenis?.start()
     }
-  }, [display])
+  }, [])
 
   const stat = STATS[stepIndex]
   const digitCount = String(stat.value).length
   const threshold = Math.pow(10, digitCount - 1)
+  
+  // Extract individual digits for independent animation
+  const digits = [
+    Math.floor(stat.value / 1000) % 10,
+    Math.floor(stat.value / 100) % 10,
+    Math.floor(stat.value / 10) % 10,
+    stat.value % 10,
+  ]
 
   return (
     <section
@@ -297,18 +316,19 @@ export default function AboutStats() {
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'space-between',
-        gap: 'clamp(2rem, 6vw, 6rem)',
+        gap: 'clamp(2rem, 4vw, 4rem)',
         width: '100%',
         padding: '0 4rem',
-        flexWrap: 'wrap',
       }}>
-        {/* the reel */}
+        {/* the reel - 50% width */}
         <div
           aria-hidden="true"
           style={{
+            flex: '0 0 50%',
             display: 'flex',
             alignItems: 'center',
-            fontSize: 'clamp(6rem, 11vw, 14rem)',
+            justifyContent: 'center',
+            fontSize: 'clamp(10rem, 18vw, 24rem)',
             fontWeight: 600,
             color: '#fff',
             letterSpacing: '0.02em',
@@ -318,51 +338,59 @@ export default function AboutStats() {
             maskImage: 'linear-gradient(to bottom, transparent 0%, #000 22%, #000 78%, transparent 100%)',
           }}
         >
-          {PLACES.map(place => (
-            <ReelColumn key={place} display={display} place={place} significant={place <= threshold} />
-          ))}
-          <span style={{
-            opacity: stat.suffix ? 1 : 0,
-            color: '#fff',
-            transition: `opacity 0.5s ${EASE}`,
-            marginLeft: '0.4rem',
-          }}>
-            {stat.suffix || '+'}
-          </span>
+          <div style={{ display: 'flex', alignItems: 'center', width: '100%', justifyContent: 'center' }}>
+            {PLACES.map((place, index) => (
+              <ReelColumn 
+                key={place} 
+                targetDigit={digits[index]} 
+                significant={place <= threshold} 
+              />
+            ))}
+            <span style={{
+              opacity: stat.suffix ? 1 : 0,
+              color: '#fff',
+              transition: `opacity 0.5s ${EASE}`,
+              marginLeft: '0.6rem',
+            }}>
+              {stat.suffix || '+'}
+            </span>
+          </div>
         </div>
 
-        {/* text panel */}
-        <div style={{ maxWidth: 420 }}>
-          <AnimatePresence mode="wait">
-            <motion.div
-              key={stepIndex}
-              initial={{ opacity: 0, y: 34 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -26 }}
-              transition={{ duration: 0.55, ease: EASE }}
-            >
-              <h3 style={{
-                fontSize: 'clamp(2.6rem, 3.4vw, 4.4rem)',
-                fontWeight: 600,
-                lineHeight: 1.05,
-                letterSpacing: '0.02em',
-                textTransform: 'uppercase',
-                margin: 0,
-                marginBottom: '1.6rem',
-              }}>
-                {stat.label}
-              </h3>
-              <p style={{
-                fontSize: '1.5rem',
-                lineHeight: 1.75,
-                letterSpacing: '0.03em',
-                color: 'rgba(255,255,255,0.65)',
-                margin: 0,
-              }}>
-                {stat.body}
-              </p>
-            </motion.div>
-          </AnimatePresence>
+        {/* text panel - 50% width */}
+        <div style={{ flex: '0 0 50%', display: 'flex', alignItems: 'center' }}>
+          <div style={{ maxWidth: '100%', width: '100%' }}>
+            <AnimatePresence mode="wait">
+              <motion.div
+                key={stepIndex}
+                initial={{ opacity: 0, y: 34 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -26 }}
+                transition={{ duration: 0.55, ease: EASE }}
+              >
+                <h3 style={{
+                  fontSize: 'clamp(2.6rem, 3.4vw, 4.4rem)',
+                  fontWeight: 600,
+                  lineHeight: 1.05,
+                  letterSpacing: '0.02em',
+                  textTransform: 'uppercase',
+                  margin: 0,
+                  marginBottom: '1.6rem',
+                }}>
+                  {stat.label}
+                </h3>
+                <p style={{
+                  fontSize: '1.5rem',
+                  lineHeight: 1.75,
+                  letterSpacing: '0.03em',
+                  color: 'rgba(255,255,255,0.65)',
+                  margin: 0,
+                }}>
+                  {stat.body}
+                </p>
+              </motion.div>
+            </AnimatePresence>
+          </div>
         </div>
       </div>
 
