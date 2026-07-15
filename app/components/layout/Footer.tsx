@@ -1,5 +1,4 @@
 'use client'
-import SvgIcon from '@/app/components/ui/SvgIcon'
 
 export default function Footer() {
   const scrollToTop = () => {
@@ -76,14 +75,21 @@ export default function Footer() {
               onMouseEnter={(e) => (e.currentTarget.style.opacity = '0.6')}
               onMouseLeave={(e) => (e.currentTarget.style.opacity = '1')}
             >
-              <SvgIcon id="logo" width={280} height={36} className="text-white" />
+              <span style={{
+                fontSize: 'clamp(2.4rem, 3vw, 3.6rem)',
+                fontWeight: 600,
+                letterSpacing: '0.12em',
+                textTransform: 'uppercase',
+                color: '#fff',
+              }}>
+                Zurich
+              </span>
             </button>
           </div>
 
           {/* Right - Credits */}
           <div style={{ textAlign: 'right' }}>
             <a
-              href="https://videinfra.com/"
               target="_blank"
               rel="noopener noreferrer"
               title="Award-winning real estate website design agency"
@@ -97,7 +103,7 @@ export default function Footer() {
               onMouseEnter={(e) => (e.currentTarget.style.color = 'rgba(255,255,255,0.8)')}
               onMouseLeave={(e) => (e.currentTarget.style.color = 'rgba(255,255,255,0.5)')}
             >
-              SITE BY VIDE INFRA
+              SITE BY Octik AI Lab
             </a>
           </div>
         </div>

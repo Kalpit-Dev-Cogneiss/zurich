@@ -2,6 +2,7 @@
 import { useState } from 'react'
 import SplitText from '@/app/components/ui/SplitText'
 import AnimateReveal from '@/app/components/ui/AnimateReveal'
+import ContactMap from '@/app/components/contact/ContactMap'
 
 const CONTACT_EMAIL = 'zurichai360@gmail.com'
 
@@ -75,7 +76,7 @@ export default function ContactForm() {
         padding: '12rem 4rem 10rem',
       }}
     >
-      <div style={{ maxWidth: 1100, margin: '0 auto', width: '100%' }}>
+      <div style={{ maxWidth: 1400, margin: '0 auto', width: '100%' }}>
         <AnimateReveal>
           <span style={{
             display: 'block',
@@ -101,9 +102,12 @@ export default function ContactForm() {
             textTransform: 'uppercase',
             margin: 0,
             marginBottom: '6rem',
+            maxWidth: 1100,
           }}
         />
 
+      <div style={{ display: 'flex', gap: 'clamp(3rem, 6vw, 7rem)', flexWrap: 'wrap' }}>
+      <div style={{ flex: '1 1 560px', minWidth: 'min(100%, 480px)' }}>
         {sent ? (
           <AnimateReveal>
             <div style={{ padding: '4rem 0' }}>
@@ -237,6 +241,12 @@ export default function ContactForm() {
             </AnimateReveal>
           </form>
         )}
+      </div>
+
+      <AnimateReveal delay={0.2} y={26} style={{ flex: '1 1 380px', minWidth: 'min(100%, 320px)' }}>
+        <ContactMap />
+      </AnimateReveal>
+      </div>
       </div>
 
       <style>{`

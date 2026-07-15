@@ -1,5 +1,5 @@
 'use client'
-import { useRef } from 'react'
+import { useRef, useState } from 'react'
 import { motion, useInView } from 'framer-motion'
 
 interface RowImage {
@@ -11,18 +11,38 @@ interface PortfolioImageRowProps {
   images: RowImage[]
 }
 
+const ROW_HEIGHT = '42rem'
+
+/**
+ * A "justified row" — every image shares the same height, and each one's
+ * width is proportional to its own natural aspect ratio (read via onLoad),
+ * so a wide image takes more of the row than a narrow one instead of every
+ * column being forced to an equal fraction.
+ */
 export default function PortfolioImageRow({
   images,
 }: PortfolioImageRowProps) {
   const ref = useRef<HTMLDivElement>(null)
   const isInView = useInView(ref, { once: true, margin: '-100px' })
+  // flex-grow per image, proportional to width/height — starts even (1)
+  // until each image loads and reports its real aspect ratio
+  const [ratios, setRatios] = useState<number[]>(() => images.map(() => 1))
+
+  const onLoad = (index: number) => (e: React.SyntheticEvent<HTMLImageElement>) => {
+    const { naturalWidth, naturalHeight } = e.currentTarget
+    if (!naturalHeight) return
+    setRatios(prev => {
+      const next = [...prev]
+      next[index] = naturalWidth / naturalHeight
+      return next
+    })
+  }
 
   return (
     <div
       ref={ref}
       style={{
-        display: 'grid',
-        gridTemplateColumns: `repeat(${images.length}, 1fr)`,
+        display: 'flex',
         width: '100%',
         padding: '0rem 8rem',
       }}
@@ -39,17 +59,20 @@ export default function PortfolioImageRow({
             delay: index * 0.15,
           }}
           style={{
-            width: '100%',
+            flex: `${ratios[index]} 1 0`,
+            height: ROW_HEIGHT,
             overflow: 'hidden',
-            alignContent: 'center',
+            transition: 'flex-grow 0.4s ease',
          }}
         >
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src={image.src}
             alt={image.alt || `Portfolio image ${index + 1}`}
+            onLoad={onLoad(index)}
             style={{
               width: '100%',
+              height: '100%',
               display: 'block',
               objectFit: 'cover',
             }}

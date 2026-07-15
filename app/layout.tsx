@@ -6,15 +6,15 @@ import ScrollToTop from '@/app/components/ui/ScrollToTop'
 import ScrollSnap from '@/app/components/ui/ScrollSnap'
 
 export const metadata: Metadata = {
-  title: 'Business class apartments Zorge 9 | Luxury Real Estate',
+  title: 'Zurich Graphics | Real Estate Branding, Marketing & Design',
   description:
-    'Zorge 9 is an exclusive complex of New York-style apartments in the prestigious Khodynka district. Luxurious interiors, five-star hotel service, private park, fitness center for residents.',
-  metadataBase: new URL('https://zorge9.estate'),
+    "Zurich Graphics is India's premier agency for powerful real estate brands. Over three decades of 360° solutions — branding, marketing strategy, naming, brochures, campaigns and digital experiences, concept to conversion.",
+  metadataBase: new URL('https://zurichgraphics.com'),
   openGraph: {
     type: 'website',
-    title: 'Business class apartments Zorge 9 | Luxury Real Estate',
+    title: 'Zurich Graphics | Real Estate Branding, Marketing & Design',
     description:
-      'Zorge 9 — an exclusive complex of New York-style apartments. Luxurious interiors, five-star hotel service, private park, fitness center.',
+      "India's premier agency for powerful real estate brands. 360° solutions — branding, marketing, naming, brochures, campaigns and digital experiences, concept to conversion.",
   },
 }
 

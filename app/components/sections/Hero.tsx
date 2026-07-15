@@ -53,7 +53,7 @@ export default function Hero() {
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src={BG_NIGHT}
-            alt="Zorge 9 building at night"
+            alt="Zurich Graphics real estate branding"
             style={{
               position: 'absolute',
               inset: 0,

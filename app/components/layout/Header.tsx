@@ -24,21 +24,6 @@ export default function Header() {
         pointerEvents: 'none',
       }}>
         <div style={{ display: 'flex', alignItems: 'center', gap: '3.2rem', pointerEvents: 'all' }}>
-          <a
-            href="#apartments"
-            style={{
-              fontSize: '1.1rem', letterSpacing: '0.14em',
-              textTransform: 'uppercase', color: '#fff',
-              textShadow: '0 1px 8px rgba(0,0,0,0.6)',
-              transition: 'opacity 0.3s ease',
-              whiteSpace: 'nowrap',
-            }}
-            onMouseEnter={e => (e.currentTarget.style.opacity = '0.6')}
-            onMouseLeave={e => (e.currentTarget.style.opacity = '1')}
-          >
-            Choose an Apartment
-          </a>
-
           {/* Hamburger — two lines */}
           <button
             onClick={() => setMenuOpen(true)}
@@ -81,7 +66,7 @@ export default function Header() {
                 fontWeight: 600, letterSpacing: '0.04em',
                 color: '#fff',
               }}>
-                ZORGEN №9
+                ZURICH GRAPHICS
               </span>
               <button
                 onClick={() => setMenuOpen(false)}
@@ -122,19 +107,6 @@ export default function Header() {
                 </motion.a>
               ))}
             </nav>
-
-            {/* Menu footer */}
-            <div style={{ padding: '3.2rem 4rem' }}>
-              <a href="#apartments" onClick={() => setMenuOpen(false)} style={{
-                display: 'inline-flex', alignItems: 'center', gap: '1.2rem',
-                padding: '1.6rem 3.2rem', background: 'var(--c-brown)',
-                color: '#fff', fontSize: '1.2rem', letterSpacing: '0.1em',
-                textTransform: 'uppercase',
-              }}>
-                Choose an Apartment
-                <SvgIcon id="arrow-right" width={16} height={16} />
-              </a>
-            </div>
 
             {/* Decor image */}
             <img src="/assets/images/menu/decor.webp" alt="" aria-hidden="true"

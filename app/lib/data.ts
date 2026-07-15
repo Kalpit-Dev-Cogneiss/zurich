@@ -1,14 +1,9 @@
 export const NAV_ITEMS = [
+  { label: 'Home', href: '/' },
   { label: 'About Us', href: '/about' },
   { label: 'Contact Us', href: '/contact' },
-  { label: 'Location', href: '#location' },
-  { label: 'Design', href: '#design' },
-  { label: 'Infrastructure', href: '#infrastructure' },
-  { label: 'Amenities', href: '#amenities' },
-  { label: 'Apartments', href: '#apartments' },
-  { label: 'Services', href: '#services' },
-  { label: 'Parking', href: '#parking' },
-  { label: 'Penthouses', href: '#penthouses' },
+  { label: 'Portfolio', href: '/portfolio' },
+  { label: 'Case Study', href: '/case-study' },
 ] as const
 
 export const SCHEDULE_ITEMS = [

@@ -1,5 +1,5 @@
 'use client'
-import { useEffect, useRef, useState } from 'react'
+import { useRef, useState } from 'react'
 import {
   motion,
   AnimatePresence,
@@ -7,7 +7,6 @@ import {
   useSpring,
   useTransform,
   useMotionValueEvent,
-  useInView,
   type MotionValue,
 } from 'framer-motion'
 
@@ -44,13 +43,6 @@ const CHAPTERS = [
   },
 ]
 
-const STATS = [
-  { value: 32, suffix: '', label: 'Years of craft' },
-  { value: 4000, suffix: '+', label: 'Projects delivered' },
-  { value: 3, suffix: '', label: 'Core sectors' },
-  { value: 6, suffix: '', label: 'Service lines' },
-]
-
 /* ── mechanical odometer digit ─────────────────────────────────────────── */
 
 const DIGIT_STRIP = [0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 0]
@@ -73,34 +65,6 @@ function OdometerDigit({ year, place }: { year: MotionValue<number>; place: numb
           <span key={i} style={{ display: 'block', height: '1em', lineHeight: 1 }}>{d}</span>
         ))}
       </motion.span>
-    </span>
-  )
-}
-
-/* ── count-up stat (final chapter) ─────────────────────────────────────── */
-
-function CountUp({ value, suffix }: { value: number; suffix: string }) {
-  const ref = useRef<HTMLSpanElement>(null)
-  const inView = useInView(ref, { once: true })
-  const [display, setDisplay] = useState(0)
-
-  useEffect(() => {
-    if (!inView) return
-    const duration = 1400
-    const start = performance.now()
-    let raf = 0
-    const tick = (now: number) => {
-      const t = Math.min(1, (now - start) / duration)
-      setDisplay(Math.round((1 - Math.pow(1 - t, 3)) * value))
-      if (t < 1) raf = requestAnimationFrame(tick)
-    }
-    raf = requestAnimationFrame(tick)
-    return () => cancelAnimationFrame(raf)
-  }, [inView, value])
-
-  return (
-    <span ref={ref} style={{ fontVariantNumeric: 'tabular-nums' }}>
-      {display.toLocaleString()}{suffix}
     </span>
   )
 }
@@ -235,39 +199,6 @@ export default function AboutStoryFilm() {
               }}>
                 {chapter.body}
               </p>
-
-              {/* final chapter lands the numbers */}
-              {active === CHAPTERS.length - 1 && (
-                <div style={{
-                  display: 'grid',
-                  gridTemplateColumns: '1fr 1fr',
-                  gap: '2.8rem 4rem',
-                  marginTop: '4.4rem',
-                }}>
-                  {STATS.map(stat => (
-                    <div key={stat.label}>
-                      <p style={{
-                        fontSize: 'clamp(3.2rem, 4vw, 5.6rem)',
-                        fontWeight: 600,
-                        lineHeight: 1,
-                        margin: 0,
-                        marginBottom: '0.8rem',
-                      }}>
-                        <CountUp value={stat.value} suffix={stat.suffix} />
-                      </p>
-                      <p style={{
-                        fontSize: '1.15rem',
-                        letterSpacing: '0.16em',
-                        textTransform: 'uppercase',
-                        color: 'rgba(255,255,255,0.55)',
-                        margin: 0,
-                      }}>
-                        {stat.label}
-                      </p>
-                    </div>
-                  ))}
-                </div>
-              )}
             </motion.div>
           </AnimatePresence>
         </div>
