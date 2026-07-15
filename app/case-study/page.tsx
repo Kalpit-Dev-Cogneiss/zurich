@@ -42,7 +42,7 @@ export default function CaseStudyIndexPage() {
             maxWidth: '1600px',
             margin: '0 auto',
             display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fill, minmax(340px, 1fr))',
+            gridTemplateColumns: 'repeat(2, 1fr)',
             gap: '3.2rem',
           }}>
             {studies.map((study, index) => (
