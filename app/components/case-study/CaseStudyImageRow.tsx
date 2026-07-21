@@ -17,6 +17,9 @@ interface CaseStudyImageRowProps {
   actualSize?: boolean
   /** add breathing room (6rem) below the row */
   spaceBelow?: boolean
+  /** gap between images in the actualSize row, in rem (default 2). Set 0 to
+   * have the images sit flush against each other. */
+  gap?: number
 }
 
 const ROW_HEIGHT = '42rem'
@@ -32,7 +35,7 @@ const GAP_REM = 2
  * natural dimensions (each capped to its fair share of the row so they
  * still sit side by side).
  */
-export default function CaseStudyImageRow({ images, actualSize, spaceBelow }: CaseStudyImageRowProps) {
+export default function CaseStudyImageRow({ images, actualSize, spaceBelow, gap = GAP_REM }: CaseStudyImageRowProps) {
   const ref = useRef<HTMLDivElement>(null)
   const isInView = useInView(ref, { once: true, margin: '-100px' })
   // flex-grow per image — manual `width` wins immediately; otherwise starts
@@ -51,7 +54,7 @@ export default function CaseStudyImageRow({ images, actualSize, spaceBelow }: Ca
   }
 
   if (actualSize) {
-    const slotMaxWidth = `calc((100% - ${GAP_REM * (images.length - 1)}rem) / ${images.length})`
+    const slotMaxWidth = `calc((100% - ${gap * (images.length - 1)}rem) / ${images.length})`
     return (
       <div
         ref={ref}
@@ -60,7 +63,7 @@ export default function CaseStudyImageRow({ images, actualSize, spaceBelow }: Ca
           flexWrap: 'wrap',
           justifyContent: 'center',
           alignItems: 'center',
-          gap: `${GAP_REM}rem`,
+          gap: `${gap}rem`,
           width: '100%',
           padding: '0rem 8rem',
           marginBottom: '6rem',

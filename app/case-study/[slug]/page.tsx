@@ -6,9 +6,10 @@ import PortfolioInfo from '@/app/components/portfolio/PortfolioInfo'
 import PortfolioGallery from '@/app/components/portfolio/PortfolioGallery'
 import CaseStudyLabeledImage from '@/app/components/case-study/CaseStudyLabeledImage'
 import CaseStudyImageRow from '@/app/components/case-study/CaseStudyImageRow'
+import CaseStudySplitRow from '@/app/components/case-study/CaseStudySplitRow'
 import CaseStudyIntro from '@/app/components/case-study/CaseStudyIntro'
 import { getCaseStudyBySlug, getAllCaseStudySlugs, type CaseStudy } from '@/app/lib/caseStudyData'
-import { CASE_STUDY_LAYOUTS, HIDE_INFO_SLUGS, type CaseStudySectionSpec } from '@/app/lib/caseStudyLayouts'
+import { CASE_STUDY_LAYOUTS, HIDE_INFO_SLUGS, SPACE_BELOW_SINGLES_SLUGS, type CaseStudySectionSpec } from '@/app/lib/caseStudyLayouts'
 
 export async function generateStaticParams() {
   return getAllCaseStudySlugs().map(slug => ({ slug }))
@@ -35,7 +36,13 @@ type Section =
  */
 function buildSections(study: CaseStudy): Section[] {
   const specials = CASE_STUDY_LAYOUTS[study.slug] ?? []
-  const specialNums = new Set(specials.flatMap(s => (s.type === 'row' ? s.images.map(i => i.num) : [s.num])))
+  const specialNums = new Set(
+    specials.flatMap(s => {
+      if (s.type === 'row') return s.images.map(i => i.num)
+      if (s.type === 'split') return s.overlay != null ? [s.main, ...s.stacked, s.overlay] : [s.main, ...s.stacked]
+      return [s.num]
+    })
+  )
   const heroNum = study.images[0]?.num
 
   const sections: Section[] = study.images
@@ -43,7 +50,10 @@ function buildSections(study: CaseStudy): Section[] {
     .map((img): Section => ({ type: 'single', num: img.num, sortKey: img.num }))
 
   for (const spec of specials) {
-    const sortKey = spec.type === 'row' ? Math.min(...spec.images.map(i => i.num)) : spec.num
+    const sortKey =
+      spec.type === 'row' ? Math.min(...spec.images.map(i => i.num))
+      : spec.type === 'split' ? Math.min(spec.main, ...spec.stacked)
+      : spec.num
     sections.push({ ...spec, sortKey })
   }
 
@@ -92,12 +102,14 @@ export default async function CaseStudyDetailPage({
               if (section.type === 'single') {
                 const img = findImage(section.num)
                 if (!img) return null
-                return (
+                const gallery = (
                   <PortfolioGallery
                     key={i}
                     images={[{ src: img.src, alt: `${study.title} ${section.num}` }]}
                   />
                 )
+                if (!SPACE_BELOW_SINGLES_SLUGS.has(study.slug)) return gallery
+                return <div key={i} style={{ marginBottom: '6rem' }}>{gallery}</div>
               }
 
               if (section.type === 'labeled') {
@@ -138,6 +150,26 @@ export default async function CaseStudyDetailPage({
                     location={section.location}
                     src={img.src}
                     alt={`${study.title} — ${section.label}`}
+                  />
+                )
+              }
+
+              if (section.type === 'split') {
+                const mainImg = findImage(section.main)
+                const stackedImgs = section.stacked.map(findImage)
+                const overlayImg = section.overlay != null ? findImage(section.overlay) : undefined
+                if (!mainImg || stackedImgs.some(img => !img)) return null
+                return (
+                  <CaseStudySplitRow
+                    key={i}
+                    main={{ src: mainImg.src, alt: `${study.title} ${section.main}` }}
+                    stacked={stackedImgs.map((img, idx) => ({
+                      src: img!.src,
+                      alt: `${study.title} ${section.stacked[idx]}`,
+                    })) as [{ src: string; alt: string }, { src: string; alt: string }]}
+                    overlay={overlayImg ? { src: overlayImg.src, alt: `${study.title} ${section.overlay}` } : undefined}
+                    gap={section.gap}
+                    stackedFit={section.stackedFit}
                   />
                 )
               }

@@ -51,12 +51,33 @@ interface RowSpec {
   actualSize?: boolean
   /** add breathing room (6rem) below the row */
   spaceBelow?: boolean
+  /** gap between images in an actualSize row, in rem (default 2). Set 0 for flush images. */
+  gap?: number
 }
 
-export type CaseStudySectionSpec = LabeledSpec | RowSpec | ActualSpec | IntroSpec
+interface SplitSpec {
+  type: 'split'
+  /** the large image, from its filename number, shown full row height on the left */
+  main: number
+  /** two images stacked in a column on the right, each half the row height */
+  stacked: [number, number]
+  /** optional image layered on top of the row, centered, at its own natural size */
+  overlay?: number
+  /** gap between main/stacked and between the two stacked images, in rem (default 0.6). Set 0 for flush images. */
+  gap?: number
+  /** how the two stacked images fill their half-height box: 'cover' (default) crops to fill;
+   * 'contain' shows the whole image uncropped, letterboxed if its aspect ratio doesn't match */
+  stackedFit?: 'cover' | 'contain'
+}
+
+export type CaseStudySectionSpec = LabeledSpec | RowSpec | ActualSpec | IntroSpec | SplitSpec
 
 /** studies that skip the PortfolioInfo block (their intro section covers the same ground) */
-export const HIDE_INFO_SLUGS = new Set(['greenleaf-heritage'])
+export const HIDE_INFO_SLUGS = new Set(['greenleaf-heritage', 'tsl'])
+
+/** studies where every full-bleed single image gets breathing room (6rem) below it,
+ * instead of butting straight up against the next image */
+export const SPACE_BELOW_SINGLES_SLUGS = new Set(['tsl'])
 
 export const CASE_STUDY_LAYOUTS: Record<string, CaseStudySectionSpec[]> = {
   'greenleaf-heritage': [
@@ -69,6 +90,17 @@ export const CASE_STUDY_LAYOUTS: Record<string, CaseStudySectionSpec[]> = {
       num: 2,
     },
   ],
+  'tsl': [
+    // TODO: swap the placeholder description (and location) for the real copy
+    {
+      type: 'intro',
+      label: 'TSL',
+      body: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.",
+      location: 'Location : TBD',
+      num: 2,
+    },
+    { type: 'row', images: [{ num: 7 }, { num: 8 }], spaceBelow: true },
+  ],
   'lush-meadows': [
     { type: 'labeled', label: 'Logo Design', num: 2 },
     { type: 'row', images: [{ num: 4, width: 40 }, { num: 5, width: 60 }] },
@@ -78,5 +110,23 @@ export const CASE_STUDY_LAYOUTS: Record<string, CaseStudySectionSpec[]> = {
     { type: 'row', images: [{ num: 10 }, { num: 11 }, { num: 12 }], actualSize: true },
     { type: 'row', images: [{ num: 14 }, { num: 15 }], spaceBelow: true },
     { type: 'labeled', label: 'Stall Panel Design', num: 17 },
+  ],
+  'satyam-surya-manhattan': [
+    { type: 'actual', num: 2 },
+    { type: 'actual', num: 3 },
+    { type: 'actual', num: 4 },
+    { type: 'row', images: [{ num: 5 }, { num: 6 }], actualSize: true },
+    { type: 'row', images: [{ num: 9 }, { num: 10 }, { num: 11 }] },
+    { type: 'split', main: 14, stacked: [15, 16] },
+    { type: 'row', images: [{ num: 19 }, { num: 20 }] },
+    { type: 'actual', num: 22.5 },
+  ],
+  'happy-mall': [
+    { type: 'actual', num: 2 },
+    { type: 'row', images: [{ num: 4 }, { num: 5 }, { num: 6 }] },
+    { type: 'actual', num: 7 },
+    { type: 'actual', num: 8 },
+    { type: 'actual', num: 9 },
+    { type: 'split', main: 11, stacked: [12, 13], overlay: 14, gap: 0, stackedFit: 'contain' },
   ],
 }
