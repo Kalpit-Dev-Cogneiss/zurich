@@ -6,7 +6,9 @@ import PortfolioBrochure from '@/app/components/portfolio/PortfolioBrochure'
 import PortfolioInfo from '@/app/components/portfolio/PortfolioInfo'
 import PortfolioGallery from '@/app/components/portfolio/PortfolioGallery'
 import PortfolioImageRow from '@/app/components/portfolio/PortfolioImageRow'
+import TurnJSBook from '@/app/components/ui/TurnJSBook'
 import { getProjectBySlug, getAllProjectSlugs } from '@/app/lib/portfolioData'
+import { getBrochureImages } from '@/app/lib/portfolioBrochure'
 
 export async function generateStaticParams() {
   const slugs = getAllProjectSlugs()
@@ -41,6 +43,10 @@ export default async function PortfolioDetailPage({
     notFound()
   }
 
+  const brochureBookImages = project.brochureFolder
+    ? getBrochureImages(project.brochureFolder)
+    : []
+
   return (
     <>
       <Header />
@@ -50,10 +56,14 @@ export default async function PortfolioDetailPage({
           imageSrc={project.images.hero}
           imageAlt={`${project.title} - Elegant lifestyle`}
         />
-        <PortfolioBrochure
-          imageSrc={project.images.brochure}
-          imageAlt={`${project.title} Brochure`}
-        />
+        {brochureBookImages.length > 0 ? (
+          <TurnJSBook images={brochureBookImages} />
+        ) : (
+          <PortfolioBrochure
+            imageSrc={project.images.brochure}
+            imageAlt={`${project.title} Brochure`}
+          />
+        )}
         <PortfolioInfo
           location={project.location}
           projectType={project.projectType}

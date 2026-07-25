@@ -39,3 +39,7 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
+
+# portfolio brochure media - served from S3/CloudFront, not committed to git
+# (app/lib/brochureManifest.json tracks the file listing so the site still builds)
+/public/portfolio-brochures/

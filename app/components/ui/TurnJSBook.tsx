@@ -2,13 +2,13 @@
 import { useEffect, useRef, useState } from 'react'
 import SvgIcon from './SvgIcon'
 
-const TOTAL_IMAGES = 70
+const DEFAULT_TOTAL_IMAGES = 70
 const BOOK_HEIGHT = 600
 const COVER_WIDTH = 450
 const SPREAD_WIDTH = 900
 const COVER_OFFSET = (SPREAD_WIDTH - COVER_WIDTH) / 2
 
-const ALL_IMAGES = Array.from({ length: TOTAL_IMAGES }, (_, i) => {
+const DEFAULT_IMAGES = Array.from({ length: DEFAULT_TOTAL_IMAGES }, (_, i) => {
   const num = String(i + 1).padStart(2, '0')
   return `/Brochure-image/${i === 8 ? '09 ' : num}.webp`
 })
@@ -44,7 +44,13 @@ function preloadImages(urls: string[], onProgress: (pct: number) => void) {
   )
 }
 
-export default function TurnJSBook() {
+interface TurnJSBookProps {
+  images?: string[]
+}
+
+export default function TurnJSBook({ images }: TurnJSBookProps) {
+  const allImages = images && images.length > 0 ? images : DEFAULT_IMAGES
+  const totalImages = allImages.length
   const sectionRef = useRef<HTMLDivElement>(null)
   const flipbookRef = useRef<HTMLDivElement>(null)
   const [currentPage, setCurrentPage] = useState(1)
@@ -67,7 +73,7 @@ export default function TurnJSBook() {
         preloadStarted.current = true
         observer.disconnect()
 
-        preloadImages(ALL_IMAGES, setLoadProgress).then(() => {
+        preloadImages(allImages, setLoadProgress).then(() => {
           if (isMountedRef.current) setImagesLoaded(true)
         })
       },
@@ -103,8 +109,8 @@ export default function TurnJSBook() {
         $flipbook = $(flipbookRef.current)
         $flipbook.empty()
 
-        for (let index = 0; index < ALL_IMAGES.length; index++) {
-          const src = ALL_IMAGES[index]
+        for (let index = 0; index < allImages.length; index++) {
+          const src = allImages[index]
           $flipbook.append(`
             <div style="background:#fff;overflow:hidden;position:relative;width:100%;height:100%;">
               <img
@@ -299,7 +305,7 @@ export default function TurnJSBook() {
       {isReady && (
         <button
           onClick={goToNextPage}
-          disabled={currentPage === TOTAL_IMAGES}
+          disabled={currentPage === totalImages}
           aria-label="Next page"
           style={{
             position: 'absolute',
@@ -311,12 +317,12 @@ export default function TurnJSBook() {
             borderRadius: '50%',
             width: '60px',
             height: '60px',
-            cursor: currentPage === TOTAL_IMAGES ? 'not-allowed' : 'pointer',
+            cursor: currentPage === totalImages ? 'not-allowed' : 'pointer',
             color: '#fff',
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',
-            opacity: currentPage === TOTAL_IMAGES ? 0.3 : 1,
+            opacity: currentPage === totalImages ? 0.3 : 1,
             transition: 'all 0.3s',
             zIndex: 100,
             boxShadow: '0 4px 12px rgba(0,0,0,0.3)',
@@ -342,7 +348,7 @@ export default function TurnJSBook() {
           boxShadow: '0 4px 12px rgba(0,0,0,0.1)',
           zIndex: 100,
         }}>
-          {currentPage} / {TOTAL_IMAGES}
+          {currentPage} / {totalImages}
         </div>
       )}
 

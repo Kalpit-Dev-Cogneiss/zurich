@@ -5,4 +5,4 @@ set -euo pipefail
 git pull
 npm ci
 npm run build
-pm2 restart zurich
+pm2 restart deploy/ecosystem.config.js --update-env

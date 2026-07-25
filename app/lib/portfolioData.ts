@@ -8,6 +8,7 @@ export interface ProjectData {
   client: string
   category: ProjectCategory
   description: string[]
+  brochureFolder?: string // folder name under public/portfolio-brochures for the TurnJS flipbook
   images: {
     hero: string
     brochure: string
@@ -44,6 +45,7 @@ const residentialProjects: ProjectData[] = [
     client: 'SATYAM GROUP',
     category: 'residential',
     description: desc,
+    brochureFolder: 'Satyam Surya Manhattan',
     images: createImages('residencial-projects', 'satyam-surya-manhattan', {
       hero: 'ssm 01.jpg', brochure: 'ssm 02.png', single: 'ssm 03.jpg',
       row: ['ssm 04.jpg', 'ssm 05.jpg', 'ssm 06.png'],
@@ -72,6 +74,7 @@ const residentialProjects: ProjectData[] = [
     client: 'FESTIVAL GROUP',
     category: 'residential',
     description: desc,
+    brochureFolder: 'festival vibes',
     images: createImages('residencial-projects', 'festival-vibes', {
       hero: 'fv 01.jpg', brochure: 'fv 02.png', single: 'fv 03.jpg',
       row: ['fv 04.jpg', 'fv 05.jpg', 'fv 06.png'],
@@ -86,6 +89,7 @@ const residentialProjects: ProjectData[] = [
     client: 'PALATIAL GROUP',
     category: 'residential',
     description: desc,
+    brochureFolder: 'THE PALATIAL GARDENS',
     images: createImages('residencial-projects', 'the-palatial-gardens', {
       hero: 'T1.jpg', brochure: 'T2.png', single: 'T3.jpg',
       row: ['T4.jpg', 'T5.jpg', 'T6.png'],
@@ -100,6 +104,7 @@ const residentialProjects: ProjectData[] = [
     client: 'SANSKRUTI GROUP',
     category: 'residential',
     description: desc,
+    brochureFolder: 'SANSKRUTI RYAN RESIDENCY',
     images: createImages('residencial-projects', 'sanskruti-ryan-residency', {
       hero: 'srr 01.jpg', brochure: 'srr 02.png', single: 'srr 03.jpg',
       row: ['srr 04.jpg', 'srr 05.jpg', 'srr 06.png'],
@@ -114,6 +119,7 @@ const residentialProjects: ProjectData[] = [
     client: 'PALLADIUM GROUP',
     category: 'residential',
     description: desc,
+    brochureFolder: 'Palladium Highstreet',
     images: createImages('residencial-projects', 'palladium-highstreet', {
       hero: 'P1.jpg', brochure: 'P2.png', single: 'P3.jpg',
       row: ['P4.jpg', 'P5.jpg', 'P6.jpg'],
@@ -128,6 +134,7 @@ const residentialProjects: ProjectData[] = [
     client: 'KEYSTONE GROUP',
     category: 'residential',
     description: desc,
+    brochureFolder: 'keystone skyvillas xl',
     images: createImages('residencial-projects', 'keystone-skyvillas-xl', {
       hero: 'K1.jpg', brochure: 'K2.png', single: 'K3.jpg',
       row: ['K4.jpg', 'K5.jpg', 'K6.png'],
@@ -142,6 +149,7 @@ const residentialProjects: ProjectData[] = [
     client: 'VRAJ GROUP',
     category: 'residential',
     description: desc,
+    brochureFolder: 'VRAJ HILLVIEW',
     images: createImages('residencial-projects', 'vraj-hillview', {
       hero: 'V1.jpg', brochure: 'V2.png', single: 'V3.jpg',
       row: ['V4.jpg', 'V5.jpg', 'V6.png'],
@@ -157,6 +165,7 @@ const residentialProjects: ProjectData[] = [
     client: 'AATLANTIS GROUP',
     category: 'residential',
     description: desc,
+    brochureFolder: 'ATC',
     images: createImages('residencial-projects', 'aatlantis the castle', {
       hero: 'a1.jpg', brochure: 'a2.png', single: 'a3.jpg',
       row: ['a4.jpg', 'a5.jpg', 'a6.png'],
@@ -172,6 +181,7 @@ const residentialProjects: ProjectData[] = [
     client: 'GREENLEAF GROUP',
     category: 'residential',
     description: desc,
+    brochureFolder: 'greenleaf heritage',
     images: createImages('residencial-projects', 'greenleaf heritage', {
       hero: 'g1.jpg', brochure: 'g2.png', single: 'g3.jpg',
       row: ['g4.jpg', 'g5.jpg', 'g6.png'],
@@ -219,6 +229,7 @@ const commercialProjects: ProjectData[] = [
     client: 'KRUPA GROUP',
     category: 'commercial',
     description: desc,
+    brochureFolder: 'KRUPA ASPIRE',
     images: createImages('commercial-projects', 'krupa-aspire', {
       hero: '01.jpg', brochure: '02.png', single: '03.png',
       row: ['04.png', '05.jpg', '06.png'],
@@ -233,6 +244,7 @@ const commercialProjects: ProjectData[] = [
     client: 'RK GROUP',
     category: 'commercial',
     description: desc,
+    brochureFolder: 'RK Landmark',
     images: createImages('commercial-projects', 'rk-landmark', {
       hero: '01.jpg', brochure: '02.png', single: '03.jpg',
       row: ['04.jpg', '05.jpg', '06.png'],
@@ -247,6 +259,7 @@ const commercialProjects: ProjectData[] = [
     client: 'SKYLINE GROUP',
     category: 'commercial',
     description: desc,
+    brochureFolder: 'Skyline Excellent',
     images: createImages('commercial-projects', 'skyline-excellent', {
       hero: '01.jpg', brochure: '02.png', single: '03.jpg',
       row: ['04.jpg', '05.jpg', '06.png'],
@@ -261,6 +274,7 @@ const commercialProjects: ProjectData[] = [
     client: 'TSL GROUP',
     category: 'commercial',
     description: desc,
+    brochureFolder: 'TSL',
     images: createImages('commercial-projects', 'tsl', {
       hero: '01.jpg', brochure: '02.png', single: '03.jpg',
       row: ['04.jpg', '05.jpg', '06.png'],
@@ -275,6 +289,7 @@ const commercialProjects: ProjectData[] = [
     client: 'VS GROUP',
     category: 'commercial',
     description: desc,
+    brochureFolder: 'vs monolith',
     images: createImages('commercial-projects', 'vs-monolith', {
       hero: '01.jpg', brochure: '02.jpg', single: '03.jpg',
       row: ['04.jpg', '05.jpg', '06.png'],
@@ -307,6 +322,7 @@ const mallProjects: ProjectData[] = [
     client: 'VINOD GROUP',
     category: 'mall',
     description: desc,
+    brochureFolder: 'Vinod City Mall',
     images: createImages('mall-projects', 'vcm', {
       hero: 'V1.jpg', brochure: 'V2.png', single: 'V3.jpg',
       row: ['V4.jpg', 'V5.jpg', 'V6.png'],
@@ -353,6 +369,7 @@ const duplexVillaProjects: ProjectData[] = [
     client: 'KEYSTONE GROUP',
     category: 'duplex-villa',
     description: desc,
+    brochureFolder: 'KEYSTONE 51',
     images: createImages('duplex-villa-projects', 'keystone-51', {
       hero: 'Keystone 51_001.jpg', brochure: 'Keystone 51_002.png', single: 'Keystone 51_003.jpg',
       row: ['Keystone 51_004.jpg', 'Keystone 51_005.jpg', 'Keystone 51_006.png'],
@@ -385,6 +402,7 @@ const openPlotProjects: ProjectData[] = [
     client: 'REVA GROUP',
     category: 'open-plot',
     description: desc,
+    brochureFolder: 'reva allizza',
     images: createImages('open-plot-projects', 'reva-allizza', {
       hero: 'r1.jpg', brochure: 'r2.png', single: 'r3.jpg',
       row: ['r4.jpg', 'r5.jpg', 'r6.png'],
@@ -413,6 +431,7 @@ const openPlotProjects: ProjectData[] = [
     client: 'KEYSTONE GROUP',
     category: 'open-plot',
     description: desc,
+    brochureFolder: 'keystone woods',
     images: createImages('open-plot-projects', 'keystone-woods', {
       hero: 'K1.jpg', brochure: 'K2.png', single: 'K3.jpg',
       row: ['K4.jpg', 'K5.jpg', 'K6.png'],
@@ -477,6 +496,7 @@ const corporateBrochureProjects: ProjectData[] = [
     client: 'ELITE GROUP',
     category: 'corporate-brochure',
     description: desc,
+    brochureFolder: 'Elite Designer',
     images: createImages('corporate-brochure', 'Elite Design', {
       hero: '01.jpg', brochure: '02.png', single: '03.jpg',
       row: ['04.jpg', '05.jpg', '06.png'],
@@ -491,6 +511,7 @@ const corporateBrochureProjects: ProjectData[] = [
     client: 'RATNAM GROUP',
     category: 'corporate-brochure',
     description: desc,
+    brochureFolder: 'Ratnam',
     images: createImages('corporate-brochure', 'ratnam', {
       hero: 'r1.jpg', brochure: 'r2.png', single: 'r3.jpg',
       row: ['r4.jpg', 'r5.jpg', 'r6.png'],
@@ -607,6 +628,7 @@ const farmhouseProjects: ProjectData[] = [
     client: 'LUSH GROUP',
     category: 'farmhouse',
     description: desc,
+    brochureFolder: 'Lush Meadows',
     images: createImages('farmhouse', 'lush-meadows', {
       hero: '01.jpg', brochure: '02.jpg', single: '03.jpg',
       row: ['04.jpg', '05.jpg', '06.png'],
