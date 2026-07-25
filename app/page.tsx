@@ -16,15 +16,18 @@ import Technologies from '@/app/components/sections/Technologies'
 import IndiaMap from '@/app/components/sections/IndiaMap'
 import PageCTA from '@/app/components/ui/PageCTA'
 import Penthouses from './components/sections/Penthouses'
+import { getHomeBrochureImages } from '@/app/lib/homeBrochure'
 
 export default function Home() {
+  const homeBrochureImages = getHomeBrochureImages()
+
   return (
     <>
       <Header />
       <main>
         <StackReveal zIndex={1}><Hero /></StackReveal>
         <StackReveal zIndex={2}><About /></StackReveal>
-        <StackReveal zIndex={3}><Location /></StackReveal>
+        <StackReveal zIndex={3}><Location brochureImages={homeBrochureImages} /></StackReveal>
         <StackReveal zIndex={4}><Panorama /></StackReveal>
         <StackReveal zIndex={5}><Architecture /></StackReveal>
         <StackReveal zIndex={6}><Gallery /></StackReveal>

@@ -97,7 +97,7 @@ function LocationCard({
   )
 }
 
-export default function Location() {
+export default function Location({ brochureImages }: { brochureImages?: string[] }) {
   const [sliderRef] = useKeenSlider<HTMLDivElement>({
     loop: false,
     mode: 'free-snap',
@@ -114,7 +114,7 @@ export default function Location() {
 
   return (
     <section id="location" style={{ background: '#fff', color: '#000', overflow: 'hidden' }}>
-      <TurnJSBook />
+      <TurnJSBook images={brochureImages} />
 
       <div style={{ padding: '3.2rem 4rem 0', marginLeft: '25%' }}>
         <motion.p
