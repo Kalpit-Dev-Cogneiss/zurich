@@ -198,9 +198,9 @@ const residentialProjects: ProjectData[] = [
     category: 'residential',
     description: desc,
     images: createImages('residencial-projects', 'VIVERA', {
-      hero: 'v1.jpg', brochure: 'v2.png', single: 'v3.jpg',
-      row: ['v4.jpg', 'v5.jpg', 'v6.png'],
-      remaining: ['v7.jpg', 'v8.jpg', 'v9.jpg', 'v10.jpg', 'v11.jpg']
+      hero: 'V1.jpg', brochure: 'V2.png', single: 'V3.jpg',
+      row: ['V4.jpg', 'V5.jpg', 'V6.png'],
+      remaining: ['V7.jpg', 'V8.jpg', 'V9.jpg', 'V10.jpg']
     }),
   },
   {
@@ -385,9 +385,9 @@ const duplexVillaProjects: ProjectData[] = [
     category: 'duplex-villa',
     description: desc,
     images: createImages('duplex-villa-projects', 'oceanic-villa', {
-      hero: 'O1.jpg', brochure: 'O2.png', single: 'O3.jpg',
-      row: ['O4.jpg', 'O5.jpg', 'O6.png'],
-      remaining: ['O7.jpg', 'O8.jpg', 'O9.jpg', 'O10.jpg', 'O11.jpg']
+      hero: 'o1.jpg', brochure: 'o2.png', single: 'o3.jpg',
+      row: ['o4.jpg', 'o5.jpg', 'o6.png'],
+      remaining: ['o7.jpg', 'o8.jpg', 'o9.jpg', 'o10.jpg']
     }),
   },
 ]
@@ -451,9 +451,9 @@ const industrialParkProjects: ProjectData[] = [
     category: 'industrial-park',
     description: desc,
     images: createImages('industrial-park', 'aatmiya-industrial-park', {
-      hero: 'a1.jpg', brochure: 'a2.png', single: 'a3.jpg',
-      row: ['a4.jpg', 'a5.jpg', 'a6.png'],
-      remaining: ['a7.jpg', 'a8.jpg', 'a9.jpg', 'a10.jpg', 'a11.jpg', 'a12.jpg']
+      hero: 'AI1.jpg', brochure: 'AI2.png', single: 'AI3.jpg',
+      row: ['AI4.jpg', 'AI5.jpg', 'AI6.png'],
+      remaining: ['AI7.jpg']
     }),
   },
   {
@@ -541,9 +541,9 @@ const corporateBrochureProjects: ProjectData[] = [
     category: 'corporate-brochure',
     description: desc,
     images: createImages('corporate-brochure', 'krrish-group', {
-      hero: 'k1.jpg', brochure: 'k2.png', single: 'k3.jpg',
-      row: ['k4.jpg', 'k5.jpg', 'k6.png'],
-      remaining: ['k7.jpg', 'k8.jpg', 'k9.jpg', 'k10.jpg', 'k11.jpg']
+      hero: '01.jpg', brochure: '02.png', single: '03.jpg',
+      row: ['04.jpg', '05.jpg', '06.png'],
+      remaining: ['07.jpg', '08.jpg', '09.jpg', '10.jpg', '11.jpg', '12.jpg']
     }),
   },
 ]
