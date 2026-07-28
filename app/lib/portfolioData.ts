@@ -418,9 +418,9 @@ const openPlotProjects: ProjectData[] = [
     category: 'open-plot',
     description: desc,
     images: createImages('open-plot-projects', 'raamah-eldoraa', {
-      hero: 'r1.jpg', brochure: 'r2.png', single: 'r3.jpg',
-      row: ['r4.jpg', 'r5.jpg', 'r6.png'],
-      remaining: ['r7.jpg', 'r8.jpg', 'r9.jpg', 'r10.jpg', 'r11.jpg', 'r12.jpg']
+      hero: '01.jpg', brochure: '02.png', single: '03.jpg',
+      row: ['04.jpg', '05.jpg', '06.png'],
+      remaining: ['07.jpg', '08.jpg', '09.jpg', '10.jpg', '11.jpg']
     }),
   },
   {
