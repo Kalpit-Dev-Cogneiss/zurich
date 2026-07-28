@@ -9,7 +9,7 @@ const FOUNDER = {
   role: 'Founder, Zurich Graphics',
   image: '/images/founder/pritesh-gandhi.jpg',
   quote:
-    'A brand is not what you print — it is what people remember. For 32 years we have built brands worth remembering.',
+    'A brand is not what you print: it is what people remember. For 32 years we have built brands worth remembering.',
 }
 
 /**
@@ -49,7 +49,7 @@ export default function AboutFounder() {
         pointerEvents: 'none',
       }}>
         <Marquee
-          items={[FOUNDER.name.toUpperCase()]}
+          items={[FOUNDER.name]}
           duration={40}
           itemStyle={{
             fontSize: 'clamp(6rem, 14vw, 18rem)',
@@ -67,10 +67,9 @@ export default function AboutFounder() {
         zIndex: 3,
         fontSize: '1.1rem',
         letterSpacing: '0.22em',
-        textTransform: 'uppercase',
         color: 'var(--c-brown)',
       }}>
-        05 — What our founder says
+        05 · What our founder says
       </div>
 
       {/* left column: quote */}
@@ -104,7 +103,6 @@ export default function AboutFounder() {
             fontWeight: 600,
             lineHeight: 1.22,
             letterSpacing: '0.01em',
-            textTransform: 'uppercase',
             margin: 0,
             marginBottom: '5rem',
             maxWidth: 760,
@@ -124,7 +122,6 @@ export default function AboutFounder() {
               <div style={{
                 fontSize: 'clamp(1.6rem, 1.6vw, 2.2rem)',
                 letterSpacing: '0.08em',
-                textTransform: 'uppercase',
                 color: '#fff',
               }}>
                 {FOUNDER.name}
@@ -133,7 +130,6 @@ export default function AboutFounder() {
                 marginTop: '0.6rem',
                 fontSize: '1.15rem',
                 letterSpacing: '0.18em',
-                textTransform: 'uppercase',
                 color: 'rgba(255,255,255,0.45)',
               }}>
                 {FOUNDER.role}
@@ -176,7 +172,7 @@ export default function AboutFounder() {
           // eslint-disable-next-line @next/next/no-img-element
           <img
             src={FOUNDER.image}
-            alt={`${FOUNDER.name} — ${FOUNDER.role}`}
+            alt={`${FOUNDER.name}, ${FOUNDER.role}`}
             onError={() => setImageFailed(true)}
             style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
           />

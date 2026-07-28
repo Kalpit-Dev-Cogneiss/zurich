@@ -36,7 +36,6 @@ export default function CaseStudyLabeledImage({ label, body, src, alt, layout = 
         fontSize: 'clamp(2rem, 3vw, 3.5rem)',
         fontWeight: 600,
         letterSpacing: '0.1em',
-        textTransform: 'uppercase',
         color: '#fff',
         padding:'4rem',
         margin: layout === 'side' ? 0 : '0 0 3rem',

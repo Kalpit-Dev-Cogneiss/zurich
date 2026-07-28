@@ -12,12 +12,12 @@ const SLIDES = [
   },
   {
     title: 'Beauty salon',
-    description: 'Bright beauty trends and new classics, Hollywood curls and creative coloring, "blogger" manicures and professional facial care — the masters at Beauty salon can do it all and even more.',
+    description: 'Bright beauty trends and new classics, Hollywood curls and creative coloring, "blogger" manicures and professional facial care: the masters at Beauty salon can do it all and even more.',
     image: 'https://zorge9.estate/media/cache/homepage_infrastructure_slider_img_xxl/uploads/39/img_4055_2_1777295279.webp',
   },
   {
-    title: 'Spa &\nGrooming',
-    description: "Want to treat your furry friend to a creative haircut or spa? Pet care is easier with professional grooming. Save time and energy — everything you need for your friend's comfort is within walking distance.",
+    title: 'Spa &\ngrooming',
+    description: "Want to treat your furry friend to a creative haircut or spa? Pet care is easier with professional grooming. Save time and energy: everything you need for your friend's comfort is within walking distance.",
     image: 'https://zorge9.estate/media/cache/homepage_infrastructure_slider_img_xxl/uploads/39/img_4055_1777295252.webp',
   },
 ]
@@ -62,7 +62,7 @@ export default function Infrastructure() {
           {/* Label */}
           <p style={{
             fontSize: '1.1rem', letterSpacing: '0.14em',
-            textTransform: 'uppercase', color: 'rgba(255,255,255,0.4)',
+            color: 'rgba(255,255,255,0.4)',
             marginBottom: '3.2rem',
           }}>
             Infrastructure
@@ -77,7 +77,7 @@ export default function Infrastructure() {
               style={{
                 fontSize: 'clamp(3.2rem, 4vw, 5.6rem)', fontWeight: 600,
                 lineHeight: 1.05, letterSpacing: '0.01em',
-                textTransform: 'uppercase', color: '#fff',
+                color: '#fff',
                 margin: '0 0 4rem', whiteSpace: 'pre-line',
               }}
             >
@@ -113,7 +113,7 @@ export default function Infrastructure() {
                 transition={{ duration: 0.5, ease: [0.7, 0, 0.3, 1] as [number,number,number,number], delay: 0.1 }}
                 style={{
                   fontSize: 'clamp(1.2rem, 1.2vw, 1.5rem)', lineHeight: 1.65,
-                  letterSpacing: '0.04em', textTransform: 'uppercase',
+                  letterSpacing: '0.04em',
                   color: 'rgba(255,255,255,0.5)',
                 }}
               >

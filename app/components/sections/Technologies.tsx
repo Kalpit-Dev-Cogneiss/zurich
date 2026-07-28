@@ -228,10 +228,10 @@ export default function Technologies() {
                       transition: 'opacity 0.4s ease',
                     }}
                   >
-                    <p style={{ fontSize: '1.5rem', textTransform: 'uppercase', letterSpacing: '0.1em', color: '#fff', margin: 0 }}>
+                    <p style={{ fontSize: '1.5rem', letterSpacing: '0.1em', color: '#fff', margin: 0 }}>
                       {tech.title}
                     </p>
-                    <p style={{ fontSize: '1.3rem', lineHeight: 1.5, color: 'rgba(255,255,255,1)', textTransform: 'uppercase', margin: 0 }}>
+                    <p style={{ fontSize: '1.3rem', lineHeight: 1.5, color: 'rgba(255,255,255,1)', margin: 0 }}>
                       {tech.body}
                     </p>
                   </div>
@@ -249,12 +249,11 @@ export default function Technologies() {
               fontWeight: 600,
               lineHeight: 1.1,
               letterSpacing: '0.05em',
-              textTransform: 'uppercase',
               margin: 0,
               textAlign: 'right',
             }}
           >
-            The Reviews<br />Are In
+            The reviews<br />are in
           </h2>
         </div>
       </div>

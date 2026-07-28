@@ -44,7 +44,7 @@ export default function ContactForm() {
     const phone = String(data.get('phone') || '')
     const message = String(data.get('message') || '')
 
-    const subject = encodeURIComponent(`Project enquiry — ${name}`)
+    const subject = encodeURIComponent(`Project enquiry: ${name}`)
     const body = encodeURIComponent(
       `Name: ${name}\nEmail: ${email}\nPhone: ${phone}\n\n${message}`
     )
@@ -82,7 +82,6 @@ export default function ContactForm() {
             display: 'block',
             fontSize: '1.1rem',
             letterSpacing: '0.22em',
-            textTransform: 'uppercase',
             color: 'var(--c-brown)',
             marginBottom: '2.4rem',
           }}>
@@ -93,13 +92,12 @@ export default function ContactForm() {
         <SplitText
           as="h2"
           mode="lines"
-          text="EVERY LANDMARK STARTS WITH A CONVERSATION"
+          text="Every landmark starts with a conversation"
           style={{
             fontSize: 'clamp(3rem, 4.6vw, 6.4rem)',
             fontWeight: 600,
             lineHeight: 1.08,
             letterSpacing: '0.02em',
-            textTransform: 'uppercase',
             margin: 0,
             marginBottom: '6rem',
             maxWidth: 1100,
@@ -114,7 +112,6 @@ export default function ContactForm() {
               <h3 style={{
                 fontSize: 'clamp(2.4rem, 3vw, 4rem)',
                 fontWeight: 600,
-                textTransform: 'uppercase',
                 letterSpacing: '0.04em',
                 margin: 0,
                 marginBottom: '1.6rem',
@@ -155,7 +152,6 @@ export default function ContactForm() {
                         display: 'block',
                         fontSize: '1.15rem',
                         letterSpacing: '0.16em',
-                        textTransform: 'uppercase',
                         color: 'rgba(255,255,255,0.45)',
                         marginTop: '1.6rem',
                       }}
@@ -192,12 +188,11 @@ export default function ContactForm() {
                       display: 'block',
                       fontSize: '1.15rem',
                       letterSpacing: '0.16em',
-                      textTransform: 'uppercase',
                       color: 'rgba(255,255,255,0.45)',
                       marginTop: '1.6rem',
                     }}
                   >
-                    The project — branding, brochure, advertising, exhibition?
+                    The project: branding, brochure, advertising, exhibition?
                   </label>
                   <textarea
                     id="cf-message"
@@ -226,7 +221,6 @@ export default function ContactForm() {
                     color: '#fff',
                     fontSize: '1.2rem',
                     letterSpacing: '0.12em',
-                    textTransform: 'uppercase',
                     border: 'none',
                     cursor: 'pointer',
                     fontFamily: 'inherit',

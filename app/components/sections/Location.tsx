@@ -27,14 +27,14 @@ const CARDS: {
   image: string
   category: ProjectCategory
 }[] = [
-  { label: 'Residential Projects', image: '/images/Residential Projects.jpg', category: 'residential' },
-  { label: 'Commercial Projects', image: '/images/Commercial Projects.jpg', category: 'commercial' },
-  { label: 'Duplex - Villa Projects', image: '/images/Duplex - Villa Projects.jpg', category: 'duplex-villa' },
-  { label: 'Mall Projects', image: '/images/Mall Projects.jpg', category: 'mall' },
-  { label: 'Farmhouse Projects', image: '/images/Farmhouse Projects.jpg', category: 'farmhouse' },
-  { label: 'Open Plot Projects', image: '/images/Open Plot Projects.jpg', category: 'open-plot' },
-  { label: 'Industrial Projects', image: '/images/Industrial Projects.jpg', category: 'industrial-park' },
-  { label: 'Corporate Projects', image: '/images/Corporate Projects.jpg', category: 'corporate-brochure' },
+  { label: 'Residential projects', image: '/images/Residential Projects.jpg', category: 'residential' },
+  { label: 'Commercial projects', image: '/images/Commercial Projects.jpg', category: 'commercial' },
+  { label: 'Duplex villa projects', image: '/images/Duplex - Villa Projects.jpg', category: 'duplex-villa' },
+  { label: 'Mall projects', image: '/images/Mall Projects.jpg', category: 'mall' },
+  { label: 'Farmhouse projects', image: '/images/Farmhouse Projects.jpg', category: 'farmhouse' },
+  { label: 'Open plot projects', image: '/images/Open Plot Projects.jpg', category: 'open-plot' },
+  { label: 'Industrial projects', image: '/images/Industrial Projects.jpg', category: 'industrial-park' },
+  { label: 'Corporate projects', image: '/images/Corporate Projects.jpg', category: 'corporate-brochure' },
 ]
 
 function LocationCard({
@@ -84,7 +84,6 @@ function LocationCard({
               fontSize: 'clamp(2rem, 3vw, 3.6rem)',
               fontWeight: 600,
               letterSpacing: '0.04em',
-              textTransform: 'uppercase',
               lineHeight: 1,
               margin: 0,
             }}>
@@ -125,12 +124,11 @@ export default function Location({ brochureImages }: { brochureImages?: string[]
           style={{
             fontSize: '1.1rem',
             letterSpacing: '0.14em',
-            textTransform: 'uppercase',
             color: 'rgba(0,0,0,0.45)',
             marginBottom: '2.4rem',
           }}
         >
-          Our Expertise
+          Our expertise
         </motion.p>
 
         <ul style={{ listStyle: 'none', margin: 0, padding: 0, maxWidth: 860 }}>
@@ -184,10 +182,9 @@ export default function Location({ brochureImages }: { brochureImages?: string[]
               fontWeight: 600,
               lineHeight: 1.0,
               letterSpacing: '0.01em',
-              textTransform: 'uppercase',
             }}
           >
-            Different Realty. One Specialist.
+            Different realty. One specialist.
           </motion.p>
         </div>
         <hr style={{ border: 'none', borderTop: '1px solid rgba(0,0,0,0.15)', margin: 0 }} />

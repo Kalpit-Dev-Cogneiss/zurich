@@ -24,91 +24,118 @@ export default function PageCTA({ eyebrow, heading, buttonLabel, href }: PageCTA
         color: '#fff',
         display: 'flex',
         flexDirection: 'column',
-        alignItems: 'center',
         justifyContent: 'center',
-        textAlign: 'center',
         padding: '10rem 4rem',
+        borderTop: '1px solid rgba(255,255,255,0.12)',
+        overflow: 'hidden',
       }}
     >
-      <AnimateReveal>
-        <span style={{
-          display: 'block',
-          fontSize: '1.1rem',
-          letterSpacing: '0.2em',
-          textTransform: 'uppercase',
-          color: 'var(--c-brown)',
-          marginBottom: '3.2rem',
+      {/* soft brown glow, off-centre */}
+      <div aria-hidden="true" style={{
+        position: 'absolute',
+        top: '-20%',
+        right: '-10%',
+        width: '60vw',
+        height: '60vw',
+        maxWidth: 900,
+        maxHeight: 900,
+        background: 'radial-gradient(circle, rgba(160,114,91,0.16), transparent 65%)',
+        pointerEvents: 'none',
+      }} />
+
+      <div style={{ position: 'relative', maxWidth: 1300, width: '100%', margin: '0 auto' }}>
+        <AnimateReveal>
+          <span style={{
+            display: 'block',
+            fontSize: '1.1rem',
+            letterSpacing: '0.14em',
+            color: 'var(--c-brown)',
+            marginBottom: '2.4rem',
+          }}>
+            {eyebrow}
+          </span>
+        </AnimateReveal>
+
+        <div style={{
+          display: 'flex',
+          alignItems: 'flex-end',
+          justifyContent: 'space-between',
+          gap: '4rem',
+          flexWrap: 'wrap',
+          borderBottom: '1px solid rgba(255,255,255,0.12)',
+          paddingBottom: '4rem',
         }}>
-          {eyebrow}
-        </span>
-      </AnimateReveal>
-
-      <SplitText
-        as="h2"
-        mode="lines"
-        text={heading}
-        style={{
-          fontSize: 'clamp(3.6rem, 6vw, 8.8rem)',
-          fontWeight: 600,
-          lineHeight: 1.05,
-          letterSpacing: '0.03em',
-          textTransform: 'uppercase',
-          margin: 0,
-          marginBottom: '6rem',
-          maxWidth: 1100,
-        }}
-      />
-
-      <AnimateReveal delay={0.3}>
-        <Magnetic strength={0.3}>
-          <Link
-            href={href}
-            onMouseEnter={() => setHover(true)}
-            onMouseLeave={() => setHover(false)}
+          <SplitText
+            as="h2"
+            mode="lines"
+            text={heading}
             style={{
-              position: 'relative',
-              display: 'flex',
-              alignItems: 'center',
-              justifyContent: 'center',
-              width: 'clamp(16rem, 18vw, 22rem)',
-              height: 'clamp(16rem, 18vw, 22rem)',
-              borderRadius: '50%',
-              border: '1px solid rgba(255,255,255,0.3)',
-              overflow: 'hidden',
-              color: '#fff',
+              fontSize: 'clamp(3.2rem, 5.4vw, 7.6rem)',
+              fontWeight: 600,
+              lineHeight: 1.08,
+              letterSpacing: '0.01em',
+              margin: 0,
+              maxWidth: 900,
+              flex: '1 1 480px',
             }}
-          >
-            {/* brown fill that grows from the centre on hover */}
-            <span aria-hidden="true" style={{
-              position: 'absolute',
-              inset: 0,
-              borderRadius: '50%',
-              background: 'var(--c-brown)',
-              transform: hover ? 'scale(1)' : 'scale(0)',
-              transition: 'transform 0.6s cubic-bezier(.7,0,.3,1)',
-            }} />
-            <span style={{
-              position: 'relative',
-              fontSize: '1.25rem',
-              letterSpacing: '0.14em',
-              textTransform: 'uppercase',
-              display: 'flex',
-              flexDirection: 'column',
-              alignItems: 'center',
-              gap: '1rem',
-            }}>
-              {buttonLabel}
-              <span aria-hidden="true" style={{
-                fontSize: '1.8rem',
-                transform: hover ? 'translateX(0.6rem)' : 'translateX(0)',
-                transition: 'transform 0.4s cubic-bezier(.7,0,.3,1)',
-              }}>
-                →
-              </span>
-            </span>
-          </Link>
-        </Magnetic>
-      </AnimateReveal>
+          />
+
+          <AnimateReveal delay={0.25} style={{ flexShrink: 0 }}>
+            <Magnetic strength={0.25}>
+              <Link
+                href={href}
+                onMouseEnter={() => setHover(true)}
+                onMouseLeave={() => setHover(false)}
+                style={{
+                  position: 'relative',
+                  display: 'inline-flex',
+                  alignItems: 'center',
+                  gap: '1.6rem',
+                  padding: '1.6rem 1.6rem 1.6rem 3.2rem',
+                  borderRadius: '999px',
+                  border: '1px solid rgba(255,255,255,0.3)',
+                  overflow: 'hidden',
+                  color: '#fff',
+                }}
+              >
+                {/* brown fill that slides in from the left on hover */}
+                <span aria-hidden="true" style={{
+                  position: 'absolute',
+                  inset: 0,
+                  background: 'var(--c-brown)',
+                  transform: hover ? 'translateX(0)' : 'translateX(-100%)',
+                  transition: 'transform 0.5s cubic-bezier(.7,0,.3,1)',
+                }} />
+                <span style={{
+                  position: 'relative',
+                  fontSize: '1.3rem',
+                  letterSpacing: '0.04em',
+                  whiteSpace: 'nowrap',
+                }}>
+                  {buttonLabel}
+                </span>
+                <span aria-hidden="true" style={{
+                  position: 'relative',
+                  width: '4.4rem',
+                  height: '4.4rem',
+                  borderRadius: '50%',
+                  background: 'rgba(255,255,255,0.1)',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'center',
+                  flexShrink: 0,
+                  transform: hover ? 'rotate(45deg)' : 'rotate(0deg)',
+                  transition: 'transform 0.4s cubic-bezier(.7,0,.3,1)',
+                }}>
+                  <svg width="18" height="18" viewBox="0 0 24 24" fill="none">
+                    <path d="M5 19L19 5M19 5H8M19 5V16" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+                  </svg>
+                </span>
+              </Link>
+            </Magnetic>
+          </AnimateReveal>
+        </div>
+      </div>
     </section>
   )
 }

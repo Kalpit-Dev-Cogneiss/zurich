@@ -270,11 +270,10 @@ export default function Preloader() {
                 fontSize: "1rem",
                 fontWeight: 600,
                 letterSpacing: "0.24em",
-                textTransform: "uppercase",
                 opacity: 0,
               }}
             >
-              Realty. Creativity. Impact.
+              Excelling Realty
             </div>
           </div>
         </div>

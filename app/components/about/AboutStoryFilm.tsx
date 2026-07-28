@@ -24,7 +24,7 @@ const CHAPTERS = [
     year: 2003,
     yearLabel: '2003',
     title: 'Strategy joins the craft',
-    body: 'Clients stop asking for artwork and start asking for direction. Brand strategy and consultation become the first conversation of every project — the design follows the thinking.',
+    body: 'Clients stop asking for artwork and start asking for direction. Brand strategy and consultation become the first conversation of every project: the design follows the thinking.',
     image: '/portfolio/commercial-projects/krupa-aspire/01.jpg',
   },
   {
@@ -38,7 +38,7 @@ const CHAPTERS = [
     year: 2026,
     yearLabel: 'Today',
     title: '4000 projects later',
-    body: 'End-to-end brand communication for real estate, architecture, and high-value businesses — strategy, design, print, advertising, and exhibitions under one roof.',
+    body: 'End-to-end brand communication for real estate, architecture, and high-value businesses: strategy, design, print, advertising, and exhibitions under one roof.',
     image: '/portfolio/residencial-projects/greenleaf heritage/g1.jpg',
   },
 ]
@@ -142,7 +142,6 @@ export default function AboutStoryFilm() {
           zIndex: 3,
           fontSize: '1.1rem',
           letterSpacing: '0.22em',
-          textTransform: 'uppercase',
           color: 'var(--c-brown)',
         }}>
           The story
@@ -172,18 +171,16 @@ export default function AboutStoryFilm() {
                 display: 'block',
                 fontSize: '1.2rem',
                 letterSpacing: '0.2em',
-                textTransform: 'uppercase',
                 color: 'var(--c-brown)',
                 marginBottom: '2rem',
               }}>
-                CH.{String(active + 1).padStart(2, '0')} — {chapter.yearLabel}
+                CH.{String(active + 1).padStart(2, '0')} · {chapter.yearLabel}
               </span>
               <h3 style={{
                 fontSize: 'clamp(3.2rem, 4.8vw, 6.8rem)',
                 fontWeight: 600,
                 lineHeight: 1.02,
                 letterSpacing: '0.02em',
-                textTransform: 'uppercase',
                 margin: 0,
                 marginBottom: '2.4rem',
               }}>
@@ -240,7 +237,6 @@ export default function AboutStoryFilm() {
               <span key={c.year} style={{
                 fontSize: '1.1rem',
                 letterSpacing: '0.18em',
-                textTransform: 'uppercase',
                 color: i === active ? '#fff' : 'rgba(255,255,255,0.35)',
                 transition: 'color 0.4s ease',
               }}>

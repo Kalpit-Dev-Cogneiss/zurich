@@ -11,7 +11,7 @@ import AboutCraft from '@/app/components/about/AboutCraft'
 export const metadata = {
   title: 'About Us | Zurich Graphics',
   description:
-    'Zurich Graphics — premium branding, design, print media, and exhibition company for real estate, architecture, and high-value businesses. 32 years, 4000+ projects.',
+    'Zurich Graphics: premium branding, design, print media, and exhibition company for real estate, architecture, and high-value businesses. 32 years, 4000+ projects.',
 }
 
 export default function AboutPage() {
@@ -27,7 +27,7 @@ export default function AboutPage() {
         <StackReveal zIndex={5}>
           <PageCTA
             eyebrow="Chapter five is yours"
-            heading="LET'S MAKE YOUR BRAND UNFORGETTABLE"
+            heading="Let's make your brand unforgettable"
             buttonLabel="Get in touch"
             href="/contact"
           />

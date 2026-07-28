@@ -19,7 +19,6 @@ export default function ContactMap() {
         display: 'block',
         fontSize: '1.1rem',
         letterSpacing: '0.2em',
-        textTransform: 'uppercase',
         color: 'rgba(255,255,255,0.45)',
         marginBottom: '1.6rem',
       }}>
@@ -34,7 +33,7 @@ export default function ContactMap() {
         overflow: 'hidden',
       }}>
         <iframe
-          title="Zurich Graphics — studio location"
+          title="Zurich Graphics, studio location"
           src={MAPS_EMBED_SRC}
           loading="lazy"
           referrerPolicy="no-referrer-when-downgrade"
@@ -66,7 +65,6 @@ export default function ContactMap() {
           style={{
             fontSize: '1.2rem',
             letterSpacing: '0.1em',
-            textTransform: 'uppercase',
             color: 'var(--c-brown)',
           }}
         >

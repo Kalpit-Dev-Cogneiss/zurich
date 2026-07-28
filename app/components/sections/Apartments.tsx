@@ -66,7 +66,6 @@ export default function Apartments() {
                     color: activeTab === index ? '#fff' : 'rgba(255,255,255,0.4)',
                     fontSize: '1.2rem',
                     letterSpacing: '0.1em',
-                    textTransform: 'uppercase',
                     cursor: 'pointer',
                     borderBottom: activeTab === index ? '2px solid #fff' : '2px solid transparent',
                     transition: 'all 0.3s ease',
@@ -139,7 +138,6 @@ export default function Apartments() {
             <p
               style={{
                 fontSize: '1.2rem',
-                textTransform: 'uppercase',
                 letterSpacing: '0.05em',
                 marginBottom: '0.5rem',
               }}
@@ -183,14 +181,13 @@ export default function Apartments() {
                 fontWeight: 600,
                 lineHeight: 1.1,
                 letterSpacing: '0.02em',
-                textTransform: 'uppercase',
                 margin: 0,
                 textShadow: '0 4px 20px rgba(0,0,0,0.8)',
               }}
             >
-              SPLENDID
+              Splendid
               <br />
-              APARTMENTS
+              apartments
             </h2>
           </div>
         </div>

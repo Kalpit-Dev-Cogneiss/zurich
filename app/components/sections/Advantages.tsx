@@ -6,55 +6,55 @@ import Lenis from 'lenis'
 const ITEMS = [
   {
     num: 1,
-    title: 'Brand Strategy\n & Positioning',
+    title: 'Brand strategy\n & positioning',
     description: 'Giving your project a sharper position and a stronger reason to be chosen.',
     image: '/images/Services_001.jpg',
   },
   {
     num: 2,
-    title: 'Naming & Brand\n Identity',
+    title: 'Naming & brand\n identity',
     description: 'We give projects names people remember and identities competitors notice.',
     image: '/images/Services_002.jpg',
   },
   {
     num: 3,
-    title: 'Brochure Design',
+    title: 'Brochure design',
     description: 'We give every feature a reason to matter and every page a reason to turn.',
     image: '/images/Services_Brochure Design.jpg',
   },
   {
     num: 4,
-    title: 'Campaign Design',
+    title: 'Campaign design',
     description: 'Creative that cuts through clutter and gives the project an unfair share of attention.',
     image: '/images/Services_Campaign Design.jpg',
   },
   {
     num: 5,
-    title: '360° Project\n Branding',
+    title: '360° project\n branding',
     description: 'We make one powerful brand speak fluently across every physical and digital touchpoint.',
     image: '/images/Services_360 Branding Design.jpg',
   },
   {
     num: 6,
-    title: 'Reels & Digital\n Communication',
+    title: 'Reels & digital\n communication',
     description: 'Scroll-stopping content that moves fast, speaks sharp and keeps the project in conversation.',
     image: '/images/Services_Reels_2.jpg',
   },
   {
     num: 7,
-    title: 'Corporate &\n Project Films',
+    title: 'Corporate &\n project films',
     description: 'We give corporate vision a voice and project stories a powerful screen presence.',
     image: '/images/Services_Corporate Video.jpg',
   },
   {
     num: 8,
-    title: 'Print &\n Outdoor Media',
+    title: 'Print &\n outdoor media',
     description: 'Turning every hoarding, newspaper and site surface into a reason to look.',
     image: '/images/Services_Print Media.jpg',
   },
   {
     num: 9,
-    title: 'Exhibition &\n Stall Designs',
+    title: 'Exhibition &\n stall designs',
     description: 'Designed to turn heads before the conversation even begins.',
     image: '/images/Services_003.jpg',
   },
@@ -182,7 +182,7 @@ export default function Advantages() {
               style={{
                 fontSize: 'clamp(3.2rem, 5vw, 7rem)', fontWeight: 600,
                 lineHeight: 1.05, letterSpacing: '0.01em',
-                textTransform: 'uppercase', color: '#fff',
+                color: '#fff',
                 margin: 0, whiteSpace: 'pre-line',
               }}
             >
@@ -199,7 +199,7 @@ export default function Advantages() {
             style={{
               fontSize: 'clamp(1.2rem, 1.2vw, 1.5rem)', lineHeight: 1.65,
               color: 'rgba(255,255,255,0.55)', maxWidth: 420,
-              margin: 0, letterSpacing: '0.03em', textTransform: 'uppercase',
+              margin: 0, letterSpacing: '0.03em',
             }}
           >
             {item.description}

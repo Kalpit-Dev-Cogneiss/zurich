@@ -46,7 +46,6 @@ export default function CaseStudyIntro({ title, body, location, src, alt }: Case
           fontSize: 'clamp(2.8rem, 4vw, 5.2rem)',
           fontWeight: 600,
           letterSpacing: '0.06em',
-          textTransform: 'uppercase',
           color: '#fff',
           margin: 0,
           marginBottom: '2.8rem',

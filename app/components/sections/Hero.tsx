@@ -104,7 +104,6 @@ export default function Hero() {
               fontWeight: 600,
               lineHeight: '38px',
               letterSpacing: '0.02em',
-              textTransform: 'uppercase',
               marginBottom: '2.8rem',
               whiteSpace: 'pre-line',
             }}
@@ -155,7 +154,7 @@ export default function Hero() {
               paddingLeft: '2.4rem',
               margin: 0,
             }}>
-              ZURICH
+              Zurich
             </p>
           </motion.div>
         )}

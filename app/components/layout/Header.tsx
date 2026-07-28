@@ -3,18 +3,20 @@ import { useState, useEffect } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import { NAV_ITEMS } from '@/app/lib/data'
 import SvgIcon from '@/app/components/ui/SvgIcon'
+import EnquireModal from '@/app/components/ui/EnquireModal'
 
 export default function Header() {
   const [menuOpen, setMenuOpen] = useState(false)
+  const [enquireOpen, setEnquireOpen] = useState(false)
 
   useEffect(() => {
-    document.body.style.overflow = menuOpen ? 'hidden' : ''
+    document.body.style.overflow = (menuOpen || enquireOpen) ? 'hidden' : ''
     return () => { document.body.style.overflow = '' }
-  }, [menuOpen])
+  }, [menuOpen, enquireOpen])
 
   return (
     <>
-      {/* Persistent top bar — right side only: CTA + hamburger. No logo. */}
+      {/* Persistent top bar — right side only: enquire CTA + hamburger. No logo. */}
       <header style={{
         position: 'fixed', top: 0, left: 0, right: 0,
         zIndex: 100,
@@ -23,7 +25,36 @@ export default function Header() {
         padding: '2.4rem 4rem',
         pointerEvents: 'none',
       }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: '3.2rem', pointerEvents: 'all' }}>
+        <div style={{ display: 'flex', alignItems: 'center', gap: '2rem', pointerEvents: 'all' }}>
+          {/* Enquire CTA — opens the quick enquiry modal on every page */}
+          <button
+            onClick={() => setEnquireOpen(true)}
+            style={{
+              display: 'flex', alignItems: 'center', gap: '0.8rem',
+              padding: '1rem 2rem',
+              border: '1px solid rgba(255,255,255,0.35)',
+              borderRadius: '999px',
+              background: 'rgba(0,0,0,0.25)',
+              backdropFilter: 'blur(4px)',
+              color: '#fff',
+              fontSize: '1.2rem',
+              letterSpacing: '0.04em',
+              fontFamily: 'inherit',
+              cursor: 'pointer',
+              transition: 'background 0.3s ease, border-color 0.3s ease',
+            }}
+            onMouseEnter={e => {
+              e.currentTarget.style.background = 'var(--c-brown)'
+              e.currentTarget.style.borderColor = 'var(--c-brown)'
+            }}
+            onMouseLeave={e => {
+              e.currentTarget.style.background = 'rgba(0,0,0,0.25)'
+              e.currentTarget.style.borderColor = 'rgba(255,255,255,0.35)'
+            }}
+          >
+            Enquire now
+          </button>
+
           {/* Hamburger — two lines */}
           <button
             onClick={() => setMenuOpen(true)}
@@ -39,6 +70,8 @@ export default function Header() {
           </button>
         </div>
       </header>
+
+      <EnquireModal open={enquireOpen} onClose={() => setEnquireOpen(false)} />
 
       {/* Full-screen menu */}
       <AnimatePresence>
@@ -66,7 +99,7 @@ export default function Header() {
                 fontWeight: 600, letterSpacing: '0.04em',
                 color: '#fff',
               }}>
-                ZURICH GRAPHICS
+                Zurich Graphics
               </span>
               <button
                 onClick={() => setMenuOpen(false)}
@@ -94,7 +127,7 @@ export default function Header() {
                     display: 'block',
                     fontSize: 'clamp(2.8rem, 5vw, 6.4rem)',
                     fontWeight: 600, letterSpacing: '0.02em',
-                    textTransform: 'uppercase', color: '#fff',
+                    color: '#fff',
                     padding: '0.8rem 0',
                     borderBottom: '1px solid rgba(255,255,255,0.08)',
                     transition: 'color 0.3s ease',

@@ -94,7 +94,6 @@ export default function PortfolioCard({
                 color: '#aaaaaa',
                 marginBottom: '0.5rem',
                 letterSpacing: '0.1em',
-                textTransform: 'uppercase',
               }}
             >
               {location}
@@ -106,7 +105,6 @@ export default function PortfolioCard({
                 color: '#ffffff',
                 marginBottom: '0.5rem',
                 letterSpacing: '0.05em',
-                textTransform: 'uppercase',
               }}
             >
               {title}

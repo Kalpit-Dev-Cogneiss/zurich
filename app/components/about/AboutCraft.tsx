@@ -7,19 +7,19 @@ const EASE = 'cubic-bezier(.7,0,.3,1)'
 
 const CRAFTS = [
   {
-    title: 'Brand Strategy & Consultation',
+    title: 'Brand strategy & consultation',
     tag: 'The thinking before the ink',
-    body: 'Positioning, naming, and the launch roadmap — every project starts as a strategy conversation, not an artwork request.',
+    body: 'Positioning, naming, and the launch roadmap: every project starts as a strategy conversation, not an artwork request.',
     image: '/portfolio/commercial-projects/krupa-aspire/01.jpg',
   },
   {
-    title: 'Strategic Design',
+    title: 'Strategic design',
     tag: 'Identities built to last',
-    body: 'Identities and design systems that survive beyond the launch — logo to livery, one coherent voice.',
+    body: 'Identities and design systems that survive beyond the launch: logo to livery, one coherent voice.',
     image: '/portfolio/residencial-projects/greenleaf heritage/g3.jpg',
   },
   {
-    title: 'Brochure Design',
+    title: 'Brochure design',
     tag: 'Print that gets kept',
     body: 'The piece a buyer takes home. Paper, foil, binding, and storytelling engineered to stay on the table.',
     image: '/portfolio/residencial-projects/greenleaf heritage/g7.jpg',
@@ -33,13 +33,13 @@ const CRAFTS = [
   {
     title: 'Exhibitions',
     tag: 'Brands you can walk into',
-    body: 'Stalls, pavilions, and experience centres — the brand at full scale, built to be walked through.',
+    body: 'Stalls, pavilions, and experience centres: the brand at full scale, built to be walked through.',
     image: '/portfolio/commercial-projects/krupa-aspire/09.jpg',
   },
   {
-    title: 'Brand Communication',
+    title: 'Brand communication',
     tag: 'End to end, one voice',
-    body: 'Everything between first hoarding and handover — managed as one continuous brand conversation.',
+    body: 'Everything between first hoarding and handover: managed as one continuous brand conversation.',
     image: '/portfolio/corporate-brochure/krrish-group/08.jpg',
   },
 ]
@@ -77,7 +77,6 @@ export default function AboutCraft() {
             <span style={{
               fontSize: '1.1rem',
               letterSpacing: '0.22em',
-              textTransform: 'uppercase',
               color: 'var(--c-brown)',
             }}>
               What we do
@@ -85,7 +84,6 @@ export default function AboutCraft() {
             <span style={{
               fontSize: '1.1rem',
               letterSpacing: '0.16em',
-              textTransform: 'uppercase',
               color: 'rgba(255,255,255,0.35)',
             }}>
               6 service lines
@@ -178,7 +176,6 @@ export default function AboutCraft() {
                     fontSize: '1.4rem',
                     fontWeight: 600,
                     letterSpacing: '0.12em',
-                    textTransform: 'uppercase',
                     whiteSpace: 'nowrap',
                     color: 'rgba(255,255,255,0.85)',
                     opacity: isActive ? 0 : 1,
@@ -206,7 +203,6 @@ export default function AboutCraft() {
                     display: 'block',
                     fontSize: '1.1rem',
                     letterSpacing: '0.18em',
-                    textTransform: 'uppercase',
                     color: 'var(--c-brown)',
                     marginBottom: '1.2rem',
                   }}>
@@ -217,7 +213,6 @@ export default function AboutCraft() {
                     fontWeight: 600,
                     lineHeight: 1.1,
                     letterSpacing: '0.03em',
-                    textTransform: 'uppercase',
                     margin: 0,
                     marginBottom: '1.4rem',
                     whiteSpace: 'nowrap',

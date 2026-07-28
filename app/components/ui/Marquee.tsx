@@ -26,7 +26,6 @@ export default function Marquee({ items, duration = 28, reverse = false, style, 
         fontSize: 'clamp(3.2rem, 6vw, 8rem)',
         fontWeight: 600,
         letterSpacing: '0.06em',
-        textTransform: 'uppercase',
         whiteSpace: 'nowrap',
         ...itemStyle,
       }}

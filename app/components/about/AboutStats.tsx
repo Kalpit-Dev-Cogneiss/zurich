@@ -16,10 +16,10 @@ const SPIN_EASE: [number, number, number, number] = [0.25, 0.1, 0.25, 1]
 const SPIN_DURATION = 1.1
 
 const STATS = [
-  { value: 32, suffix: '', label: 'Years', body: 'of craft — one continuous practice in premium branding, print, and exhibitions since 1994.' },
+  { value: 32, suffix: '', label: 'Years', body: 'of craft: one continuous practice in premium branding, print, and exhibitions since 1994.' },
   { value: 4000, suffix: '+', label: 'Projects', body: 'delivered for real estate, architecture, and high-value businesses.' },
   { value: 3, suffix: '', label: 'Sectors', body: 'we go deep in, rather than spreading thin across everything.' },
-  { value: 6, suffix: '', label: 'Service lines', body: 'from strategy to exhibitions — one connected process, start to finish.' },
+  { value: 6, suffix: '', label: 'Service lines', body: 'from strategy to exhibitions: one connected process, start to finish.' },
 ]
 
 const PLACES = [1000, 100, 10, 1]
@@ -306,7 +306,6 @@ export default function AboutStats() {
         zIndex: 3,
         fontSize: '1.1rem',
         letterSpacing: '0.22em',
-        textTransform: 'uppercase',
         color: 'var(--c-brown)',
       }}>
         By the numbers
@@ -373,7 +372,6 @@ export default function AboutStats() {
                   fontWeight: 600,
                   lineHeight: 1.05,
                   letterSpacing: '0.02em',
-                  textTransform: 'uppercase',
                   margin: 0,
                   marginBottom: '1.6rem',
                 }}>
@@ -407,11 +405,10 @@ export default function AboutStats() {
             <span key={s.label} style={{
               fontSize: '1.1rem',
               letterSpacing: '0.18em',
-              textTransform: 'uppercase',
               color: i === stepIndex ? '#fff' : 'rgba(255,255,255,0.35)',
               transition: 'color 0.4s ease',
             }}>
-              {String(i + 1).padStart(2, '0')} — {s.label}
+              {String(i + 1).padStart(2, '0')} · {s.label}
             </span>
           ))}
         </div>

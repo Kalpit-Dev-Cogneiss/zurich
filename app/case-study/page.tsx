@@ -22,9 +22,8 @@ export default function CaseStudyIndexPage() {
             color: '#ffffff',
             marginBottom: '2rem',
             letterSpacing: '0.1em',
-            textTransform: 'uppercase',
           }}>
-            Case Studies
+            Case studies
           </h1>
           <p style={{
             fontSize: '1.8rem',

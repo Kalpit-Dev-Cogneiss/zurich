@@ -56,14 +56,13 @@ export default function Penthouses() {
               right: '5.6rem',
             }}>
               <SplitText
-                text="PENTHOUSES WITH GLASS ROOFS"
+                text="Penthouses with glass roofs"
                 as="h2"
                 mode="lines"
                 style={{
                   fontSize: 'clamp(3.2rem, 6.5vw, 9.6rem)',
-                  lineHeight: 0.95, 
+                  lineHeight: 0.95,
                   letterSpacing: '0.02em',
-                  textTransform: 'uppercase',
                 }}
               />
             </div>
@@ -80,10 +79,9 @@ export default function Penthouses() {
                 fontSize: 'clamp(1rem, 1.2vw, 1.4rem)',
                 lineHeight: 1.6,
                 color: 'rgba(255,255,255,0.8)',
-                textTransform: 'uppercase',
                 letterSpacing: '0.05em',
               }}>
-                CLIMB TO THE TOP, GAZE AT THE SKY THAT HAS BECOME MUCH CLOSER, AND TAKE YOUR PLACE AMONG THE STARS. PENTHOUSE OWNERS HAVE ACCESS TO ALL DIMENSIONS: THE HEIGHT OF THE HORIZON, THE WIDTH OF THE PANORAMA, AND THE LENGTH OF THE ADMIRING GAZE.
+                Climb to the top, gaze at the sky that has become much closer, and take your place among the stars. Penthouse owners have access to all dimensions: the height of the horizon, the width of the panorama, and the length of the admiring gaze.
               </p>
             </div>
           </div>
@@ -117,7 +115,7 @@ export default function Penthouses() {
             <div style={{ marginBottom: '10rem' }}>
               <AnimateReveal>
                 <SplitText
-                  text="SUNBEAMS LIGHT UP THE TRANSPARENT WINDOWS ABOVE YOUR HEAD AND REFLECT THE COLORS OF THE SUNSET. With high ceilings and elegant decor, penthouses give you the feeling of flying over the luxurious landscape of your own life."
+                  text="Sunbeams light up the transparent windows above your head and reflect the colors of the sunset. With high ceilings and elegant decor, penthouses give you the feeling of flying over the luxurious landscape of your own life."
                   as="p"
                   mode="lines"
                   style={{
@@ -164,10 +162,9 @@ export default function Penthouses() {
                     <p style={{
                       fontSize: '0.9rem',
                       letterSpacing: '0.1em',
-                      textTransform: 'uppercase',
                       color: 'rgba(255,255,255,0.6)',
                     }}>
-                      CEILINGS HEIGHT
+                      Ceilings height
                     </p>
                   </div>
                 </div>
@@ -199,10 +196,9 @@ export default function Penthouses() {
                     <p style={{
                       fontSize: '0.9rem',
                       letterSpacing: '0.1em',
-                      textTransform: 'uppercase',
                       color: 'rgba(255,255,255,0.6)',
                     }}>
-                      WINDOW HEIGHT
+                      Window height
                     </p>
                   </div>
                 </div>
@@ -241,10 +237,9 @@ export default function Penthouses() {
                     fontSize: 'clamp(1.8rem, 2.5vw, 3rem)',
                     lineHeight: 1,
                     textAlign: 'right',
-                    textTransform: 'uppercase',
                     fontWeight: 600,
                   }}>
-                    PRIVATE<br />TERRACES
+                    Private<br />terraces
                   </h3>
                 </AnimateReveal>
               </div>

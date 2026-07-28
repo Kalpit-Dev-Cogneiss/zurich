@@ -92,15 +92,14 @@ export default function Panorama() {
                 fontWeight: 600,
                 lineHeight: 1.3,
                 letterSpacing: "0.04em",
-                textTransform: "uppercase",
                 color: "#fff",
                 margin: 0,
                 maxWidth: 200,
               }}
             >
-              OUR OPERATING
+              Our operating
               <br />
-              SYSTEM
+              system
             </motion.h2>
           </div>
 
@@ -140,7 +139,6 @@ export default function Panorama() {
                 fontWeight: 600,
                 lineHeight: 1.3,
                 letterSpacing: "0.02em",
-                textTransform: "uppercase",
                 color: "#fff",
                 margin: 0,
               }}

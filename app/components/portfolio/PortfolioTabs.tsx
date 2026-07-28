@@ -79,7 +79,6 @@ export default function PortfolioTabs({ projectsByCategory }: PortfolioTabsProps
               fontSize: '1.4rem',
               fontWeight: 600,
               letterSpacing: '0.1em',
-              textTransform: 'uppercase',
               background: activeTab === tab.id ? '#ffffff' : 'transparent',
               color: activeTab === tab.id ? '#000000' : '#ffffff',
               border: '2px solid #ffffff',

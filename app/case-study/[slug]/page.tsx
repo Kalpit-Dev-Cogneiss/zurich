@@ -21,7 +21,7 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   if (!study) return { title: 'Case Study Not Found' }
   return {
     title: `${study.title} | Case Study`,
-    description: `${study.title} — a Zurich Graphics case study.`,
+    description: `${study.title}. A Zurich Graphics case study.`,
   }
 }
 
@@ -78,7 +78,7 @@ export default async function CaseStudyDetailPage({
       <Header />
       <main>
         <PortfolioHero
-          title={study.title.toUpperCase()}
+          title={study.title}
           imageSrc={study.hero}
           imageAlt={study.title}
         />
@@ -122,7 +122,7 @@ export default async function CaseStudyDetailPage({
                     body={section.body}
                     layout={section.layout}
                     src={img.src}
-                    alt={`${study.title} — ${section.label}`}
+                    alt={`${study.title}: ${section.label}`}
                   />
                 )
               }
@@ -149,7 +149,7 @@ export default async function CaseStudyDetailPage({
                     body={section.body}
                     location={section.location}
                     src={img.src}
-                    alt={`${study.title} — ${section.label}`}
+                    alt={`${study.title}: ${section.label}`}
                   />
                 )
               }

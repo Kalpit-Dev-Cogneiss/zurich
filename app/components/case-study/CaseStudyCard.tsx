@@ -63,7 +63,6 @@ export default function CaseStudyCard({ title, slug, imageSrc, location, index }
               color: '#aaaaaa',
               marginBottom: '0.5rem',
               letterSpacing: '0.1em',
-              textTransform: 'uppercase',
             }}>
               {location}
             </p>
@@ -72,7 +71,6 @@ export default function CaseStudyCard({ title, slug, imageSrc, location, index }
               fontWeight: 600,
               color: '#ffffff',
               letterSpacing: '0.05em',
-              textTransform: 'uppercase',
               margin: 0,
             }}>
               {title}

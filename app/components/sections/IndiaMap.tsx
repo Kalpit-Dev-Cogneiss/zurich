@@ -37,11 +37,10 @@ export default function IndiaMap() {
               fontSize: 'clamp(2.5rem, 4vw, 5rem)',
               fontWeight: 600,
               letterSpacing: '0.05em',
-              textTransform: 'uppercase',
               marginBottom: '1.5rem',
             }}
           >
-            THE MAP OF OUR WORK
+            The map of our work
           </h2>
           <p
             style={{

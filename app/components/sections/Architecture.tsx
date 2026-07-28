@@ -70,7 +70,6 @@ export default function Architecture() {
             fontSize: 'clamp(2.4rem, 3.2vw, 2rem)',
             fontWeight: 600, lineHeight: 1.3,
             letterSpacing: '0.01em',
-            textTransform: 'uppercase',
             margin: 0,
           }}>
             We build the complete creative journey of a real estate brand. Every strategy,
@@ -94,7 +93,6 @@ export default function Architecture() {
           fontSize: 'clamp(3.2rem, 5vw, 7.2rem)',
           fontWeight: 600, lineHeight: 1.0,
           letterSpacing: '0.01em',
-          textTransform: 'uppercase',
           margin: 0,
         }}>
           Think sharp<br />
@@ -125,7 +123,6 @@ export default function Architecture() {
           fontSize: 'clamp(3.2rem, 5vw, 7.2rem)',
           fontWeight: 600, lineHeight: 1.0,
           letterSpacing: '0.01em',
-          textTransform: 'uppercase',
           margin: 0,
         }}>
           Deliver results<br />Be remembered
@@ -147,7 +144,6 @@ export default function Architecture() {
           fontSize: 'clamp(1.2rem, 1.4vw, 1.6rem)',
           fontWeight: 600, lineHeight: 1.6,
           letterSpacing: '0.06em',
-          textTransform: 'uppercase',
           maxWidth: '52%',
           margin: 0,
         }}>

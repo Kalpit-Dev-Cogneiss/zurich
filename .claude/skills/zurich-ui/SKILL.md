@@ -16,7 +16,7 @@ Read `Design.md` at the repo root first; it is the source of truth. This skill i
   - Theme tokens: `--t-background`, `--t-text`, `--t-heading`, `--t-primary`, `--t-small`, `--t-line`. Add `.ui-dark` to flip the theme to dark.
 - **Font sizing uses `rem` on a 62.5% root** (`1rem = 10px`). So `1.6rem = 16px`. Body is `1.6rem`, Gilroy 600.
 - **Fluid type with `clamp()`.** Headings: `clamp(3.6rem, 6vw, 8.8rem)`. Body: `clamp(1rem, 1.1vw, 1.3rem)`. Eyebrows/labels: `1.0–1.25rem`.
-- **Headings are UPPERCASE**, `fontWeight: 600`, `letterSpacing` ~`0.02em`–`0.1em`, tight `lineHeight` (1.05–1.2).
+- **Headings are sentence case** (capitalize only the first letter; keep proper nouns/acronyms as-is), `fontWeight: 600`, `letterSpacing` ~`0.02em`–`0.1em`, tight `lineHeight` (1.05–1.2).
 - **Eyebrows/labels:** small (`1.0–1.25rem`), `letterSpacing: 0.1em`–`0.2em`, `textTransform: uppercase`, often brown or a muted `rgba`.
 - **Section padding** is typically `4rem` sides, generous vertical (`10rem` on full-height CTA sections). Full-bleed sections use `height: 100svh; minHeight: 600`.
 - **`'use client'`** is required on any component using hooks, Framer Motion, GSAP, or browser APIs.
@@ -42,7 +42,7 @@ For motion specifics (eases, durations, GSAP/Lenis), use the `scroll-animation` 
 ## Do / Don't
 
 - ✅ Reuse existing UI components before writing new ones.
-- ✅ Keep the black-background, brown-accent, uppercase-heading aesthetic.
+- ✅ Keep the black-background, brown-accent aesthetic, with sentence-case headings (not uppercase).
 - ✅ Use `svh`/`svw` and `clamp()` so layouts hold on mobile.
 - ❌ Don't introduce a UI/CSS framework, add global CSS for one-off component styling, or hardcode `#a0725b` when `var(--c-brown)` exists.
 - ❌ Don't touch the home page (`app/page.tsx` + its sections) unless explicitly asked — it is considered finished.

@@ -39,6 +39,9 @@ html {
      frame, and CSS smoothing turns each write into its own animation,
      making the page lag behind and stutter. Lenis provides the smoothing. */
   height: 100%;
+  /* Stop rubber-band/elastic overscroll past the footer (trackpad + mobile
+     momentum scrolling) — the page should stop dead at the last section. */
+  overscroll-behavior-y: none;
 }
 
 body {
@@ -51,6 +54,7 @@ body {
   background: var(--t-background);
   color: var(--t-text);
   overflow-x: clip; /* see html note above */
+  overscroll-behavior-y: none;
 }
 
 /* Prevent white flash between sections */

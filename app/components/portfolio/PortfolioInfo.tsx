@@ -12,8 +12,8 @@ interface PortfolioInfoProps {
 
 export default function PortfolioInfo({
   location = '@mumbai',
-  projectType = 'LUXURIOUS\n3BHK APARTMENT',
-  client = 'SATYAM GROUP',
+  projectType = 'Luxurious\n3BHK apartment',
+  client = 'Satyam Group',
   title = 'Satyam Surya Manhattan',
   description = [
     'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since 1966, when designers at Letraset and James Mosley, the librarian at St Bride Printing Library in London, took a 1914 Cicero translation and scrambled it to make dummy text for Letraset\'s Body Type sheets. It has survived not only many decades, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised thanks to these sheets and more recently with desktop publishing software like Aldus PageMaker and Microsoft Word including versions of Lorem Ipsum.',
@@ -79,7 +79,6 @@ export default function PortfolioInfo({
                   fontWeight: 600,
                   lineHeight: 1.2,
                   letterSpacing: '0.02em',
-                  textTransform: 'uppercase',
                   whiteSpace: 'pre-wrap',
                   margin: 0,
                 }}
@@ -98,17 +97,15 @@ export default function PortfolioInfo({
                 color: '#aaaaaa',
                 marginBottom: '1rem',
                 letterSpacing: '0.05em',
-                textTransform: 'uppercase',
               }}
             >
-              CLIENT
+              Client
             </p>
             <p
               style={{
                 fontSize: '2.4rem',
                 fontWeight: 600,
                 letterSpacing: '0.05em',
-                textTransform: 'uppercase',
                 margin: 0,
               }}
             >

@@ -38,11 +38,10 @@ export default function Home() {
               fontWeight: 600,
               color: '#fff',
               letterSpacing: '0.1em',
-              textTransform: 'uppercase',
               margin: 0,
               marginBottom: '1rem',
             }}>
-              ALL IT TAKES TO STAND APART
+              All it takes to stand apart
             </h3>
             <p style={{
               fontSize: 'clamp(1rem, 1.1vw, 1.3rem)',

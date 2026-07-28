@@ -118,12 +118,11 @@ export default function About() {
               fontWeight: 600,
               lineHeight: 1.2,
               letterSpacing: '0.02em',
-              textTransform: 'uppercase',
               color: '#fff',
               margin: 0,
             }}
           >
-            Over Three Decades.<br />360° Solutions.<br />Concept to Conversion.
+            Over three decades.<br />360° solutions.<br />Concept to conversion.
           </motion.h2>
         </div>
 
@@ -160,12 +159,11 @@ export default function About() {
             <span style={{
               fontSize: '1.0rem',
               letterSpacing: '0.1em',
-              textTransform: 'uppercase',
               color: 'rgba(255,255,255,0.6)',
               textAlign: 'left',
               lineHeight: 1.3,
             }}>
-              Plug In
+              Plug in
             </span>
             {/* Play icon centered */}
             <div style={{ flex: 1, display: 'flex', alignItems: 'center', justifyContent: 'center', width: '100%' }}>
@@ -195,12 +193,11 @@ export default function About() {
             <p style={{
               fontSize: '1.0rem',
               letterSpacing: '0.1em',
-              textTransform: 'uppercase',
               color: 'rgba(0,0,0,0.5)',
               lineHeight: 1.4,
               margin: 0,
             }}>
-              Plug In :
+              Plug in:
             </p>
 
             {/* center heading */}
@@ -208,7 +205,6 @@ export default function About() {
               fontSize: 'clamp(1.8rem, 2.2vw, 2.8rem)',
               fontWeight: 600,
               letterSpacing: '0.02em',
-              textTransform: 'uppercase',
               lineHeight: 1.1,
               margin: 0,
               textAlign: 'center',
@@ -220,7 +216,6 @@ export default function About() {
             <p style={{
               fontSize: '1.0rem',
               letterSpacing: '0.12em',
-              textTransform: 'uppercase',
               color: '#b5845f',
               margin: 0,
               textAlign: 'center',

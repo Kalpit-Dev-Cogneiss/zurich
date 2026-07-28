@@ -157,10 +157,10 @@ export default function Gallery() {
           <div>
           <h2 style={{
             fontSize: 'clamp(5rem, 9vw, 6rem)', fontWeight: 600,
-            letterSpacing: '0.01em', textTransform: 'uppercase',
+            letterSpacing: '0.01em',
             lineHeight: 1, margin: 0, color: '#fff',
           }}>
-            The Proof Is In The Work
+            The proof is in the work
           </h2>
           <p style={{
               fontSize: 'clamp(0.9rem, 1vw, 2rem)',
@@ -233,7 +233,6 @@ export default function Gallery() {
                 left: '0.9rem',
                 fontSize: '1.1rem',
                 letterSpacing: '0.12em',
-                textTransform: 'uppercase',
                 fontWeight: 600,
                 whiteSpace: 'nowrap',
               }}>
@@ -293,7 +292,7 @@ export default function Gallery() {
               }}>
                 <p style={{
                   fontSize: 'clamp(2.8rem, 3.5vw, 5rem)', fontWeight: 600,
-                  letterSpacing: '0.04em', textTransform: 'uppercase',
+                  letterSpacing: '0.04em',
                   color: '#fff', margin: 0, lineHeight: 1,
                 }}>
                   Gallery

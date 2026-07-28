@@ -60,13 +60,10 @@ export default function AboutManifesto() {
   useEffect(() => { setMounted(true) }, [])
 
   const lineStyle: React.CSSProperties = {
-    fontSize: 'clamp(6rem, 13vw, 15rem)',
     fontWeight: 600,
     lineHeight: 0.94,
     letterSpacing: '0.02em',
-    textTransform: 'uppercase',
     color: '#fff',
-    whiteSpace: 'nowrap',
     margin: 0,
   }
 
@@ -111,12 +108,11 @@ export default function AboutManifesto() {
             left: '4rem',
             fontSize: '1.1rem',
             letterSpacing: '0.22em',
-            textTransform: 'uppercase',
             color: 'var(--c-brown)',
             zIndex: 2,
           }}
         >
-          Premium branding · print · exhibitions — since 1994
+          Premium branding · print · exhibitions, since 1994
         </motion.span>
       )}
 
@@ -126,6 +122,7 @@ export default function AboutManifesto() {
           <div key={line.text} style={{ display: 'flex', justifyContent: line.align, overflow: 'hidden' }}>
             {mounted && (
               <motion.p
+                className="about-manifesto-line"
                 initial={{ y: '110%' }}
                 animate={{ y: '0%' }}
                 transition={{ duration: 1.2, ease: EASE, delay: 0.15 + i * 0.14 }}
@@ -176,6 +173,25 @@ export default function AboutManifesto() {
           </a>
         </motion.div>
       )}
+
+      <style>{`
+        .about-manifesto-line {
+          font-size: clamp(6rem, 13vw, 15rem);
+          white-space: nowrap;
+        }
+        @media (max-width: 768px) {
+          .about-manifesto-line {
+            font-size: clamp(3.2rem, 11vw, 15rem);
+          }
+        }
+        @media (max-width: 480px) {
+          .about-manifesto-line {
+            font-size: clamp(2.4rem, 10.5vw, 15rem);
+            white-space: normal;
+            overflow-wrap: break-word;
+          }
+        }
+      `}</style>
     </section>
   )
 }

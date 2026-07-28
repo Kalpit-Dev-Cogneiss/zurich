@@ -35,20 +35,19 @@ export default function Park() {
             <AnimateReveal>
               <p style={{
                 fontSize: '1.1rem', letterSpacing: '0.18em',
-                textTransform: 'uppercase', color: 'rgba(255,255,255,0.4)',
+                color: 'rgba(255,255,255,0.4)',
                 marginBottom: '2rem',
               }}>
-                Private 2-Acre Park
+                Private 2-acre park
               </p>
             </AnimateReveal>
             <SplitText
-              text="PRIVATE 2-ACRE PARK"
+              text="Private 2-acre park"
               as="h2"
               mode="chars"
               style={{
                 fontSize: 'clamp(4rem, 8vw, 11.2rem)',
                 lineHeight: 0.95, letterSpacing: '0.02em',
-                textTransform: 'uppercase',
               }}
             />
           </div>

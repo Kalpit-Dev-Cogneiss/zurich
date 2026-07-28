@@ -1,9 +1,11 @@
 export const NAV_ITEMS = [
   { label: 'Home', href: '/' },
   { label: 'About Us', href: '/about' },
-  { label: 'Contact Us', href: '/contact' },
+  { label: 'Services', href: '/services' },
   { label: 'Portfolio', href: '/portfolio' },
   { label: 'Case Study', href: '/case-study' },
+  { label: 'Blog', href: '/blog' },
+  { label: 'Contact Us', href: '/contact' },
 ] as const
 
 export const SCHEDULE_ITEMS = [
@@ -122,12 +124,12 @@ export const INFRASTRUCTURE_SLIDES = [
 ]
 
 export const APARTMENT_TYPES = [
-  { label: 'studios', range: '26–30 м²', image: '/assets/images/apartments/floor-studio.png' },
+  { label: 'Studios', range: '26–30 м²', image: '/assets/images/apartments/floor-studio.png' },
   { label: '1BR', range: '36–65 м²', image: '/assets/images/apartments/floor-1br.png' },
   { label: '2BR', range: '56–67 м²', image: '/assets/images/apartments/floor-2br.png' },
-  { label: '3br', range: '64–80 м²', image: '/assets/images/apartments/floor-3br.png' },
-  { label: 'with terraces', range: '67–81 м²', image: '/assets/images/apartments/floor-studio.png' },
-  { label: 'penthouse', range: '60–150 м²', image: '/assets/images/apartments/floor-penthouse.png' },
+  { label: '3BR', range: '64–80 м²', image: '/assets/images/apartments/floor-3br.png' },
+  { label: 'With terraces', range: '67–81 м²', image: '/assets/images/apartments/floor-studio.png' },
+  { label: 'Penthouse', range: '60–150 м²', image: '/assets/images/apartments/floor-penthouse.png' },
 ] as const
 
 export const TECHNOLOGY_ITEMS = [
@@ -142,14 +144,14 @@ export const TECHNOLOGY_ITEMS = [
     number: '2',
     total: '3',
     title: 'Trusted across realty',
-    body: 'From residential towers to industrial parks, our partners come back project after project — a standard of work that travels across cities.',
+    body: 'From residential towers to industrial parks, our partners come back project after project, a standard of work that travels across cities.',
     image: '/assets/images/services/2.webp',
   },
   {
     number: '3',
     total: '3',
     title: 'Hear from our clients',
-    body: 'Client stories from the brands we’ve built with — coming soon.',
+    body: 'Client stories from the brands we’ve built with, coming soon.',
     image: '/assets/images/services/3.webp',
   },
 ]

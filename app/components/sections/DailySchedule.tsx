@@ -6,43 +6,43 @@ import SvgIcon from '@/app/components/ui/SvgIcon'
 // hour is 0–11 on a 12-hour face (0 stands in for 12, so we never store the literal 12)
 const ITEMS = [
   {
-    time: 'DISCOVER',
+    time: 'Discover',
     image: '/daily-schedule/w1.jpg',
-    text: 'WE START BY UNDERSTANDING THE PROJECT, THE MARKET AND THE BUYER — WHAT MAKES THIS REALTY DIFFERENT, AND WHO IT NEEDS TO SPEAK TO.',
+    text: 'We start by understanding the project, the market and the buyer: what makes this realty different, and who it needs to speak to.',
     hour: 10,
   },
   {
-    time: 'DEFINE',
+    time: 'Define',
     image: '/daily-schedule/w2.jpg',
-    text: 'We define the project\'s place in the market before a single design element is created. Strategy first — position, then promotion.',
+    text: 'We define the project\'s place in the market before a single design element is created. Strategy first, position, then promotion.',
     hour: 11,
   },
   {
-    time: 'RESEARCH',
+    time: 'Research',
     image: '/daily-schedule/w3.jpg',
-    text: 'THREE DECADES OF EXPERIENCE AND A DEEP UNDERSTANDING OF INDIAN REALTY SHAPE EVERY BRIEF, FROM RESIDENTIAL TO INDUSTRIAL PROJECTS.',
+    text: 'Three decades of experience and a deep understanding of Indian realty shape every brief, from residential to industrial projects.',
     hour: 0,
   },
   {
-    time: 'CREATE',
+    time: 'Create',
     image: '/daily-schedule/w4.jpg',
-    text: 'NAMING, IDENTITY, BROCHURES, CAMPAIGNS AND DIGITAL EXPERIENCES COME TOGETHER UNDER ONE ROOF — ONE SHARP IDEA RUNS THROUGH EVERY PIECE.',
+    text: 'Naming, identity, brochures, campaigns and digital experiences come together under one roof: one sharp idea runs through every piece.',
     hour: 1,
   },
   {
-    time: 'REFINE',
+    time: 'Refine',
     image: '/daily-schedule/w5.jpg',
-    text: 'Every element is tested against the market — sharpened until the brand experience feels inevitable, not accidental.',
+    text: 'Every element is tested against the market, sharpened until the brand experience feels inevitable, not accidental.',
     hour: 2,
   },
   {
-    time: 'DELIVER',
+    time: 'Deliver',
     image: '/daily-schedule/w6.jpg',
-    text: 'From concept to conversion — the brand goes live across every physical and digital touchpoint, ready to make the market notice.',
+    text: 'From concept to conversion, the brand goes live across every physical and digital touchpoint, ready to make the market notice.',
     hour: 3,
   },
   {
-    time: 'SUPPORT',
+    time: 'Support',
     image: '/daily-schedule/w7.jpg',
     text: 'We stay connected past launch, carrying one consistent brand story seamlessly across every buyer touchpoint.',
     hour: 4,
@@ -229,7 +229,6 @@ export default function DailySchedule() {
                 fontSize: 'clamp(1.1rem, 1.1vw, 1.35rem)',
                 lineHeight: 1.6,
                 letterSpacing: '0.03em',
-                textTransform: 'uppercase',
               }}
             >
               {item.text}

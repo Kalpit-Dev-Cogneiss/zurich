@@ -50,10 +50,9 @@ export default function PortfolioPage() {
               color: '#ffffff',
               marginBottom: '2rem',
               letterSpacing: '0.1em',
-              textTransform: 'uppercase',
             }}
           >
-            Our Portfolio
+            Our portfolio
           </h1>
           <p
             style={{

@@ -135,7 +135,10 @@
       "Bash(echo \"exit:$?\")",
       "Bash(timeout 60 bash -c 'until curl -sf http://localhost:3000 >/dev/null; do sleep 1; done')",
       "Bash(npm init *)",
-      "Bash(CHROMIUM_PATH=\"/c/Users/i7/AppData/Local/ms-playwright/chromium-1228/chrome-win64/chrome.exe\" node shot.js)"
+      "Bash(CHROMIUM_PATH=\"/c/Users/i7/AppData/Local/ms-playwright/chromium-1228/chrome-win64/chrome.exe\" node shot.js)",
+      "Bash(git add *)",
+      "Bash(git commit *)",
+      "Bash(git push *)"
     ]
   }
 }

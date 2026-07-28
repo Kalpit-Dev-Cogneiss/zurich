@@ -6,7 +6,7 @@ The design language for the Zurich real-estate branding agency site. This is the
 
 ## 1. Brand personality
 
-Bold, editorial, confident. Full-bleed black canvases, oversized uppercase headlines, a single warm brown accent, and cinematic scroll motion. Everything reads as "premium, strategy-first, made for real estate brands."
+Bold, editorial, confident. Full-bleed black canvases, oversized sentence-case headlines, a single warm brown accent, and cinematic scroll motion. Everything reads as "premium, strategy-first, made for real estate brands."
 
 ---
 
@@ -47,14 +47,14 @@ Common ad-hoc alphas: white text at `rgba(255,255,255,0.6)` for body copy on bla
 
 | Role | Size | Treatment |
 | --- | --- | --- |
-| Hero / CTA heading | `clamp(3.6rem, 6vw, 8.8rem)` | UPPERCASE, `lineHeight 1.05`, `letterSpacing 0.03em` |
-| Section heading (h2) | `clamp(3.6rem, 2vw, 7.2rem)` | UPPERCASE, `lineHeight 1.2`, `letterSpacing 0.02em` |
-| Sub-heading (h3) | `clamp(2rem, 3vw, 3.5rem)` | UPPERCASE, `letterSpacing 0.1em` |
-| Card heading | `clamp(1.8rem, 2.2vw, 2.8rem)` | UPPERCASE, `lineHeight 1.1` |
+| Hero / CTA heading | `clamp(3.6rem, 6vw, 8.8rem)` | Sentence case, `lineHeight 1.05`, `letterSpacing 0.03em` |
+| Section heading (h2) | `clamp(3.6rem, 2vw, 7.2rem)` | Sentence case, `lineHeight 1.2`, `letterSpacing 0.02em` |
+| Sub-heading (h3) | `clamp(2rem, 3vw, 3.5rem)` | Sentence case, `letterSpacing 0.1em` |
+| Card heading | `clamp(1.8rem, 2.2vw, 2.8rem)` | Sentence case, `lineHeight 1.1` |
 | Body | `clamp(1rem, 1.1vw, 1.3rem)` | `lineHeight 1.6`, `letterSpacing 0.02em`, muted color |
-| Eyebrow / label | `1.0rem`–`1.25rem` | UPPERCASE, `letterSpacing 0.1em`–`0.2em`, brown or muted |
+| Eyebrow / label | `1.0rem`–`1.25rem` | Sentence case, `letterSpacing 0.1em`–`0.2em`, brown or muted |
 
-Headings are uppercase and `fontWeight: 600` by default (set globally). Line breaks in headings are often hand-placed with `<br />`.
+Headings are sentence case (capitalize only the first letter; keep proper nouns/acronyms as-is) and `fontWeight: 600` by default (set globally). Line breaks in headings are often hand-placed with `<br />`.
 
 ---
 
@@ -97,5 +97,5 @@ Signature CTA = circular magnetic button, `1px rgba(255,255,255,0.3)` border, br
 - Style with **inline `style={{}}` objects**; keep global CSS in `globals.css` only (fonts, resets, tokens, responsive overrides).
 - `'use client'` on anything using hooks / Framer / GSAP / browser APIs.
 - Reference color tokens (`var(--c-brown)`), not raw hex.
-- Reuse existing UI components; keep the black-canvas + brown-accent + uppercase-heading identity.
+- Reuse existing UI components; keep the black-canvas + brown-accent identity, with sentence-case headings (not uppercase).
 - Stack: **Next.js 16, React 19, Tailwind v4, TypeScript.** Note: this Next.js has breaking changes vs. older versions — check `node_modules/next/dist/docs/` before writing framework code (per `AGENTS.md`).

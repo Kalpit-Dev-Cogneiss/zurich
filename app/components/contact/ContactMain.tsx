@@ -96,7 +96,6 @@ export default function ContactMain() {
           <span style={{
             fontSize: '1.1rem',
             letterSpacing: '0.22em',
-            textTransform: 'uppercase',
             color: 'var(--c-brown)',
           }}>
             Contact
@@ -105,12 +104,11 @@ export default function ContactMain() {
           <span style={{
             fontSize: '1.1rem',
             letterSpacing: '0.18em',
-            textTransform: 'uppercase',
             color: 'rgba(255,255,255,0.45)',
             marginTop: '4.8rem',
             textAlign: 'right',
           }}>
-            Hyderabad, IN — <StudioClock /> IST
+            Hyderabad, IN · <StudioClock /> IST
             <span style={{ display: 'block', marginTop: '0.8rem', color: 'rgba(255,255,255,0.3)' }}>
               32 years · 4000+ projects
             </span>
@@ -127,11 +125,10 @@ export default function ContactMain() {
               animate={{ y: '0%' }}
               transition={{ duration: 1.2, ease: EASE, delay: 0.15 }}
               style={{
-                fontSize: 'clamp(7rem, 16vw, 19rem)',
+                fontSize: 'clamp(8rem, 18vw, 22rem)',
                 fontWeight: 600,
                 lineHeight: 0.92,
                 letterSpacing: '0.02em',
-                textTransform: 'uppercase',
                 margin: 0,
               }}
             >
@@ -147,18 +144,20 @@ export default function ContactMain() {
                 animate={{ y: '0%' }}
                 transition={{ duration: 1.2, ease: EASE, delay: 0.3 }}
                 style={{
-                  fontSize: 'clamp(7rem, 16vw, 19rem)',
+                  display: 'flex',
+                  fontSize: 'clamp(8rem, 18vw, 22rem)',
                   fontWeight: 600,
                   lineHeight: 0.92,
                   letterSpacing: '0.02em',
-                  textTransform: 'uppercase',
                   margin: 0,
                   color: 'transparent',
                   WebkitTextStroke: '1.5px rgba(255,255,255,0.85)',
-                  paddingLeft: '12vw',
                 }}
               >
-                Talk
+                {/* invisible spacer matching "Let'" so "Talk" starts exactly
+                    under the "s" of "Let's" above, at any screen size */}
+                <span aria-hidden="true" style={{ visibility: 'hidden' }}>Let&apos;</span>
+                <span>Talk</span>
               </motion.p>
 
               {/* spinning badge */}
@@ -186,11 +185,10 @@ export default function ContactMain() {
                   <text style={{
                     fontSize: 11,
                     letterSpacing: '0.32em',
-                    textTransform: 'uppercase',
                     fill: 'rgba(255,255,255,0.6)',
                   }}>
                     <textPath href="#contact-badge-circle">
-                      Get in touch — Zurich Graphics — Get in touch —
+                      Get in touch · Zurich Graphics · Get in touch ·
                     </textPath>
                   </text>
                 </svg>
@@ -230,7 +228,6 @@ export default function ContactMain() {
               display: 'block',
               fontSize: '1.1rem',
               letterSpacing: '0.2em',
-              textTransform: 'uppercase',
               color: 'rgba(255,255,255,0.45)',
               marginBottom: '1.2rem',
             }}>
