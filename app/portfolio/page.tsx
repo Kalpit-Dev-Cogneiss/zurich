@@ -13,10 +13,12 @@ import {
   campaignProjects,
   farmhouseProjects,
 } from '@/app/lib/portfolioData'
+import { pageSeo } from '@/app/lib/seoData'
 
 export const metadata = {
-  title: 'Portfolio | Our Projects',
-  description: 'Explore our portfolio of luxury residential, commercial, and farmhouse projects',
+  title: pageSeo.portfolio.title,
+  description: pageSeo.portfolio.description,
+  keywords: pageSeo.portfolio.keywords,
 }
 
 const projectsByCategory = {

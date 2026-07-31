@@ -112,8 +112,9 @@ export default function Header() {
 
             {/* Nav items */}
             <nav style={{
-              flex: 1, display: 'flex', flexDirection: 'column',
-              justifyContent: 'center', padding: '4rem',
+              flex: 1, minHeight: 0, display: 'flex', flexDirection: 'column',
+              justifyContent: 'center', padding: '2rem 4rem',
+              overflowY: 'auto',
             }}>
               {NAV_ITEMS.map((item, i) => (
                 <motion.a
@@ -125,13 +126,12 @@ export default function Header() {
                   transition={{ duration: 0.5, ease: [0.7, 0, 0.3, 1], delay: 0.1 + i * 0.05 }}
                   style={{
                     display: 'block',
-                    fontSize: 'clamp(2.8rem, 5vw, 6.4rem)',
+                    fontSize: 'clamp(2.2rem, 3.8vw, 4.8rem)',
                     fontWeight: 600, letterSpacing: '0.02em',
                     color: '#fff',
-                    padding: '0.8rem 0',
-                    borderBottom: '1px solid rgba(255,255,255,0.08)',
+                    padding: '0.7rem 0',
                     transition: 'color 0.3s ease',
-                    lineHeight: 1.1,
+                    lineHeight: 1.15,
                   }}
                   onMouseEnter={e => (e.currentTarget.style.color = 'var(--c-brown)')}
                   onMouseLeave={e => (e.currentTarget.style.color = '#fff')}
@@ -145,7 +145,7 @@ export default function Header() {
             <img src="/assets/images/menu/decor.webp" alt="" aria-hidden="true"
               style={{
                 position: 'absolute', bottom: 0, right: 0,
-                width: '45%', opacity: 0.3, pointerEvents: 'none',
+                width: '45%', opacity: 1, pointerEvents: 'none', zIndex: -1,
               }}
             />
           </motion.div>

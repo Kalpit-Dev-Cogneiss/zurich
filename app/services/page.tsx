@@ -8,11 +8,12 @@ import Marquee from '@/app/components/ui/Marquee'
 import FAQAccordion from '@/app/components/ui/FAQAccordion'
 import ServicesShowcase from '@/app/components/services/ServicesShowcase'
 import { getAllServices, GENERAL_FAQ } from '@/app/lib/servicesData'
+import { pageSeo } from '@/app/lib/seoData'
 
 export const metadata = {
-  title: 'Services | Zurich Graphics',
-  description:
-    'Zurich Graphics services: brand strategy, naming, brochure and campaign design, 360 project branding, reels, corporate films, print and outdoor media, exhibition design.',
+  title: pageSeo.services.title,
+  description: pageSeo.services.description,
+  keywords: pageSeo.services.keywords,
 }
 
 export default function ServicesPage() {

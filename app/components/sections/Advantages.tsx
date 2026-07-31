@@ -90,8 +90,10 @@ export default function Advantages() {
         const index = Math.min(TOTAL - 1, Math.floor(scrolled / viewH))
         setActive(index)
       } else {
+        // afterTop positions the panel as spacer's own absolutely positioned
+        // child, so it must be local to spacer's top — not document-absolute.
         setPhase('after')
-        setAfterTop(sectionBottom - viewH)
+        setAfterTop(scrollDistance - viewH)
         setActive(TOTAL - 1)
       }
     }

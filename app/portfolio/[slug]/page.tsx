@@ -9,6 +9,7 @@ import PortfolioImageRow from '@/app/components/portfolio/PortfolioImageRow'
 import TurnJSBook from '@/app/components/ui/TurnJSBook'
 import { getProjectBySlug, getAllProjectSlugs } from '@/app/lib/portfolioData'
 import { getBrochureImages } from '@/app/lib/portfolioBrochure'
+import { portfolioSeo } from '@/app/lib/seoData'
 
 export async function generateStaticParams() {
   const slugs = getAllProjectSlugs()
@@ -22,6 +23,15 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   if (!project) {
     return {
       title: 'Project Not Found',
+    }
+  }
+
+  const seo = portfolioSeo[slug]
+  if (seo) {
+    return {
+      title: seo.title,
+      description: seo.description,
+      keywords: seo.keywords,
     }
   }
 

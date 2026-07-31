@@ -8,6 +8,7 @@ import AnimateReveal from '@/app/components/ui/AnimateReveal'
 import ParallaxImage from '@/app/components/ui/ParallaxImage'
 import FAQAccordion from '@/app/components/ui/FAQAccordion'
 import { getAllServices, getServiceBySlug } from '@/app/lib/servicesData'
+import { serviceSeo } from '@/app/lib/seoData'
 
 export async function generateStaticParams() {
   return getAllServices().map((s) => ({ slug: s.slug }))
@@ -17,6 +18,16 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const { slug } = await params
   const service = getServiceBySlug(slug)
   if (!service) return { title: 'Service not found' }
+
+  const seo = serviceSeo[slug]
+  if (seo) {
+    return {
+      title: seo.title,
+      description: seo.description,
+      keywords: seo.keywords,
+    }
+  }
+
   return {
     title: `${service.title} | Zurich Graphics`,
     description: service.tagline,

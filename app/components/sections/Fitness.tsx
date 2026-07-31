@@ -51,9 +51,11 @@ export default function Fitness() {
         setSlideX(0); setPhase('pinned')
         setTranslateX(-(scrollY - sectionTop))
       } else {
-        // End — park
+        // End — park. afterTop is local to spacerRef (position: relative),
+        // not document-absolute, since the panel becomes its absolutely
+        // positioned child once un-pinned.
         setSlideX(0); setPhase('after')
-        setAfterTop(sectionTop + maxX)
+        setAfterTop(maxX)
         setTranslateX(-maxX)
       }
     }
@@ -79,9 +81,11 @@ export default function Fitness() {
       const strip = stripRef.current
       if (!strip) return
       const maxX = strip.scrollWidth - window.innerWidth
-      // Spacer = horizontal scroll distance + 2 viewport heights buffer
-      // The slide-in (1vh) happens while scrolling through previous section
-      const bufferSpace = window.innerHeight * 2
+      // Spacer = horizontal scroll distance + 1 viewport height so the
+      // parked panel (100vh, un-pinned once 'after') has flow space to sit
+      // in. The slide-in itself happens while scrolling through the
+      // previous section, so it doesn't need extra room here.
+      const bufferSpace = window.innerHeight
       setSpacerH(`${maxX + bufferSpace}px`)
     }
     const t = setTimeout(recalc, 100)
@@ -90,8 +94,8 @@ export default function Fitness() {
   }, [])
 
   const panelStyle: React.CSSProperties =
-    phase === 'before'
-      ? { position: 'fixed', top: 0, left: 0, width: '100vw', height: '100vh' }
+    phase === 'after'
+      ? { position: 'absolute', top: afterTop, left: 0, width: '100vw', height: '100vh' }
       : { position: 'fixed', top: 0, left: 0, width: '100vw', height: '100vh' }
 
   return (

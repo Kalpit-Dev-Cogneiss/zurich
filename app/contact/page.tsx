@@ -4,11 +4,12 @@ import StackReveal from '@/app/components/ui/StackReveal'
 import Marquee from '@/app/components/ui/Marquee'
 import ContactMain from '@/app/components/contact/ContactMain'
 import ContactForm from '@/app/components/contact/ContactForm'
+import { pageSeo } from '@/app/lib/seoData'
 
 export const metadata = {
-  title: 'Contact Us | Zurich Graphics',
-  description:
-    'Tell us about your project. Zurich Graphics real estate branding: brochures, campaigns, films, and 360° identities.',
+  title: pageSeo.contact.title,
+  description: pageSeo.contact.description,
+  keywords: pageSeo.contact.keywords,
 }
 
 export default function ContactPage() {

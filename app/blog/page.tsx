@@ -2,11 +2,12 @@ import Header from '@/app/components/layout/Header'
 import Footer from '@/app/components/layout/Footer'
 import { getAllBlogPosts } from '@/app/lib/blogData'
 import BlogCard from '@/app/components/blog/BlogCard'
+import { pageSeo } from '@/app/lib/seoData'
 
 export const metadata = {
-  title: 'Blog | Zurich Graphics',
-  description:
-    'Notes on branding, naming, brochures, campaigns and digital communication for real estate projects, from the Zurich Graphics studio.',
+  title: pageSeo.blog.title,
+  description: pageSeo.blog.description,
+  keywords: pageSeo.blog.keywords,
 }
 
 export default function BlogPage() {

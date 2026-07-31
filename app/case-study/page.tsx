@@ -2,10 +2,12 @@ import Header from '@/app/components/layout/Header'
 import Footer from '@/app/components/layout/Footer'
 import { getAllCaseStudies } from '@/app/lib/caseStudyData'
 import CaseStudyCard from '@/app/components/case-study/CaseStudyCard'
+import { pageSeo } from '@/app/lib/seoData'
 
 export const metadata = {
-  title: 'Case Studies | Zurich Graphics',
-  description: 'In-depth looks at how Zurich Graphics builds brands for real estate and high-value businesses.',
+  title: pageSeo.caseStudy.title,
+  description: pageSeo.caseStudy.description,
+  keywords: pageSeo.caseStudy.keywords,
 }
 
 export default function CaseStudyIndexPage() {

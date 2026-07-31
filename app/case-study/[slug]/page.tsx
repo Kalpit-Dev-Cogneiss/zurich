@@ -10,6 +10,7 @@ import CaseStudySplitRow from '@/app/components/case-study/CaseStudySplitRow'
 import CaseStudyIntro from '@/app/components/case-study/CaseStudyIntro'
 import { getCaseStudyBySlug, getAllCaseStudySlugs, type CaseStudy } from '@/app/lib/caseStudyData'
 import { CASE_STUDY_LAYOUTS, HIDE_INFO_SLUGS, SPACE_BELOW_SINGLES_SLUGS, type CaseStudySectionSpec } from '@/app/lib/caseStudyLayouts'
+import { caseStudySeo } from '@/app/lib/seoData'
 
 export async function generateStaticParams() {
   return getAllCaseStudySlugs().map(slug => ({ slug }))
@@ -19,6 +20,16 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const { slug } = await params
   const study = getCaseStudyBySlug(slug)
   if (!study) return { title: 'Case Study Not Found' }
+
+  const seo = caseStudySeo[slug]
+  if (seo) {
+    return {
+      title: seo.title,
+      description: seo.description,
+      keywords: seo.keywords,
+    }
+  }
+
   return {
     title: `${study.title} | Case Study`,
     description: `${study.title}. A Zurich Graphics case study.`,

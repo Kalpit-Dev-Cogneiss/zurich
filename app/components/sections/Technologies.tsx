@@ -85,9 +85,11 @@ export default function Technologies() {
         setProgress(Math.min(1, Math.max(0, raw - idx)))
         scheduleSnap(sectionTop, viewH)
       } else {
+        // afterTop positions the panel as spacer's own absolutely positioned
+        // child, so it must be local to spacer's top — not document-absolute.
         setPhase('after')
         setEnter(1)
-        setAfterTop(sectionBottom - viewH)
+        setAfterTop(scrollDistance - viewH)
         setIndex(STEPS - 1)
         setProgress(1)
       }

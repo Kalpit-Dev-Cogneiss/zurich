@@ -1,45 +1,33 @@
 'use client'
-import { useRef } from 'react'
 import Image from 'next/image'
-import { motion, useScroll, useTransform } from 'framer-motion'
 import AnimateReveal from '@/app/components/ui/AnimateReveal'
 import SplitText from '@/app/components/ui/SplitText'
-import ClipReveal from '@/app/components/ui/ClipReveal'
 import SvgIcon from '@/app/components/ui/SvgIcon'
 
 export default function Penthouses() {
-  const heroRef = useRef<HTMLDivElement>(null)
-  const { scrollYProgress } = useScroll({ 
-    target: heroRef, 
-    offset: ['start start', 'end start'] 
-  })
-  const heroY = useTransform(scrollYProgress, [0, 1], ['0vh', '-10vh'])
-
   return (
-    <ClipReveal>
       <section id="penthouses" style={{ background: '#000', color: '#fff' }}>
         
         {/* Sticky Hero Section */}
         <div style={{ position: 'relative' }}>
-          <div 
-            ref={heroRef}
-            style={{ 
-              position: 'sticky', 
-              top: 0, 
-              height: '100vh', 
+          <div
+            style={{
+              position: 'sticky',
+              top: 0,
+              height: '100vh',
               overflow: 'hidden',
               zIndex: 1,
             }}
           >
-            {/* Background Image with Parallax */}
-            <motion.div style={{ y: heroY, position: 'absolute', inset: '-12% 0' }}>
-              <Image 
-                src="/assets/images/penthouses/bg.webp" 
-                alt="Penthouse" 
-                fill 
-                style={{ objectFit: 'cover' }} 
+            {/* Background Image */}
+            <div style={{ position: 'absolute', inset: 0 }}>
+              <Image
+                src="/assets/images/penthouses/bg.webp"
+                alt="Penthouse"
+                fill
+                style={{ objectFit: 'cover' }}
               />
-            </motion.div>
+            </div>
             
             {/* Gradient Overlay */}
             <div style={{
@@ -268,6 +256,5 @@ export default function Penthouses() {
           }
         `}</style>
       </section>
-    </ClipReveal>
   )
 }

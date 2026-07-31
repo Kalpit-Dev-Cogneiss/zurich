@@ -7,11 +7,12 @@ import AboutStoryFilm from '@/app/components/about/AboutStoryFilm'
 import AboutStats from '@/app/components/about/AboutStats'
 import AboutFounder from '@/app/components/about/AboutFounder'
 import AboutCraft from '@/app/components/about/AboutCraft'
+import { pageSeo } from '@/app/lib/seoData'
 
 export const metadata = {
-  title: 'About Us | Zurich Graphics',
-  description:
-    'Zurich Graphics: premium branding, design, print media, and exhibition company for real estate, architecture, and high-value businesses. 32 years, 4000+ projects.',
+  title: pageSeo.about.title,
+  description: pageSeo.about.description,
+  keywords: pageSeo.about.keywords,
 }
 
 export default function AboutPage() {
