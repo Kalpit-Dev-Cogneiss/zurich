@@ -32,7 +32,7 @@ export const SERVICES: ServiceData[] = [
       'A single, ownable brand position',
       'A messaging framework every vendor can follow',
     ],
-    image: '/images/Services_001.jpg',
+    image: '/images/Service_Brand-strategy.jpeg',
     secondaryImage: '/images/Work Process_001.jpg',
     gallery: ['/images/Services_004.jpg', '/images/Services_005.jpg'],
     faq: [
@@ -55,7 +55,7 @@ export const SERVICES: ServiceData[] = [
       'Colour, type and motif guidelines',
       'A brand manual every vendor can build from',
     ],
-    image: '/images/Services_002.jpg',
+    image: '/images/Service_Naming-brand.jpeg',
     secondaryImage: '/images/Work Process_002.jpg',
     gallery: ['/images/Services_006.jpg', '/images/Services_007.jpg'],
     faq: [

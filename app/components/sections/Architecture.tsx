@@ -4,7 +4,7 @@ import { motion, useScroll, useTransform } from 'framer-motion'
 
 // Remote style images from reference site
 const IMG = {
-  image1: '/images/Full Screen_001.jpg',
+  image1: '/images/banner-section-image.jpeg',
   image2: 'https://zorge9.estate/assets/images/media/landing/6.style/image-2@xxl.webp?v=1779376336',
   image3: 'https://zorge9.estate/assets/images/media/landing/6.style/image-3@xxl.webp?v=1779376336',
   image4: 'https://zorge9.estate/assets/images/media/landing/6.style/image-4@xxl.webp?v=1779376336',

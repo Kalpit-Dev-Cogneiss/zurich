@@ -9,7 +9,7 @@ const EASE: [number, number, number, number] = [0.7, 0, 0.3, 1]
 // parallax factor and scroll drift — so the hero reads as layered space.
 const FLOATERS = [
   {
-    src: '/portfolio/residencial-projects/greenleaf heritage/g7.jpg',
+    src: '/images/About us page_261px X 348px.jpeg',
     width: 'clamp(160px, 17vw, 300px)',
     aspect: '3 / 4',
     pos: { top: '9%', right: '7%' } as React.CSSProperties,
@@ -18,7 +18,7 @@ const FLOATERS = [
     delay: 0.9,
   },
   {
-    src: '/portfolio/commercial-projects/krupa-aspire/09.jpg',
+    src: '/images/About us page_153px X 153px.jpeg',
     width: 'clamp(130px, 13vw, 230px)',
     aspect: '4 / 3',
     pos: { bottom: '34%', left: '5%' } as React.CSSProperties,
@@ -27,7 +27,7 @@ const FLOATERS = [
     delay: 1.05,
   },
   {
-    src: '/portfolio/corporate-brochure/krrish-group/07.jpg',
+    src: '/images/About us page_200px X 149px.jpeg',
     width: 'clamp(110px, 10vw, 190px)',
     aspect: '1 / 1',
     pos: { bottom: '13%', right: '16%' } as React.CSSProperties,

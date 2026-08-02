@@ -1,10 +1,7 @@
 'use client'
-import { useState } from 'react'
-import Link from 'next/link'
 import type { ServiceData } from '@/app/lib/servicesData'
 import AnimateReveal from '@/app/components/ui/AnimateReveal'
 import ParallaxImage from '@/app/components/ui/ParallaxImage'
-import Magnetic from '@/app/components/ui/Magnetic'
 
 const pad = (n: number) => String(n).padStart(2, '0')
 
@@ -19,8 +16,6 @@ function ServiceMedia({ service }: { service: ServiceData }) {
 }
 
 function ServiceContent({ service, index, total }: { service: ServiceData; index: number; total: number }) {
-  const [ctaHover, setCtaHover] = useState(false)
-
   return (
     <AnimateReveal delay={0.1}>
       <span style={{
@@ -76,48 +71,6 @@ function ServiceContent({ service, index, total }: { service: ServiceData; index
           </li>
         ))}
       </ul>
-
-      <Magnetic strength={0.25}>
-        <Link
-          href={`/services/${service.slug}`}
-          onMouseEnter={() => setCtaHover(true)}
-          onMouseLeave={() => setCtaHover(false)}
-          style={{
-            position: 'relative',
-            display: 'inline-flex',
-            alignItems: 'center',
-            gap: '1.4rem',
-            padding: '1.2rem 1.2rem 1.2rem 2.6rem',
-            borderRadius: '999px',
-            border: '1px solid rgba(255,255,255,0.3)',
-            overflow: 'hidden',
-            color: '#fff',
-          }}
-        >
-          <span aria-hidden="true" style={{
-            position: 'absolute', inset: 0,
-            background: 'var(--c-brown)',
-            transform: ctaHover ? 'translateX(0)' : 'translateX(-100%)',
-            transition: 'transform 0.5s cubic-bezier(.7,0,.3,1)',
-          }} />
-          <span style={{ position: 'relative', fontSize: '1.3rem', letterSpacing: '0.04em', whiteSpace: 'nowrap' }}>
-            View service
-          </span>
-          <span aria-hidden="true" style={{
-            position: 'relative',
-            width: '3.6rem', height: '3.6rem',
-            borderRadius: '50%',
-            background: 'rgba(255,255,255,0.1)',
-            display: 'flex', alignItems: 'center', justifyContent: 'center', flexShrink: 0,
-            transform: ctaHover ? 'rotate(45deg)' : 'rotate(0deg)',
-            transition: 'transform 0.4s cubic-bezier(.7,0,.3,1)',
-          }}>
-            <svg width="15" height="15" viewBox="0 0 24 24" fill="none">
-              <path d="M5 19L19 5M19 5H8M19 5V16" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
-            </svg>
-          </span>
-        </Link>
-      </Magnetic>
     </AnimateReveal>
   )
 }

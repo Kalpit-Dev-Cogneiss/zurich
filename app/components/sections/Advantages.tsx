@@ -8,25 +8,25 @@ const ITEMS = [
     num: 1,
     title: 'Brand strategy\n & positioning',
     description: 'Giving your project a sharper position and a stronger reason to be chosen.',
-    image: '/images/Services_001.jpg',
+    image: '/images/Brand strategy_home page.jpeg',
   },
   {
     num: 2,
     title: 'Naming & brand\n identity',
     description: 'We give projects names people remember and identities competitors notice.',
-    image: '/images/Services_002.jpg',
+    image: '/images/naming_homepage.jpeg',
   },
   {
     num: 3,
     title: 'Brochure design',
     description: 'We give every feature a reason to matter and every page a reason to turn.',
-    image: '/images/Services_Brochure Design.jpg',
+    image: '/images/Services_Corporate Brochure Design.jpg',
   },
   {
     num: 4,
     title: 'Campaign design',
     description: 'Creative that cuts through clutter and gives the project an unfair share of attention.',
-    image: '/images/Services_Campaign Design.jpg',
+    image: '/images/Services_Campaign Design-new.jpeg',
   },
   {
     num: 5,
@@ -56,7 +56,7 @@ const ITEMS = [
     num: 9,
     title: 'Exhibition &\n stall designs',
     description: 'Designed to turn heads before the conversation even begins.',
-    image: '/images/Services_003.jpg',
+    image: '/images/Exhibition-Stall-Designs.jpeg',
   },
 ]
 

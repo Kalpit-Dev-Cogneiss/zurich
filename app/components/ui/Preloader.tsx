@@ -267,9 +267,11 @@ export default function Preloader() {
                 transform: "translateX(-50%)",
                 whiteSpace: "nowrap",
                 color: "#fff",
-                fontSize: "1rem",
+                fontSize: "1.8rem",
                 fontWeight: 600,
                 letterSpacing: "0.24em",
+                fontFamily: "'Times New Roman', Times, serif",
+                fontStyle: "italic",
                 opacity: 0,
               }}
             >
