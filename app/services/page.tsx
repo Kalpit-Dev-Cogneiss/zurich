@@ -27,7 +27,7 @@ export default function ServicesPage() {
         <section style={{ position: 'relative', height: '100svh', minHeight: 640, overflow: 'hidden' }}>
           <ParallaxImage
             src="/images/services-page-hero-banner.jpeg"
-            alt="Zurich Graphics services"
+            alt="Zurich Graphics Services"
             strength={10}
             style={{ position: 'absolute', inset: 0 }}
           />
@@ -141,7 +141,7 @@ export default function ServicesPage() {
                   margin: 0,
                   maxWidth: 400,
                 }}>
-                  A few answers. For the questions that matter.
+                  A Few Answers. For The Questions That Matter.
                 </h2>
               </AnimateReveal>
             </div>

@@ -151,7 +151,14 @@
       "Bash(taskkill //F //IM node.exe //FI \"WINDOWTITLE eq npm*\")",
       "PowerShell(Get-CimInstance *)",
       "PowerShell(Get-NetTCPConnection *)",
-      "Bash(ffmpeg -y -ss 2 -i \"/c/Users/i7/Downloads/Satyam Surya v4.mp4\" -frames:v 1 -q:v 2 public/images/about-video-poster.jpg)"
+      "Bash(ffmpeg -y -ss 2 -i \"/c/Users/i7/Downloads/Satyam Surya v4.mp4\" -frames:v 1 -q:v 2 public/images/about-video-poster.jpg)",
+      "Bash(sed -E 's/.*:\\([a-zA-Z_]+\\)\\\\s*:$/\\\\1/')",
+      "Bash(NODE_PATH=\"D:/zurich-new/node_modules\" node \"C:/Users/i7/AppData/Local/Temp/claude/D--zurich-new/26ca396a-1ade-481e-9948-01bfb2cbc17e/scratchpad/titlecase-codemod.js\")",
+      "Bash(git checkout *)",
+      "Bash(grep -v \"^--$\")",
+      "Bash(NODE_PATH=\"D:/zurich-new/node_modules\" node \"C:/Users/i7/AppData/Local/Temp/claude/D--zurich-new/26ca396a-1ade-481e-9948-01bfb2cbc17e/scratchpad/titlecase-codemod2.js\")",
+      "Bash(NODE_PATH=\"D:/zurich-new/node_modules\" node \"C:/Users/i7/AppData/Local/Temp/claude/D--zurich-new/26ca396a-1ade-481e-9948-01bfb2cbc17e/scratchpad/titlecase-narrow.js\")",
+      "Bash(NODE_PATH=\"D:/zurich-new/node_modules\" node \"C:/Users/i7/AppData/Local/Temp/claude/D--zurich-new/26ca396a-1ade-481e-9948-01bfb2cbc17e/scratchpad/titlecase-v3.js\")"
     ]
   }
 }

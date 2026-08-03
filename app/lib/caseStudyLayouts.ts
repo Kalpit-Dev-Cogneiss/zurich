@@ -105,16 +105,16 @@ export interface CaseStudyInfoBlock {
 export const CASE_STUDY_INFO_BLOCKS: Record<string, CaseStudyInfoBlock[]> = {
   'festive-vibes': [
     {
-      title: 'Don’t sell your projects.',
-      subtitle: 'Sell your ambitions.',
+      title: 'Don’t Sell Your Projects.',
+      subtitle: 'Sell Your Ambitions.',
       body: [
         "Festival Vibes wasn't looking for a way to attract buyers. They wanted to make sure their project would be able to gain their trust and respect.",
         'A well-planned residential project deserves a communication approach that feels as considered and well-planned as the project itself. We turned it into a premium real estate brochure that allowed buyers to see a lifestyle rather than just a project.',
       ],
     },
     {
-      title: 'People don’t purchase amenities.',
-      subtitle: 'They purchase certainty.',
+      title: 'People Don’t Purchase Amenities.',
+      subtitle: 'They Purchase Certainty.',
       body: [
         'The project had beautiful architecture, open spaces, amenities, and the lifestyle to go with it. The problem is to turn all those assets into a story that would feel effortless rather than overwhelming.',
       ],
@@ -122,8 +122,8 @@ export const CASE_STUDY_INFO_BLOCKS: Record<string, CaseStudyInfoBlock[]> = {
   ],
   'happy-mall': [
     {
-      title: 'A Destination Designed to Keep the City Alive.',
-      subtitle: 'Retail is not just about stores.\nIt is about giving customers a reason to come back.',
+      title: 'A Destination Designed To Keep The City Alive.',
+      subtitle: 'Retail Is Not Just About Stores.\nIt Is About Giving Customers A Reason To Come Back.',
       body: [
         "Happy Mall was conceptualized as the next generation of Vadodara's lifestyle destinations—an integrated combination of shopping, entertainment, dining, and experience all under one landmark. Zurich Graphics helped in developing a distinctive brand image and high-end marketing materials for Happy Mall, even before it opened its doors to customers.",
         'Good Malls Bring People In. Good Brands Create Destinations.',
@@ -144,7 +144,7 @@ export const CASE_STUDY_LAYOUTS: Record<string, CaseStudySectionSpec[]> = {
     {
       type: 'intro',
       label: "Luxury Isn't Claimed. It's Curated.",
-      subtitle: 'Only 11 villas. One unmistakable identity.',
+      subtitle: 'Only 11 Villas. One Unmistakable Identity.',
       body: [
         "Greenleaf Heritage wasn't another premium villa project. It was a statement in Roman inspired architecture, crafted for those who value privacy over popularity. Zurich Graphics translated that vision into a luxury brand experience that felt as exclusive as the address itself.",
         "When the audience is exclusive, the communication can't be ordinary.",
@@ -256,7 +256,7 @@ export const CASE_STUDY_LAYOUTS: Record<string, CaseStudySectionSpec[]> = {
     { type: 'row', images: [{ num: 11 }, { num: 13 }, { num: 14 }], spaceBelow: true },
     {
       type: 'story',
-      heading: 'Design and Execution',
+      heading: 'Design And Execution',
       num: 14.5,
       blocks: [
         { type: 'lead', items: ['Beautiful design gets noticed.', 'Good communication gets remembered.'] },

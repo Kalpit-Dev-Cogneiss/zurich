@@ -212,7 +212,7 @@ export default function TurnJSBook({ images }: TurnJSBookProps) {
         <button
           onClick={goToPrevPage}
           disabled={currentPage === 1}
-          aria-label="Previous page"
+          aria-label="Previous Page"
           style={{
             position: 'absolute',
             left: '2rem',
@@ -306,7 +306,7 @@ export default function TurnJSBook({ images }: TurnJSBookProps) {
         <button
           onClick={goToNextPage}
           disabled={currentPage === totalImages}
-          aria-label="Next page"
+          aria-label="Next Page"
           style={{
             position: 'absolute',
             right: '2rem',

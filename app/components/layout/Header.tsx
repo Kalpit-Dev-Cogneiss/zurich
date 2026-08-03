@@ -54,13 +54,13 @@ export default function Header() {
               e.currentTarget.style.color = '#fff'
             }}
           >
-            Enquire now
+            Enquire Now
           </button>
 
           {/* Hamburger — two lines */}
           <button
             onClick={() => setMenuOpen(true)}
-            aria-label="Open menu"
+            aria-label="Open Menu"
             style={{
               display: 'flex', flexDirection: 'column',
               gap: '6px', cursor: 'pointer',
@@ -103,7 +103,7 @@ export default function Header() {
               />
               <button
                 onClick={() => setMenuOpen(false)}
-                aria-label="Close menu"
+                aria-label="Close Menu"
                 style={{ color: '#fff', cursor: 'pointer', lineHeight: 0 }}
               >
                 <SvgIcon id="close" width={24} height={24} />

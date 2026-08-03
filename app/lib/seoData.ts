@@ -269,7 +269,7 @@ export const portfolioSeo: Record<string, SeoEntry> = {
     keywords: 'real estate digital marketing company',
   },
   'vyom-by-balajee': {
-    title: 'Vyom by Balajee Launch Campaign Identity | Zurich Graphics',
+    title: 'Vyom By Balajee Launch Campaign Identity | Zurich Graphics',
     description:
       "Zurich Graphics' campaign planning for pre-launch and post-launch phases shaped Vyom by Balajee's identity around aspirational living.",
     keywords: 'real estate campaign planning agency for pre launch and post launch phases',
@@ -367,13 +367,13 @@ export const serviceSeo: Record<string, SeoEntry> = {
     keywords: 'real estate social media marketing agency',
   },
   'corporate-project-films': {
-    title: 'TVC Ad Agency for Corporate Films | Zurich Graphics',
+    title: 'TVC Ad Agency For Corporate Films | Zurich Graphics',
     description:
       'As a TVC ad agency, Zurich Graphics gives corporate vision a voice and project stories a powerful screen presence, from script to final grade.',
     keywords: 'tvc ad agency',
   },
   'print-outdoor-media': {
-    title: 'Outdoor Advertising Agency for Real Estate | Zurich Graphics',
+    title: 'Outdoor Advertising Agency For Real Estate | Zurich Graphics',
     description:
       'As an outdoor advertising agency for real estate, Zurich Graphics turns every hoarding, newspaper and site surface into a reason to look.',
     keywords: 'outdoor advertising agency for real estate',

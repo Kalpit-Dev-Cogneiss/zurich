@@ -25,7 +25,7 @@ export default function CaseStudyIndexPage() {
             marginBottom: '2rem',
             letterSpacing: '0.1em',
           }}>
-            Case studies
+            Case Studies
           </h1>
           <p style={{
             fontSize: '1.8rem',

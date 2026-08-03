@@ -227,7 +227,7 @@ export default function Penthouses() {
                     textAlign: 'right',
                     fontWeight: 600,
                   }}>
-                    Private<br />terraces
+                    Private<br />Terraces
                   </h3>
                 </AnimateReveal>
               </div>

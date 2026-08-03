@@ -7,19 +7,19 @@ const EASE = 'cubic-bezier(.7,0,.3,1)'
 
 const CRAFTS = [
   {
-    title: 'Brand strategy & Consulting',
+    title: 'Brand Strategy & Consulting',
     tag: 'The thinking before the ink',
     body: 'Positioning, naming, and the launch roadmap: every project starts as a strategy conversation, not an artwork request.',
     image: '/portfolio/commercial-projects/krupa-aspire/01.jpg',
   },
   {
-    title: 'Strategic design',
+    title: 'Strategic Design',
     tag: 'Identities built to last',
     body: 'Identities and design systems that survive beyond the launch: logo to livery, one coherent voice.',
     image: '/portfolio/residencial-projects/greenleaf heritage/g3.jpg',
   },
   {
-    title: 'Brochure design',
+    title: 'Brochure Design',
     tag: 'Print that gets kept',
     body: 'The piece a buyer takes home. Paper, foil, binding, and storytelling engineered to stay on the table.',
     image: '/portfolio/residencial-projects/greenleaf heritage/g7.jpg',
@@ -37,7 +37,7 @@ const CRAFTS = [
     image: '/portfolio/commercial-projects/krupa-aspire/09.jpg',
   },
   {
-    title: 'Brand communication',
+    title: 'Brand Communication',
     tag: 'End to end, one voice',
     body: 'Everything between first hoarding and handover: managed as one continuous brand conversation.',
     image: '/portfolio/corporate-brochure/krrish-group/08.jpg',

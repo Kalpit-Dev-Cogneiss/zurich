@@ -160,7 +160,7 @@ export default function Gallery() {
             letterSpacing: '0.01em',
             lineHeight: 1, margin: 0, color: '#fff',
           }}>
-            The proof is in the work
+            The Proof Is In The Work
           </h2>
           <p style={{
               fontSize: 'clamp(0.9rem, 1vw, 2rem)',

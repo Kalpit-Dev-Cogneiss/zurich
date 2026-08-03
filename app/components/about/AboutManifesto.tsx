@@ -175,7 +175,7 @@ export default function AboutManifesto() {
             brochures, campaigns, outdoor, films and digital together under
             one roof.
           </p>
-          <a href="#about-passages" aria-label="Scroll down" style={{ color: '#fff', lineHeight: 0, flexShrink: 0 }}>
+          <a href="#about-passages" aria-label="Scroll Down" style={{ color: '#fff', lineHeight: 0, flexShrink: 0 }}>
             <SvgIcon id="long-arrow-down" width={14} height={41} style={{ color: '#fff' }} />
           </a>
         </motion.div>

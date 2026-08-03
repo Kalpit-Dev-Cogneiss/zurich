@@ -58,9 +58,9 @@ export default function ContactForm() {
     (e.currentTarget.style.borderBottomColor = 'rgba(255,255,255,0.2)')
 
   const fields = [
-    { num: '01', label: 'What should we call you?', name: 'name', type: 'text', placeholder: 'Your name', required: true },
-    { num: '02', label: 'Where do we reply?', name: 'email', type: 'email', placeholder: 'you@company.com', required: true },
-    { num: '03', label: 'A number, if calls are easier', name: 'phone', type: 'tel', placeholder: '+91', required: false },
+    { num: '01', label: 'What Should We Call You?', name: 'name', type: 'text', placeholder: 'Your name', required: true },
+    { num: '02', label: 'Where Do We Reply?', name: 'email', type: 'email', placeholder: 'you@company.com', required: true },
+    { num: '03', label: 'A Number, If Calls Are Easier', name: 'phone', type: 'tel', placeholder: '+91', required: false },
   ]
 
   return (
@@ -116,7 +116,7 @@ export default function ContactForm() {
                 margin: 0,
                 marginBottom: '1.6rem',
               }}>
-                Thank you
+                Thank You
               </h3>
               <p style={{
                 fontSize: '1.5rem',
@@ -229,7 +229,7 @@ export default function ContactForm() {
                   onMouseEnter={e => (e.currentTarget.style.opacity = '0.85')}
                   onMouseLeave={e => (e.currentTarget.style.opacity = '1')}
                 >
-                  Send message
+                  Send Message
                 </button>
               </div>
             </AnimateReveal>

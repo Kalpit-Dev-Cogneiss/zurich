@@ -43,7 +43,7 @@ export default function Home() {
               margin: 0,
               marginBottom: '1rem',
             }}>
-              All it takes to stand apart
+              All It Takes To Stand Apart
             </h3>
             <p style={{
               fontSize: 'clamp(1rem, 1.1vw, 1.3rem)',

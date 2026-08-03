@@ -17,7 +17,7 @@ export const SCHEDULE_ITEMS = [
   },
   {
     time: '08:00',
-    heading: 'Feel the ease of movement and harmony as you start your morning with yoga in the open air.',
+    heading: 'Feel The Ease Of Movement And Harmony As You Start Your Morning With Yoga In The Open Air.',
     body: 'Fresh air, soft rays of sunshine, and smooth movements in rhythm. There is no hustle and bustle here — just you and the perfect start to your morning.',
     image: '/assets/images/schedule/2.webp',
   },
@@ -35,7 +35,7 @@ export const SCHEDULE_ITEMS = [
   },
   {
     time: '21:00',
-    heading: 'End the day in the tea room in the grand lobby.',
+    heading: 'End The Day In The Tea Room In The Grand Lobby.',
     body: 'Where every gesture becomes part of a ritual: unhurried, mindful, filled with silence. This evening ceremony of slowing down is a way to gently let go of the hustle and bustle of the day and prepare for sleep.',
     image: '/assets/images/schedule/5.webp',
   },
@@ -43,31 +43,31 @@ export const SCHEDULE_ITEMS = [
 
 export const ADVANTAGES = [
   {
-    title: 'lobby',
+    title: 'Lobby',
     image: '/assets/images/advantages/1.webp',
     description:
       "Spacious and elegant lobbies welcome residents with impeccable interiors and a cozy lounge area, embodying the idea of impeccable style and understated luxury. Immerse yourself in an atmosphere of refined comfort comparable to the world's finest hotels.",
   },
   {
-    title: 'concierge service',
+    title: 'Concierge Service',
     image: '/assets/images/advantages/2.webp',
     description:
       'A personal assistant who takes care of your time and comfort. Transportation arrangements, ticket reservations, or everyday tasks — everything will be done with attention and professionalism.',
   },
   {
-    title: 'community center',
+    title: 'Community Center',
     image: '/assets/images/advantages/3.webp',
     description:
       'Playing, forgetting about everything in the world, sharing secrets with friends, drawing cartoon characters — the children\'s room opens the door to another world.',
   },
   {
-    title: 'co-working space',
+    title: 'Co-Working Space',
     image: '/assets/images/advantages/4.webp',
     description:
       'If you have a brilliant business idea, discuss it with your colleagues without leaving your home. Spacious meeting rooms with high panoramic windows will help you present your project in the best light.',
   },
   {
-    title: 'courtyard lounge with fireplace and fountain',
+    title: 'Courtyard Lounge With Fireplace And Fountain',
     image: '/assets/images/advantages/5.webp',
     description:
       'A secluded corner in the very center of the complex. Greenery, stylish design solutions, and cozy relaxation areas create an atmosphere of calm and harmony.',
@@ -104,19 +104,19 @@ export const FITNESS_ITEMS = [
 
 export const INFRASTRUCTURE_SLIDES = [
   {
-    title: 'Restaurant and bar',
+    title: 'Restaurant And Bar',
     description:
       'The captivatingly beautiful restaurant will win you over with its signature dishes and carefully curated wine collection. Here, time stands still so you can fully immerse yourself in your senses.',
     image: '/assets/images/infrastructure/slider-1.webp',
   },
   {
-    title: 'Beauty salon',
+    title: 'Beauty Salon',
     description:
       'Bright beauty trends and new classics, Hollywood curls and creative coloring, "blogger" manicures and professional facial care — the masters at Beauty salon can do it all and even more.',
     image: '/assets/images/infrastructure/slider-2.webp',
   },
   {
-    title: 'spa & grooming',
+    title: 'Spa & Grooming',
     description:
       'Want to treat your furry friend to a creative haircut or spa? Pet care is easier with professional grooming. Save time and energy — everything you need for your friend\'s comfort is within walking distance.',
     image: '/assets/images/infrastructure/slider-3.webp',
@@ -128,7 +128,7 @@ export const APARTMENT_TYPES = [
   { label: '1BR', range: '36–65 м²', image: '/assets/images/apartments/floor-1br.png' },
   { label: '2BR', range: '56–67 м²', image: '/assets/images/apartments/floor-2br.png' },
   { label: '3BR', range: '64–80 м²', image: '/assets/images/apartments/floor-3br.png' },
-  { label: 'With terraces', range: '67–81 м²', image: '/assets/images/apartments/floor-studio.png' },
+  { label: 'With Terraces', range: '67–81 м²', image: '/assets/images/apartments/floor-studio.png' },
   { label: 'Penthouse', range: '60–150 м²', image: '/assets/images/apartments/floor-penthouse.png' },
 ] as const
 
@@ -166,9 +166,9 @@ export const GALLERY_IMAGES = [
 ]
 
 export const LOCATION_CARDS = [
-  { label: 'Walking park', image: '/assets/images/location/card-1.webp' },
+  { label: 'Walking Park', image: '/assets/images/location/card-1.webp' },
   { label: 'School', image: '/assets/images/location/card-2.webp' },
-  { label: 'Sport center', image: '/assets/images/location/card-3.webp' },
+  { label: 'Sport Center', image: '/assets/images/location/card-3.webp' },
   { label: 'Embankment', image: '/assets/images/location/card-4.webp' },
   { label: 'Restaurants', image: '/assets/images/location/card-5.webp' },
 ]

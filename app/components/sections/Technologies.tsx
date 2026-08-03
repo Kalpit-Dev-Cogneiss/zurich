@@ -255,7 +255,7 @@ export default function Technologies() {
               textAlign: 'right',
             }}
           >
-            The reviews<br />are in
+            The Reviews<br />Are In
           </h2>
         </div>
       </div>

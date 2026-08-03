@@ -129,7 +129,7 @@ export default function About({ videoUrl, videoPoster }: AboutProps) {
               margin: 0,
             }}
           >
-            Over three decades.<br />360° solutions.<br />Concept to conversion.
+            Over Three Decades.<br />360° Solutions.<br />Concept To Conversion.
           </motion.h2>
         </div>
 

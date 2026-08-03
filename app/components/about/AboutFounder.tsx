@@ -103,7 +103,7 @@ export default function AboutFounder() {
             color: '#fff',
             marginBottom: '1.6rem',
           }}>
-            Founded the beginning. The vision keeps moving forward.
+            Founded The Beginning. The Vision Keeps Moving Forward.
           </span>
         </AnimateReveal>
 

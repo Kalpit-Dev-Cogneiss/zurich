@@ -7,22 +7,22 @@ const EASE: [number, number, number, number] = [0.7, 0, 0.3, 1]
 
 const PASSAGES = [
   {
-    heading: '32 years in. Still restless.',
+    heading: '32 Years In. Still Restless.',
     body: "We never take it easy. Our experience isn't our reason to be comfortable. Instead, it challenges us to dig deeper, question further and go beyond the expected. Realty doesn't stand still, and neither can our thinking. New buyers, emerging markets and changing platforms constantly reshape how projects are discovered and chosen.",
     image: '/images/About us page_261px X 348px.jpeg',
   },
   {
-    heading: 'Not new. And never old.',
+    heading: 'Not New. And Never Old.',
     body: "We have a past. Yet, our thinking doesn't live there. We know what works. That's exactly why we keep asking what could work better. So, we learn, unlearn, experiment and keep our thinking in motion. Experience as a real estate brand strategy consulting partner has given us confidence, not fixed ideas. We rethink how a project is positioned, what it is called, how its identity takes shape and how its story travels from a brochure and campaign to a hoarding, digital or film. The learning moves forward. The formula stays behind.",
     image: '/portfolio/residencial-projects/greenleaf heritage/g7.jpg',
   },
   {
-    heading: 'Many minds. One rule: never settle.',
+    heading: 'Many Minds. One Rule: Never Settle.',
     body: "Ideas rarely come from one desk. They move between strategists, writers, designers, digital thinkers and visual storytellers, each bringing a different way of seeing the same brief. Some bring decades of market experience. Others bring fresh tools, cultural cues and questions no one else thought to ask. Different disciplines. Different experiences. Different opinions. One shared standard: never settle.",
     image: '/portfolio/corporate-brochure/krrish-group/08.jpg',
   },
   {
-    heading: 'A lot goes into turning a head.',
+    heading: 'A Lot Goes Into Turning A Head.',
     body: 'One head can turn another. We prefer a roomful. Every brief moves around the room: strategists question it, writers find its voice, designers shape it and digital thinkers take it further. Clients trust us with projects that have taken years to build, and we treat that trust as part of the brief. Talent gets attention. Teamwork gives it depth.',
     image: '/images/About us page_200px X 149px.jpeg',
   },

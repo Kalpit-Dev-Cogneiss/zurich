@@ -95,8 +95,8 @@ export default function Architecture() {
           letterSpacing: '0.01em',
           margin: 0,
         }}>
-          Think sharp<br />
-          Create brave
+          Think Sharp<br />
+          Create Brave
         </motion.p>
       </div>
 
@@ -125,7 +125,7 @@ export default function Architecture() {
           letterSpacing: '0.01em',
           margin: 0,
         }}>
-          Deliver results<br />Be remembered
+          Deliver Results<br />Be Remembered
         </motion.p>
       </div>
 

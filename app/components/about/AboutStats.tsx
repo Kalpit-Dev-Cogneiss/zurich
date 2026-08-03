@@ -19,7 +19,7 @@ const STATS = [
   { value: 32, suffix: '', label: 'Years', body: 'of craft: one continuous practice in premium branding, print, and exhibitions since 1994.' },
   { value: 4000, suffix: '+', label: 'Projects', body: 'delivered for real estate, architecture, and high-value businesses.' },
   { value: 3, suffix: '', label: 'Sectors', body: 'we go deep in, rather than spreading thin across everything.' },
-  { value: 6, suffix: '', label: 'Service lines', body: 'from strategy to exhibitions: one connected process, start to finish.' },
+  { value: 6, suffix: '', label: 'Service Lines', body: 'from strategy to exhibitions: one connected process, start to finish.' },
 ]
 
 const PLACES = [1000, 100, 10, 1]

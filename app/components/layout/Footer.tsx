@@ -41,7 +41,7 @@ export default function Footer() {
         <div style={{ textAlign: 'center', marginBottom: '6rem' }}>
           <button
             onClick={scrollToTop}
-            aria-label="Scroll to top of the page"
+            aria-label="Scroll To Top Of The Page"
             style={{
               background: 'transparent',
               border: 'none',
@@ -102,7 +102,7 @@ export default function Footer() {
           <div style={{ textAlign: 'center' }}>
             <button
               onClick={scrollToTop}
-              aria-label="Scroll to top"
+              aria-label="Scroll To Top"
               style={{
                 background: 'transparent',
                 border: 'none',

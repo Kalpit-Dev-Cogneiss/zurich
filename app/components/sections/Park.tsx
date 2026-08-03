@@ -20,7 +20,7 @@ export default function Park() {
           <motion.div style={{ y: imgY, position: 'absolute', inset: '-12% 0' }}>
             <Image
               src="/assets/images/infrastructure/1.webp"
-              alt="Private park"
+              alt="Private Park"
               fill style={{ objectFit: 'cover' }}
             />
           </motion.div>
@@ -64,7 +64,7 @@ export default function Park() {
               fontSize: 'clamp(2rem, 3vw, 3.6rem)',
               lineHeight: 1.35, color: 'rgba(255,255,255,0.9)',
             }}>
-              Fresh air and birdsong will lead you to your own park.
+              Fresh Air And Birdsong Will Lead You To Your Own Park.
             </p>
           </AnimateReveal>
           <AnimateReveal delay={0.15}>

@@ -68,7 +68,7 @@ export default function Hero() {
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src={BG_NIGHT}
-            alt="Zurich Graphics real estate branding"
+            alt="Zurich Graphics Real Estate Branding"
             style={{
               position: 'absolute',
               inset: 0,
@@ -123,7 +123,7 @@ export default function Hero() {
               whiteSpace: 'pre-line',
             }}
           >
-            India&apos;s premier agency for powerful real estate brands
+            India&apos;s Premier Agency For Powerful Real Estate Brands
           </motion.p>
 
           <motion.a
@@ -131,7 +131,7 @@ export default function Hero() {
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ duration: 0.9, ease: [0.7, 0, 0.3, 1], delay: 0.6 }}
-            aria-label="Scroll down"
+            aria-label="Scroll Down"
             style={{ display: 'inline-block', lineHeight: 0, color: '#fff' }}
           >
             <SvgIcon id="long-arrow-down" width={14} height={41} style={{ color: '#fff' }} />

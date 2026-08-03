@@ -54,7 +54,7 @@ export default function PortfolioPage() {
               letterSpacing: '0.1em',
             }}
           >
-            Our portfolio
+            Our Portfolio
           </h1>
           <p
             style={{

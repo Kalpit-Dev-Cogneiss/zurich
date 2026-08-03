@@ -6,17 +6,17 @@ import ParallaxImage from '@/app/components/ui/ParallaxImage'
 
 const SLIDES = [
   {
-    title: 'Restaurant\nand bar',
+    title: 'Restaurant\nAnd Bar',
     description: 'The captivatingly beautiful restaurant will win you over with its signature dishes and carefully curated wine collection. Here, time stands still so you can fully immerse yourself in your senses.',
     image: 'https://zorge9.estate/media/cache/homepage_infrastructure_slider_img_xxl/uploads/39/img_4055_1_1777295251.webp',
   },
   {
-    title: 'Beauty salon',
+    title: 'Beauty Salon',
     description: 'Bright beauty trends and new classics, Hollywood curls and creative coloring, "blogger" manicures and professional facial care: the masters at Beauty salon can do it all and even more.',
     image: 'https://zorge9.estate/media/cache/homepage_infrastructure_slider_img_xxl/uploads/39/img_4055_2_1777295279.webp',
   },
   {
-    title: 'Spa &\ngrooming',
+    title: 'Spa &\nGrooming',
     description: "Want to treat your furry friend to a creative haircut or spa? Pet care is easier with professional grooming. Save time and energy: everything you need for your friend's comfort is within walking distance.",
     image: 'https://zorge9.estate/media/cache/homepage_infrastructure_slider_img_xxl/uploads/39/img_4055_1777295252.webp',
   },

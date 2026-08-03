@@ -33,7 +33,7 @@ export default function ContactMap() {
         overflow: 'hidden',
       }}>
         <iframe
-          title="Zurich Graphics, studio location"
+          title="Zurich Graphics, Studio Location"
           src={MAPS_EMBED_SRC}
           loading="lazy"
           referrerPolicy="no-referrer-when-downgrade"

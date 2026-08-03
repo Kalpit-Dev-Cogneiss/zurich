@@ -40,7 +40,7 @@ export default function IndiaMap() {
               marginBottom: '1.5rem',
             }}
           >
-            The map of our work
+            The Map Of Our Work
           </h2>
           <p
             style={{

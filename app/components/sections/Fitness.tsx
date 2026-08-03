@@ -130,7 +130,7 @@ export default function Fitness() {
           <div style={{ display: 'flex', height: '100vh', alignItems: 'center', padding: '0 6rem', gap: '5rem', flexShrink: 0 }}>
             <div style={{ flexShrink: 0, width: '20vw' }}>
               <h2 style={{ fontSize: 'clamp(2rem, 2.8vw, 3.6rem)', fontWeight: 600, lineHeight: 1.1, letterSpacing: '0.02em', color: '#000', margin: 0 }}>
-                Our work
+                Our Work
               </h2>
             </div>
             <div style={{ flexShrink: 0, width: '38vw', height: '78vh', overflow: 'hidden' }}>
@@ -160,7 +160,7 @@ export default function Fitness() {
             </div>
             <div style={{ flexShrink: 0, width: '20vw' }}>
               <p style={{ fontSize: 'clamp(1.4rem, 1.8vw, 2.4rem)', fontWeight: 600, lineHeight: 1.25, letterSpacing: '0.02em', color: '#000' }}>
-                The skyline remembers great architecture. The market remembers great branding. This is where we made our mark.
+                The Skyline Remembers Great Architecture. The Market Remembers Great Branding. This Is Where We Made Our Mark.
               </p>
             </div>
           </div>
@@ -195,7 +195,7 @@ export default function Fitness() {
             </div>
             <div style={{ flexShrink: 0, width: '20vw' }}>
               <p style={{ fontSize: 'clamp(1.4rem, 1.8vw, 2.4rem)', fontWeight: 600, lineHeight: 1.25, letterSpacing: '0.02em', color: '#000' }}>
-                From naming to launch: one connected creative journey, across every touchpoint.
+                From Naming To Launch: One Connected Creative Journey, Across Every Touchpoint.
               </p>
             </div>
             <div style={{ flexShrink: 0, width: '6vw' }} />
@@ -212,7 +212,7 @@ export default function Fitness() {
             </div>
             <div style={{ flexShrink: 0, width: '20vw' }}>
               <p style={{ fontSize: 'clamp(1.4rem, 1.8vw, 2.4rem)', fontWeight: 600, lineHeight: 1.25, letterSpacing: '0.02em', color: '#000' }}>
-                A compelling position. A powerful story. A brand built to be chosen.
+                A Compelling Position. A Powerful Story. A Brand Built To Be Chosen.
               </p>
             </div>
             <div style={{ flexShrink: 0, width: '6vw' }} />
@@ -222,7 +222,7 @@ export default function Fitness() {
           <div style={{ display: 'flex', height: '100vh', alignItems: 'center', padding: '0 6rem', gap: '5rem', flexShrink: 0 }}>
             <div style={{ flexShrink: 0, width: '20vw' }}>
               <h2 style={{ fontSize: 'clamp(2rem, 2.8vw, 3.6rem)', fontWeight: 600, lineHeight: 1.1, letterSpacing: '0.02em', color: '#000', margin: 0 }}>
-                The work<br />speaks
+                The Work<br />Speaks
               </h2>
             </div>
             <div style={{ flexShrink: 0, width: '38vw', height: '78vh', overflow: 'hidden' }}>

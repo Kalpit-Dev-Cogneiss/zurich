@@ -97,9 +97,9 @@ export default function Panorama() {
                 maxWidth: 200,
               }}
             >
-              Our operating
+              Our Operating
               <br />
-              system
+              System
             </motion.h2>
           </div>
 

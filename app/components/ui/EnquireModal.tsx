@@ -125,7 +125,7 @@ export default function EnquireModal({ open, onClose }: EnquireModalProps) {
           >
             <button
               onClick={handleClose}
-              aria-label="Close enquiry form"
+              aria-label="Close Enquiry Form"
               style={{
                 position: 'absolute',
                 top: '2rem',
@@ -147,7 +147,7 @@ export default function EnquireModal({ open, onClose }: EnquireModalProps) {
                   margin: 0,
                   marginBottom: '1.6rem',
                 }}>
-                  Thank you
+                  Thank You
                 </h3>
                 <p style={{
                   fontSize: '1.4rem',
@@ -182,7 +182,7 @@ export default function EnquireModal({ open, onClose }: EnquireModalProps) {
                   marginBottom: '3rem',
                   maxWidth: 420,
                 }}>
-                  Tell us about your project, we will get back within a day
+                  Tell Us About Your Project, We Will Get Back Within A Day
                 </h3>
 
                 <form onSubmit={handleSubmit} style={{ display: 'flex', flexDirection: 'column', gap: '2rem' }}>
@@ -224,7 +224,7 @@ export default function EnquireModal({ open, onClose }: EnquireModalProps) {
                     onMouseEnter={(e) => (e.currentTarget.style.opacity = '0.85')}
                     onMouseLeave={(e) => (e.currentTarget.style.opacity = '1')}
                   >
-                    Send enquiry
+                    Send Enquiry
                   </button>
                 </form>
               </>

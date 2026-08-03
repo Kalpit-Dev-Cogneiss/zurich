@@ -205,7 +205,7 @@ const residentialProjects: ProjectData[] = [
   },
   {
     slug: 'vyom-by-balajee',
-    title: 'Vyom by Balajee',
+    title: 'Vyom By Balajee',
     location: '@mumbai',
     projectType: 'Celestial\nResidential tower',
     client: 'Balajee Group',

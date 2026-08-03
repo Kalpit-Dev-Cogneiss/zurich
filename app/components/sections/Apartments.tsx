@@ -187,7 +187,7 @@ export default function Apartments() {
             >
               Splendid
               <br />
-              apartments
+              Apartments
             </h2>
           </div>
         </div>
