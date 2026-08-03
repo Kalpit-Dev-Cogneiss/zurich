@@ -17,16 +17,18 @@ import IndiaMap from '@/app/components/sections/IndiaMap'
 import PageCTA from '@/app/components/ui/PageCTA'
 import Penthouses from './components/sections/Penthouses'
 import { getHomeBrochureImages } from '@/app/lib/homeBrochure'
+import { getAboutVideoUrl, ABOUT_VIDEO_POSTER } from '@/app/lib/aboutVideo'
 
 export default function Home() {
   const homeBrochureImages = getHomeBrochureImages()
+  const aboutVideoUrl = getAboutVideoUrl()
 
   return (
     <>
       <Header />
       <main>
         <StackReveal zIndex={1}><Hero /></StackReveal>
-        <StackReveal zIndex={2}><About /></StackReveal>
+        <StackReveal zIndex={2}><About videoUrl={aboutVideoUrl} videoPoster={ABOUT_VIDEO_POSTER} /></StackReveal>
         <StackReveal zIndex={3}><Location brochureImages={homeBrochureImages} /></StackReveal>
         <StackReveal zIndex={4}><Panorama /></StackReveal>
         <StackReveal zIndex={5}><Architecture /></StackReveal>

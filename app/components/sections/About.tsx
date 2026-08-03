@@ -3,28 +3,30 @@ import { useState, useRef, useEffect } from 'react'
 import { motion, AnimatePresence, useScroll, useTransform } from 'framer-motion'
 import SvgIcon from '@/app/components/ui/SvgIcon'
 
-export default function About() {
+interface AboutProps {
+  videoUrl?: string
+  videoPoster?: string
+}
+
+export default function About({ videoUrl, videoPoster }: AboutProps) {
   const [videoOpen, setVideoOpen] = useState(false)
   const sectionRef = useRef<HTMLElement>(null)
-  const bgVideoRef = useRef<HTMLIFrameElement>(null)
+  const bgVideoRef = useRef<HTMLVideoElement>(null)
   const { scrollYProgress } = useScroll({ target: sectionRef, offset: ['start end', 'end start'] })
   const videoY = useTransform(scrollYProgress, [0, 1], ['-8%', '8%'])
 
-  // The background embed uses autopause=0 so Vimeo never stops it on its
-  // own — left alone it decodes video for the whole session, dragging FPS
-  // down everywhere. Pause it whenever the section can't be seen: scrolled
-  // out of the viewport, or covered by a later stacked section (StackReveal
-  // hides covered wrappers, which this section inherits as visibility:
-  // hidden).
+  // Left playing all the time, a background video decodes for the whole
+  // session and drags FPS down everywhere. Pause it whenever the section
+  // can't be seen: scrolled out of the viewport, or covered by a later
+  // stacked section (StackReveal hides covered wrappers, which this section
+  // inherits as visibility: hidden).
   useEffect(() => {
     const section = sectionRef.current
-    const iframe = bgVideoRef.current
-    if (!section || !iframe) return
+    const video = bgVideoRef.current
+    if (!section || !video || !videoUrl) return
 
     let playing = true
     let raf = 0
-    const command = (method: 'play' | 'pause') =>
-      iframe.contentWindow?.postMessage(JSON.stringify({ method }), '*')
 
     const check = () => {
       raf = 0
@@ -33,7 +35,8 @@ export default function About() {
       const shouldPlay = onScreen && getComputedStyle(section).visibility !== 'hidden'
       if (shouldPlay !== playing) {
         playing = shouldPlay
-        command(shouldPlay ? 'play' : 'pause')
+        if (shouldPlay) video.play().catch(() => {})
+        else video.pause()
       }
     }
     const onScroll = () => {
@@ -46,7 +49,7 @@ export default function About() {
       window.removeEventListener('scroll', onScroll)
       if (raf) cancelAnimationFrame(raf)
     }
-  }, [])
+  }, [videoUrl])
 
   return (
     <section
@@ -62,18 +65,20 @@ export default function About() {
         color: '#fff',
       }}
     >
-      {/* ── Vimeo video background ── */}
+      {/* ── background video ── */}
       <div style={{
         position: 'absolute', inset: 0,
         overflow: 'hidden',
         zIndex: 0,
       }}>
         <motion.div style={{ position: 'absolute', inset: '-8% 0', y: videoY, willChange: 'transform' }}>
-          <iframe
+          <video
             ref={bgVideoRef}
-            src="https://player.vimeo.com/video/1185877284?loop=1&muted=1&autoplay=1&autopause=0&background=1"
-            allow="autoplay; encrypted-media"
-            allowFullScreen
+            autoPlay
+            muted
+            loop
+            playsInline
+            poster={videoPoster}
             style={{
               position: 'absolute',
               // oversized to fill any aspect ratio — centre it
@@ -83,10 +88,12 @@ export default function About() {
               height: 'calc(100% + 200px)',
               minWidth: '177.78vh',  /* 16/9 ratio */
               minHeight: '56.25vw',
-              border: 'none',
+              objectFit: 'cover',
               pointerEvents: 'none',
             }}
-          />
+          >
+            {videoUrl && <source src={videoUrl} type="video/mp4" />}
+          </video>
         </motion.div>
         {/* dark overlay so content stays readable */}
         <div style={{
