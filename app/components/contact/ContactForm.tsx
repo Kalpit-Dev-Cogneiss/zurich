@@ -25,7 +25,7 @@ const bigInputStyle: React.CSSProperties = {
 const numStyle: React.CSSProperties = {
   fontSize: '1.2rem',
   letterSpacing: '0.18em',
-  color: 'var(--c-brown)',
+  color: 'rgba(255,255,255,0.4)',
   paddingTop: '2.4rem',
 }
 
@@ -53,7 +53,7 @@ export default function ContactForm() {
   }
 
   const focus = (e: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement>) =>
-    (e.currentTarget.style.borderBottomColor = 'var(--c-brown)')
+    (e.currentTarget.style.borderBottomColor = '#fff')
   const blur = (e: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement>) =>
     (e.currentTarget.style.borderBottomColor = 'rgba(255,255,255,0.2)')
 
@@ -82,17 +82,17 @@ export default function ContactForm() {
             display: 'block',
             fontSize: '1.1rem',
             letterSpacing: '0.22em',
-            color: 'var(--c-brown)',
+            color: 'rgba(255,255,255,0.6)',
             marginBottom: '2.4rem',
           }}>
-            Or tell us everything at once
+            A little context now. A much bigger conversation soon.
           </span>
         </AnimateReveal>
 
         <SplitText
           as="h2"
           mode="lines"
-          text="Every landmark starts with a conversation"
+          text="Fill us in. We'll take it forward."
           style={{
             fontSize: 'clamp(3rem, 4.6vw, 6.4rem)',
             fontWeight: 600,
@@ -127,7 +127,7 @@ export default function ContactForm() {
               }}>
                 Your mail app should have opened with the message ready to send.
                 If it didn&apos;t, write to us directly at{' '}
-                <a href={`mailto:${CONTACT_EMAIL}`} style={{ color: 'var(--c-brown)' }}>
+                <a href={`mailto:${CONTACT_EMAIL}`} style={{ color: '#fff' }}>
                   {CONTACT_EMAIL}
                 </a>.
               </p>
@@ -217,8 +217,8 @@ export default function ContactForm() {
                     alignItems: 'center',
                     gap: '1.2rem',
                     padding: '1.8rem 3.6rem',
-                    background: 'var(--c-brown)',
-                    color: '#fff',
+                    background: '#fff',
+                    color: '#000',
                     fontSize: '1.2rem',
                     letterSpacing: '0.12em',
                     border: 'none',

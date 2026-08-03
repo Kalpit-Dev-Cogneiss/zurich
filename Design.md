@@ -6,7 +6,7 @@ The design language for the Zurich real-estate branding agency site. This is the
 
 ## 1. Brand personality
 
-Bold, editorial, confident. Full-bleed black canvases, oversized sentence-case headlines, a single warm brown accent, and cinematic scroll motion. Everything reads as "premium, strategy-first, made for real estate brands."
+Bold, editorial, confident. Full-bleed black canvases, oversized sentence-case headlines, a strict black-and-white palette, and cinematic scroll motion. Everything reads as "premium, strategy-first, made for real estate brands."
 
 ---
 
@@ -14,11 +14,12 @@ Bold, editorial, confident. Full-bleed black canvases, oversized sentence-case h
 
 Defined as CSS variables in `app/globals.css` (`:root`). Always reference the token, not the raw hex.
 
+Strict monochrome palette — no color accents. Use white/black at full opacity for emphasis, and `rgba(255,255,255,X)` / `rgba(0,0,0,X)` for secondary hierarchy.
+
 | Token | Value | Use |
 | --- | --- | --- |
 | `--c-white` | `#ffffff` | Backgrounds (light), text on dark |
 | `--c-black` | `#000000` | Primary canvas, text on light |
-| `--c-brown` | `#a0725b` | **Accent** — CTAs, eyebrows, underlines, hover fills |
 | `--c-gray` | `#666666` | Secondary text |
 | `--c-gray-light` | `#aaaaaa` | Tertiary text / hints |
 
@@ -29,13 +30,12 @@ Defined as CSS variables in `app/globals.css` (`:root`). Always reference the to
 | `--t-background` | white | black |
 | `--t-text` | black | white |
 | `--t-heading` | black | white |
-| `--t-primary` | brown | brown |
 | `--t-small` | `rgba(0,0,0,.3)` | `rgba(255,255,255,.5)` |
 | `--t-line` | `rgba(0,0,0,.1)` | `rgba(255,255,255,.2)` |
 
 Add class `.ui-dark` to a container to flip to the dark theme; `.ui-background` applies the current theme's background + text. The site skews dark — most sections use `background: #000`.
 
-Common ad-hoc alphas: white text at `rgba(255,255,255,0.6)` for body copy on black; overlays at `rgba(0,0,0,0.45)` over video.
+Common ad-hoc alphas: white text at `rgba(255,255,255,0.6)` for body copy on black; overlays at `rgba(0,0,0,0.45)` over video. For "accent" emphasis (eyebrows, active states, CTA fills) where a color used to be used, use solid white/black (or a dimmer `rgba` of the opposite value on the same surface) instead — never reintroduce a color token.
 
 ---
 
@@ -52,7 +52,7 @@ Common ad-hoc alphas: white text at `rgba(255,255,255,0.6)` for body copy on bla
 | Sub-heading (h3) | `clamp(2rem, 3vw, 3.5rem)` | Sentence case, `letterSpacing 0.1em` |
 | Card heading | `clamp(1.8rem, 2.2vw, 2.8rem)` | Sentence case, `lineHeight 1.1` |
 | Body | `clamp(1rem, 1.1vw, 1.3rem)` | `lineHeight 1.6`, `letterSpacing 0.02em`, muted color |
-| Eyebrow / label | `1.0rem`–`1.25rem` | Sentence case, `letterSpacing 0.1em`–`0.2em`, brown or muted |
+| Eyebrow / label | `1.0rem`–`1.25rem` | Sentence case, `letterSpacing 0.1em`–`0.2em`, white/black or muted `rgba` |
 
 Headings are sentence case (capitalize only the first letter; keep proper nouns/acronyms as-is) and `fontWeight: 600` by default (set globally). Line breaks in headings are often hand-placed with `<br />`.
 
@@ -88,7 +88,7 @@ Full detail in the `scroll-animation` skill. Essentials:
 **Layout:** `Header`, `Footer`.
 **Sections (`app/components/sections/`):** Hero, About, Location, Panorama, Architecture, Gallery, DailySchedule, Advantages, Fitness, Infrastructure, Park, Technologies, Penthouses, IndiaMap.
 
-Signature CTA = circular magnetic button, `1px rgba(255,255,255,0.3)` border, brown fill scaling from center on hover (see `ui/PageCTA.tsx`).
+Signature CTA = circular magnetic button, `1px rgba(255,255,255,0.3)` border, white fill sliding in from the left on hover (text flips to black for contrast — see `ui/PageCTA.tsx`).
 
 ---
 
@@ -96,6 +96,6 @@ Signature CTA = circular magnetic button, `1px rgba(255,255,255,0.3)` border, br
 
 - Style with **inline `style={{}}` objects**; keep global CSS in `globals.css` only (fonts, resets, tokens, responsive overrides).
 - `'use client'` on anything using hooks / Framer / GSAP / browser APIs.
-- Reference color tokens (`var(--c-brown)`), not raw hex.
-- Reuse existing UI components; keep the black-canvas + brown-accent identity, with sentence-case headings (not uppercase).
+- Reference color tokens (`var(--c-white)`, `var(--c-black)`), not raw hex — and never reintroduce a color accent; this is a strict black/white palette.
+- Reuse existing UI components; keep the black-canvas + white-on-black monochrome identity, with sentence-case headings (not uppercase).
 - Stack: **Next.js 16, React 19, Tailwind v4, TypeScript.** Note: this Next.js has breaking changes vs. older versions — check `node_modules/next/dist/docs/` before writing framework code (per `AGENTS.md`).

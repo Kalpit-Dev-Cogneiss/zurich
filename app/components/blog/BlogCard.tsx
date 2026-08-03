@@ -39,7 +39,7 @@ export default function BlogCard({ post, index }: { post: BlogPost; index: numbe
         </div>
 
         <div style={{ display: 'flex', alignItems: 'center', gap: '1.2rem', marginBottom: '1.2rem' }}>
-          <span style={{ fontSize: '1.1rem', letterSpacing: '0.06em', color: 'var(--c-brown)' }}>
+          <span style={{ fontSize: '1.1rem', letterSpacing: '0.06em', color: 'rgba(255,255,255,0.6)' }}>
             {post.category}
           </span>
           <span style={{ width: 4, height: 4, borderRadius: '50%', background: 'rgba(255,255,255,0.3)' }} />

@@ -7,7 +7,7 @@ const EASE = 'cubic-bezier(.7,0,.3,1)'
 
 const CRAFTS = [
   {
-    title: 'Brand strategy & consultation',
+    title: 'Brand strategy & Consulting',
     tag: 'The thinking before the ink',
     body: 'Positioning, naming, and the launch roadmap: every project starts as a strategy conversation, not an artwork request.',
     image: '/portfolio/commercial-projects/krupa-aspire/01.jpg',
@@ -77,7 +77,7 @@ export default function AboutCraft() {
             <span style={{
               fontSize: '1.1rem',
               letterSpacing: '0.22em',
-              color: 'var(--c-brown)',
+              color: '#fff',
             }}>
               What we do
             </span>
@@ -155,7 +155,7 @@ export default function AboutCraft() {
                   left: '2rem',
                   fontSize: '1.25rem',
                   letterSpacing: '0.14em',
-                  color: isActive ? 'var(--c-brown)' : 'rgba(255,255,255,0.6)',
+                  color: isActive ? '#fff' : 'rgba(255,255,255,0.6)',
                   transition: 'color 0.5s ease',
                   zIndex: 2,
                 }}>
@@ -203,7 +203,7 @@ export default function AboutCraft() {
                     display: 'block',
                     fontSize: '1.1rem',
                     letterSpacing: '0.18em',
-                    color: 'var(--c-brown)',
+                    color: 'rgba(255,255,255,0.6)',
                     marginBottom: '1.2rem',
                   }}>
                     {craft.tag}

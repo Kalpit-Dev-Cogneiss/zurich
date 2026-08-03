@@ -38,7 +38,22 @@ export default function Hero() {
         width: '33%',
         background: '#000',
         zIndex: 2,
-      }} />
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'flex-start',
+        paddingLeft: '4rem',
+      }}>
+        {mounted && (
+          <motion.img
+            src="/zurich-logo-White.svg"
+            alt="Zurich Graphics"
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.9, ease: [0.7, 0, 0.3, 1], delay: 0.2 }}
+            style={{ width: 'clamp(160px, 14vw, 260px)', height: 'auto' }}
+          />
+        )}
+      </div>
 
       {/* ── RIGHT — night building photo from reference ── */}
       <div style={{
@@ -146,15 +161,15 @@ export default function Hero() {
             <p style={{
               fontSize: 'clamp(8rem, 18vw, 21rem)',
               fontWeight: 600,
-              fontFamily: 'Gilroy, Helvetica, Arial, sans-serif',
-              letterSpacing: '0.4em',
+              fontFamily: "'Times New Roman', Times, serif",
+              letterSpacing: '0.1em',
               color: '#ffffff',
               whiteSpace: 'nowrap',
               lineHeight: 0.82,
               paddingLeft: '2.4rem',
               margin: 0,
             }}>
-              Zurich
+              ZURICH
             </p>
           </motion.div>
         )}

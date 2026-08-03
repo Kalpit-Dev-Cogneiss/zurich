@@ -3,7 +3,7 @@
 // TODO: swap in the real studio address before this goes in front of a
 // client — this is a placeholder query so the map renders something sane
 // out of the box. Google's no-API-key embed works with a plain text query.
-const ADDRESS = 'Zurich Graphics, Hyderabad, Telangana, India'
+const ADDRESS = 'Zurich Graphics, Vadodara, Gujarat, India'
 const MAPS_EMBED_SRC = `https://www.google.com/maps?q=${encodeURIComponent(ADDRESS)}&output=embed`
 const MAPS_LINK = `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(ADDRESS)}`
 
@@ -65,7 +65,7 @@ export default function ContactMap() {
           style={{
             fontSize: '1.2rem',
             letterSpacing: '0.1em',
-            color: 'var(--c-brown)',
+            color: '#fff',
           }}
         >
           Get directions →

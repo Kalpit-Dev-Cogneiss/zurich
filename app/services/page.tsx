@@ -26,7 +26,7 @@ export default function ServicesPage() {
         {/* Hero — full-bleed image backdrop */}
         <section style={{ position: 'relative', height: '100svh', minHeight: 640, overflow: 'hidden' }}>
           <ParallaxImage
-            src="/images/Services_360 Branding Design.jpg"
+            src="/images/services-page-hero-banner.jpeg"
             alt="Zurich Graphics services"
             strength={10}
             style={{ position: 'absolute', inset: 0 }}
@@ -38,7 +38,7 @@ export default function ServicesPage() {
           }} />
 
           {/* small floating accent images — corner collage */}
-          <div aria-hidden="true" style={{
+          {/* <div aria-hidden="true" style={{
             position: 'absolute', top: '11rem', right: '5.6rem',
             width: 'clamp(120px, 12vw, 200px)', aspectRatio: '3 / 4', overflow: 'hidden',
             display: 'none',
@@ -51,7 +51,7 @@ export default function ServicesPage() {
             display: 'none',
           }} className="hero-accent-2">
             <ParallaxImage src="/images/Services_Reels.jpg" strength={18} />
-          </div>
+          </div> */}
 
           <div style={{ position: 'relative', maxWidth: 1400, margin: '0 auto', height: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'flex-end', padding: '13rem 4rem 6rem' }}>
             <AnimateReveal>
@@ -59,7 +59,7 @@ export default function ServicesPage() {
                 display: 'block',
                 fontSize: '1.1rem',
                 letterSpacing: '0.14em',
-                color: 'var(--c-brown)',
+                color: 'rgba(255,255,255,0.6)',
                 marginBottom: '2.4rem',
               }}>
                 What we do, {String(services.length).padStart(2, '0')} ways
@@ -68,7 +68,7 @@ export default function ServicesPage() {
             <SplitText
               as="h1"
               mode="lines"
-              text="One studio, every touchpoint your project needs to be chosen"
+              text="The whole realty brand. All the way."
               style={{
                 fontSize: 'clamp(3.6rem, 6.6vw, 8.8rem)',
                 fontWeight: 600,
@@ -79,6 +79,18 @@ export default function ServicesPage() {
                 margin: 0,
               }}
             />
+            <AnimateReveal delay={0.2} style={{ marginTop: '2.8rem' }}>
+              <p style={{
+                fontSize: 'clamp(1.4rem, 1.4vw, 1.7rem)',
+                lineHeight: 1.7,
+                letterSpacing: '0.02em',
+                color: 'rgba(255,255,255,0.65)',
+                maxWidth: 620,
+                margin: 0,
+              }}>
+                A real estate brand has more ground to cover than a master plan. It needs to think sharp, look right and show up everywhere. We stay with the brand from the first question to final execution. Different formats. Same voice. Same edge. One complete realty brand. One partner all the way.
+              </p>
+            </AnimateReveal>
           </div>
 
           <style>{`
@@ -115,7 +127,7 @@ export default function ServicesPage() {
                   display: 'block',
                   fontSize: '1.1rem',
                   letterSpacing: '0.14em',
-                  color: 'var(--c-brown)',
+                  color: 'rgba(255,255,255,0.6)',
                   marginBottom: '2rem',
                 }}>
                   Questions
@@ -129,7 +141,7 @@ export default function ServicesPage() {
                   margin: 0,
                   maxWidth: 400,
                 }}>
-                  Before you get in touch
+                  A few answers. For the questions that matter.
                 </h2>
               </AnimateReveal>
             </div>
@@ -142,7 +154,8 @@ export default function ServicesPage() {
         <div style={{ position: 'relative', zIndex: 6 }}>
           <PageCTA
             eyebrow="Ready when you are"
-            heading="Let's build the brand your project deserves"
+            heading="Let's give the market a new favourite"
+            body="You build the address. We'll build the preference."
             buttonLabel="Start a project"
             href="/contact"
           />

@@ -8,9 +8,9 @@ interface SplitImage {
 }
 
 interface CaseStudySplitRowProps {
-  /** the large image, full row height, on the left */
+  /** the large image, on the left */
   main: SplitImage
-  /** two images stacked in a column on the right, each half the row height */
+  /** two images stacked in a column on the right */
   stacked: [SplitImage, SplitImage]
   /** optional image layered on top of the whole row, centered, shown at its
    * own natural size (not stretched) — e.g. a standee mockup floating over
@@ -18,18 +18,19 @@ interface CaseStudySplitRowProps {
   overlay?: SplitImage
   /** gap between main/stacked and between the two stacked images, in rem (default 0.6). Set 0 for flush images. */
   gap?: number
-  /** how the two stacked images fill their half-height box: 'cover' (default) crops to fill;
-   * 'contain' shows the whole image uncropped, letterboxed if its aspect ratio doesn't match */
-  stackedFit?: 'cover' | 'contain'
+  /** how the two stacked images fill their box: 'cover' (default) crops to fill;
+   * 'contain' shows the whole image uncropped, letterboxed if its aspect ratio doesn't match;
+   * 'fill' stretches the image to fill the box, ignoring its aspect ratio;
+   * 'none' skips object-fit entirely — the image just scales to the column width at its own aspect ratio */
+  stackedFit?: 'cover' | 'contain' | 'fill' | 'none'
 }
 
-const ROW_HEIGHT = '42rem'
 const EASE: [number, number, number, number] = [0.7, 0, 0.3, 1]
 
 /**
- * Product-shot spread: one large image on the left at full row height,
- * paired with two images stacked on the right (e.g. a bag beside a cap and
- * a t-shirt), matching the client's case-study mockup layout.
+ * Product-shot spread: one large image on the left, paired with two images
+ * stacked on the right (e.g. a bag beside a cap and a t-shirt), matching the
+ * client's case-study mockup layout.
  */
 export default function CaseStudySplitRow({ main, stacked, overlay, gap = 0.6, stackedFit = 'cover' }: CaseStudySplitRowProps) {
   const ref = useRef<HTMLDivElement>(null)
@@ -51,7 +52,7 @@ export default function CaseStudySplitRow({ main, stacked, overlay, gap = 0.6, s
         initial={{ opacity: 0, y: 60 }}
         animate={isInView ? { opacity: 1, y: 0 } : {}}
         transition={{ duration: 0.8, ease: EASE }}
-        style={{ flex: '3 1 0', height: ROW_HEIGHT, overflow: 'hidden' }}
+        style={{ flex: '3 1 0', overflow: 'hidden' }}
       >
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
@@ -61,7 +62,7 @@ export default function CaseStudySplitRow({ main, stacked, overlay, gap = 0.6, s
         />
       </motion.div>
 
-      <div style={{ flex: '2 1 0', height: ROW_HEIGHT, display: 'flex', flexDirection: 'column', gap: `${gap}rem` }}>
+      <div style={{ flex: '2 1 0', display: 'flex', flexDirection: 'column', gap: `${gap}rem` }}>
         {stacked.map((img, i) => (
           <motion.div
             key={i}
@@ -74,7 +75,11 @@ export default function CaseStudySplitRow({ main, stacked, overlay, gap = 0.6, s
             <img
               src={img.src}
               alt={img.alt || 'Case study image'}
-              style={{ width: '100%', height: '100%', objectFit: stackedFit, display: 'block' }}
+              style={
+                stackedFit === 'none'
+                  ? { width: '100%', height: 'auto', display: 'block' }
+                  : { width: '100%', height: '100%', objectFit: stackedFit, display: 'block' }
+              }
             />
           </motion.div>
         ))}

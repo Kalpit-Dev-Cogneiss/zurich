@@ -22,7 +22,7 @@ export default function BlogPage() {
             display: 'block',
             fontSize: '1.1rem',
             letterSpacing: '0.14em',
-            color: 'var(--c-brown)',
+            color: 'rgba(255,255,255,0.6)',
             marginBottom: '2rem',
           }}>
             The journal

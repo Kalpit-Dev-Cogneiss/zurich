@@ -106,12 +106,12 @@ export default function IndiaMap() {
                       width: isActive ? '16px' : '12px',
                       height: isActive ? '16px' : '12px',
                       borderRadius: '50%',
-                      background: isActive ? 'var(--c-brown)' : '#fff',
+                      background: isActive ? '#000' : '#fff',
                       border: '2px solid rgba(255,255,255,0.9)',
                       cursor: 'pointer',
                       transition: 'all 0.3s ease',
                       boxShadow: isActive
-                        ? '0 0 20px rgba(160,114,91,0.8)'
+                        ? '0 0 20px rgba(255,255,255,0.7)'
                         : '0 0 10px rgba(255,255,255,0.4)',
                     }}
                   />
@@ -145,10 +145,10 @@ export default function IndiaMap() {
                     {/* Label Box */}
                     <div
                       style={{
-                        background: isActive ? 'var(--c-brown)' : 'rgba(0,0,0,0.95)',
+                        background: isActive ? '#fff' : 'rgba(0,0,0,0.95)',
                         padding: '0.6rem 1.2rem',
                         borderRadius: '6px',
-                        border: `1px solid ${isActive ? 'var(--c-brown)' : 'rgba(255,255,255,0.25)'}`,
+                        border: `1px solid ${isActive ? '#fff' : 'rgba(255,255,255,0.25)'}`,
                         whiteSpace: 'nowrap',
                         transition: 'all 0.3s ease',
                         backdropFilter: 'blur(10px)',
@@ -160,6 +160,7 @@ export default function IndiaMap() {
                           fontWeight: 600,
                           letterSpacing: '0.05em',
                           marginBottom: '0.2rem',
+                          color: isActive ? '#000' : '#fff',
                         }}
                       >
                         {city.name}
@@ -186,7 +187,7 @@ export default function IndiaMap() {
                         width: '30px',
                         height: '30px',
                         borderRadius: '50%',
-                        background: 'var(--c-brown)',
+                        background: '#fff',
                         opacity: 0,
                         animation: 'pulse 2s infinite',
                         pointerEvents: 'none',

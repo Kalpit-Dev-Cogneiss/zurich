@@ -4,6 +4,7 @@ import Header from '@/app/components/layout/Header'
 import Footer from '@/app/components/layout/Footer'
 import PageCTA from '@/app/components/ui/PageCTA'
 import { getAllBlogPosts, getBlogPostBySlug } from '@/app/lib/blogData'
+import BlogContent from '@/app/components/blog/BlogContent'
 
 export async function generateStaticParams() {
   return getAllBlogPosts().map((post) => ({ slug: post.slug }))
@@ -48,7 +49,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
             </Link>
 
             <div style={{ display: 'flex', alignItems: 'center', gap: '1.2rem', marginBottom: '2rem' }}>
-              <span style={{ fontSize: '1.1rem', letterSpacing: '0.06em', color: 'var(--c-brown)' }}>
+              <span style={{ fontSize: '1.1rem', letterSpacing: '0.06em', color: 'rgba(255,255,255,0.6)' }}>
                 {post.category}
               </span>
               <span style={{ width: 4, height: 4, borderRadius: '50%', background: 'rgba(255,255,255,0.3)' }} />
@@ -78,19 +79,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
               />
             </div>
 
-            {post.content.map((para, i) => (
-              <p
-                key={i}
-                style={{
-                  fontSize: 'clamp(1.4rem, 1.3vw, 1.7rem)',
-                  lineHeight: 1.75,
-                  color: 'rgba(255,255,255,0.65)',
-                  marginBottom: '2.4rem',
-                }}
-              >
-                {para}
-              </p>
-            ))}
+            <BlogContent blocks={post.content} />
           </div>
         </article>
 

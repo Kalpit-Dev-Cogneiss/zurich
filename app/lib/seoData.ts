@@ -331,7 +331,7 @@ export const caseStudySeo: Record<string, SeoEntry> = {
 // Service detail pages, keyed by slug (app/services/[slug]).
 export const serviceSeo: Record<string, SeoEntry> = {
   'brand-strategy-positioning': {
-    title: 'Brand Strategy & Positioning | Zurich Graphics',
+    title: 'Brand Strategy & Consulting | Zurich Graphics',
     description:
       'Offering real estate brand strategy and positioning consulting for project launch, Zurich Graphics gives every project a sharper reason to be chosen.',
     keywords: 'real estate brand strategy and positioning consulting for project launch',

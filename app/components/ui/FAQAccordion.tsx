@@ -30,7 +30,7 @@ export default function FAQAccordion({ items }: { items: FAQItem[] }) {
               }}
             >
               <span style={{ display: 'flex', alignItems: 'baseline', gap: '2rem' }}>
-                <span style={{ fontSize: '1.2rem', letterSpacing: '0.06em', color: 'var(--c-brown)', flexShrink: 0 }}>
+                <span style={{ fontSize: '1.2rem', letterSpacing: '0.06em', color: 'rgba(255,255,255,0.5)', flexShrink: 0 }}>
                   {String(i + 1).padStart(2, '0')}
                 </span>
                 <span style={{

@@ -1,6 +1,7 @@
 'use client'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
+import type Lenis from 'lenis'
 import SvgIcon from '@/app/components/ui/SvgIcon'
 
 const CONTACT_EMAIL = 'zurichai360@gmail.com'
@@ -38,8 +39,25 @@ const labelStyle: React.CSSProperties = {
 export default function EnquireModal({ open, onClose }: EnquireModalProps) {
   const [sent, setSent] = useState(false)
 
+  // Pause Lenis (smooth-scroll intercepts wheel/touch regardless of overflow)
+  // and lock native scroll behind the modal while it's open.
+  useEffect(() => {
+    if (!open) return
+
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const lenis = (window as any).__lenis as Lenis | undefined
+    lenis?.stop()
+    const prevOverflow = document.body.style.overflow
+    document.body.style.overflow = 'hidden'
+
+    return () => {
+      lenis?.start()
+      document.body.style.overflow = prevOverflow
+    }
+  }, [open])
+
   const focus = (e: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement>) =>
-    (e.currentTarget.style.borderBottomColor = 'var(--c-brown)')
+    (e.currentTarget.style.borderBottomColor = '#fff')
   const blur = (e: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement>) =>
     (e.currentTarget.style.borderBottomColor = 'rgba(255,255,255,0.2)')
 
@@ -86,6 +104,7 @@ export default function EnquireModal({ open, onClose }: EnquireModalProps) {
           }}
         >
           <motion.div
+            className="enquire-modal-scroll"
             onClick={(e) => e.stopPropagation()}
             initial={{ opacity: 0, y: 30, scale: 0.98 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
@@ -97,6 +116,7 @@ export default function EnquireModal({ open, onClose }: EnquireModalProps) {
               maxWidth: 560,
               maxHeight: '90vh',
               overflowY: 'auto',
+              scrollbarWidth: 'none',
               background: '#000',
               border: '1px solid rgba(255,255,255,0.12)',
               color: '#fff',
@@ -137,7 +157,7 @@ export default function EnquireModal({ open, onClose }: EnquireModalProps) {
                 }}>
                   Your mail app should have opened with the message ready to send.
                   If it did not, write to us directly at{' '}
-                  <a href={`mailto:${CONTACT_EMAIL}`} style={{ color: 'var(--c-brown)' }}>
+                  <a href={`mailto:${CONTACT_EMAIL}`} style={{ color: '#fff' }}>
                     {CONTACT_EMAIL}
                   </a>.
                 </p>
@@ -148,7 +168,7 @@ export default function EnquireModal({ open, onClose }: EnquireModalProps) {
                   display: 'block',
                   fontSize: '1.1rem',
                   letterSpacing: '0.14em',
-                  color: 'var(--c-brown)',
+                  color: 'rgba(255,255,255,0.6)',
                   marginBottom: '1.2rem',
                 }}>
                   Quick enquiry
@@ -192,8 +212,8 @@ export default function EnquireModal({ open, onClose }: EnquireModalProps) {
                       gap: '1.2rem',
                       marginTop: '1rem',
                       padding: '1.6rem 3.2rem',
-                      background: 'var(--c-brown)',
-                      color: '#fff',
+                      background: '#fff',
+                      color: '#000',
                       fontSize: '1.2rem',
                       letterSpacing: '0.06em',
                       border: 'none',
@@ -215,6 +235,9 @@ export default function EnquireModal({ open, onClose }: EnquireModalProps) {
             #eq-name::placeholder, #eq-email::placeholder,
             #eq-phone::placeholder, #eq-message::placeholder {
               color: rgba(255,255,255,0.25);
+            }
+            .enquire-modal-scroll::-webkit-scrollbar {
+              display: none;
             }
           `}</style>
         </motion.div>

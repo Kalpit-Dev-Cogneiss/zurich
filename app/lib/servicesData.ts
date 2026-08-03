@@ -20,11 +20,11 @@ export const SERVICES: ServiceData[] = [
   {
     slug: 'brand-strategy-positioning',
     num: 1,
-    title: 'Brand strategy & positioning',
-    tagline: 'Giving your project a sharper position and a stronger reason to be chosen.',
+    title: 'Brand strategy & Consulting',
+    tagline: 'The master plan needs a master thought.',
     description: [
-      'Every project is competing with a dozen others promising the same location, the same amenities and the same lifestyle. Strategy is where we find the one true difference worth building a brand around, before a single visual is drawn.',
-      'We study the site, the buyer and the competition, then land on a position that is ownable, defensible and easy to say out loud. Everything downstream, naming, brochure, campaign, is built to prove that one idea.',
+      "Land gives a project its address. A clear idea gives it a place in the market. To find that idea, we study the site, read the market, understand the buyer and get close to the developer's ambition. Somewhere in that mix is the project's real edge. We bring it forward, sharpen it and turn it into a position the buyer can immediately understand while the brand can confidently own.",
+      "Once that master thought lands, the brand knows exactly where to go. The name finds its voice. The identity gets its attitude. The brochure builds the case. The campaign and sales communication carry it into the market. Different expressions. One direction. That's real estate brand strategy consulting at Zurich Graphics: one clear thought, strong enough to keep the entire brand moving as one.",
     ],
     highlights: [
       'Market, site and competitor reads',
@@ -44,10 +44,10 @@ export const SERVICES: ServiceData[] = [
     slug: 'naming-brand-identity',
     num: 2,
     title: 'Naming & brand identity',
-    tagline: 'We give projects names people remember and identities competitors notice.',
+    tagline: 'A good name travels. A strong identity arrives with it.',
     description: [
-      'A project name has to survive being said by a broker, printed on a hoarding, and repeated by a buyer to a friend six months later. We generate wide, then narrow hard against ownability, sayability and how it stretches across every surface.',
-      'Once the name is locked, the identity, wordmark, colour, type, motif, is built to carry it consistently from the site hoarding to the smallest brochure footer.',
+      'A project name has a busy life. It needs to sound right the first time and stay remembered long after. We begin wide, explore every direction and test each possibility for meaning, rhythm, relevance and recall. Then we keep only the names strong enough to carry the project without needing a lengthy explanation.',
+      'Once the name is final, we create a visual world around it. The wordmark, palette, typography and brand elements of real estate logo and brand identity design are shaped to work together wherever the project appears. Different spaces. Yet, one unmistakable identity.',
     ],
     highlights: [
       'Naming exploration and legal-safe shortlisting',
@@ -67,10 +67,10 @@ export const SERVICES: ServiceData[] = [
     slug: 'brochure-design',
     num: 3,
     title: 'Brochure design',
-    tagline: 'We give every feature a reason to matter and every page a reason to turn.',
+    tagline: 'Made to leave the site. Designed to stay in mind.',
     description: [
-      'A brochure is often the only physical object a buyer takes home from a site visit. It has ten seconds to earn a second look, and a coffee table to survive on if it does.',
-      'We open with a single strong idea rather than a floor plan, then order every spread the way a buyer actually decides, location, layout, amenities, trust, and choose paper and print finish to match the building it describes.',
+      'Most site visits end at the gate. A good brochure gets invited home. It lands on the coffee table, gets passed around the family and opens again when the project returns to the conversation. That is the life we design for in real estate brochure design.',
+      'We begin with an idea strong enough to pull people in, then let every spread do its job. Location, lifestyle, planning, amenities and details unfold without making the brochure feel like homework. Words and visuals keep the pace. Paper, texture and print finishes add the right personality. Indeed, a project story that sits well in the hand and better in the mind.',
     ],
     highlights: [
       'Narrative structure and page sequencing',
@@ -78,7 +78,7 @@ export const SERVICES: ServiceData[] = [
       'Print production and paper selection',
       'Digital and interactive brochure formats',
     ],
-    image: '/images/Services_Brochure Design.jpg',
+    image: '/images/Services_Brochure Design__670 X 502.jpeg',
     secondaryImage: '/images/Work Process_003.jpg',
     gallery: ['/images/Services_008.jpg', '/images/Services_009.jpg'],
     faq: [
@@ -90,10 +90,10 @@ export const SERVICES: ServiceData[] = [
     slug: 'campaign-design',
     num: 4,
     title: 'Campaign design',
-    tagline: 'Creative that cuts through clutter and gives the project an unfair share of attention.',
+    tagline: 'One idea with more than one address.',
     description: [
-      'Most launch campaigns lead with the project. Ours lead with a single sharp idea the competition is not saying, then let the project prove it, across hoardings, print, digital and the sales lounge.',
-      'Consistency, more than cleverness, is what actually builds recall in a category buyers only shop in once every few years. We repeat the idea relentlessly until the market can finish the sentence for us.',
+      'A project can have a lot to say. A campaign needs to know what to say first. Through 360 degree campaign design, we find that central thought and build the entire launch around it. The message then moves across hoardings, print, digital communication and the sales lounge, adapted to suit each space without losing its original direction.',
+      'A hoarding has seconds. Digital has a thumb-scroll. Print gets a little longer. The sales lounge gets the conversation. We shape the message for each moment while keeping the brand unmistakably connected.',
     ],
     highlights: [
       'Campaign idea and key visual',
@@ -101,7 +101,7 @@ export const SERVICES: ServiceData[] = [
       'Launch, pre-launch and possession phasing',
       'Sales collateral aligned to the campaign',
     ],
-    image: '/images/Services_Campaign Design.jpg',
+    image: '/images/Services_Campaign Design_670 X 502.jpeg',
     secondaryImage: '/images/Work Process_004.jpg',
     gallery: ['/images/Services_010.jpg', '/images/Services_004.jpg'],
     faq: [
@@ -113,7 +113,7 @@ export const SERVICES: ServiceData[] = [
     slug: '360-project-branding',
     num: 5,
     title: '360° project branding',
-    tagline: 'We make one powerful brand speak fluently across every physical and digital touchpoint.',
+    tagline: "The address changes. The brand doesn't.",
     description: [
       'The gap between a project\'s advertising and its actual sales experience is where trust is lost fastest. A polished campaign followed by an inconsistent sales office undoes weeks of media spend in a single site visit.',
       '360° branding writes the rules once, typography, colour, tone, imagery, so every vendor producing a brochure, a signage panel or a reel works from the same brief. A buyer should not be able to tell where one touchpoint ends and the next begins.',
@@ -124,7 +124,7 @@ export const SERVICES: ServiceData[] = [
       'Vendor-ready brand guidelines',
       'Cross-touchpoint consistency audits',
     ],
-    image: '/images/Services_360 Branding Design.jpg',
+    image: '/images/Services_360 Branding Design_670 X 502.jpeg',
     secondaryImage: '/images/Work Process_005.jpg',
     gallery: ['/images/Services_005.jpg', '/images/Services_006.jpg'],
     faq: [
@@ -147,7 +147,7 @@ export const SERVICES: ServiceData[] = [
       'Community and enquiry response support',
       'Performance-led creative iteration',
     ],
-    image: '/images/Services_Reels.jpg',
+    image: '/images/Services_Reels_670 X 502.jpeg',
     secondaryImage: '/images/Work Process_006.jpg',
     gallery: ['/images/Services_Reels_2.jpg', '/images/Services_007.jpg'],
     faq: [
@@ -159,10 +159,10 @@ export const SERVICES: ServiceData[] = [
     slug: 'corporate-project-films',
     num: 7,
     title: 'Corporate & project films',
-    tagline: 'We give corporate vision a voice and project stories a powerful screen presence.',
+    tagline: 'The project has a story. Roll it.',
     description: [
-      'A film has a job a brochure cannot do: it lets a buyer feel scale, light and craft before the building is even finished. We script, shoot and edit with that promise in mind, whether it is a project walkthrough or a corporate vision film.',
-      'From site recce to final grade, every film is built to hold its own on a hoarding-sized screen, a laptop, or a phone in a broker\'s hand.',
+      'Film lets a project move, breathe and make an impression before its doors even open. Scale becomes visible. Spaces feel real. The corporate vision finds a voice. Whether it is a project film, walkthrough or corporate story, we begin with one clear narrative and build every frame around it.',
+      "Our team handles the journey from the first site visit and script to the final edit, sound and colour grade. Each film is made to work wherever it plays. Be it on a large sales-lounge screen, inside a presentation or on a phone in a broker's hand. Different screens. Same story. Full impact.",
     ],
     highlights: [
       'Project walkthrough and launch films',
@@ -170,7 +170,7 @@ export const SERVICES: ServiceData[] = [
       'Drone, cinematic and 3D-render sequences',
       'Sound design and colour grading',
     ],
-    image: '/images/Services_Corporate Video.jpg',
+    image: '/images/Services_Corporate Video_670 X 502.jpeg',
     secondaryImage: '/images/Work Process_007.jpg',
     gallery: ['/images/Services_008.jpg', '/images/Services_010.jpg'],
     faq: [
@@ -182,10 +182,10 @@ export const SERVICES: ServiceData[] = [
     slug: 'print-outdoor-media',
     num: 8,
     title: 'Print & outdoor media',
-    tagline: 'Turning every hoarding, newspaper and site surface into a reason to look.',
+    tagline: 'Turning every hoarding, newspaper ad and site surface into a reason to look.',
     description: [
-      'Outdoor media gets one glance from a moving car and one column-inch of attention in a newspaper. We design for that reality, a single idea, legible from a distance, consistent with everything else the project is saying.',
-      'From hoardings to newspaper ads to site boundary wraps, every surface is treated as media, not decoration, and produced to hold up in the sun, the rain and the print run.',
+      "The road is busy. So is the newspaper. Nobody is waiting around to decode an ad. That's why we keep the thought sharp, the message quick and the visual strong enough to do its job in a few passing seconds.",
+      'Hoardings, newspaper ads, site façades, boundary wraps and other outdoor formats are designed as one connected campaign. We adapt the idea to each space while keeping the brand instantly recognisable. And because outdoor communication has to face more than an audience, we stay closely involved in production too. Scale, visibility, materials and finishes are all considered. Built to catch the eye. Made to handle the real world.',
     ],
     highlights: [
       'Hoardings and unipoles',
@@ -193,7 +193,7 @@ export const SERVICES: ServiceData[] = [
       'Site boundary and gate branding',
       'Production oversight and vendor coordination',
     ],
-    image: '/images/Services_Print Media.jpg',
+    image: '/images/Services_Print Media_670 X 502.jpeg',
     secondaryImage: '/images/Work Process_001.jpg',
     gallery: ['/images/Services_009.jpg', '/images/Services_001.jpg'],
     faq: [
@@ -205,10 +205,10 @@ export const SERVICES: ServiceData[] = [
     slug: 'exhibition-stall-designs',
     num: 9,
     title: 'Exhibition & stall designs',
-    tagline: 'Designed to turn heads before the conversation even begins.',
+    tagline: 'Before the handshake, comes the head-turn.',
     description: [
-      'A property expo gives a project thirty seconds and thirty square feet to make a case a competitor\'s stall right next door is trying to make too. We design stalls that are noticed first and remembered longest.',
-      'From layout and materials to lighting and signage, every stall is built around the same brand idea running through the project\'s brochure and campaign, so a visitor recognises it instantly.',
+      'Expo halls come with crowds, conversations and plenty of reasons to keep walking. We give visitors one good reason to stop. The stall catches the eye, opens up naturally and makes stepping inside feel like the obvious next move.',
+      "Layout, lighting, materials, graphics and signage are all shaped around the project's central idea. The campaign's personality simply moves into the space, recognisable at a glance and engaging up close. Before the first hello, the project has already made an impression. And long after the handshake, it stays remembered. That is real estate exhibition stall design at Zurich Graphics.",
     ],
     highlights: [
       'Stall concept, layout and 3D visualisation',
@@ -216,7 +216,7 @@ export const SERVICES: ServiceData[] = [
       'On-ground production supervision',
       'Collateral and giveaway design',
     ],
-    image: '/images/Services_003.jpg',
+    image: '/images/Exhibition & Stall Designs_670 X 502.jpeg',
     secondaryImage: '/images/Work Process_002.jpg',
     gallery: ['/images/Services_002.jpg', '/images/Services_010.jpg'],
     faq: [

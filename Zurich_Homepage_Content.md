@@ -79,7 +79,7 @@ We name it. Brand it. Launch it. Make the market notice.
 One sharp idea runs through every piece of communication.  
 Creating a brand buyers recognise, remember and respond to.
 
-**Brand Strategy & Positioning**
+**Brand Strategy & Consulting**
 
 Giving your project a sharper position and a stronger reason to be chosen.
 

@@ -31,6 +31,11 @@ const desc = [
   "It has survived not only many decades, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised thanks to these sheets and more recently with desktop publishing software like Aldus PageMaker and Microsoft Word including versions of Lorem Ipsum.",
 ]
 
+// per-study override for the '@mumbai'-style location tag shown in PortfolioInfo
+const LOCATION_OVERRIDES: Record<string, string> = {
+  'festive-vibes': 'Ahmedabad, Gujarat',
+}
+
 function toSlug(folderName: string) {
   return folderName.trim().toLowerCase().replace(/\s+/g, '-')
 }
@@ -63,11 +68,12 @@ function readCaseStudy(folderName: string): CaseStudy | null {
   if (images.length === 0) return null
 
   const title = toTitle(folderName)
+  const slug = toSlug(folderName)
 
   return {
-    slug: toSlug(folderName),
+    slug,
     title,
-    location: '@mumbai',
+    location: LOCATION_OVERRIDES[slug] ?? '@mumbai',
     projectType: 'Case study',
     client: `${title} Group`,
     description: desc,

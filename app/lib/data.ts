@@ -136,23 +136,23 @@ export const TECHNOLOGY_ITEMS = [
   {
     number: '1',
     total: '3',
-    title: 'Good work gets noticed',
-    body: 'Great partnerships get talked about. These words come from the people we’ve had the privilege of building brands with.',
-    image: '/assets/images/services/1.webp',
+    title: 'Festival Vibes',
+    body: 'Working with Zurich Graphics felt easy because they understood Festival Vibes beyond just the design. The brochure, indoor and outdoor creatives all carried the same clear and thoughtful feel.',
+    image: '/images/Festival-vibe-testimonail.jpeg',
   },
   {
     number: '2',
     total: '3',
-    title: 'Trusted across realty',
-    body: 'From residential towers to industrial parks, our partners come back project after project, a standard of work that travels across cities.',
-    image: '/assets/images/services/2.webp',
+    title: 'Aditya Antilya',
+    body: 'Aditya Antilya needed communication that matched its scale and promise. Zurich Graphics brought that alive through the brochure, indoor branding and outdoor creatives.',
+    image: '/images/Aditya-Antilia-Testimonail.jpeg',
   },
   {
     number: '3',
     total: '3',
-    title: 'Hear from our clients',
-    body: 'Client stories from the brands we’ve built with, coming soon.',
-    image: '/assets/images/services/3.webp',
+    title: 'Vivanta Sky Tower',
+    body: 'Vivanta Sky Tower had a lot to say as a project. Zurich Graphics helped us put it across simply and effectively through the brochure, indoor branding and outdoor creatives.',
+    image: '/images/vivanta-sky-towers-testimonail.jpeg',
   },
 ]
 

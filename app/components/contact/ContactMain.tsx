@@ -4,8 +4,8 @@ import { motion } from 'framer-motion'
 import Magnetic from '@/app/components/ui/Magnetic'
 
 const EASE: [number, number, number, number] = [0.7, 0, 0.3, 1]
-const CONTACT_EMAIL = 'zurichai360@gmail.com'
-const CONTACT_PHONE = '+91 98765 43210'
+const CONTACT_EMAIL = 'info@zurichgraphics.com'
+const CONTACT_PHONE = '+91 99250 04245'
 
 function StudioClock() {
   const [time, setTime] = useState('')
@@ -38,7 +38,7 @@ export default function ContactMain() {
   const spotRaf = useRef(0)
   useEffect(() => { setMounted(true) }, [])
 
-  // warm spotlight that follows the cursor — written straight to the DOM
+  // soft spotlight that follows the cursor — written straight to the DOM
   // (no React re-render per mousemove), throttled to one update per frame
   const onMouseMove = (e: React.MouseEvent) => {
     const { clientX, clientY } = e
@@ -48,12 +48,13 @@ export default function ContactMain() {
       const el = spotlightRef.current
       if (el) {
         el.style.background =
-          `radial-gradient(46rem circle at ${clientX}px ${clientY}px, rgba(160,114,91,0.14), transparent 65%)`
+          `radial-gradient(46rem circle at ${clientX}px ${clientY}px, rgba(255,255,255,0.12), transparent 65%)`
       }
     })
   }
 
   return (
+    <>
     <section
       id="contact-main"
       onMouseMove={onMouseMove}
@@ -96,7 +97,7 @@ export default function ContactMain() {
           <span style={{
             fontSize: '1.1rem',
             letterSpacing: '0.22em',
-            color: 'var(--c-brown)',
+            color: '#fff',
           }}>
             Contact
           </span>
@@ -108,7 +109,7 @@ export default function ContactMain() {
             marginTop: '4.8rem',
             textAlign: 'right',
           }}>
-            Hyderabad, IN · <StudioClock /> IST
+            Vadodara, IN · <StudioClock /> IST
             <span style={{ display: 'block', marginTop: '0.8rem', color: 'rgba(255,255,255,0.3)' }}>
               32 years · 4000+ projects
             </span>
@@ -132,7 +133,7 @@ export default function ContactMain() {
                 margin: 0,
               }}
             >
-              Let&apos;s
+              A “Hello”
             </motion.p>
           )}
         </div>
@@ -157,7 +158,7 @@ export default function ContactMain() {
                 {/* invisible spacer matching "Let'" so "Talk" starts exactly
                     under the "s" of "Let's" above, at any screen size */}
                 <span aria-hidden="true" style={{ visibility: 'hidden' }}>Let&apos;</span>
-                <span>Talk</span>
+                <span>Will Do.</span>
               </motion.p>
 
               {/* spinning badge */}
@@ -197,7 +198,7 @@ export default function ContactMain() {
                   top: '50%', left: '50%',
                   transform: 'translate(-50%, -50%)',
                   width: 10, height: 10, borderRadius: '50%',
-                  background: 'var(--c-brown)',
+                  background: '#fff',
                 }} />
               </motion.div>
             </>
@@ -231,7 +232,7 @@ export default function ContactMain() {
               color: 'rgba(255,255,255,0.45)',
               marginBottom: '1.2rem',
             }}>
-              4000 projects in. Yours could be next
+              Go on, we&apos;re listening!
             </span>
             <Magnetic strength={0.15}>
               <a
@@ -243,7 +244,7 @@ export default function ContactMain() {
                   fontSize: 'clamp(2rem, 3.4vw, 4.4rem)',
                   fontWeight: 600,
                   letterSpacing: '0.02em',
-                  color: hoverEmail ? 'var(--c-brown)' : '#fff',
+                  color: '#fff',
                   transition: 'color 0.35s ease',
                   lineHeight: 1.2,
                 }}
@@ -252,7 +253,7 @@ export default function ContactMain() {
                 <span style={{
                   display: 'block',
                   height: 2,
-                  background: 'var(--c-brown)',
+                  background: '#fff',
                   transform: hoverEmail ? 'scaleX(1)' : 'scaleX(0)',
                   transformOrigin: hoverEmail ? 'left center' : 'right center',
                   transition: 'transform 0.5s cubic-bezier(.7,0,.3,1)',
@@ -283,5 +284,9 @@ export default function ContactMain() {
         }
       `}</style>
     </section>
+
+    {/* opening note — appended below the pinned hero fold within this same section */}
+   
+    </>
   )
 }

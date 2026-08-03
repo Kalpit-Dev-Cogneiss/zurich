@@ -22,7 +22,7 @@ function ServiceContent({ service, index, total }: { service: ServiceData; index
         display: 'block',
         fontSize: '1.1rem',
         letterSpacing: '0.14em',
-        color: 'var(--c-brown)',
+        color: 'rgba(255,255,255,0.6)',
         marginBottom: '1.6rem',
       }}>
         {pad(index + 1)} / {pad(total)}
@@ -51,26 +51,19 @@ function ServiceContent({ service, index, total }: { service: ServiceData; index
         {service.tagline}
       </p>
 
-      <ul style={{ display: 'flex', flexDirection: 'column', marginTop: '2.4rem', marginBottom: '3rem', maxWidth: 480 }}>
-        {service.highlights.slice(0, 4).map((h) => (
-          <li key={h} style={{
-            display: 'flex',
-            alignItems: 'flex-start',
-            gap: '1.2rem',
-            padding: '1.2rem 0',
-            borderTop: '1px solid rgba(255,255,255,0.1)',
+      <div style={{ display: 'flex', flexDirection: 'column', gap: '1.6rem', marginTop: '2.4rem', marginBottom: '3rem', maxWidth: 480 }}>
+        {service.description.map((paragraph) => (
+          <p key={paragraph} style={{
             fontSize: 'clamp(1.2rem, 1.2vw, 1.4rem)',
-            color: 'rgba(255,255,255,0.7)',
-            lineHeight: 1.5,
+            lineHeight: 1.7,
+            letterSpacing: '0.02em',
+            color: 'rgba(255,255,255,0.65)',
+            margin: 0,
           }}>
-            <span aria-hidden="true" style={{
-              width: 5, height: 5, borderRadius: '50%',
-              background: 'var(--c-brown)', flexShrink: 0, marginTop: '0.7rem',
-            }} />
-            {h}
-          </li>
+            {paragraph}
+          </p>
         ))}
-      </ul>
+      </div>
     </AnimateReveal>
   )
 }

@@ -139,7 +139,18 @@
       "Bash(git add *)",
       "Bash(git commit *)",
       "Bash(git push *)",
-      "WebFetch(domain:docs.google.com)"
+      "WebFetch(domain:docs.google.com)",
+      "WebFetch(domain:doc-0o-48-docstext.googleusercontent.com)",
+      "Bash(mv \"Exhibition & Stall Designs_670 X 502.jpg.jpeg\" \"/d/zurich-new/public/images/Exhibition & Stall Designs_670 X 502.jpeg\")",
+      "Bash(mv \"Services_360 Branding Design_670 X 502.jpg.jpeg\" \"/d/zurich-new/public/images/Services_360 Branding Design_670 X 502.jpeg\")",
+      "Bash(mv \"Services_Brochure Design__670 X 502.jpg.jpeg\" \"/d/zurich-new/public/images/Services_Brochure Design__670 X 502.jpeg\")",
+      "Bash(mv \"Services_Campaign Design_670 X 502.jpg.jpeg\" \"/d/zurich-new/public/images/Services_Campaign Design_670 X 502.jpeg\")",
+      "Bash(mv \"Services_Corporate Video_670 X 502.jpg.jpeg\" \"/d/zurich-new/public/images/Services_Corporate Video_670 X 502.jpeg\")",
+      "Bash(pandoc --version)",
+      "Bash(grep -noE \"type: 'paragraph', text: '[A-Z][A-Z ]{3,30}'\" app/lib/wpBlogPosts.ts)",
+      "Bash(taskkill //F //IM node.exe //FI \"WINDOWTITLE eq npm*\")",
+      "PowerShell(Get-CimInstance *)",
+      "PowerShell(Get-NetTCPConnection *)"
     ]
   }
 }

@@ -142,7 +142,7 @@ export default function AboutStoryFilm() {
           zIndex: 3,
           fontSize: '1.1rem',
           letterSpacing: '0.22em',
-          color: 'var(--c-brown)',
+          color: '#fff',
         }}>
           The story
         </div>
@@ -171,7 +171,7 @@ export default function AboutStoryFilm() {
                 display: 'block',
                 fontSize: '1.2rem',
                 letterSpacing: '0.2em',
-                color: 'var(--c-brown)',
+                color: 'rgba(255,255,255,0.6)',
                 marginBottom: '2rem',
               }}>
                 CH.{String(active + 1).padStart(2, '0')} · {chapter.yearLabel}
@@ -249,7 +249,7 @@ export default function AboutStoryFilm() {
               scaleX: scrollYProgress,
               transformOrigin: 'left center',
               height: '100%',
-              background: 'var(--c-brown)',
+              background: '#fff',
             }} />
           </div>
         </div>

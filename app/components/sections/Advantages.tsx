@@ -6,7 +6,7 @@ import Lenis from 'lenis'
 const ITEMS = [
   {
     num: 1,
-    title: 'Brand strategy\n & positioning',
+    title: 'Brand strategy\n & Consulting',
     description: 'Giving your project a sharper position and a stronger reason to be chosen.',
     image: '/images/Brand strategy_home page.jpeg',
   },

@@ -8,8 +8,9 @@ import CaseStudyLabeledImage from '@/app/components/case-study/CaseStudyLabeledI
 import CaseStudyImageRow from '@/app/components/case-study/CaseStudyImageRow'
 import CaseStudySplitRow from '@/app/components/case-study/CaseStudySplitRow'
 import CaseStudyIntro from '@/app/components/case-study/CaseStudyIntro'
+import CaseStudyStorySection from '@/app/components/case-study/CaseStudyStorySection'
 import { getCaseStudyBySlug, getAllCaseStudySlugs, type CaseStudy } from '@/app/lib/caseStudyData'
-import { CASE_STUDY_LAYOUTS, HIDE_INFO_SLUGS, SPACE_BELOW_SINGLES_SLUGS, type CaseStudySectionSpec } from '@/app/lib/caseStudyLayouts'
+import { CASE_STUDY_LAYOUTS, CASE_STUDY_INFO_BLOCKS, HIDE_INFO_SLUGS, SPACE_BELOW_SINGLES_SLUGS, type CaseStudySectionSpec } from '@/app/lib/caseStudyLayouts'
 import { caseStudySeo } from '@/app/lib/seoData'
 
 export async function generateStaticParams() {
@@ -100,6 +101,7 @@ export default async function CaseStudyDetailPage({
             client={study.client}
             title={study.title}
             description={study.description}
+            blocks={CASE_STUDY_INFO_BLOCKS[study.slug]}
           />
         )}
 
@@ -157,6 +159,7 @@ export default async function CaseStudyDetailPage({
                   <CaseStudyIntro
                     key={i}
                     title={section.label}
+                    subtitle={section.subtitle}
                     body={section.body}
                     location={section.location}
                     src={img.src}
@@ -181,6 +184,16 @@ export default async function CaseStudyDetailPage({
                     overlay={overlayImg ? { src: overlayImg.src, alt: `${study.title} ${section.overlay}` } : undefined}
                     gap={section.gap}
                     stackedFit={section.stackedFit}
+                  />
+                )
+              }
+
+              if (section.type === 'story') {
+                return (
+                  <CaseStudyStorySection
+                    key={i}
+                    heading={section.heading}
+                    blocks={section.blocks}
                   />
                 )
               }

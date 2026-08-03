@@ -113,23 +113,19 @@ export default function Footer() {
               onMouseEnter={(e) => (e.currentTarget.style.opacity = '0.6')}
               onMouseLeave={(e) => (e.currentTarget.style.opacity = '1')}
             >
-              <span style={{
-                fontSize: 'clamp(2.4rem, 3vw, 3.6rem)',
-                fontWeight: 600,
-                letterSpacing: '0.12em',
-                color: '#fff',
-              }}>
-                Zurich
-              </span>
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src="/zurich-logo-White.svg"
+                alt="Zurich Graphics"
+                style={{ height: 'clamp(2.8rem, 6vw, 8rem)', width: 'auto' }}
+              />
             </button>
           </div>
 
           {/* Right - Credits */}
           <div style={{ textAlign: 'right' }}>
-            <a
-              target="_blank"
+            <p
               rel="noopener noreferrer"
-              title="Award-winning real estate website design agency"
               style={{
                 fontSize: '0.9rem',
                 color: 'rgba(255,255,255,0.5)',
@@ -141,7 +137,7 @@ export default function Footer() {
               onMouseLeave={(e) => (e.currentTarget.style.color = 'rgba(255,255,255,0.5)')}
             >
               Site by Octik AI Lab
-            </a>
+            </p>
           </div>
         </div>
       </div>

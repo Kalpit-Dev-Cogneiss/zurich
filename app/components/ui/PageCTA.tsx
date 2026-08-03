@@ -8,11 +8,12 @@ import Magnetic from '@/app/components/ui/Magnetic'
 interface PageCTAProps {
   eyebrow: string
   heading: string
+  body?: string
   buttonLabel: string
   href: string
 }
 
-export default function PageCTA({ eyebrow, heading, buttonLabel, href }: PageCTAProps) {
+export default function PageCTA({ eyebrow, heading, body, buttonLabel, href }: PageCTAProps) {
   const [hover, setHover] = useState(false)
 
   return (
@@ -30,7 +31,7 @@ export default function PageCTA({ eyebrow, heading, buttonLabel, href }: PageCTA
         overflow: 'hidden',
       }}
     >
-      {/* soft brown glow, off-centre */}
+      {/* soft glow, off-centre */}
       <div aria-hidden="true" style={{
         position: 'absolute',
         top: '-20%',
@@ -39,7 +40,7 @@ export default function PageCTA({ eyebrow, heading, buttonLabel, href }: PageCTA
         height: '60vw',
         maxWidth: 900,
         maxHeight: 900,
-        background: 'radial-gradient(circle, rgba(160,114,91,0.16), transparent 65%)',
+        background: 'radial-gradient(circle, rgba(255,255,255,0.12), transparent 65%)',
         pointerEvents: 'none',
       }} />
 
@@ -49,7 +50,7 @@ export default function PageCTA({ eyebrow, heading, buttonLabel, href }: PageCTA
             display: 'block',
             fontSize: '1.1rem',
             letterSpacing: '0.14em',
-            color: 'var(--c-brown)',
+            color: 'rgba(255,255,255,0.6)',
             marginBottom: '2.4rem',
           }}>
             {eyebrow}
@@ -80,6 +81,20 @@ export default function PageCTA({ eyebrow, heading, buttonLabel, href }: PageCTA
             }}
           />
 
+          {body && (
+            <AnimateReveal delay={0.15} style={{ flex: '1 1 320px', maxWidth: 420 }}>
+              <p style={{
+                fontSize: '1.4rem',
+                lineHeight: 1.7,
+                letterSpacing: '0.02em',
+                color: 'rgba(255,255,255,0.6)',
+                margin: 0,
+              }}>
+                {body}
+              </p>
+            </AnimateReveal>
+          )}
+
           <AnimateReveal delay={0.25} style={{ flexShrink: 0 }}>
             <Magnetic strength={0.25}>
               <Link
@@ -95,14 +110,15 @@ export default function PageCTA({ eyebrow, heading, buttonLabel, href }: PageCTA
                   borderRadius: '999px',
                   border: '1px solid rgba(255,255,255,0.3)',
                   overflow: 'hidden',
-                  color: '#fff',
+                  color: hover ? '#000' : '#fff',
+                  transition: 'color 0.3s ease',
                 }}
               >
-                {/* brown fill that slides in from the left on hover */}
+                {/* white fill that slides in from the left on hover */}
                 <span aria-hidden="true" style={{
                   position: 'absolute',
                   inset: 0,
-                  background: 'var(--c-brown)',
+                  background: '#fff',
                   transform: hover ? 'translateX(0)' : 'translateX(-100%)',
                   transition: 'transform 0.5s cubic-bezier(.7,0,.3,1)',
                 }} />

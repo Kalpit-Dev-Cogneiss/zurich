@@ -4,7 +4,8 @@ import { motion, useInView } from 'framer-motion'
 
 interface CaseStudyIntroProps {
   title: string
-  body?: string
+  subtitle?: string
+  body?: string | string[]
   location?: string
   src: string
   alt?: string
@@ -17,9 +18,10 @@ const EASE: [number, number, number, number] = [0.7, 0, 0.3, 1]
  * description paragraph, a bolder location line, and the image below —
  * everything center-aligned, matching the client's case-study cover layout.
  */
-export default function CaseStudyIntro({ title, body, location, src, alt }: CaseStudyIntroProps) {
+export default function CaseStudyIntro({ title, subtitle, body, location, src, alt }: CaseStudyIntroProps) {
   const ref = useRef<HTMLDivElement>(null)
   const isInView = useInView(ref, { once: true, margin: '-100px' })
+  const paragraphs = Array.isArray(body) ? body : body ? [body] : []
 
   const reveal = (delay: number) => ({
     initial: { opacity: 0, y: 30 },
@@ -54,9 +56,28 @@ export default function CaseStudyIntro({ title, body, location, src, alt }: Case
         {title}
       </motion.h2>
 
-      {body && (
+      {subtitle && (
         <motion.p
-          {...reveal(0.12)}
+          {...reveal(0.08)}
+          style={{
+            fontSize: 'clamp(1.8rem, 2vw, 2.4rem)',
+            fontWeight: 600,
+            lineHeight: 1.3,
+            letterSpacing: '0.02em',
+            color: '#fff',
+            maxWidth: 760,
+            margin: 0,
+            marginBottom: '2.4rem',
+          }}
+        >
+          {subtitle}
+        </motion.p>
+      )}
+
+      {paragraphs.map((p, i) => (
+        <motion.p
+          key={i}
+          {...reveal(0.12 + i * 0.06)}
           style={{
             fontSize: '1.4rem',
             lineHeight: 1.8,
@@ -64,12 +85,12 @@ export default function CaseStudyIntro({ title, body, location, src, alt }: Case
             color: 'rgba(255,255,255,0.6)',
             maxWidth: 720,
             margin: 0,
-            marginBottom: '4rem',
+            marginBottom: i === paragraphs.length - 1 ? '4rem' : '1.4rem',
           }}
         >
-          {body}
+          {p}
         </motion.p>
-      )}
+      ))}
 
       {/* no bottom margin — the image below carries its own whitespace */}
       {location && (

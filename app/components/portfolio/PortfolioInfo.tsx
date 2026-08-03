@@ -2,12 +2,21 @@
 import { useRef } from 'react'
 import { motion, useInView } from 'framer-motion'
 
+interface InfoBlock {
+  title: string
+  subtitle: string
+  body: string[]
+}
+
 interface PortfolioInfoProps {
   location?: string
   projectType?: string
   client?: string
   title?: string
   description?: string[]
+  /** overrides title/description with a sequence of title/subtitle/body
+   * pairs — e.g. a "hook + sub-hook + copy" pattern repeated per idea */
+  blocks?: InfoBlock[]
 }
 
 export default function PortfolioInfo({
@@ -19,6 +28,7 @@ export default function PortfolioInfo({
     'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since 1966, when designers at Letraset and James Mosley, the librarian at St Bride Printing Library in London, took a 1914 Cicero translation and scrambled it to make dummy text for Letraset\'s Body Type sheets. It has survived not only many decades, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised thanks to these sheets and more recently with desktop publishing software like Aldus PageMaker and Microsoft Word including versions of Lorem Ipsum.',
     'St Bride Printing Library in London, took a 1914 Cicero translation and scrambled it to make dummy text for Letraset\'s Body Type sheets. It has survived not only many decades, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised thanks to these sheets and more recently with desktop publishing software like Aldus PageMaker and Microsoft Word including versions of Lorem Ipsum.',
   ],
+  blocks,
 }: PortfolioInfoProps) {
   const ref = useRef<HTMLElement>(null)
   const isInView = useInView(ref, { once: true, margin: '-100px' })
@@ -122,38 +132,87 @@ export default function PortfolioInfo({
           style={{
             display: 'flex',
             flexDirection: 'column',
-            gap: '3rem',
+            gap: blocks && blocks.length > 0 ? '4.5rem' : '3rem',
           }}
         >
-          {/* Title */}
-          <h3
-            style={{
-              fontSize: '3.2rem',
-              fontWeight: 600,
-              letterSpacing: '0.02em',
-              margin: 0,
-              marginBottom: '1rem',
-            }}
-          >
-            {title}
-          </h3>
+          {blocks && blocks.length > 0 ? (
+            blocks.map((block, i) => (
+              <div key={i} style={{ display: 'flex', flexDirection: 'column', gap: '1.2rem' }}>
+                <h3
+                  style={{
+                    fontSize: 'clamp(2.4rem, 2.6vw, 3.4rem)',
+                    fontWeight: 600,
+                    lineHeight: 1.2,
+                    letterSpacing: '0.02em',
+                    color: '#fff',
+                    margin: 0,
+                  }}
+                >
+                  {block.title}
+                </h3>
+                <p
+                  style={{
+                    fontSize: 'clamp(1.8rem, 2vw, 2.4rem)',
+                    fontWeight: 600,
+                    lineHeight: 1.25,
+                    letterSpacing: '0.02em',
+                    color: '#fff',
+                    whiteSpace: 'pre-wrap',
+                    margin: 0,
+                  }}
+                >
+                  {block.subtitle}
+                </p>
+                {block.body.map((paragraph, j) => (
+                  <p
+                    key={j}
+                    style={{
+                      fontSize: '1.6rem',
+                      fontWeight: 400,
+                      lineHeight: 1.8,
+                      color: '#cccccc',
+                      margin: 0,
+                      textAlign: 'justify',
+                    }}
+                  >
+                    {paragraph}
+                  </p>
+                ))}
+              </div>
+            ))
+          ) : (
+            <>
+              {/* Title */}
+              <h3
+                style={{
+                  fontSize: '3.2rem',
+                  fontWeight: 600,
+                  letterSpacing: '0.02em',
+                  margin: 0,
+                  marginBottom: '1rem',
+                }}
+              >
+                {title}
+              </h3>
 
-          {/* Description Paragraphs */}
-          {description.map((paragraph, index) => (
-            <p
-              key={index}
-              style={{
-                fontSize: '1.6rem',
-                fontWeight: 400,
-                lineHeight: 1.8,
-                color: '#cccccc',
-                margin: 0,
-                textAlign: 'justify',
-              }}
-            >
-              {paragraph}
-            </p>
-          ))}
+              {/* Description Paragraphs */}
+              {description.map((paragraph, index) => (
+                <p
+                  key={index}
+                  style={{
+                    fontSize: '1.6rem',
+                    fontWeight: 400,
+                    lineHeight: 1.8,
+                    color: '#cccccc',
+                    margin: 0,
+                    textAlign: 'justify',
+                  }}
+                >
+                  {paragraph}
+                </p>
+              ))}
+            </>
+          )}
         </motion.div>
       </div>
     </section>

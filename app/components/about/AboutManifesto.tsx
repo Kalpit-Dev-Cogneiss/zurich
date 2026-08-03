@@ -68,9 +68,9 @@ export default function AboutManifesto() {
   }
 
   const lines: { text: string; x: typeof x1; align: string; outlined?: boolean }[] = [
-    { text: 'We make', x: x1, align: 'flex-start' },
-    { text: 'brands', x: x2, align: 'center', outlined: true },
-    { text: 'unforgettable', x: x3, align: 'flex-end' },
+    { text: 'Realty runs deep.', x: x1, align: 'flex-start' },
+    { text: 'Our brands', x: x2, align: 'center', outlined: true },
+    { text: ' run ahead.', x: x3, align: 'flex-end' },
   ]
 
   return (
@@ -108,7 +108,7 @@ export default function AboutManifesto() {
             left: '4rem',
             fontSize: '1.1rem',
             letterSpacing: '0.22em',
-            color: 'var(--c-brown)',
+            color: '#fff',
             zIndex: 2,
           }}
         >
@@ -161,14 +161,21 @@ export default function AboutManifesto() {
             lineHeight: 1.7,
             letterSpacing: '0.04em',
             color: 'rgba(255,255,255,0.55)',
-            maxWidth: 380,
+            maxWidth: 620,
             margin: 0,
           }}>
-            Zurich Graphics is a premium branding, design, print media, and
-            exhibition company for real estate, architecture, and high-value
-            businesses. 32 years. 4000+ projects. One standard.
+            Realty is in our DNA. And after 32 years, it runs pretty deep.
+            Zurich Graphics began in Vadodara in 1994 as a real estate
+            branding agency, with realty at its heart and the belief that
+            every project deserved an identity of its own. Vadodara remains
+            our home ground, but our work has taken us across India into
+            different cities, markets and buyer mindsets. Over the years, our
+            thinking has grown wider and our approach sharper. Today, as a
+            360&deg; branding agency, we bring strategy, naming, identity,
+            brochures, campaigns, outdoor, films and digital together under
+            one roof.
           </p>
-          <a href="#about-story" aria-label="Scroll down" style={{ color: '#fff', lineHeight: 0, flexShrink: 0 }}>
+          <a href="#about-passages" aria-label="Scroll down" style={{ color: '#fff', lineHeight: 0, flexShrink: 0 }}>
             <SvgIcon id="long-arrow-down" width={14} height={41} style={{ color: '#fff' }} />
           </a>
         </motion.div>

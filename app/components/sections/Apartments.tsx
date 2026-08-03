@@ -142,7 +142,7 @@ export default function Apartments() {
                 marginBottom: '0.5rem',
               }}
             >
-              <span style={{ color: '#a0725b' }}>Purchase conditions:</span>
+              <span style={{ color: '#fff' }}>Purchase conditions:</span>
             </p>
             <p style={{ fontSize: '1.4rem', color: 'rgba(255,255,255,0.7)' }}>
               Mortgage, 0% installment plan, trade-in

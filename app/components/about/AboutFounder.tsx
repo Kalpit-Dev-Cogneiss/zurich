@@ -67,7 +67,7 @@ export default function AboutFounder() {
         zIndex: 3,
         fontSize: '1.1rem',
         letterSpacing: '0.22em',
-        color: 'var(--c-brown)',
+        color: '#fff',
       }}>
         05 · What our founder says
       </div>
@@ -87,25 +87,39 @@ export default function AboutFounder() {
           fontFamily: 'Georgia, serif',
           fontSize: 'clamp(10rem, 14vw, 18rem)',
           lineHeight: 0.6,
-          color: 'var(--c-brown)',
-          opacity: 0.9,
+          color: 'rgba(255,255,255,0.15)',
           marginBottom: '1rem',
         }}>
           “
         </div>
+
+        <AnimateReveal y={20}>
+          <span style={{
+            display: 'block',
+            fontSize: 'clamp(2.4rem, 3vw, 4.2rem)',
+            fontWeight: 600,
+            lineHeight: 1.22,
+            letterSpacing: '0.01em',
+            color: '#fff',
+            marginBottom: '1.6rem',
+          }}>
+            Founded the beginning. The vision keeps moving forward.
+          </span>
+        </AnimateReveal>
 
         <SplitText
           as="h2"
           mode="lines"
           text={FOUNDER.quote}
           style={{
-            fontSize: 'clamp(2.4rem, 3vw, 4.2rem)',
+            fontSize: 'clamp(1.8rem, 2.2vw, 2.5rem)',
             fontWeight: 600,
             lineHeight: 1.22,
             letterSpacing: '0.01em',
+            color: 'rgba(255,255,255,0.5)',
             margin: 0,
             marginBottom: '5rem',
-            maxWidth: 760,
+            maxWidth: 600,
           }}
         />
 
@@ -115,7 +129,7 @@ export default function AboutFounder() {
               display: 'block',
               width: '4.8rem',
               height: 1,
-              background: 'var(--c-brown)',
+              background: '#fff',
               flexShrink: 0,
             }} />
             <div>
@@ -163,7 +177,7 @@ export default function AboutFounder() {
               fontSize: 'clamp(6rem, 8vw, 10rem)',
               fontWeight: 600,
               letterSpacing: '0.04em',
-              color: 'var(--c-brown)',
+              color: '#fff',
             }}>
               PG
             </span>

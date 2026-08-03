@@ -85,7 +85,7 @@ export default function Home() {
             </p>
           </div> */}
         <StackReveal zIndex={13}><IndiaMap /></StackReveal>
-        <StackReveal zIndex={14}><Penthouses /></StackReveal>
+        {/* <StackReveal zIndex={14}><Penthouses /></StackReveal> */}
         {/* <StackReveal zIndex={15}>
           <PageCTA
             eyebrow="A compelling position. A powerful story. A brand built to be chosen."

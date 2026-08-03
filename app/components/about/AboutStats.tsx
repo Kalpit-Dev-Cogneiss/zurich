@@ -306,7 +306,7 @@ export default function AboutStats() {
         zIndex: 3,
         fontSize: '1.1rem',
         letterSpacing: '0.22em',
-        color: 'var(--c-brown)',
+        color: '#fff',
       }}>
         By the numbers
       </div>

@@ -267,7 +267,7 @@ export default function Preloader() {
                 transform: "translateX(-50%)",
                 whiteSpace: "nowrap",
                 color: "#fff",
-                fontSize: "1.8rem",
+                fontSize: "3rem",
                 fontWeight: 600,
                 letterSpacing: "0.24em",
                 fontFamily: "'Times New Roman', Times, serif",
@@ -275,7 +275,7 @@ export default function Preloader() {
                 opacity: 0,
               }}
             >
-              Excelling Realty
+              excelling realty
             </div>
           </div>
         </div>

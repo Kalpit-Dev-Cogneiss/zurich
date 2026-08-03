@@ -33,7 +33,7 @@ export default function Marquee({ items, duration = 28, reverse = false, style, 
       {item}
       <span aria-hidden="true" style={{
         width: '1.2rem', height: '1.2rem', borderRadius: '50%',
-        background: 'var(--c-brown)', display: 'inline-block', flexShrink: 0,
+        background: '#fff', display: 'inline-block', flexShrink: 0,
       }} />
     </span>
   ))

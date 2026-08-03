@@ -12,14 +12,12 @@
 :root {
   --c-white: #ffffff;
   --c-black: #000000;
-  --c-brown: #a0725b;
   --c-gray: #666666;
   --c-gray-light: #aaaaaa;
 
   --t-background: var(--c-white);
   --t-text: var(--c-black);
   --t-heading: var(--c-black);
-  --t-primary: var(--c-brown);
   --t-small: rgba(0,0,0,0.3);
   --t-line: rgba(0,0,0,0.1);
 

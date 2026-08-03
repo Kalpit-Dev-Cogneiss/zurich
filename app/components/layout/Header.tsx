@@ -44,12 +44,14 @@ export default function Header() {
               transition: 'background 0.3s ease, border-color 0.3s ease',
             }}
             onMouseEnter={e => {
-              e.currentTarget.style.background = 'var(--c-brown)'
-              e.currentTarget.style.borderColor = 'var(--c-brown)'
+              e.currentTarget.style.background = '#fff'
+              e.currentTarget.style.borderColor = '#fff'
+              e.currentTarget.style.color = '#000'
             }}
             onMouseLeave={e => {
               e.currentTarget.style.background = 'rgba(0,0,0,0.25)'
               e.currentTarget.style.borderColor = 'rgba(255,255,255,0.35)'
+              e.currentTarget.style.color = '#fff'
             }}
           >
             Enquire now
@@ -92,15 +94,13 @@ export default function Header() {
               display: 'flex', alignItems: 'center',
               justifyContent: 'space-between',
               padding: '2.4rem 4rem',
-              borderBottom: '1px solid rgba(255,255,255,0.08)',
             }}>
-              <span style={{
-                fontSize: 'clamp(2rem, 3vw, 3.6rem)',
-                fontWeight: 600, letterSpacing: '0.04em',
-                color: '#fff',
-              }}>
-                Zurich Graphics
-              </span>
+              {/* eslint-disable-next-line @next/next/no-img-element */}
+              <img
+                src="/zurich-logo-White.svg"
+                alt="Zurich Graphics"
+                style={{ height: 'clamp(8rem, 3.2vw, 3.8rem)', width: 'auto' }}
+              />
               <button
                 onClick={() => setMenuOpen(false)}
                 aria-label="Close menu"
@@ -128,13 +128,13 @@ export default function Header() {
                     display: 'block',
                     fontSize: 'clamp(2.2rem, 3.8vw, 4.8rem)',
                     fontWeight: 600, letterSpacing: '0.02em',
-                    color: '#fff',
+                    color: 'rgba(255,255,255,0.6)',
                     padding: '0.7rem 0',
                     transition: 'color 0.3s ease',
                     lineHeight: 1.15,
                   }}
-                  onMouseEnter={e => (e.currentTarget.style.color = 'var(--c-brown)')}
-                  onMouseLeave={e => (e.currentTarget.style.color = '#fff')}
+                  onMouseEnter={e => (e.currentTarget.style.color = '#fff')}
+                  onMouseLeave={e => (e.currentTarget.style.color = 'rgba(255,255,255,0.6)')}
                 >
                   {item.label}
                 </motion.a>
