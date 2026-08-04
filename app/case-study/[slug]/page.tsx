@@ -105,7 +105,7 @@ export default async function CaseStudyDetailPage({
           />
         )}
 
-        <section style={{ background: '#000', padding: '16rem 8rem' }}>
+        <section className="cs-detail-body" style={{ background: '#000', padding: '16rem 8rem' }}>
           <div style={{
             maxWidth: '1600px',
             margin: '0 auto',
@@ -219,6 +219,14 @@ export default async function CaseStudyDetailPage({
         </section>
       </main>
       <Footer />
+
+      <style>{`
+        @media (max-width: 768px) {
+          .cs-detail-body {
+            padding: 6rem 0 !important;
+          }
+        }
+      `}</style>
     </>
   )
 }

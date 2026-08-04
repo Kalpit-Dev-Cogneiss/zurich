@@ -124,12 +124,22 @@ button {
 }
 
 /* Portfolio Grid Responsive */
+@media (min-width: 769px) and (max-width: 1024px) {
+  .portfolio-grid {
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)) !important;
+  }
+
+  .portfolio-gallery {
+    padding: 0 3rem !important;
+  }
+}
+
 @media (max-width: 768px) {
   .portfolio-grid {
     grid-template-columns: 1fr !important;
     gap: 3rem !important;
   }
-  
+
   .portfolio-gallery {
     padding: 3rem 2rem 6rem !important;
   }

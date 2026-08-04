@@ -17,7 +17,7 @@ export default function Header() {
   return (
     <>
       {/* Persistent top bar — right side only: enquire CTA + hamburger. No logo. */}
-      <header style={{
+      <header className="site-header" style={{
         position: 'fixed', top: 0, left: 0, right: 0,
         zIndex: 100,
         display: 'flex', alignItems: 'center',
@@ -90,7 +90,7 @@ export default function Header() {
             }}
           >
             {/* Menu header */}
-            <div style={{
+            <div className="menu-header" style={{
               display: 'flex', alignItems: 'center',
               justifyContent: 'space-between',
               padding: '2.4rem 4rem',
@@ -111,7 +111,7 @@ export default function Header() {
             </div>
 
             {/* Nav items */}
-            <nav style={{
+            <nav className="menu-nav" style={{
               flex: 1, minHeight: 0, display: 'flex', flexDirection: 'column',
               justifyContent: 'center', padding: '2rem 4rem',
               overflowY: 'auto',
@@ -151,6 +151,20 @@ export default function Header() {
           </motion.div>
         )}
       </AnimatePresence>
+
+      <style>{`
+        @media (max-width: 640px) {
+          .site-header {
+            padding: 1.6rem 2rem !important;
+          }
+          .menu-header {
+            padding: 1.6rem 2rem !important;
+          }
+          .menu-nav {
+            padding: 2rem !important;
+          }
+        }
+      `}</style>
     </>
   )
 }

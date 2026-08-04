@@ -144,6 +144,9 @@ export default function Footer() {
 
       <style>{`
         @media (max-width: 768px) {
+          footer {
+            padding: 5rem 2rem 3rem !important;
+          }
           footer > div > div:last-child {
             grid-template-columns: 1fr !important;
             text-align: center !important;

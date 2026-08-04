@@ -18,6 +18,7 @@ export default function PageCTA({ eyebrow, heading, body, buttonLabel, href }: P
 
   return (
     <section
+      className="page-cta"
       style={{
         position: 'relative',
         minHeight: '100svh',
@@ -152,6 +153,14 @@ export default function PageCTA({ eyebrow, heading, body, buttonLabel, href }: P
           </AnimateReveal>
         </div>
       </div>
+
+      <style>{`
+        @media (max-width: 640px) {
+          .page-cta {
+            padding: 5rem 2rem !important;
+          }
+        }
+      `}</style>
     </section>
   )
 }

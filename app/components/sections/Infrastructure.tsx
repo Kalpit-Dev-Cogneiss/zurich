@@ -30,6 +30,7 @@ export default function Infrastructure() {
   return (
     <section
       id="infrastructure"
+      className="infra-section"
       style={{
         display: 'grid',
         gridTemplateColumns: '50% 50%',
@@ -40,7 +41,7 @@ export default function Infrastructure() {
         overflow: 'hidden',
       }}>
         {/* LEFT — image crossfade */}
-        <div style={{ position: 'relative', overflow: 'hidden' }}>
+        <div className="infra-left" style={{ position: 'relative', overflow: 'hidden' }}>
           {SLIDES.map((s, i) => (
             <motion.div
               key={i}
@@ -54,7 +55,7 @@ export default function Infrastructure() {
         </div>
 
         {/* RIGHT — dark panel */}
-        <div style={{
+        <div className="infra-right" style={{
           background: '#000', color: '#fff',
           display: 'flex', flexDirection: 'column',
           padding: '4rem',
@@ -122,6 +123,29 @@ export default function Infrastructure() {
             </AnimatePresence>
           </div>
         </div>
+
+        <style>{`
+          @media (max-width: 1024px) {
+            .infra-section {
+              grid-template-columns: 1fr !important;
+              height: auto !important;
+              min-height: 100svh !important;
+            }
+            .infra-left {
+              height: 42svh !important;
+              min-height: 280px !important;
+            }
+            .infra-right {
+              min-height: 58svh !important;
+              padding: 3.2rem 2rem !important;
+            }
+          }
+          @media (max-width: 640px) {
+            .infra-right h3 {
+              font-size: clamp(2.6rem, 8vw, 3.6rem) !important;
+            }
+          }
+        `}</style>
       </section>
   )
 }

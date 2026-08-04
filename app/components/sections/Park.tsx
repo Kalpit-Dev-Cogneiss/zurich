@@ -28,7 +28,7 @@ export default function Park() {
             position: 'absolute', inset: 0,
             background: 'linear-gradient(0deg, rgba(0,0,0,0.8) 0%, rgba(0,0,0,0.1) 55%)',
           }} />
-          <div style={{
+          <div className="park-caption" style={{
             position: 'absolute', bottom: '6.4rem',
             left: '5.6rem', right: '5.6rem',
           }}>
@@ -81,7 +81,16 @@ export default function Park() {
 
         <style>{`
           @media (max-width: 768px) {
-            .park-grid { grid-template-columns: 1fr !important; }
+            .park-grid {
+              grid-template-columns: 1fr !important;
+              padding: 5rem 2rem !important;
+              gap: 3rem !important;
+            }
+            .park-caption {
+              left: 2rem !important;
+              right: 2rem !important;
+              bottom: 3.2rem !important;
+            }
           }
         `}</style>
       </section>

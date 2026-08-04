@@ -63,6 +63,7 @@ export default function Panorama() {
 
         {/* ── Content ── */}
         <div
+          className="panorama-content"
           style={{
             position: "relative",
             zIndex: 2,
@@ -74,6 +75,7 @@ export default function Panorama() {
         >
           {/* Top row: small label left, nothing right */}
           <div
+            className="panorama-toprow"
             style={{
               display: "grid",
               gridTemplateColumns: "1fr 1fr",
@@ -118,6 +120,7 @@ export default function Panorama() {
 
           {/* Body text — right half only */}
           <div
+            className="panorama-bodyrow"
             style={{
               display: "grid",
               gridTemplateColumns: "1fr 0.6fr",
@@ -150,6 +153,17 @@ export default function Panorama() {
             </motion.p>
           </div>
         </div>
+
+        <style>{`
+          @media (max-width: 1024px) {
+            .panorama-bodyrow {
+              grid-template-columns: 1fr !important;
+            }
+            .panorama-content {
+              padding: 5rem 2rem 6rem !important;
+            }
+          }
+        `}</style>
       </section>
     </>
   );

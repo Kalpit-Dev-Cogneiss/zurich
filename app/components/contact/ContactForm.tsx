@@ -209,7 +209,7 @@ export default function ContactForm() {
             </AnimateReveal>
 
             <AnimateReveal delay={0.45}>
-              <div style={{ paddingLeft: '8.4rem', marginTop: '4rem' }}>
+              <div className="contact-submit-wrap" style={{ paddingLeft: '8.4rem', marginTop: '4rem' }}>
                 <button
                   type="submit"
                   style={{
@@ -249,9 +249,15 @@ export default function ContactForm() {
           color: rgba(255,255,255,0.22);
         }
         @media (max-width: 640px) {
+          #contact-form {
+            padding: 9rem 2rem 5rem !important;
+          }
           #contact-form form > div > div,
           #contact-form form > div > div > div {
             grid-template-columns: 1fr !important;
+          }
+          .contact-submit-wrap {
+            padding-left: 0 !important;
           }
         }
       `}</style>

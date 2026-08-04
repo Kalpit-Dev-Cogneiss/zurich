@@ -25,6 +25,20 @@ const POSITIONS: Array<{
   { bottom: '0%', right: '0%', width: '17%', parallaxFactor: 0.8 },
 ]
 
+// Mobile mosaic layout — same shape as POSITIONS above (top/bottom/left/
+// right/width, all % of MOBILE_CONTAINER_HEIGHT below). Rendered under
+// max-width: 768px (see .gallery-mosaic-mobile below); edit freely, no other
+// code changes needed for a position/width tweak to show up.
+export const MOBILE_CONTAINER_HEIGHT = '90vh'
+export const MOBILE_POSITIONS: typeof POSITIONS = [
+  { top: '-18%',    left: '-10%',  width: '46%', parallaxFactor: 0 },
+  { top: '-8%',    right: '10%', width: '46%', parallaxFactor: 0 },
+  { top: '30%',   left: '80%', width: '40%', parallaxFactor: 0 },
+  { top: '70%',   left: '-20%',  width: '38%', parallaxFactor: 0 },
+  { bottom: '10%', right: '4%', width: '44%', parallaxFactor: 0 },
+  { bottom: '-10%', left: '10%', width: '36%', parallaxFactor: 0 },
+]
+
 // Max pixel offset at screen edge
 const MAX_OFFSET = 28
 
@@ -133,8 +147,8 @@ export default function Gallery() {
           cursor: 'none', // hide default cursor over section
         }}
       >
-        {/* Mosaic images */}
-        <div style={{ position: 'absolute', inset: 0 }}>
+        {/* Mosaic images — desktop */}
+        <div className="gallery-mosaic-desktop" style={{ position: 'absolute', inset: 0 }}>
           {IMAGES.map((img, i) => (
             <ParallaxItem
               key={img.id}
@@ -148,21 +162,45 @@ export default function Gallery() {
           ))}
         </div>
 
+        {/* Mosaic images — mobile, positioned from MOBILE_POSITIONS above.
+            Hidden on desktop; edit MOBILE_POSITIONS/MOBILE_CONTAINER_HEIGHT
+            to move things around, no other code changes needed. */}
+        <div className="gallery-mosaic-mobile" style={{ display: 'none', position: 'relative', height: MOBILE_CONTAINER_HEIGHT }}>
+          {IMAGES.map((img, i) => (
+            <div
+              key={img.id}
+              style={{
+                position: 'absolute',
+                top: MOBILE_POSITIONS[i].top,
+                bottom: MOBILE_POSITIONS[i].bottom,
+                left: MOBILE_POSITIONS[i].left,
+                right: MOBILE_POSITIONS[i].right,
+                width: MOBILE_POSITIONS[i].width,
+              }}
+            >
+              <div style={{ position: 'relative', width: '100%', aspectRatio: img.aspect, overflow: 'hidden' }}>
+                {/* eslint-disable-next-line @next/next/no-img-element */}
+                <img src={img.src} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
+              </div>
+            </div>
+          ))}
+        </div>
+
         {/* Title + photo count */}
-        <div style={{
+        <div className="gallery-title-block" style={{
           position: 'absolute', top: '35%', left: '20%', right: '0%',
           zIndex: 10, display: 'flex', alignItems: 'baseline',
           gap: '2rem', padding: '0 4rem', pointerEvents: 'none',
         }}>
           <div>
-          <h2 style={{
+          <h2 className="gallery-title-heading" style={{
             fontSize: 'clamp(5rem, 9vw, 6rem)', fontWeight: 600,
             letterSpacing: '0.01em',
             lineHeight: 1, margin: 0, color: '#fff',
           }}>
             The Proof Is In The Work
           </h2>
-          <p style={{
+          <p className="gallery-title-body" style={{
               fontSize: 'clamp(0.9rem, 1vw, 2rem)',
               lineHeight: 1.6,
               letterSpacing: '0.03em',
@@ -173,6 +211,33 @@ export default function Gallery() {
               realty and a strategy-first <br /> approach are reflected in every
               project you see here.
             </p>
+
+            {/* Mobile-only — the desktop "VIEW →" cursor badge only shows on
+                mouse hover, so touch has no way to discover the section is
+                tappable. This gives it an explicit, visible affordance. */}
+            <button
+              className="gallery-view-btn"
+              onClick={e => { e.stopPropagation(); setModalOpen(true) }}
+              style={{
+                display: 'none',
+                marginTop: '2rem',
+                alignItems: 'center',
+                gap: '0.8rem',
+                padding: '1rem 2rem',
+                border: '1px solid rgba(255,255,255,0.35)',
+                borderRadius: '999px',
+                background: 'transparent',
+                color: '#fff',
+                fontSize: '1.2rem',
+                letterSpacing: '0.04em',
+                fontFamily: 'inherit',
+                cursor: 'pointer',
+                pointerEvents: 'auto',
+              }}
+            >
+              View Gallery
+              <SvgIcon id="arrow-right" width={7} height={12} style={{ color: '#fff' }} />
+            </button>
           </div>
           {/* <p style={{
             fontSize: '1.1rem', letterSpacing: '0.1em',
@@ -256,13 +321,14 @@ export default function Gallery() {
             animate={{ opacity: 1 }}
             exit={{ opacity: 0 }}
             transition={{ duration: 0.4 }}
+            className="gallery-modal"
             style={{
               position: 'fixed', inset: 0, zIndex: 500,
               display: 'flex',
             }}
           >
             {/* LEFT — fixed black panel */}
-            <div style={{
+            <div className="gallery-modal-left" style={{
               width: '40%', flexShrink: 0,
               background: '#000',
               position: 'relative',
@@ -271,6 +337,7 @@ export default function Gallery() {
             }}>
               {/* Close */}
               <button
+                className="gallery-modal-close"
                 onClick={(e) => { e.stopPropagation(); setModalOpen(false) }}
                 style={{
                   position: 'absolute', top: '3.2rem', left: '3.2rem',
@@ -279,7 +346,7 @@ export default function Gallery() {
                   background: 'transparent', color: '#fff',
                   cursor: 'pointer',
                   display: 'flex', alignItems: 'center', justifyContent: 'center',
-                  zIndex: 2,
+                  zIndex: 999999999,
                 }}
               >
                 <SvgIcon id="close" width={16} height={16} />
@@ -303,6 +370,7 @@ export default function Gallery() {
 
             {/* RIGHT — 2-column image grid */}
             <div
+              className="gallery-modal-right"
               style={{
                 width: '60%',
                 flexShrink: 0,
@@ -350,6 +418,76 @@ export default function Gallery() {
           </motion.div>
         )}
       </AnimatePresence>
+
+      <style>{`
+        @media (max-width: 768px) {
+          .gallery-mosaic-desktop {
+            display: none !important;
+          }
+          .gallery-mosaic-mobile {
+            display: block !important;
+          }
+          /* Keeps the heading and description legible and inside the
+             viewport: the desktop box (left:20% + 4rem padding + an 80px
+             font floor) leaves ~170px of width on a 375px phone, which was
+             forcing the heading to wrap one word per line. */
+          .gallery-title-block {
+            left: 2rem !important;
+            right: 2rem !important;
+            padding: 0 !important;
+          }
+          .gallery-title-heading {
+            font-size: clamp(2.6rem, 9vw, 4rem) !important;
+          }
+          .gallery-title-body {
+            font-size: 1.3rem !important;
+          }
+          .gallery-view-btn {
+            display: inline-flex !important;
+          }
+        }
+        @media (max-width: 640px) {
+          /* The modal is a fixed inset:0 box — once its content (stacked
+             left panel + every gallery image) is taller than one screen,
+             it needs to be a scroll container itself, otherwise there's no
+             way to reach anything past the first screen: the page behind it
+             can't scroll (Lenis is stopped and body overflow is locked
+             while the modal's open) and the modal itself had no overflow
+             set, so the rest of the content was just unreachable. */
+          .gallery-modal {
+            flex-direction: column !important;
+            overflow-y: auto !important;
+            -webkit-overflow-scrolling: touch;
+          }
+          .gallery-modal-left {
+            width: 100% !important;
+            height: auto !important;
+            min-height: 10rem !important;
+            padding-bottom: 1.6rem !important;
+          }
+          .gallery-modal-close {
+            top: 1.6rem !important;
+            left: auto !important;
+            right: 1.6rem !important;
+            width: 40px !important;
+            height: 40px !important;
+          }
+          .gallery-modal-left > div {
+            position: static !important;
+            transform: none !important;
+            padding: 4.8rem 2rem 1.6rem !important;
+          }
+          .gallery-modal-right {
+            width: 100% !important;
+            height: auto !important;
+            overflow-y: visible !important;
+            grid-template-columns: 1fr !important;
+          }
+          .gallery-modal-item {
+            height: 60vh !important;
+          }
+        }
+      `}</style>
     </>
   )
 }

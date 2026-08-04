@@ -25,10 +25,24 @@ export default function StackReveal({ children, zIndex }: StackRevealProps) {
   const ref = useRef<HTMLDivElement>(null)
   const [top, setTop] = useState(0)
   const [covered, setCovered] = useState(false)
+  // Below this width, sections no longer have a reliable one-viewport
+  // height (mobile layouts stack content and grow taller than 100svh), so
+  // the sticky-pin-and-cover trick reliably produces sections visually
+  // overlapping each other mid-transition. Mobile gets plain document flow
+  // instead — each section simply scrolls past the last one.
+  const [stackingEnabled, setStackingEnabled] = useState(true)
+
+  useEffect(() => {
+    const mq = window.matchMedia('(max-width: 768px)')
+    const update = () => setStackingEnabled(!mq.matches)
+    update()
+    mq.addEventListener('change', update)
+    return () => mq.removeEventListener('change', update)
+  }, [])
 
   useEffect(() => {
     const el = ref.current
-    if (!el) return
+    if (!el || !stackingEnabled) return
     const check = () => {
       setTop(Math.min(0, window.innerHeight - el.offsetHeight))
     }
@@ -40,7 +54,7 @@ export default function StackReveal({ children, zIndex }: StackRevealProps) {
       ro.disconnect()
       window.removeEventListener('resize', check)
     }
-  }, [])
+  }, [stackingEnabled])
 
   // A pinned section stays composited for the rest of the page even though
   // later sections fully cover it, so the browser drags every stacked layer
@@ -50,14 +64,22 @@ export default function StackReveal({ children, zIndex }: StackRevealProps) {
   useEffect(() => {
     const el = ref.current
     const next = el?.nextElementSibling
-    if (!next) return
+    if (!next || !stackingEnabled) return
     const io = new IntersectionObserver(
       ([entry]) => setCovered(entry.isIntersecting),
       { rootMargin: '0px 0px -100% 0px' }
     )
     io.observe(next)
     return () => io.disconnect()
-  }, [])
+  }, [stackingEnabled])
+
+  if (!stackingEnabled) {
+    return (
+      <div style={{ position: 'relative', zIndex }}>
+        {children}
+      </div>
+    )
+  }
 
   return (
     <div

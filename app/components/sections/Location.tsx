@@ -115,7 +115,7 @@ export default function Location({ brochureImages }: { brochureImages?: string[]
     <section id="location" style={{ background: '#fff', color: '#000', overflow: 'hidden' }}>
       <TurnJSBook images={brochureImages} />
 
-      <div style={{ padding: '3.2rem 4rem 0', marginLeft: '25%' }}>
+      <div className="location-expertise" style={{ padding: '3.2rem 4rem 0', marginLeft: '25%' }}>
         <motion.p
           initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
@@ -170,7 +170,7 @@ export default function Location({ brochureImages }: { brochureImages?: string[]
         </ul>
       </div>
 
-      <div style={{ padding: '6rem 4rem 0' }}>
+      <div className="location-heading" style={{ padding: '6rem 4rem 0' }}>
         <div style={{ display: 'flex', justifyContent: 'flex-end', marginBottom: '2rem' }}>
           <motion.p
             initial={{ opacity: 0, y: 16 }}
@@ -210,6 +210,16 @@ export default function Location({ brochureImages }: { brochureImages?: string[]
         .keen-slider__slide:hover .loc-slide-img { transform: scale(1.04) !important; }
         .keen-slider { cursor: grab; }
         .keen-slider:active { cursor: grabbing; }
+
+        @media (max-width: 768px) {
+          .location-expertise {
+            padding: 2.4rem 2rem 0 !important;
+            margin-left: 0 !important;
+          }
+          .location-heading {
+            padding: 4rem 2rem 0 !important;
+          }
+        }
       `}</style>
     </section>
   )

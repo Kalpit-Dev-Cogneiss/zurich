@@ -90,15 +90,19 @@ export default function AboutManifesto() {
         justifyContent: 'center',
         padding: '0 4rem',
       }}
+      className="manifesto-section"
     >
       {/* floating image cluster — behind the type */}
-      {FLOATERS.map(f => (
-        <FloatingImage key={f.src} {...f} smx={smx} smy={smy} progress={scrollYProgress} mounted={mounted} />
-      ))}
+      <div className="manifesto-floaters">
+        {FLOATERS.map(f => (
+          <FloatingImage key={f.src} {...f} smx={smx} smy={smy} progress={scrollYProgress} mounted={mounted} />
+        ))}
+      </div>
 
       {/* eyebrow */}
       {mounted && (
         <motion.span
+          className="manifesto-eyebrow"
           initial={{ opacity: 0, y: 14 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease: EASE, delay: 0.2 }}
@@ -144,6 +148,7 @@ export default function AboutManifesto() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.9, ease: EASE, delay: 0.9 }}
+          className="manifesto-bottom-row"
           style={{
             position: 'absolute',
             bottom: '3.2rem',
@@ -156,7 +161,7 @@ export default function AboutManifesto() {
             zIndex: 2,
           }}
         >
-          <p style={{
+          <p className="manifesto-intro-text" style={{
             fontSize: '1.4rem',
             lineHeight: 1.7,
             letterSpacing: '0.04em',
@@ -189,6 +194,43 @@ export default function AboutManifesto() {
         @media (max-width: 768px) {
           .about-manifesto-line {
             font-size: clamp(3.2rem, 11vw, 15rem);
+          }
+          /* Fixed 110–300px-wide floating images with %-based positions have
+             no room to live on a narrow screen without colliding with the
+             text and each other — they're aria-hidden decoration whose
+             mouse-parallax is already inert on touch, so hide them instead
+             of trying to make three overlapping absolute-position images
+             coexist with the full-width headline in ~375px. */
+          .manifesto-floaters {
+            display: none;
+          }
+          /* Desktop pins everything (eyebrow, headline, intro paragraph) to
+             one fixed 100svh screen via absolute positioning + centering —
+             that only works because the content fits one screen at desktop
+             sizes. On mobile the same content is taller than one screen, so
+             forcing height:100svh crushed it all into overlapping layers.
+             Drop the fixed height and let it flow as a normal stacked page
+             instead: eyebrow → headline → intro text, each in normal
+             document flow (position:static rejoins them to the section's
+             existing flex-column order). */
+          .manifesto-section {
+            height: auto !important;
+            min-height: 0 !important;
+            padding: 9rem 2rem 4rem !important;
+            justify-content: flex-start !important;
+            gap: 3rem !important;
+          }
+          .manifesto-eyebrow {
+            position: static !important;
+          }
+          .manifesto-bottom-row {
+            position: static !important;
+            flex-direction: column !important;
+            align-items: flex-start !important;
+            gap: 1.6rem !important;
+          }
+          .manifesto-intro-text {
+            max-width: 100% !important;
           }
         }
         @media (max-width: 480px) {

@@ -51,6 +51,7 @@ export default function PortfolioImageRow({
       {images.map((image, index) => (
         <motion.div
           key={index}
+          className="portfolio-row-item"
           initial={{ opacity: 0, y: 60 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{
@@ -79,6 +80,20 @@ export default function PortfolioImageRow({
           />
         </motion.div>
       ))}
+
+      <style>{`
+        @media (max-width: 768px) {
+          .portfolio-image-row {
+            padding: 0 2rem !important;
+            flex-direction: column !important;
+          }
+          .portfolio-row-item {
+            height: auto !important;
+            aspect-ratio: 4 / 3;
+            flex: 0 0 auto !important;
+          }
+        }
+      `}</style>
     </div>
   )
 }

@@ -39,6 +39,7 @@ export default function CaseStudyStorySection({ heading, blocks }: CaseStudyStor
   return (
     <div
       ref={ref}
+      className="cs-story"
       style={{
         width: '100%',
         margin: '6rem 0',
@@ -156,6 +157,15 @@ export default function CaseStudyStorySection({ heading, blocks }: CaseStudyStor
           )
         })}
       </div>
+
+      <style>{`
+        @media (max-width: 768px) {
+          .cs-story {
+            padding: 0 2rem !important;
+            margin: 4rem 0 !important;
+          }
+        }
+      `}</style>
     </div>
   )
 }

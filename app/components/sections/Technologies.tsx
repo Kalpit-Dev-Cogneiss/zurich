@@ -149,6 +149,7 @@ export default function Technologies() {
       }}
     >
       <div
+        className="tech-panel"
         style={{
           ...panelStyle,
           display: 'grid',
@@ -159,7 +160,7 @@ export default function Technologies() {
         }}
       >
         {/* LEFT — next image slides up from the bottom, covering the current one */}
-        <div style={{ position: 'relative', overflow: 'hidden' }}>
+        <div className="tech-left" style={{ position: 'relative', overflow: 'hidden' }}>
           <div style={{ position: 'absolute', inset: 0 }}>
             {/* eslint-disable-next-line @next/next/no-img-element */}
             <img
@@ -189,6 +190,7 @@ export default function Technologies() {
 
         {/* RIGHT — heading stays fixed top-right; only the box and image change */}
         <div
+          className="tech-right"
           style={{
             position: 'relative',
             height: '100%',
@@ -196,7 +198,7 @@ export default function Technologies() {
             color: '#fff',
           }}
         >
-          <div style={{ position: 'relative', width: BOX_WIDTH, height: '100%', overflow: 'hidden' }}>
+          <div className="tech-box-outer" style={{ position: 'relative', width: BOX_WIDTH, height: '100%', overflow: 'hidden' }}>
             {/* One strip holding every box; it slides up so the active box sits
                 centred. All boxes are always mounted — nothing loads on demand. */}
             <div
@@ -243,6 +245,7 @@ export default function Technologies() {
           </div>
 
           <h2
+            className="tech-heading"
             style={{
               position: 'absolute',
               top: '4rem',
@@ -259,6 +262,27 @@ export default function Technologies() {
           </h2>
         </div>
       </div>
+
+      <style>{`
+        @media (max-width: 1024px) {
+          .tech-panel {
+            grid-template-columns: 1fr !important;
+            grid-template-rows: 38svh 1fr !important;
+          }
+          .tech-right {
+            padding: 2.4rem 2rem !important;
+          }
+          .tech-box-outer {
+            width: 100% !important;
+            max-width: 320px !important;
+          }
+          .tech-heading {
+            top: 2rem !important;
+            right: 2rem !important;
+            font-size: clamp(1.8rem, 5vw, 2.6rem) !important;
+          }
+        }
+      `}</style>
     </div>
   )
 }

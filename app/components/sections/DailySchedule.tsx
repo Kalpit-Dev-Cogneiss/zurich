@@ -92,6 +92,7 @@ export default function DailySchedule() {
   return (
     <section
       id="schedule"
+      className="schedule-section"
       style={{
         position: 'relative',
         display: 'grid',
@@ -104,7 +105,7 @@ export default function DailySchedule() {
       }}
     >
       {/* Clock positioned at the center divider */}
-      <div style={{
+      <div className="schedule-clock" style={{
         position: 'absolute',
         left: '50%',
         top: '50%',
@@ -154,7 +155,7 @@ export default function DailySchedule() {
       </div>
 
       {/* ── LEFT — tall image only, no text overlay ── */}
-      <div ref={leftRef} style={{ position: 'relative', overflow: 'hidden' }}>
+      <div ref={leftRef} className="schedule-left" style={{ position: 'relative', overflow: 'hidden' }}>
         <AnimatePresence mode="sync" custom={direction}>
           <motion.div
             key={`img-${active}`}
@@ -178,7 +179,7 @@ export default function DailySchedule() {
       </div>
 
       {/* ── RIGHT — black panel: time + text bottom-left + arrows ── */}
-      <div style={{
+      <div className="schedule-right" style={{
         background: '#000',
         position: 'relative',
         display: 'flex',
@@ -191,6 +192,7 @@ export default function DailySchedule() {
           <AnimatePresence mode="wait">
             <motion.p
               key={`time-${active}`}
+              className="schedule-time"
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0, y: -12 }}
@@ -267,6 +269,34 @@ export default function DailySchedule() {
           </button>
         </div>
       </div>
+
+      <style>{`
+        @media (max-width: 1024px) {
+          .schedule-section {
+            grid-template-columns: 1fr !important;
+            height: auto !important;
+            min-height: 100svh !important;
+          }
+          .schedule-left {
+            height: 46svh !important;
+            min-height: 320px !important;
+          }
+          .schedule-right {
+            min-height: 46svh !important;
+            padding: 3.2rem 0 !important;
+          }
+          .schedule-clock {
+            width: min(80vw, 60vh) !important;
+            height: min(80vw, 60vh) !important;
+            top: 46svh !important;
+          }
+        }
+        @media (max-width: 640px) {
+          .schedule-time {
+            font-size: clamp(3.2rem, 12vw, 5rem) !important;
+          }
+        }
+      `}</style>
     </section>
   )
 }

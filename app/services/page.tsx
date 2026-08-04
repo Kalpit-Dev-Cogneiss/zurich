@@ -53,7 +53,7 @@ export default function ServicesPage() {
             <ParallaxImage src="/images/Services_Reels.jpg" strength={18} />
           </div> */}
 
-          <div style={{ position: 'relative', maxWidth: 1400, margin: '0 auto', height: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'flex-end', padding: '13rem 4rem 6rem' }}>
+          <div className="services-hero-content" style={{ position: 'relative', maxWidth: 1400, margin: '0 auto', height: '100%', display: 'flex', flexDirection: 'column', justifyContent: 'flex-end', padding: '13rem 4rem 6rem' }}>
             <AnimateReveal>
               <span style={{
                 display: 'block',
@@ -113,7 +113,7 @@ export default function ServicesPage() {
         <ServicesShowcase services={services} />
 
         {/* FAQ */}
-        <section style={{ position: 'relative', zIndex: 6, background: '#000', padding: 'clamp(6rem, 9vw, 11rem) 4rem' }}>
+        <section className="services-faq-section" style={{ position: 'relative', zIndex: 6, background: '#000', padding: 'clamp(6rem, 9vw, 11rem) 4rem' }}>
           <div style={{
             maxWidth: 1400,
             margin: '0 auto',
@@ -166,6 +166,8 @@ export default function ServicesPage() {
       <style>{`
         @media (max-width: 768px) {
           .services-faq-grid { grid-template-columns: 1fr !important; }
+          .services-hero-content { padding: 9rem 2rem 4rem !important; }
+          .services-faq-section { padding: 4rem 2rem !important; }
         }
       `}</style>
     </>

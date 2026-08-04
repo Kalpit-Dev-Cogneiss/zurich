@@ -17,7 +17,7 @@ export default function BlogPage() {
     <>
       <Header />
       <main style={{ background: '#000', minHeight: '100vh' }}>
-        <section style={{ padding: '13rem 4rem 6rem' }}>
+        <section className="blog-header" style={{ padding: '13rem 4rem 6rem' }}>
           <span style={{
             display: 'block',
             fontSize: '1.1rem',
@@ -51,7 +51,7 @@ export default function BlogPage() {
           </p>
         </section>
 
-        <section style={{ padding: '4rem 4rem 10rem' }}>
+        <section className="blog-grid-section" style={{ padding: '4rem 4rem 10rem' }}>
           <div style={{
             maxWidth: 1400,
             margin: '0 auto',
@@ -73,6 +73,8 @@ export default function BlogPage() {
         }
         @media (max-width: 640px) {
           .blog-grid { grid-template-columns: 1fr !important; }
+          .blog-header { padding: 9rem 2rem 4rem !important; }
+          .blog-grid-section { padding: 3rem 2rem 6rem !important; }
         }
       `}</style>
     </>

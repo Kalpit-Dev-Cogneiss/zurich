@@ -33,7 +33,7 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
     <>
       <Header />
       <main style={{ background: '#000', minHeight: '100vh' }}>
-        <article style={{ padding: '13rem 4rem 4rem' }}>
+        <article className="blog-article" style={{ padding: '13rem 4rem 4rem' }}>
           <div style={{ maxWidth: 780, margin: '0 auto' }}>
             <Link
               href="/blog"
@@ -91,6 +91,14 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
         />
       </main>
       <Footer />
+
+      <style>{`
+        @media (max-width: 640px) {
+          .blog-article {
+            padding: 9rem 2rem 3rem !important;
+          }
+        }
+      `}</style>
     </>
   )
 }

@@ -73,7 +73,7 @@ export default function AboutFounder() {
       </div>
 
       {/* left column: quote */}
-      <div style={{
+      <div className="founder-quote-col" style={{
         position: 'relative',
         zIndex: 2,
         flex: '1 1 56%',
@@ -192,6 +192,14 @@ export default function AboutFounder() {
           />
         )}
       </div>
+
+      <style>{`
+        @media (max-width: 640px) {
+          .founder-quote-col {
+            padding: 6rem 2rem !important;
+          }
+        }
+      `}</style>
     </section>
   )
 }

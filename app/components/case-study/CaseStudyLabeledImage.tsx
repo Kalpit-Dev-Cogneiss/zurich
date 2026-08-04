@@ -32,6 +32,7 @@ export default function CaseStudyLabeledImage({ label, body, src, alt, layout = 
       initial={{ opacity: 0, y: 30 }}
       animate={isInView ? { opacity: 1, y: 0 } : {}}
       transition={{ duration: 0.7, ease: EASE }}
+      className="cs-labeled-heading"
       style={{
         fontSize: 'clamp(2rem, 3vw, 3.5rem)',
         fontWeight: 600,
@@ -78,10 +79,25 @@ export default function CaseStudyLabeledImage({ label, body, src, alt, layout = 
     </motion.div>
   )
 
+  const styleTag = (
+    <style>{`
+      @media (max-width: 768px) {
+        .cs-labeled {
+          padding: 0 2rem !important;
+          margin: 4rem 0 !important;
+        }
+        .cs-labeled-heading {
+          padding: 2rem 0 !important;
+        }
+      }
+    `}</style>
+  )
+
   if (layout === 'side') {
     return (
       <div
         ref={ref}
+        className="cs-labeled"
         style={{
           width: '100%',
           margin: '6rem 0',
@@ -101,12 +117,13 @@ export default function CaseStudyLabeledImage({ label, body, src, alt, layout = 
         <div style={{ flex: '2 1 400px', minWidth: 'min(100%, 300px)', display: 'flex', justifyContent: 'center' }}>
           {image}
         </div>
+        {styleTag}
       </div>
     )
   }
 
   return (
-    <div ref={ref} style={{
+    <div ref={ref} className="cs-labeled" style={{
       width: '100%',
       margin: '6rem 0',
       padding: '0 8rem',
@@ -118,6 +135,7 @@ export default function CaseStudyLabeledImage({ label, body, src, alt, layout = 
       {heading}
       {bodyText}
       {image}
+      {styleTag}
     </div>
   )
 }

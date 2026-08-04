@@ -1,5 +1,5 @@
 'use client'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import India from '@react-map/india'
 
 // Cities with their approximate positions on the map (percentage based on actual geography)
@@ -17,6 +17,20 @@ const CITIES = [
 
 export default function IndiaMap() {
   const [activeCity, setActiveCity] = useState<string | null>(null)
+  // The map library renders at a literal pixel width (no intrinsic
+  // responsiveness), so it's resized via its own `size` prop rather than
+  // fought with CSS — keeps the percentage-based city markers aligned.
+  const [mapSize, setMapSize] = useState(800)
+
+  useEffect(() => {
+    const update = () => {
+      const w = window.innerWidth
+      setMapSize(w < 640 ? 320 : w < 1024 ? 560 : 800)
+    }
+    update()
+    window.addEventListener('resize', update)
+    return () => window.removeEventListener('resize', update)
+  }, [])
 
   return (
     <section
@@ -58,14 +72,15 @@ export default function IndiaMap() {
         <div
           style={{
             position: 'relative',
-            maxWidth: 800,
+            width: '100%',
+            maxWidth: mapSize,
             margin: '0 auto 6rem',
           }}
         >
           {/* India Map - No interaction */}
           <India
             type="select-single"
-            size={800}
+            size={mapSize}
             mapColor="#1a1a1a"
             strokeColor="rgba(255,255,255,0.1)"
             strokeWidth={1}
@@ -99,6 +114,7 @@ export default function IndiaMap() {
                   }}
                   onMouseEnter={() => setActiveCity(city.name)}
                   onMouseLeave={() => setActiveCity(null)}
+                  onClick={() => setActiveCity(isActive ? null : city.name)}
                 >
                   {/* Dot Marker */}
                   <div
@@ -144,6 +160,7 @@ export default function IndiaMap() {
 
                     {/* Label Box */}
                     <div
+                      className="india-city-label"
                       style={{
                         background: isActive ? '#fff' : 'rgba(0,0,0,0.95)',
                         padding: '0.6rem 1.2rem',
@@ -215,9 +232,24 @@ export default function IndiaMap() {
         }
 
         @media (max-width: 768px) {
+          #india-map {
+            padding: 6rem 2.4rem !important;
+          }
           #india-map > div > div:last-child {
             grid-template-columns: 1fr !important;
             gap: 2rem !important;
+          }
+        }
+
+        @media (max-width: 640px) {
+          #india-map {
+            padding: 6rem 2rem !important;
+          }
+          .india-city-label {
+            padding: 0.4rem 0.8rem !important;
+          }
+          .india-city-label p {
+            font-size: 0.75rem !important;
           }
         }
       `}</style>

@@ -9,6 +9,7 @@ import {
   type MotionValue,
 } from 'framer-motion'
 import type Lenis from 'lenis'
+import AnimateReveal from '@/app/components/ui/AnimateReveal'
 
 const EASE: [number, number, number, number] = [0.7, 0, 0.3, 1]
 // Smooth, slow deceleration — the spin gradually slows down into place
@@ -99,8 +100,19 @@ export default function AboutStats() {
   const lockedRef = useRef(false)
   const engagedRef = useRef(false)
   const exitingRef = useRef(false)
+  const [isTouch, setIsTouch] = useState(false)
 
   useEffect(() => {
+    setIsTouch(window.matchMedia('(hover: none) and (pointer: coarse)').matches)
+  }, [])
+
+  useEffect(() => {
+    // Touch devices get a normal stacked-scroll render (see below) instead of
+    // the pinned single-stat stepper — skip the hijack entirely so mobile
+    // scroll is never at risk of getting stuck (see isActive()'s reliance on
+    // window.innerHeight, which shifts as the mobile browser chrome
+    // shows/hides mid-gesture).
+    if (isTouch) return
     const section = sectionRef.current
     if (!section) return
     // the sticky wrapper StackReveal renders around this section, and its
@@ -269,7 +281,7 @@ export default function AboutStats() {
       clearEngageTimeout()
       if (engagedRef.current) lenis?.start()
     }
-  }, [])
+  }, [isTouch])
 
   const stat = STATS[stepIndex]
   const digitCount = String(stat.value).length
@@ -282,6 +294,68 @@ export default function AboutStats() {
     Math.floor(stat.value / 10) % 10,
     stat.value % 10,
   ]
+
+  // Touch devices: no pinned single-stat stepper (see the hijack bail-out
+  // above) — all stats stack in a normal scrollable list instead, each
+  // revealed with the same AnimateReveal primitive used elsewhere in the
+  // codebase, so all four stats stay reachable via ordinary scroll.
+  if (isTouch) {
+    return (
+      <section
+        id="about-stats"
+        style={{
+          position: 'relative',
+          background: '#000',
+          color: '#fff',
+          padding: '6rem 2rem',
+        }}
+      >
+        <div style={{
+          fontSize: '1.1rem',
+          letterSpacing: '0.22em',
+          color: '#fff',
+          marginBottom: '4rem',
+        }}>
+          By the numbers
+        </div>
+
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '5rem' }}>
+          {STATS.map((s, i) => (
+            <AnimateReveal key={s.label} delay={i * 0.05}>
+              <p style={{
+                fontSize: 'clamp(5rem, 20vw, 8rem)',
+                fontWeight: 600,
+                letterSpacing: '0.02em',
+                fontVariantNumeric: 'tabular-nums',
+                margin: 0,
+                lineHeight: 1,
+              }}>
+                {s.value}{s.suffix || '+'}
+              </p>
+              <h3 style={{
+                fontSize: 'clamp(2.2rem, 6vw, 3rem)',
+                fontWeight: 600,
+                lineHeight: 1.1,
+                letterSpacing: '0.02em',
+                margin: '1.2rem 0 0.8rem',
+              }}>
+                {s.label}
+              </h3>
+              <p style={{
+                fontSize: '1.4rem',
+                lineHeight: 1.7,
+                letterSpacing: '0.03em',
+                color: 'rgba(255,255,255,0.65)',
+                margin: 0,
+              }}>
+                {s.body}
+              </p>
+            </AnimateReveal>
+          ))}
+        </div>
+      </section>
+    )
+  }
 
   return (
     <section
@@ -299,7 +373,7 @@ export default function AboutStats() {
       }}
     >
       {/* eyebrow */}
-      <div style={{
+      <div className="stats-eyebrow" style={{
         position: 'absolute',
         top: '2.8rem',
         left: '4rem',
@@ -311,7 +385,7 @@ export default function AboutStats() {
         By the numbers
       </div>
 
-      <div style={{
+      <div className="stats-row" style={{
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'space-between',
@@ -321,6 +395,7 @@ export default function AboutStats() {
       }}>
         {/* the reel - 50% width */}
         <div
+          className="stats-reel"
           aria-hidden="true"
           style={{
             flex: '0 0 50%',
@@ -393,14 +468,14 @@ export default function AboutStats() {
       </div>
 
       {/* stat rail */}
-      <div style={{
+      <div className="stats-rail" style={{
         position: 'absolute',
         bottom: '3.2rem',
         left: '4rem',
         right: '4rem',
         zIndex: 3,
       }}>
-        <div style={{ display: 'flex', gap: '3.2rem' }}>
+        <div className="stats-rail-row" style={{ display: 'flex', gap: '3.2rem' }}>
           {STATS.map((s, i) => (
             <span key={s.label} style={{
               fontSize: '1.1rem',
@@ -413,6 +488,33 @@ export default function AboutStats() {
           ))}
         </div>
       </div>
+
+      <style>{`
+        @media (max-width: 1024px) {
+          .stats-eyebrow {
+            left: 2rem !important;
+          }
+          .stats-row {
+            flex-direction: column !important;
+            justify-content: center !important;
+            gap: 2rem !important;
+            padding: 0 2rem !important;
+          }
+          .stats-reel {
+            flex: 0 0 auto !important;
+            font-size: clamp(6rem, 22vw, 10rem) !important;
+          }
+          .stats-rail {
+            left: 2rem !important;
+            right: 2rem !important;
+            bottom: 2rem !important;
+          }
+          .stats-rail-row {
+            flex-wrap: wrap !important;
+            gap: 1.2rem 2rem !important;
+          }
+        }
+      `}</style>
     </section>
   )
 }

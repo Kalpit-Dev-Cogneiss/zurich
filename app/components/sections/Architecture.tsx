@@ -140,7 +140,7 @@ export default function Architecture() {
           BLOCK 4 — luxury text (small, left half)
       ───────────────────────────────────────────────────────────── */}
       <div style={{ padding: '0 4rem 6rem' }}>
-        <motion.p {...fadeUp(0)} style={{
+        <motion.p className="arch-luxury-text" {...fadeUp(0)} style={{
           fontSize: 'clamp(1.2rem, 1.4vw, 1.6rem)',
           fontWeight: 600, lineHeight: 1.6,
           letterSpacing: '0.06em',
@@ -158,6 +158,18 @@ export default function Architecture() {
         <ParallaxImg src={IMG.image4} style={{ aspectRatio: '1/1' }} />
         <ParallaxImg src={IMG.image5} style={{ aspectRatio: '1/1' }} />
       </div> */}
+
+      <style>{`
+        @media (max-width: 768px) {
+          #style > div {
+            padding-left: 2rem !important;
+            padding-right: 2rem !important;
+          }
+          .arch-luxury-text {
+            max-width: 100% !important;
+          }
+        }
+      `}</style>
     </section>
   )
 }

@@ -24,7 +24,7 @@ const PASSAGES = [
   {
     heading: 'A Lot Goes Into Turning A Head.',
     body: 'One head can turn another. We prefer a roomful. Every brief moves around the room: strategists question it, writers find its voice, designers shape it and digital thinkers take it further. Clients trust us with projects that have taken years to build, and we treat that trust as part of the brief. Talent gets attention. Teamwork gives it depth.',
-    image: '/images/A-Lot-Goes-Into-Turning-A-Head.jpeg',
+    image: '/images/A-Lot-Goes-Into-Turning-A-Head-new.jpeg',
   },
 ]
 
@@ -114,7 +114,7 @@ export default function AboutPassages() {
         }}
       >
         {/* ── LEFT — text stage ── */}
-        <div style={{
+        <div className="about-passages-left" style={{
           position: 'relative',
           background: '#000',
           color: '#fff',
@@ -191,7 +191,7 @@ export default function AboutPassages() {
         </div>
 
         {/* ── RIGHT — stacked images, opacity crossfade ── */}
-        <div style={{ position: 'relative', overflow: 'hidden' }}>
+        <div className="about-passages-right" style={{ position: 'relative', overflow: 'hidden' }}>
           {PASSAGES.map((p, i) => (
             <motion.div
               key={p.heading}
@@ -219,12 +219,16 @@ export default function AboutPassages() {
         @media (max-width: 820px) {
           .about-passages-panel {
             grid-template-columns: 1fr !important;
+            grid-template-rows: auto 1fr !important;
           }
-          .about-passages-panel > div:first-child {
-            padding-top: 8rem !important;
+          .about-passages-left {
+            padding: 7rem 2rem 2rem !important;
           }
-          .about-passages-panel > div:last-child {
-            display: none;
+          .about-passages-right {
+            min-height: 220px !important;
+          }
+          .about-passages-left h3 {
+            font-size: clamp(2.2rem, 6vw, 3.2rem) !important;
           }
         }
       `}</style>

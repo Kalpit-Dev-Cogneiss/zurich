@@ -2,6 +2,7 @@
 import { useRef, useEffect, useState } from 'react'
 import { motion } from 'framer-motion'
 import Lenis from 'lenis'
+import AnimateReveal from '@/app/components/ui/AnimateReveal'
 
 const IMG = {
   i1: '/images/Services_001.jpg',
@@ -16,6 +17,33 @@ const IMG = {
   i10: '/images/Services_010.jpg',
 }
 
+// Mobile gets a plain vertical stack instead of the horizontal-scroll rig —
+// the strip's translateX math is driven by strip.scrollWidth, which doesn't
+// have a sane mobile equivalent, so flipping flex-direction on the existing
+// panels would fight that math rather than fix it. Same content, read top
+// to bottom instead of left to right.
+const MOBILE_ITEMS: Array<{ type: 'heading' | 'image' | 'text'; text?: string; src?: string }> = [
+  { type: 'heading', text: 'Our Work' },
+  { type: 'image', src: IMG.i1 },
+  { type: 'text', text: "We'll let it do the talking. Inside are identities that found their edge, campaigns that owned their space and projects that became brands." },
+  { type: 'image', src: IMG.i2 },
+  { type: 'image', src: IMG.i3 },
+  { type: 'text', text: 'Built in the studio. Tested in the market. Remembered across cities.' },
+  { type: 'text', text: 'The Skyline Remembers Great Architecture. The Market Remembers Great Branding. This Is Where We Made Our Mark.' },
+  { type: 'image', src: IMG.i4 },
+  { type: 'image', src: IMG.i5 },
+  { type: 'text', text: 'Every project becomes a case study our clients are proud to share, from first sketch to the finished brand on the ground.' },
+  { type: 'image', src: IMG.i6 },
+  { type: 'image', src: IMG.i7 },
+  { type: 'text', text: 'From Naming To Launch: One Connected Creative Journey, Across Every Touchpoint.' },
+  { type: 'image', src: IMG.i8 },
+  { type: 'image', src: IMG.i9 },
+  { type: 'text', text: 'A Compelling Position. A Powerful Story. A Brand Built To Be Chosen.' },
+  { type: 'heading', text: 'The Work Speaks' },
+  { type: 'image', src: IMG.i10 },
+  { type: 'text', text: 'Over three decades of experience, a deep understanding of Indian realty and a strategy-first approach: identities that found their edge, campaigns that owned their space and projects that became brands.' },
+]
+
 export default function Fitness() {
   const spacerRef = useRef<HTMLDivElement>(null)
   const stripRef = useRef<HTMLDivElement>(null)
@@ -23,8 +51,18 @@ export default function Fitness() {
   const [slideX, setSlideX] = useState(100)  // vw: 100 = off-screen right
   const [phase, setPhase] = useState<'before' | 'pinned' | 'after'>('before')
   const [afterTop, setAfterTop] = useState(0)
+  const [isMobile, setIsMobile] = useState(false)
 
   useEffect(() => {
+    const mq = window.matchMedia('(max-width: 768px)')
+    const update = () => setIsMobile(mq.matches)
+    update()
+    mq.addEventListener('change', update)
+    return () => mq.removeEventListener('change', update)
+  }, [])
+
+  useEffect(() => {
+    if (isMobile) return
     const spacer = spacerRef.current
     const strip = stripRef.current
     if (!spacer || !strip) return
@@ -73,10 +111,11 @@ export default function Fitness() {
     window.addEventListener('scroll', fn, { passive: true })
     update(window.scrollY)
     return () => window.removeEventListener('scroll', fn)
-  }, [])
+  }, [isMobile])
 
   const [spacerH, setSpacerH] = useState('400vh')
   useEffect(() => {
+    if (isMobile) return
     const recalc = () => {
       const strip = stripRef.current
       if (!strip) return
@@ -90,13 +129,58 @@ export default function Fitness() {
     }
     const t = setTimeout(recalc, 100)
     window.addEventListener('resize', recalc)
-    return () => { clearTimeout(t); window.removeEventListener('resize', recalc) }
-  }, [])
+    // Mobile browsers often don't fire 'resize' when the address bar
+    // shows/hides mid-scroll (the event most engines actually dispatch it
+    // for), which left the horizontal-scroll spacer height stale — use the
+    // visualViewport API too, which does fire reliably for that case.
+    window.visualViewport?.addEventListener('resize', recalc)
+    return () => {
+      clearTimeout(t)
+      window.removeEventListener('resize', recalc)
+      window.visualViewport?.removeEventListener('resize', recalc)
+    }
+  }, [isMobile])
 
   const panelStyle: React.CSSProperties =
     phase === 'after'
       ? { position: 'absolute', top: afterTop, left: 0, width: '100vw', height: '100vh' }
       : { position: 'fixed', top: 0, left: 0, width: '100vw', height: '100vh' }
+
+  if (isMobile) {
+    return (
+      <div id="fitness" style={{ position: 'relative', background: '#fff', zIndex: 10, padding: '5rem 2rem' }}>
+        <div style={{ display: 'flex', flexDirection: 'column', gap: '3rem' }}>
+          {MOBILE_ITEMS.map((mi, i) => (
+            <AnimateReveal key={i} delay={(i % 4) * 0.05}>
+              {mi.type === 'heading' && (
+                <h2 style={{
+                  fontSize: 'clamp(2.4rem, 8vw, 3.2rem)',
+                  fontWeight: 600, lineHeight: 1.1,
+                  letterSpacing: '0.02em', color: '#000', margin: 0,
+                }}>
+                  {mi.text}
+                </h2>
+              )}
+              {mi.type === 'text' && (
+                <p style={{
+                  fontSize: '1.4rem', lineHeight: 1.6,
+                  letterSpacing: '0.03em', color: '#000', margin: 0,
+                }}>
+                  {mi.text}
+                </p>
+              )}
+              {mi.type === 'image' && (
+                <div style={{ width: '100%', aspectRatio: '4/3', overflow: 'hidden' }}>
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img src={mi.src} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
+                </div>
+              )}
+            </AnimateReveal>
+          ))}
+        </div>
+      </div>
+    )
+  }
 
   return (
     <div

@@ -138,6 +138,7 @@ export default function Advantages() {
     >
       {/* Panel — fixed when pinned, absolute otherwise */}
       <div
+        className="advantages-panel"
         style={{
           ...panelStyle,
           display: 'grid',
@@ -148,7 +149,7 @@ export default function Advantages() {
         }}
       >
         {/* ── LEFT ── */}
-        <div style={{
+        <div className="advantages-left" style={{
           background: '#000', color: '#fff',
           display: 'flex', flexDirection: 'column',
           justifyContent: 'space-between',
@@ -157,7 +158,7 @@ export default function Advantages() {
         }}>
 
           {/* Counter */}
-          <div style={{ display: 'flex', alignItems: 'center', gap: '1.2rem' }}>
+          <div className="advantages-counter" style={{ display: 'flex', alignItems: 'center', gap: '1.2rem' }}>
             
             <motion.span
               key={`num-${active}`}
@@ -175,7 +176,7 @@ export default function Advantages() {
           </div>
 
           {/* Title */}
-          <div style={{ flex: 1, display: 'flex', alignItems: 'center' }}>
+          <div className="advantages-title" style={{ flex: 1, display: 'flex', alignItems: 'center' }}>
             <motion.h2
               key={`title-${active}`}
               initial={{ opacity: 0, y: 24 }}
@@ -195,6 +196,7 @@ export default function Advantages() {
           {/* Description */}
           <motion.p
             key={`desc-${active}`}
+            className="advantages-desc"
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.5, ease: [0.7, 0, 0.3, 1] as [number,number,number,number], delay: 0.1 }}
@@ -209,7 +211,7 @@ export default function Advantages() {
         </div>
 
         {/* ── RIGHT — all images stacked, opacity crossfade ── */}
-        <div style={{ position: 'relative', overflow: 'hidden' }}>
+        <div className="advantages-right" style={{ position: 'relative', overflow: 'hidden' }}>
           {ITEMS.map((it, i) => (
             <motion.div
               key={it.num}
@@ -227,6 +229,35 @@ export default function Advantages() {
           ))}
         </div>
       </div>
+
+      <style>{`
+        @media (max-width: 1024px) {
+          .advantages-panel {
+            grid-template-columns: 1fr !important;
+            grid-template-rows: auto 1fr !important;
+          }
+          .advantages-left {
+            justify-content: flex-start !important;
+            gap: 2rem !important;
+            padding: 2.8rem 2rem !important;
+          }
+          .advantages-counter {
+            flex: 0 0 auto !important;
+          }
+          .advantages-title {
+            flex: 0 0 auto !important;
+          }
+          .advantages-left h2 {
+            font-size: clamp(2.6rem, 6.5vw, 4rem) !important;
+          }
+          .advantages-desc {
+            max-width: 100% !important;
+          }
+          .advantages-right {
+            min-height: 240px !important;
+          }
+        }
+      `}</style>
     </div>
   )
 }

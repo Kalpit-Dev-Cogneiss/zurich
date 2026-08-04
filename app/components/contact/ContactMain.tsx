@@ -70,6 +70,7 @@ export default function ContactMain() {
         justifyContent: 'center',
         padding: '0 4rem',
       }}
+      className="contact-main-section"
     >
       {/* cursor spotlight */}
       <div
@@ -84,6 +85,7 @@ export default function ContactMain() {
           initial={{ opacity: 0, y: 14 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, ease: EASE, delay: 0.2 }}
+          className="contact-top-row"
           style={{
             position: 'absolute',
             top: '2.8rem',
@@ -122,6 +124,7 @@ export default function ContactMain() {
         <div style={{ overflow: 'hidden' }}>
           {mounted && (
             <motion.p
+              className="contact-wordmark"
               initial={{ y: '110%' }}
               animate={{ y: '0%' }}
               transition={{ duration: 1.2, ease: EASE, delay: 0.15 }}
@@ -137,10 +140,11 @@ export default function ContactMain() {
             </motion.p>
           )}
         </div>
-        <div style={{ overflow: 'hidden', display: 'flex', alignItems: 'center', gap: '3vw' }}>
+        <div className="contact-line2" style={{ overflow: 'hidden', display: 'flex', alignItems: 'center', gap: '3vw' }}>
           {mounted && (
             <>
               <motion.p
+                className="contact-wordmark"
                 initial={{ y: '110%' }}
                 animate={{ y: '0%' }}
                 transition={{ duration: 1.2, ease: EASE, delay: 0.3 }}
@@ -163,6 +167,7 @@ export default function ContactMain() {
 
               {/* spinning badge */}
               <motion.div
+                className="contact-badge"
                 initial={{ opacity: 0, scale: 0.6 }}
                 animate={{ opacity: 1, scale: 1 }}
                 transition={{ duration: 0.9, ease: EASE, delay: 0.7 }}
@@ -212,6 +217,7 @@ export default function ContactMain() {
           initial={{ opacity: 0, y: 24 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.9, ease: EASE, delay: 0.85 }}
+          className="contact-bottom-row"
           style={{
             position: 'absolute',
             bottom: '3.2rem',
@@ -281,6 +287,32 @@ export default function ContactMain() {
         @keyframes contact-badge-spin {
           from { transform: rotate(0deg); }
           to { transform: rotate(360deg); }
+        }
+
+        @media (max-width: 768px) {
+          .contact-main-section {
+            padding: 0 2rem !important;
+          }
+          .contact-top-row {
+            left: 2rem !important;
+            right: 2rem !important;
+          }
+          .contact-wordmark {
+            font-size: clamp(3.6rem, 13vw, 6rem) !important;
+          }
+          .contact-line2 {
+            flex-wrap: wrap !important;
+            gap: 1.2rem !important;
+          }
+          .contact-badge {
+            width: 64px !important;
+            height: 64px !important;
+          }
+          .contact-bottom-row {
+            left: 2rem !important;
+            right: 2rem !important;
+            gap: 2rem !important;
+          }
         }
       `}</style>
     </section>

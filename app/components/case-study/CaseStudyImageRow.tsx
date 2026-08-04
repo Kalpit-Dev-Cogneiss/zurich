@@ -68,7 +68,7 @@ export default function CaseStudyImageRow({ images, actualSize, spaceBelow, gap 
           padding: '0rem 8rem',
           marginBottom: '6rem',
         }}
-        className="case-study-image-row"
+        className="case-study-image-row cs-row-actual"
       >
         {images.map((image, index) => (
           <motion.div
@@ -99,11 +99,12 @@ export default function CaseStudyImageRow({ images, actualSize, spaceBelow, gap 
         padding: '0rem 8rem',
         marginBottom: spaceBelow ? '6rem' : undefined,
       }}
-      className="case-study-image-row"
+      className="case-study-image-row cs-row-justified"
     >
       {images.map((image, index) => (
         <motion.div
           key={index}
+          className="cs-row-justified-item"
           initial={{ opacity: 0, y: 60 }}
           animate={isInView ? { opacity: 1, y: 0 } : {}}
           transition={{
@@ -132,6 +133,22 @@ export default function CaseStudyImageRow({ images, actualSize, spaceBelow, gap 
           />
         </motion.div>
       ))}
+
+      <style>{`
+        @media (max-width: 768px) {
+          .case-study-image-row {
+            padding: 0 2rem !important;
+          }
+          .cs-row-justified {
+            flex-direction: column !important;
+          }
+          .cs-row-justified-item {
+            height: auto !important;
+            aspect-ratio: 4 / 3;
+            flex: 0 0 auto !important;
+          }
+        }
+      `}</style>
     </div>
   )
 }

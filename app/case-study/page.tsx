@@ -17,7 +17,7 @@ export default function CaseStudyIndexPage() {
     <>
       <Header />
       <main style={{ background: '#000', minHeight: '100vh' }}>
-        <section style={{ padding: '12rem 4rem 6rem', textAlign: 'center', background: '#000' }}>
+        <section className="cs-index-header" style={{ padding: '12rem 4rem 6rem', textAlign: 'center', background: '#000' }}>
           <h1 style={{
             fontSize: 'clamp(4rem, 8vw, 8rem)',
             fontWeight: 600,
@@ -38,8 +38,8 @@ export default function CaseStudyIndexPage() {
           </p>
         </section>
 
-        <section style={{ padding: '4rem 4rem 8rem', background: '#0a0a0a' }}>
-          <div style={{
+        <section className="cs-index-grid-section" style={{ padding: '4rem 4rem 8rem', background: '#0a0a0a' }}>
+          <div className="cs-index-grid" style={{
             maxWidth: '1600px',
             margin: '0 auto',
             display: 'grid',
@@ -60,6 +60,22 @@ export default function CaseStudyIndexPage() {
         </section>
       </main>
       <Footer />
+
+      <style>{`
+        @media (max-width: 1024px) {
+          .cs-index-grid {
+            grid-template-columns: 1fr !important;
+          }
+        }
+        @media (max-width: 768px) {
+          .cs-index-header {
+            padding: 9rem 2rem 4rem !important;
+          }
+          .cs-index-grid-section {
+            padding: 3rem 2rem 5rem !important;
+          }
+        }
+      `}</style>
     </>
   )
 }

@@ -32,7 +32,7 @@ export default function Hero() {
       }}
     >
       {/* ── LEFT solid black strip ── */}
-      <div style={{
+      <div className="hero-left-strip" style={{
         position: 'absolute',
         left: 0, top: 0, bottom: 0,
         width: '33%',
@@ -56,7 +56,7 @@ export default function Hero() {
       </div>
 
       {/* ── RIGHT — night building photo from reference ── */}
-      <div style={{
+      <div className="hero-image-wrap" style={{
         position: 'absolute',
         left: '33%',
         right: 0,
@@ -67,6 +67,7 @@ export default function Hero() {
         <motion.div style={{ scale: imgScale, position: 'absolute', inset: 0 }}>
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
+            className="hero-bg-photo"
             src={BG_NIGHT}
             alt="Zurich Graphics Real Estate Branding"
             style={{
@@ -102,7 +103,7 @@ export default function Hero() {
 
       {/* ── TOP-LEFT headline — starts at same top as header ── */}
       {mounted && (
-        <div style={{
+        <div className="hero-headline" style={{
           position: 'absolute',
           top: '2.4rem',
           left: '4rem',
@@ -158,7 +159,7 @@ export default function Hero() {
             animate={{ y: '0%' }}
             transition={{ duration: 1.3, ease: [0.7, 0, 0.3, 1], delay: 0.1 }}
           >
-            <p style={{
+            <p className="hero-wordmark" style={{
               fontSize: 'clamp(8rem, 18vw, 21rem)',
               fontWeight: 600,
               fontFamily: "'Times New Roman', Times, serif",
@@ -174,6 +175,44 @@ export default function Hero() {
           </motion.div>
         )}
       </motion.div>
+
+      <style>{`
+        @media (max-width: 640px) {
+          .hero-left-strip {
+            width: 100% !important;
+            left: 0 !important;
+            right: 0 !important;
+            bottom: auto !important;
+            height: auto !important;
+            padding: 1.6rem 2rem !important;
+          }
+          .hero-left-strip img {
+            width: clamp(90px, 24vw, 130px) !important;
+          }
+          .hero-image-wrap {
+            left: 0 !important;
+          }
+          .hero-bg-photo {
+            object-fit: contain !important;
+            object-position: center center !important;
+            background: #000;
+          }
+          .hero-headline {
+            top: 9.5rem !important;
+            left: 2rem !important;
+            right: 2rem !important;
+            max-width: calc(100% - 4rem) !important;
+          }
+          .hero-headline p {
+            font-size: clamp(2rem, 6.5vw, 2.8rem) !important;
+            line-height: 1.25 !important;
+          }
+          .hero-wordmark {
+            font-size: clamp(3.6rem, 15vw, 6rem) !important;
+            padding-left: 1.2rem !important;
+          }
+        }
+      `}</style>
     </section>
   )
 }

@@ -103,7 +103,7 @@ export default function About({ videoUrl, videoPoster }: AboutProps) {
       </div>
 
       {/* ── BOTTOM ROW: title left + cards right ── */}
-      <div style={{
+      <div className="about-bottom-row" style={{
         position: 'absolute',
         bottom: 0, left: 0, right: 0,
         zIndex: 2,
@@ -114,7 +114,7 @@ export default function About({ videoUrl, videoPoster }: AboutProps) {
       }}>
 
         {/* LEFT — big heading */}
-        <div style={{ flex: '0 0 auto', maxWidth: '42%' }}>
+        <div className="about-heading" style={{ flex: '0 0 auto', maxWidth: '42%' }}>
           <motion.h2
             initial={{ opacity: 0, y: 30 }}
             whileInView={{ opacity: 1, y: 0 }}
@@ -134,7 +134,7 @@ export default function About({ videoUrl, videoPoster }: AboutProps) {
         </div>
 
         {/* RIGHT — two cards */}
-        <div style={{
+        <div className="about-cards" style={{
           marginLeft: 'auto',
           display: 'flex',
           alignItems: 'stretch',
@@ -149,6 +149,7 @@ export default function About({ videoUrl, videoPoster }: AboutProps) {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.7, ease: [0.7, 0, 0.3, 1], delay: 0.1 }}
+            className="about-card"
             style={{
               width: 200,
               background: 'rgba(10,10,10,0.85)',
@@ -185,6 +186,7 @@ export default function About({ videoUrl, videoPoster }: AboutProps) {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ duration: 0.7, ease: [0.7, 0, 0.3, 1], delay: 0.18 }}
+            className="about-card"
             style={{
               width: 200,
               background: '#fff',
@@ -276,6 +278,28 @@ export default function About({ videoUrl, videoPoster }: AboutProps) {
           </motion.div>
         )}
       </AnimatePresence>
+
+      <style>{`
+        @media (max-width: 768px) {
+          .about-bottom-row {
+            flex-direction: column !important;
+            align-items: flex-start !important;
+            padding: 0 2rem 2.4rem !important;
+            gap: 1.6rem !important;
+          }
+          .about-heading {
+            max-width: 100% !important;
+          }
+          .about-cards {
+            width: 100% !important;
+            height: 160px !important;
+          }
+          .about-card {
+            width: 50% !important;
+            padding: 1.6rem !important;
+          }
+        }
+      `}</style>
     </section>
   )
 }

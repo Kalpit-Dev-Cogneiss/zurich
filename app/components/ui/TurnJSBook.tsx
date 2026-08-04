@@ -6,7 +6,6 @@ const DEFAULT_TOTAL_IMAGES = 70
 const BOOK_HEIGHT = 600
 const COVER_WIDTH = 450
 const SPREAD_WIDTH = 900
-const COVER_OFFSET = (SPREAD_WIDTH - COVER_WIDTH) / 2
 
 const DEFAULT_IMAGES = Array.from({ length: DEFAULT_TOTAL_IMAGES }, (_, i) => {
   const num = String(i + 1).padStart(2, '0')
@@ -62,6 +61,36 @@ export default function TurnJSBook({ images }: TurnJSBookProps) {
   const preloadStarted = useRef(false)
 
   const isCover = currentPage === 1
+
+  // turn.js has no intrinsic responsiveness — it's initialized at a literal
+  // pixel width/height. Track the available width and keep both the initial
+  // construction and a live 'size' call on turn.js in sync with it, instead
+  // of letting the book overflow (and get clipped by overflow-x: clip) on
+  // narrow screens.
+  const dimsRef = useRef({ width: SPREAD_WIDTH, height: BOOK_HEIGHT })
+  const [dims, setDims] = useState(dimsRef.current)
+
+  useEffect(() => {
+    const recalc = () => {
+      // Leaves room for the prev/next arrow buttons beside the book instead
+      // of on top of it — they need more clearance on narrow screens where
+      // the book would otherwise fill almost the entire width.
+      const margin = window.innerWidth < 640 ? 150 : 64
+      const width = Math.max(240, Math.min(SPREAD_WIDTH, window.innerWidth - margin))
+      const height = Math.round(width * (BOOK_HEIGHT / SPREAD_WIDTH))
+      dimsRef.current = { width, height }
+      setDims({ width, height })
+      if (jqueryRef.current && flipbookRef.current && isReady) {
+        jqueryRef.current(flipbookRef.current).turn('size', width, height)
+      }
+    }
+    recalc()
+    window.addEventListener('resize', recalc)
+    return () => window.removeEventListener('resize', recalc)
+  }, [isReady])
+
+  const coverWidth = dims.width / 2
+  const coverOffset = dims.width / 4
 
   useEffect(() => {
     const el = sectionRef.current
@@ -127,8 +156,8 @@ export default function TurnJSBook({ images }: TurnJSBookProps) {
 
         // Always use double-page mode so the first flip opens straight into a spread
         $flipbook.turn({
-          width: SPREAD_WIDTH,
-          height: BOOK_HEIGHT,
+          width: dimsRef.current.width,
+          height: dimsRef.current.height,
           autoCenter: false,
           acceleration: true,
           gradients: true,
@@ -198,6 +227,7 @@ export default function TurnJSBook({ images }: TurnJSBookProps) {
   return (
     <div
       ref={sectionRef}
+      className="book-root"
       style={{
         position: 'relative',
         width: '100%',
@@ -213,6 +243,7 @@ export default function TurnJSBook({ images }: TurnJSBookProps) {
           onClick={goToPrevPage}
           disabled={currentPage === 1}
           aria-label="Previous Page"
+          className="book-nav-btn"
           style={{
             position: 'absolute',
             left: '2rem',
@@ -241,8 +272,8 @@ export default function TurnJSBook({ images }: TurnJSBookProps) {
       <div className="book-stage" style={{
         position: 'relative',
         width: '100%',
-        maxWidth: `${SPREAD_WIDTH}px`,
-        height: `${BOOK_HEIGHT}px`,
+        maxWidth: `${dims.width}px`,
+        height: `${dims.height}px`,
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
@@ -255,9 +286,9 @@ export default function TurnJSBook({ images }: TurnJSBookProps) {
         />
 
         <div style={{
-          transform: isCover ? `translateX(-${COVER_OFFSET}px)` : 'translateX(0)',
+          transform: isCover ? `translateX(-${coverOffset}px)` : 'translateX(0)',
           transition: 'transform 0.7s cubic-bezier(0.7, 0, 0.3, 1)',
-          height: `${BOOK_HEIGHT}px`,
+          height: `${dims.height}px`,
           position: 'relative',
         }}>
           {/* Page-stack lip beneath the book block (hidden on cover) */}
@@ -278,8 +309,8 @@ export default function TurnJSBook({ images }: TurnJSBookProps) {
             ref={flipbookRef}
             className={`book-flipbook${isCover ? ' is-cover' : ''}`}
             style={{
-              width: `${SPREAD_WIDTH}px`,
-              height: `${BOOK_HEIGHT}px`,
+              width: `${dims.width}px`,
+              height: `${dims.height}px`,
               visibility: isReady ? 'visible' : 'hidden',
             }}
           />
@@ -307,6 +338,7 @@ export default function TurnJSBook({ images }: TurnJSBookProps) {
           onClick={goToNextPage}
           disabled={currentPage === totalImages}
           aria-label="Next Page"
+          className="book-nav-btn"
           style={{
             position: 'absolute',
             right: '2rem',
@@ -391,7 +423,7 @@ export default function TurnJSBook({ images }: TurnJSBookProps) {
           position: absolute;
           top: 0;
           right: 0;
-          width: ${COVER_WIDTH}px;
+          width: ${coverWidth}px;
           height: 100%;
           pointer-events: none;
           z-index: 15;
@@ -481,6 +513,17 @@ export default function TurnJSBook({ images }: TurnJSBookProps) {
         }
         .book-flipbook:not(.is-cover) .turn-page-wrapper {
           filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.08));
+        }
+
+        @media (max-width: 640px) {
+          .book-root {
+            height: auto !important;
+            padding: 3rem 1.5rem !important;
+          }
+          .book-nav-btn {
+            width: 40px !important;
+            height: 40px !important;
+          }
         }
       `}</style>
     </div>

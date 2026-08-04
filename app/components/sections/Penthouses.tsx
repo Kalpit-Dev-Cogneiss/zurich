@@ -37,10 +37,10 @@ export default function Penthouses() {
             }} />
             
             {/* Hero Content */}
-            <div style={{
-              position: 'absolute', 
+            <div className="pent-hero-title" style={{
+              position: 'absolute',
               bottom: '6.4rem',
-              left: '5.6rem', 
+              left: '5.6rem',
               right: '5.6rem',
             }}>
               <SplitText
@@ -56,7 +56,7 @@ export default function Penthouses() {
             </div>
 
             {/* Intro Text Overlay */}
-            <div style={{
+            <div className="pent-hero-intro" style={{
               position: 'absolute',
               top: '40%',
               left: '5.6rem',
@@ -76,14 +76,14 @@ export default function Penthouses() {
         </div>
 
         {/* Scrollable Content Section */}
-        <div style={{ 
-          position: 'relative', 
-          zIndex: 2, 
+        <div className="pent-content-outer" style={{
+          position: 'relative',
+          zIndex: 2,
           background: '#000',
           paddingTop: '8rem',
           paddingBottom: '12rem',
         }}>
-          <div style={{ maxWidth: 1400, margin: '0 auto', padding: '0 5.6rem' }}>
+          <div className="pent-content-inner" style={{ maxWidth: 1400, margin: '0 auto', padding: '0 5.6rem' }}>
 
             {/* First Large Image - Full Width */}
             <div style={{ marginBottom: '8rem' }}>
@@ -194,7 +194,7 @@ export default function Penthouses() {
             </div>
 
             {/* Private Terraces - Large Image Left + Title Right */}
-            <div style={{ 
+            <div className="pent-terrace-grid" style={{
               display: 'grid',
               gridTemplateColumns: '75% 25%',
               gap: '0',
@@ -213,7 +213,7 @@ export default function Penthouses() {
               </AnimateReveal>
 
               {/* Title on Right */}
-              <div style={{
+              <div className="pent-terrace-title" style={{
                 display: 'flex',
                 alignItems: 'flex-end',
                 justifyContent: 'flex-end',
@@ -250,8 +250,36 @@ export default function Penthouses() {
 
         <style>{`
           @media (max-width: 768px) {
-            .pent-grid { 
-              grid-template-columns: 1fr !important; 
+            .pent-grid {
+              grid-template-columns: 1fr !important;
+            }
+            .pent-terrace-grid {
+              grid-template-columns: 1fr !important;
+            }
+            .pent-terrace-title {
+              justify-content: flex-start !important;
+              padding-left: 0 !important;
+              padding-top: 1.6rem !important;
+            }
+            .pent-terrace-title h3 {
+              text-align: left !important;
+            }
+            .pent-hero-title {
+              bottom: 3.2rem !important;
+              left: 2rem !important;
+              right: 2rem !important;
+            }
+            .pent-hero-intro {
+              left: 2rem !important;
+              right: 2rem !important;
+              max-width: 100% !important;
+            }
+            .pent-content-outer {
+              padding-top: 4rem !important;
+              padding-bottom: 6rem !important;
+            }
+            .pent-content-inner {
+              padding: 0 2rem !important;
             }
           }
         `}</style>

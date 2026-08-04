@@ -33,6 +33,7 @@ export default function Apartments() {
       >
         {/* LEFT - Tabs and Floor Plan */}
         <div
+          className="apt-left"
           style={{
             display: 'flex',
             flexDirection: 'column',
@@ -152,6 +153,7 @@ export default function Apartments() {
 
         {/* RIGHT - Hero Image */}
         <div
+          className="apt-right"
           style={{
             position: 'relative',
             overflow: 'hidden',
@@ -196,8 +198,21 @@ export default function Apartments() {
       {/* Responsive Styles */}
       <style jsx>{`
         @media (max-width: 968px) {
+          section {
+            height: auto !important;
+          }
           section > div {
             grid-template-columns: 1fr !important;
+            position: relative !important;
+            height: auto !important;
+          }
+          .apt-left {
+            height: auto !important;
+            padding: 3.2rem 2rem !important;
+          }
+          .apt-right {
+            height: 60vh !important;
+            min-height: 420px !important;
           }
         }
       `}</style>

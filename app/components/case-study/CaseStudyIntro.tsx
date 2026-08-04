@@ -32,6 +32,7 @@ export default function CaseStudyIntro({ title, subtitle, body, location, src, a
   return (
     <div
       ref={ref}
+      className="cs-intro"
       style={{
         width: '100%',
         margin: '6rem 0',
@@ -116,6 +117,15 @@ export default function CaseStudyIntro({ title, subtitle, body, location, src, a
           style={{ maxWidth: '100%', width: 'auto', height: 'auto', display: 'block', margin: '0 auto' }}
         />
       </motion.div>
+
+      <style>{`
+        @media (max-width: 768px) {
+          .cs-intro {
+            padding: 0 2rem !important;
+            margin: 4rem 0 !important;
+          }
+        }
+      `}</style>
     </div>
   )
 }

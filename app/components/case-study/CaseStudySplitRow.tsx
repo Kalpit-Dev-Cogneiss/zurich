@@ -39,6 +39,7 @@ export default function CaseStudySplitRow({ main, stacked, overlay, gap = 0.6, s
   return (
     <div
       ref={ref}
+      className="cs-split-row"
       style={{
         position: 'relative',
         display: 'flex',
@@ -49,6 +50,7 @@ export default function CaseStudySplitRow({ main, stacked, overlay, gap = 0.6, s
       }}
     >
       <motion.div
+        className="cs-split-main"
         initial={{ opacity: 0, y: 60 }}
         animate={isInView ? { opacity: 1, y: 0 } : {}}
         transition={{ duration: 0.8, ease: EASE }}
@@ -62,10 +64,11 @@ export default function CaseStudySplitRow({ main, stacked, overlay, gap = 0.6, s
         />
       </motion.div>
 
-      <div style={{ flex: '2 1 0', display: 'flex', flexDirection: 'column', gap: `${gap}rem` }}>
+      <div className="cs-split-stacked" style={{ flex: '2 1 0', display: 'flex', flexDirection: 'column', gap: `${gap}rem` }}>
         {stacked.map((img, i) => (
           <motion.div
             key={i}
+            className="cs-split-stacked-item"
             initial={{ opacity: 0, y: 60 }}
             animate={isInView ? { opacity: 1, y: 0 } : {}}
             transition={{ duration: 0.8, ease: EASE, delay: 0.15 + i * 0.15 }}
@@ -90,6 +93,7 @@ export default function CaseStudySplitRow({ main, stacked, overlay, gap = 0.6, s
           initial={{ opacity: 0, scale: 0.94 }}
           animate={isInView ? { opacity: 1, scale: 1 } : {}}
           transition={{ duration: 0.8, ease: EASE, delay: 0.35 }}
+          className="cs-split-overlay"
           style={{
             position: 'absolute',
             top: '50%',
@@ -112,6 +116,31 @@ export default function CaseStudySplitRow({ main, stacked, overlay, gap = 0.6, s
           />
         </motion.div>
       )}
+
+      <style>{`
+        @media (max-width: 768px) {
+          .cs-split-row {
+            flex-direction: column !important;
+            padding: 0 2rem !important;
+            gap: 1.6rem !important;
+          }
+          .cs-split-main {
+            flex: 0 0 auto !important;
+            aspect-ratio: 4 / 3;
+          }
+          .cs-split-stacked {
+            flex: 0 0 auto !important;
+            flex-direction: row !important;
+          }
+          .cs-split-stacked-item {
+            aspect-ratio: 1 / 1;
+          }
+          .cs-split-overlay {
+            left: 2rem !important;
+            right: 2rem !important;
+          }
+        }
+      `}</style>
     </div>
   )
 }
