@@ -6,6 +6,14 @@ const DEFAULT_TOTAL_IMAGES = 70
 const BOOK_HEIGHT = 600
 const COVER_WIDTH = 450
 const SPREAD_WIDTH = 900
+// Fallback single-page aspect ratio (width/height) used until the real
+// brochure images are measured — matches the old fixed 450x600 shape.
+const DEFAULT_PAGE_ASPECT = COVER_WIDTH / BOOK_HEIGHT
+// Guards against a degenerate book shape (a near-flat or near-vertical
+// sliver) only in pathological cases — wide enough that any normal
+// brochure page's real aspect ratio passes through untouched.
+const MIN_PAGE_ASPECT = 0.3
+const MAX_PAGE_ASPECT = 3.0
 
 const DEFAULT_IMAGES = Array.from({ length: DEFAULT_TOTAL_IMAGES }, (_, i) => {
   const num = String(i + 1).padStart(2, '0')
@@ -23,20 +31,24 @@ type JQueryStatic = (element: Element | Document) => {
   length: number
 }
 
+// Resolves with each image's natural width/height aspect ratio (0 if it
+// failed to load) alongside the existing load-progress callback, so the
+// book's own page shape can be derived from the actual brochure images
+// instead of a one-size-fits-all constant.
 function preloadImages(urls: string[], onProgress: (pct: number) => void) {
   let loaded = 0
   return Promise.all(
     urls.map(
       (src) =>
-        new Promise<void>((resolve) => {
+        new Promise<number>((resolve) => {
           const img = new Image()
-          const done = () => {
+          const done = (ratio: number) => {
             loaded++
             onProgress(Math.round((loaded / urls.length) * 100))
-            resolve()
+            resolve(ratio)
           }
-          img.onload = done
-          img.onerror = done
+          img.onload = () => done(img.naturalWidth && img.naturalHeight ? img.naturalWidth / img.naturalHeight : 0)
+          img.onerror = () => done(0)
           img.src = src
         }),
     ),
@@ -62,6 +74,12 @@ export default function TurnJSBook({ images }: TurnJSBookProps) {
 
   const isCover = currentPage === 1
 
+  // Measured from the actual brochure images once they preload (see below) —
+  // each project's book ends up its own shape (wide, square, tall...)
+  // instead of every brochure being forced into the same fixed 450x600
+  // page, which was letterboxing any image that didn't match that ratio.
+  const pageAspectRef = useRef(DEFAULT_PAGE_ASPECT)
+
   // turn.js has no intrinsic responsiveness — it's initialized at a literal
   // pixel width/height. Track the available width and keep both the initial
   // construction and a live 'size' call on turn.js in sync with it, instead
@@ -77,7 +95,9 @@ export default function TurnJSBook({ images }: TurnJSBookProps) {
       // the book would otherwise fill almost the entire width.
       const margin = window.innerWidth < 640 ? 150 : 64
       const width = Math.max(240, Math.min(SPREAD_WIDTH, window.innerWidth - margin))
-      const height = Math.round(width * (BOOK_HEIGHT / SPREAD_WIDTH))
+      // A single page is half the spread width; derive its height from the
+      // measured page aspect ratio (width/height) instead of a fixed BOOK_HEIGHT.
+      const height = Math.round(width / (2 * pageAspectRef.current))
       dimsRef.current = { width, height }
       setDims({ width, height })
       if (jqueryRef.current && flipbookRef.current && isReady) {
@@ -87,7 +107,7 @@ export default function TurnJSBook({ images }: TurnJSBookProps) {
     recalc()
     window.addEventListener('resize', recalc)
     return () => window.removeEventListener('resize', recalc)
-  }, [isReady])
+  }, [isReady, imagesLoaded])
 
   const coverWidth = dims.width / 2
   const coverOffset = dims.width / 4
@@ -102,7 +122,12 @@ export default function TurnJSBook({ images }: TurnJSBookProps) {
         preloadStarted.current = true
         observer.disconnect()
 
-        preloadImages(allImages, setLoadProgress).then(() => {
+        preloadImages(allImages, setLoadProgress).then((ratios) => {
+          const valid = ratios.filter((r) => r > 0)
+          if (valid.length) {
+            const avg = valid.reduce((sum, r) => sum + r, 0) / valid.length
+            pageAspectRef.current = Math.min(MAX_PAGE_ASPECT, Math.max(MIN_PAGE_ASPECT, avg))
+          }
           if (isMountedRef.current) setImagesLoaded(true)
         })
       },
@@ -146,7 +171,7 @@ export default function TurnJSBook({ images }: TurnJSBookProps) {
                 src="${src}"
                 alt="Page ${index + 1}"
                 draggable="false"
-                style="width:100%;height:100%;object-fit:cover;display:block;user-select:none;pointer-events:none;"
+                style="width:100%;height:100%;object-fit:contain;object-position:center;display:block;user-select:none;pointer-events:none;"
               />
             </div>
           `)

@@ -1,14 +1,8 @@
-const TOTAL_PAGES = 70
+import { getBrochureImages } from './portfolioBrochure'
 
-// Set once the homepage brochure pages are uploaded to S3/CloudFront, e.g.
-// HOME_BROCHURE_CDN_URL=https://d123abc.cloudfront.net/brochure-image
-const CDN_BASE = process.env.HOME_BROCHURE_CDN_URL?.replace(/\/$/, '')
+// Home page shows the same brochure as the Festival Vibes portfolio project.
+const HOME_BROCHURE_FOLDER = 'festival vibes'
 
 export function getHomeBrochureImages(): string[] {
-  const base = CDN_BASE ?? '/Brochure-image'
-  return Array.from({ length: TOTAL_PAGES }, (_, i) => {
-    const num = String(i + 1).padStart(2, '0')
-    const name = i === 8 ? '09 ' : num // source file "09 .webp" has a trailing space
-    return `${base}/${name}.webp`
-  })
+  return getBrochureImages(HOME_BROCHURE_FOLDER)
 }

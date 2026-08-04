@@ -17,7 +17,7 @@ function run() {
     const dir = path.join(ROOT, folder.name)
     const files = fs
       .readdirSync(dir)
-      .filter((f) => f.toLowerCase().endsWith('.webp'))
+      .filter((f) => /\.(webp|jpg|jpeg|png)$/i.test(f))
       .sort((a, b) => extractPageNumber(a) - extractPageNumber(b))
     manifest[folder.name] = files
   }

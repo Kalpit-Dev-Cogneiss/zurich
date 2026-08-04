@@ -60,6 +60,7 @@ const residentialProjects: ProjectData[] = [
     client: 'Vivanta Group',
     category: 'residential',
     description: desc,
+    brochureFolder: 'Vivanta Sky Towers',
     images: createImages('residencial-projects', 'vivanta-sky-towers', {
       hero: 'V1.jpg', brochure: 'V2.png', single: 'V3.jpg',
       row: ['V4.jpg', 'V5.jpg', 'V6.png'],
@@ -211,6 +212,7 @@ const residentialProjects: ProjectData[] = [
     client: 'Balajee Group',
     category: 'residential',
     description: ["It was named by the sky. We named it a universe. Vyom by Balajee was conceived as a celestial getaway from the quotidian existence. Every page was conceived keeping height, light and sky in mind, transitioning through architectural grandeur, fine residences and rooftop enjoyment with tranquility, focus and wonderment. The tone of the brochure design revolved around the concept of celesticity without making it seem like a gimmick. Deep hues and accurate typographies ensured that the tone was aspirational and realistic simultaneously. Campaign design, hoardings and print media kept the tone consistent in the market place. This is an apartment home in which one would want to live, and not read about. The design created ambiance. The words created aspiration."],
+    brochureFolder: 'VYOM BY BALAJEE',
     images: createImages('residencial-projects', 'vyom by balajee', {
       hero: 'v1.jpg', brochure: 'v2.png', single: 'v3.jpg',
       row: ['v4.jpg', 'v5.jpg', 'v6.png'],
@@ -308,6 +310,7 @@ const mallProjects: ProjectData[] = [
     client: 'Siddheshwar Group',
     category: 'mall',
     description: ["Happy Mall was conceptualized as an entertainment place for Vadodara for shopping, eating, watching and enjoying themselves. Being home to more than 100 outlets including shops, restaurants, gaming area, banqueting facilities, and a six screen multiplex, there were a lot many activities going inside it. Our concept design was inspired by the vibrant and colorful front façade of the Mall, and we incorporated that essence into all our compositions. Bright colors, fun smile icons and energetic headlines helped us create a unique vibe for each individual section. Not only that, even detailed information about the business like leasing plans, floor plans, tenant category was conveyed in such a manner that the investors/tenants could understand what we had to offer, without going through a lot of hassles. We created designs for campaign materials, hoarding and print advertisements that communicated the same happy vibe outside of Vadodara as well."],
+    brochureFolder: 'HAPPY MALL',
     images: createImages('mall-projects', 'happy-mall', {
       hero: 'M1.jpg', brochure: 'M2.png', single: 'M3.jpg',
       row: ['M4.jpg', 'M5.jpg', 'M6.png'],
@@ -341,6 +344,7 @@ const duplexVillaProjects: ProjectData[] = [
     client: 'Manogya Group',
     category: 'duplex-villa',
     description: ["Manogya captured the feel of an open villa and elegant style of dual-floor living. For this project, we created visual vocabulary that was grand and sophisticated in scale and backed up by stories which were warm, aspirational, and exclusive. The communication strategy transcended the features to convey freedom, privacy, and the sense of pride associated with a luxury duplex villa. The brochure design had the residential appeal and spoke about the experience of living in a duplex before speaking about the plan. In the campaign design, hoarding design, and print media design, we maintained the same language throughout the launch process and positioned the project for buyers who upgraded from apartments and were looking at buying a villa-format property for the first time. The difference between a luxury duplex villa and a large apartment lies in the way it lives, and our communication was designed to make that difference clear."],
+    brochureFolder: 'Manogya',
     images: createImages('duplex-villa-projects', 'manogya', {
       hero: 'manogya_001.jpg', brochure: 'manogya_002.png', single: 'manogya_003.jpg',
       row: ['manogya_004.jpg', 'manogya_005.jpg', 'manogya_006.png'],
@@ -355,6 +359,7 @@ const duplexVillaProjects: ProjectData[] = [
     client: 'Darshanam Group',
     category: 'duplex-villa',
     description: ["Kingsville 2 Darshanam needed communication just as extensive as its homes. Making 'Kingdom' the language of the entire project, we brought out the grandeur in every arrival, spacious 3 & 4BHK duplex villa residences, personal gardens, terraces, and more than 20 lifestyle amenities. Ample spaces went hand-in-hand with ample visual space, and meticulous storytelling ensured that every experience was imbued with dignity and grace. The design of the brochure made use of scale as a design element, giving each residence, garden and amenity its own dedicated space instead of cramping it all in a way that reflected how a potential customer would visit a villa project on site. The design of the campaign and hoardings carried forward the royal vocabulary to make Kingsville 2 a duplex villa address for those who cherish their privacy and the story associated with it. A kingdom built for those who feel worthy enough to be in it."],
+    brochureFolder: 'Darshanam Kingsville 2',
     images: createImages('duplex-villa-projects', 'atc', {
       hero: 'DARSHANAM KINGSVILLE 2_001.jpg', brochure: 'DARSHANAM KINGSVILLE 2_002.png', single: 'DARSHANAM KINGSVILLE 2_003.jpg',
       row: ['DARSHANAM KINGSVILLE 2_004.jpg', 'DARSHANAM KINGSVILLE 2_005.png'],
@@ -384,6 +389,7 @@ const duplexVillaProjects: ProjectData[] = [
     client: 'Oceanic Group',
     category: 'duplex-villa',
     description: ["Oceanic Villa required an innovative language that was expansive, elegant, and serene. It was inspired by the vastness of the ocean, merging fluidity of design, vast compositions and storytelling to create a sense of living without any boundaries. Privacy, elegance and exclusiveness of being an owner of an independent villa were communicated through all the elements. Open spaces were captured in open layouts, while refined details created the feeling of exclusiveness. In the design of the brochure we used a limited colour palette of blues and neutrals, allowing the vastness of the villa layout to speak for itself. Hoarding and print media followed the same design principle, communicating Oceanic Villa in the way that it was intended, for buyers seeking an independent villa that is private without being isolated. What we came up with was a project that communicated in a pace of its own, deep and unhurried, like water."],
+    brochureFolder: 'Oceanic Villa',
     images: createImages('duplex-villa-projects', 'oceanic-villa', {
       hero: 'o1.jpg', brochure: 'o2.png', single: 'o3.jpg',
       row: ['o4.jpg', 'o5.jpg', 'o6.png'],
@@ -417,6 +423,7 @@ const openPlotProjects: ProjectData[] = [
     client: 'Raamah Group',
     category: 'open-plot',
     description: ["We shaped the project around a language of possibility and lasting value. Expansive compositions reflected the openness of the plotted development, while confident storytelling turned plots, planning and connectivity into a compelling vision of tomorrow. Every creative element carried a sense of aspiration, positioning the project not merely as land to own, but as a foundation for future homes, growth and generational value. The brochure design used wide layouts and strong typography to reinforce the scale of the development, while investment-relevant information such as plot dimensions, road planning and location advantages were presented with the clarity a serious buyer expects. Campaign design, hoardings and print advertising carried the same aspirational tone into the market, positioning Ramah Eldoraa in the open plot category for buyers looking beyond the immediate return to what the land could become in ten years. A plotted development sold on the future, and designed to make that future feel already visible."],
+    brochureFolder: 'Raamah Eldoraa',
     images: createImages('open-plot-projects', 'raamah-eldoraa', {
       hero: '01.jpg', brochure: '02.png', single: '03.jpg',
       row: ['04.jpg', '05.jpg', '06.png'],
@@ -482,6 +489,7 @@ const corporateBrochureProjects: ProjectData[] = [
     client: 'Accord Group',
     category: 'corporate-brochure',
     description: ["The narrative moved from the practice's philosophy and capabilities to its process, people and completed work. Complex architectural services were organised with clarity, making the technical depth of the studio easier to understand without diluting its creative strength. We drew inspiration from the meaning of accord, different elements working beautifully together. Clean grids, measured typography, architectural lines and a restrained visual palette created a sense of balance across the corporate portfolio. The brochure design was structured so a prospective client could read the studio's story at three depths: at a glance, in a scan, or in a full reading, a choice that respects the way busy decision-makers actually consume corporate collateral. The result was a corporate portfolio that felt as considered as the work it presented, giving Accord Design a communication asset that carried the same design intelligence as the projects on its shelves."],
+    brochureFolder: 'Accord Design',
     images: createImages('corporate-brochure', 'Accord Design', {
       hero: '1.jpg', brochure: '2.jpg', single: '3.jpg',
       row: ['4.jpg', '5.jpg', '6.png'],
@@ -526,6 +534,7 @@ const corporateBrochureProjects: ProjectData[] = [
     client: 'Samruddhi Group',
     category: 'corporate-brochure',
     description: ["A clear chapter-based structure made the extensive portfolio easy to explore without making it feel like a catalogue. The writing balanced corporate confidence with warmth, while a consistent design language connected projects of different types, scales and stages. Growth became the central thread, expressed through a branching tree device, an earthy brown backdrop and accents of gold and green. The visual language felt warm, grounded and established, while still giving every project a premium presence. The brochure design was built around a reader who might arrive interested in one specific vertical, then stay for the fuller portfolio, a structural choice that reflected the group's positioning across categories. The result was a corporate portfolio that read like the group itself: rooted, growing, and with a clear sense of where it had come from and where it was headed. A story of growth, told with the calm confidence of a business that has already lived it."],
+    brochureFolder: 'SAMRUDDHI',
     images: createImages('corporate-brochure', 'samruddhi', {
       hero: '01.jpg', brochure: '02.png', single: '03.jpg',
       row: ['04.jpg', '05.jpg', '06.png'],
@@ -540,6 +549,7 @@ const corporateBrochureProjects: ProjectData[] = [
     client: 'Krrish Group',
     category: 'corporate-brochure',
     description: ["A clean visual structure brought consistency to the diverse portfolio. The recurring arrow-inspired graphic created movement across the narrative, while maps, milestones and project information were arranged for effortless reading. Residential and commercial developments were presented as individual successes, yet remained connected to one strong corporate identity. The brochure design used the arrow motif as both a navigation tool and a positioning idea, signalling forward direction while helping the reader move through a substantial body of work without losing their place. Campaign design and corporate collateral carried the same directional language into every touchpoint, giving the group a consistent voice across categories and cities. The closing narrative brought attention back to the principles supporting that growth: quality, integrity, customer trust and relationships built over time. A corporate portfolio built to make an extensive body of work feel connected, considered and confidently led."],
+    brochureFolder: 'KRRISH',
     images: createImages('corporate-brochure', 'krrish-group', {
       hero: '01.jpg', brochure: '02.png', single: '03.jpg',
       row: ['04.jpg', '05.jpg', '06.png'],
@@ -643,6 +653,7 @@ const farmhouseProjects: ProjectData[] = [
     client: 'Lakeview Group',
     category: 'farmhouse',
     description: ["Lakeview was conceptualized as a farmhouse which was to provide its owners an opportunity to live in a place that had open spaces, a relaxed pace of life and a tranquil environment. Our approach to communicating its concept involved a visual language that was spacious and immersive by nature. A serene composition was used to allow the environment to speak for itself, while the narrative that went into the project communicated the joy of owning your very own place to get away from the daily routine of life. The visual language of the brochure included use of landscape images, spacious white backgrounds and typography that stayed out of the picture. For the campaign visuals, hoarding and print advertisements, the same water-based language was carried forward to ensure positioning of Lakeview among buyers looking to purchase a second property in a farmhouse/weekend home format."],
+    brochureFolder: 'The Lakeview',
     images: createImages('farmhouse', 'the-lakeview', {
       hero: '01.jpg', brochure: '02.png', single: '03.jpg',
       row: ['04.jpg', '05.jpg', '06.png'],
