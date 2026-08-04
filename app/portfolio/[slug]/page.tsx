@@ -7,7 +7,9 @@ import PortfolioInfo from '@/app/components/portfolio/PortfolioInfo'
 import PortfolioGallery from '@/app/components/portfolio/PortfolioGallery'
 import PortfolioImageRow from '@/app/components/portfolio/PortfolioImageRow'
 import TurnJSBook from '@/app/components/ui/TurnJSBook'
-import { getProjectBySlug, getAllProjectSlugs } from '@/app/lib/portfolioData'
+import Link from 'next/link'
+import SvgIcon from '@/app/components/ui/SvgIcon'
+import { getProjectBySlug, getAllProjectSlugs, getProjectsByCategory } from '@/app/lib/portfolioData'
 import { getBrochureImages } from '@/app/lib/portfolioBrochure'
 import { portfolioSeo } from '@/app/lib/seoData'
 
@@ -57,6 +59,14 @@ export default async function PortfolioDetailPage({
     ? getBrochureImages(project.brochureFolder)
     : []
 
+  // Previous/next cycle within the same category/tab the project belongs
+  // to — matches the back button also returning to that tab, not the
+  // whole unfiltered portfolio.
+  const categoryProjects = getProjectsByCategory(project.category)
+  const currentIndex = categoryProjects.findIndex((p) => p.slug === project.slug)
+  const prevProject = categoryProjects[(currentIndex - 1 + categoryProjects.length) % categoryProjects.length]
+  const nextProject = categoryProjects[(currentIndex + 1) % categoryProjects.length]
+
   return (
     <>
       <Header />
@@ -65,6 +75,7 @@ export default async function PortfolioDetailPage({
           title={project.title.toUpperCase()}
           imageSrc={project.images.hero}
           imageAlt={`${project.title} - Elegant lifestyle`}
+          backHref={`/portfolio?category=${project.category}`}
         />
         {brochureBookImages.length > 0 ? (
           <TurnJSBook images={brochureBookImages} />
@@ -116,6 +127,54 @@ export default async function PortfolioDetailPage({
             />
           </div>
         </section>
+
+        {/* Previous / next project — cycles within this project's own
+            category, same scope as the back button above. */}
+        <section className="pf-prev-next" style={{
+          background: '#000',
+          borderTop: '1px solid rgba(255,255,255,0.12)',
+          display: 'flex',
+        }}>
+          <Link href={`/portfolio/${prevProject.slug}`} className="pf-prev-next-link" style={{
+            flex: '1 1 50%',
+            padding: '4rem',
+            display: 'flex',
+            alignItems: 'center',
+            gap: '1.6rem',
+            color: '#fff',
+          }}>
+            <SvgIcon id="long-arrow-left" width={28} height={10} style={{ color: '#fff', flexShrink: 0 }} />
+            <div>
+              <span style={{ display: 'block', fontSize: '1.1rem', letterSpacing: '0.14em', color: 'rgba(255,255,255,0.5)', marginBottom: '0.6rem' }}>
+                Previous
+              </span>
+              <span style={{ display: 'block', fontSize: 'clamp(1.8rem, 2.4vw, 2.6rem)', fontWeight: 600, letterSpacing: '0.01em' }}>
+                {prevProject.title}
+              </span>
+            </div>
+          </Link>
+
+          <Link href={`/portfolio/${nextProject.slug}`} className="pf-prev-next-link" style={{
+            flex: '1 1 50%',
+            padding: '4rem',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'flex-end',
+            gap: '1.6rem',
+            color: '#fff',
+            textAlign: 'right',
+          }}>
+            <div>
+              <span style={{ display: 'block', fontSize: '1.1rem', letterSpacing: '0.14em', color: 'rgba(255,255,255,0.5)', marginBottom: '0.6rem' }}>
+                Next
+              </span>
+              <span style={{ display: 'block', fontSize: 'clamp(1.8rem, 2.4vw, 2.6rem)', fontWeight: 600, letterSpacing: '0.01em' }}>
+                {nextProject.title}
+              </span>
+            </div>
+            <SvgIcon id="long-arrow-right" width={28} height={10} style={{ color: '#fff', flexShrink: 0 }} />
+          </Link>
+        </section>
       </main>
       <Footer />
 
@@ -123,6 +182,20 @@ export default async function PortfolioDetailPage({
         @media (max-width: 768px) {
           .pf-detail-body {
             padding: 6rem 0 !important;
+          }
+        }
+        .pf-prev-next-link {
+          transition: background 0.3s ease;
+        }
+        .pf-prev-next-link:hover {
+          background: rgba(255,255,255,0.05);
+        }
+        @media (max-width: 640px) {
+          .pf-prev-next {
+            flex-direction: column !important;
+          }
+          .pf-prev-next-link {
+            padding: 2.4rem 2rem !important;
           }
         }
       `}</style>

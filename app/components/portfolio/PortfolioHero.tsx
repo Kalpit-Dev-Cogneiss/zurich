@@ -1,17 +1,22 @@
 'use client'
 import { useRef } from 'react'
 import { motion, useScroll, useTransform } from 'framer-motion'
+import Link from 'next/link'
+import SvgIcon from '@/app/components/ui/SvgIcon'
 
 interface PortfolioHeroProps {
   title: string
   imageSrc: string
   imageAlt: string
   subtitle?: string
+  /** where "back" should return to — the portfolio index with this project's tab pre-selected */
+  backHref?: string
 }
 
 export default function PortfolioHero({
   imageSrc,
   imageAlt,
+  backHref,
 }: PortfolioHeroProps) {
   const ref = useRef<HTMLElement>(null)
 
@@ -34,6 +39,46 @@ export default function PortfolioHero({
         overflow: 'hidden',
       }}
     >
+      {/* Back — returns to the portfolio index with this project's own tab
+          already selected. Fixed + mirrors Header's Enquire-button styling,
+          sitting opposite it on the left at the same vertical offset. */}
+      {backHref && (
+        <Link
+          href={backHref}
+          className="portfolio-back-btn"
+          style={{
+            position: 'fixed',
+            top: '2.4rem',
+            left: '4rem',
+            zIndex: 101,
+            display: 'flex',
+            alignItems: 'center',
+            gap: '0.8rem',
+            padding: '1rem 2rem',
+            border: '1px solid rgba(255,255,255,0.35)',
+            borderRadius: '999px',
+            background: 'rgba(0,0,0,0.25)',
+            backdropFilter: 'blur(4px)',
+            color: '#fff',
+            fontSize: '1.2rem',
+            letterSpacing: '0.04em',
+          }}
+        >
+          <SvgIcon id="long-arrow-left" width={14} height={12} style={{ color: '#fff' }} />
+          Back
+        </Link>
+      )}
+
+      <style>{`
+        @media (max-width: 640px) {
+          .portfolio-back-btn {
+            top: 1.6rem !important;
+            left: 2rem !important;
+            padding: 0.8rem 1.6rem !important;
+          }
+        }
+      `}</style>
+
       {/* Centered Image Container */}
       <div
         style={{

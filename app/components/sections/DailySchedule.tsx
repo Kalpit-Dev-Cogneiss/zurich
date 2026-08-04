@@ -187,8 +187,8 @@ export default function DailySchedule() {
         justifyContent: 'center',
         overflow: 'hidden',
       }}>
-        {/* Time digits — centred */}
-        <div style={{ position: 'relative', zIndex: 2, marginRight: '8%' }}>
+        {/* Time digits (title) + description — stacked together, centred */}
+        <div style={{ position: 'relative', zIndex: 2, marginRight: '8%', maxWidth: 440 }}>
           <AnimatePresence mode="wait">
             <motion.p
               key={`time-${active}`}
@@ -209,28 +209,20 @@ export default function DailySchedule() {
               {item.time}
             </motion.p>
           </AnimatePresence>
-        </div>
 
-        {/* Text — bottom-left of right panel */}
-        <div style={{
-          position: 'absolute',
-          bottom: '3.2rem',
-          left: '3.2rem',
-          right: '7rem', // leave room for arrows
-          zIndex: 3,
-        }}>
           <AnimatePresence mode="wait">
             <motion.p
               key={`text-${active}`}
               initial={{ opacity: 0, y: 12 }}
               animate={{ opacity: 1, y: 0 }}
               exit={{ opacity: 0 }}
-              transition={{ duration: 0.6, ease: [0.7, 0, 0.3, 1] }}
+              transition={{ duration: 0.6, ease: [0.7, 0, 0.3, 1], delay: 0.1 }}
               style={{
                 color: 'rgba(255,255,255,0.6)',
                 fontSize: 'clamp(1.1rem, 1.1vw, 1.35rem)',
                 lineHeight: 1.6,
                 letterSpacing: '0.03em',
+                marginTop: '2rem',
               }}
             >
               {item.text}

@@ -73,6 +73,12 @@ export default function TurnJSBook({ images }: TurnJSBookProps) {
   const preloadStarted = useRef(false)
 
   const isCover = currentPage === 1
+  // In double-page mode, page 1 always renders alone (the front cover).
+  // The last page renders alone too — orphaned on the opposite (left) side
+  // of the spread — whenever the page count is even (pages 2..N pair up
+  // completely only when N is odd; with an even N, page N has no partner).
+  const isBackCover = currentPage === totalImages && totalImages % 2 === 0
+  const isSingle = isCover || isBackCover
 
   // Measured from the actual brochure images once they preload (see below) —
   // each project's book ends up its own shape (wide, square, tall...)
@@ -306,33 +312,39 @@ export default function TurnJSBook({ images }: TurnJSBookProps) {
       }}>
         {/* Soft ground shadow beneath the book */}
         <div
-          className={`book-ground-shadow${isCover ? ' is-cover' : ''}`}
+          className={`book-ground-shadow${isSingle ? ' is-cover' : ''}`}
           aria-hidden="true"
         />
 
         <div style={{
-          transform: isCover ? `translateX(-${coverOffset}px)` : 'translateX(0)',
+          transform: isCover
+            ? `translateX(-${coverOffset}px)`
+            : isBackCover
+            ? `translateX(${coverOffset}px)`
+            : 'translateX(0)',
           transition: 'transform 0.7s cubic-bezier(0.7, 0, 0.3, 1)',
           height: `${dims.height}px`,
           position: 'relative',
         }}>
-          {/* Page-stack lip beneath the book block (hidden on cover) */}
-          {!isCover && <div className="book-page-stack" aria-hidden="true" />}
+          {/* Page-stack lip beneath the book block (hidden when closed-looking) */}
+          {!isSingle && <div className="book-page-stack" aria-hidden="true" />}
 
           {/* Spine crease shadow when open */}
           <div
-            className={`book-spine-shadow${isCover ? '' : ' is-open'}`}
+            className={`book-spine-shadow${isSingle ? '' : ' is-open'}`}
             aria-hidden="true"
           />
 
-          {/* Cover-only shadow on page 1 (right panel) */}
-          {isCover && (
-            <div className="book-cover-only-shadow" aria-hidden="true" />
+          {/* Cover-style shadow on a lone page — front cover sits in the
+              right slot, an orphaned last page sits in the left slot, so
+              the shadow mirrors accordingly */}
+          {isSingle && (
+            <div className={`book-cover-only-shadow${isBackCover ? ' is-back' : ''}`} aria-hidden="true" />
           )}
 
           <div
             ref={flipbookRef}
-            className={`book-flipbook${isCover ? ' is-cover' : ''}`}
+            className={`book-flipbook${isSingle ? ' is-cover' : ''}`}
             style={{
               width: `${dims.width}px`,
               height: `${dims.height}px`,
@@ -491,6 +503,14 @@ export default function TurnJSBook({ images }: TurnJSBookProps) {
           border-radius: 0 2px 2px 0;
           box-shadow: 3px 0 10px rgba(0, 0, 0, 0.12);
           pointer-events: none;
+        }
+        /* Orphaned last page sits in the left slot instead of the right —
+           mirror the whole shadow shape rather than rewrite every
+           direction-dependent value above. */
+        .book-cover-only-shadow.is-back {
+          right: auto;
+          left: 0;
+          transform: scaleX(-1);
         }
         .book-spine-shadow {
           position: absolute;

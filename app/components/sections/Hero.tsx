@@ -38,22 +38,7 @@ export default function Hero() {
         width: '33%',
         background: '#000',
         zIndex: 2,
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'flex-start',
-        paddingLeft: '4rem',
-      }}>
-        {mounted && (
-          <motion.img
-            src="/zurich-logo-White.svg"
-            alt="Zurich Graphics"
-            initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.9, ease: [0.7, 0, 0.3, 1], delay: 0.2 }}
-            style={{ width: 'clamp(160px, 14vw, 260px)', height: 'auto' }}
-          />
-        )}
-      </div>
+      }} />
 
       {/* ── RIGHT — night building photo from reference ── */}
       <div className="hero-image-wrap" style={{
@@ -127,6 +112,15 @@ export default function Hero() {
             India&apos;s Premier Agency For Powerful Real Estate Brands
           </motion.p>
 
+          <motion.img
+            src="/zurich-logo-White.svg"
+            alt="Zurich Graphics"
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.9, ease: [0.7, 0, 0.3, 1], delay: 0.45 }}
+            style={{ display: 'block', width: 'clamp(120px, 15vw, 220px)', height: 'auto', marginBottom: '2.4rem' }}
+          />
+
           <motion.a
             href="#about"
             initial={{ opacity: 0 }}
@@ -159,19 +153,19 @@ export default function Hero() {
             animate={{ y: '0%' }}
             transition={{ duration: 1.3, ease: [0.7, 0, 0.3, 1], delay: 0.1 }}
           >
-            <p className="hero-wordmark" style={{
-              fontSize: 'clamp(8rem, 18vw, 21rem)',
-              fontWeight: 600,
-              fontFamily: "'Times New Roman', Times, serif",
-              letterSpacing: '0.1em',
-              color: '#ffffff',
-              whiteSpace: 'nowrap',
-              lineHeight: 0.82,
-              paddingLeft: '2.4rem',
-              margin: 0,
-            }}>
-              ZURICH
-            </p>
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              className="hero-wordmark"
+              src="/images/zurich-text.svg"
+              alt="Zurich"
+              style={{
+                display: 'block',
+                width: 'clamp(280px, 55vw, 850px)',
+                height: 'auto',
+                paddingLeft: '2.4rem',
+                margin: 0,
+              }}
+            />
           </motion.div>
         )}
       </motion.div>
@@ -179,15 +173,7 @@ export default function Hero() {
       <style>{`
         @media (max-width: 640px) {
           .hero-left-strip {
-            width: 100% !important;
-            left: 0 !important;
-            right: 0 !important;
-            bottom: auto !important;
-            height: auto !important;
-            padding: 1.6rem 2rem !important;
-          }
-          .hero-left-strip img {
-            width: clamp(90px, 24vw, 130px) !important;
+            display: none !important;
           }
           .hero-image-wrap {
             left: 0 !important;
@@ -198,7 +184,7 @@ export default function Hero() {
             background: #000;
           }
           .hero-headline {
-            top: 9.5rem !important;
+            top: 7rem !important;
             left: 2rem !important;
             right: 2rem !important;
             max-width: calc(100% - 4rem) !important;
@@ -207,8 +193,8 @@ export default function Hero() {
             font-size: clamp(2rem, 6.5vw, 2.8rem) !important;
             line-height: 1.25 !important;
           }
-          .hero-wordmark {
-            font-size: clamp(3.6rem, 15vw, 6rem) !important;
+          img.hero-wordmark {
+            width: clamp(200px, 70vw, 400px) !important;
             padding-left: 1.2rem !important;
           }
         }
