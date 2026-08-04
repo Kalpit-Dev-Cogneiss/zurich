@@ -154,7 +154,7 @@ export const CASE_STUDY_LAYOUTS: Record<string, CaseStudySectionSpec[]> = {
     },
     {
       type: 'story',
-      heading: 'The Challenge',
+      heading: '',
       num: 7.5,
       blocks: [
         { type: 'lead', items: ["Selling villas wasn't difficult.", 'Selling exclusivity was.'] },
@@ -164,7 +164,7 @@ export const CASE_STUDY_LAYOUTS: Record<string, CaseStudySectionSpec[]> = {
     },
     {
       type: 'story',
-      heading: 'Our Approach',
+      heading: '',
       num: 14.5,
       blocks: [
         { type: 'lead', items: ["We didn't design a brochure.", 'We designed aspiration.'] },
@@ -174,7 +174,7 @@ export const CASE_STUDY_LAYOUTS: Record<string, CaseStudySectionSpec[]> = {
     },
     {
       type: 'story',
-      heading: 'The Impact',
+      heading: '',
       num: 21.5,
       blocks: [
         { type: 'lead', items: ['Greenleaf Heritage became more than a villa launch.', 'It became a benchmark in luxury real estate branding, villa brochure design, and property marketing.'] },
@@ -184,7 +184,7 @@ export const CASE_STUDY_LAYOUTS: Record<string, CaseStudySectionSpec[]> = {
     },
     {
       type: 'story',
-      heading: 'Key Highlights',
+      heading: '',
       num: 26.5,
       blocks: [
         { type: 'list', items: [
@@ -201,7 +201,7 @@ export const CASE_STUDY_LAYOUTS: Record<string, CaseStudySectionSpec[]> = {
     },
     {
       type: 'story',
-      heading: 'Final Punch',
+      heading: '',
       num: 28.5,
       blocks: [
         { type: 'lead', items: ['Some projects sell homes.', 'We build brands buyers aspire to belong to.'] },
@@ -244,7 +244,7 @@ export const CASE_STUDY_LAYOUTS: Record<string, CaseStudySectionSpec[]> = {
     { type: 'row', images: [{ num: 5 }, { num: 6 }, { num: 7 }, { num: 8 }] },
     {
       type: 'story',
-      heading: 'Our Solution',
+      heading: '',
       num: 8.5,
       blocks: [
         { type: 'lead', items: ['Every page must provide an answer to the next question.'] },
@@ -256,7 +256,7 @@ export const CASE_STUDY_LAYOUTS: Record<string, CaseStudySectionSpec[]> = {
     { type: 'row', images: [{ num: 11 }, { num: 13 }, { num: 14 }], spaceBelow: true },
     {
       type: 'story',
-      heading: 'Design And Execution',
+      heading: '',
       num: 14.5,
       blocks: [
         { type: 'lead', items: ['Beautiful design gets noticed.', 'Good communication gets remembered.'] },
@@ -266,7 +266,7 @@ export const CASE_STUDY_LAYOUTS: Record<string, CaseStudySectionSpec[]> = {
     { type: 'row', images: [{ num: 15, width: 40 }, { num: 16, width: 60 }] },
     {
       type: 'story',
-      heading: 'Outcome',
+      heading: '',
       num: 16.5,
       blocks: [
         { type: 'lead', items: ['Premium communication leads to a premium project perception.'] },
@@ -275,7 +275,7 @@ export const CASE_STUDY_LAYOUTS: Record<string, CaseStudySectionSpec[]> = {
     },
     {
       type: 'story',
-      heading: 'Key Highlights',
+      heading: '',
       num: 26.5,
       blocks: [
         { type: 'list', items: [
@@ -299,7 +299,7 @@ export const CASE_STUDY_LAYOUTS: Record<string, CaseStudySectionSpec[]> = {
     { type: 'actual', num: 2 },
     {
       type: 'story',
-      heading: 'The Challenge',
+      heading: '',
       num: 2.5,
       blocks: [
         { type: 'lead', items: ['A landmark needs more than just visibility.', 'It needs memorability.'] },
@@ -313,7 +313,7 @@ export const CASE_STUDY_LAYOUTS: Record<string, CaseStudySectionSpec[]> = {
     { type: 'actual', num: 9 },
     {
       type: 'story',
-      heading: 'Our Solution',
+      heading: '',
       num: 9.5,
       blocks: [
         { type: 'lead', items: ['Each page was designed to spark the anticipation.', 'Not only deliver information.'] },
@@ -324,7 +324,7 @@ export const CASE_STUDY_LAYOUTS: Record<string, CaseStudySectionSpec[]> = {
     { type: 'split', main: 11, stacked: [12, 13],  gap: 0, stackedFit: 'cover' },
     {
       type: 'story',
-      heading: 'The Result',
+      heading: '',
       num: 13.5,
       blocks: [
         { type: 'lead', items: ['Happy Mall has been launched with a brand identity as striking as its architecture.'] },
@@ -334,7 +334,7 @@ export const CASE_STUDY_LAYOUTS: Record<string, CaseStudySectionSpec[]> = {
     },
     {
       type: 'story',
-      heading: 'Key Highlights',
+      heading: '',
       num: 17.5,
       blocks: [
         { type: 'list', items: [
@@ -353,7 +353,7 @@ export const CASE_STUDY_LAYOUTS: Record<string, CaseStudySectionSpec[]> = {
     },
     {
       type: 'story',
-      heading: 'Conclusion',
+      heading: '',
       num: 17.6,
       blocks: [
         { type: 'lead', items: ['A mall is judged by its footfall.', 'A brand is remembered for the experience it offers.', 'Happy Mall had both in its DNA.'] },

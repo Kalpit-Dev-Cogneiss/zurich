@@ -50,18 +50,20 @@ export default function CaseStudyStorySection({ heading, blocks }: CaseStudyStor
       }}
     >
       <div style={{ maxWidth: 780, width: '100%', display: 'flex', flexDirection: 'column', alignItems: 'center', gap: '2.4rem' }}>
-        <motion.span
-          {...reveal(0)}
-          style={{
-            fontSize: '1.1rem',
-            fontWeight: 600,
-            letterSpacing: '0.22em',
-            textTransform: 'uppercase',
-            color: '#fff',
-          }}
-        >
-          {heading}
-        </motion.span>
+        {heading && (
+          <motion.span
+            {...reveal(0)}
+            style={{
+              fontSize: '1.1rem',
+              fontWeight: 600,
+              letterSpacing: '0.22em',
+              textTransform: 'uppercase',
+              color: '#fff',
+            }}
+          >
+            {heading}
+          </motion.span>
+        )}
 
         {blocks.map((block, i) => {
           if (block.type === 'lead') {
