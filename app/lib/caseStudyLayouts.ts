@@ -130,6 +130,25 @@ export const CASE_STUDY_INFO_BLOCKS: Record<string, CaseStudyInfoBlock[]> = {
       ],
     },
   ],
+  'reva-allizza': [
+    {
+      title: 'Every Great Arrival Deserves A Grand Beginning.',
+      subtitle: "First Impressions Don't End At The Entrance Gate.",
+      body: [
+        "They continue through every boulevard, every landscape, and every carefully planned corner. Reva Allizza was envisioned as a premium residential villa project where architecture and infrastructure work together to create lasting value. Zurich Graphics transformed that vision into a refined real estate branding experience that feels premium from the very first glance.",
+        'Because confidence begins before the front door opens.',
+      ],
+    },
+  ],
+  'lush-meadows': [
+    {
+      title: 'Luxury Lives Beyond Architecture.',
+      subtitle: 'A Premium Villa Deserves More Than Beautiful Visuals.\nIt Deserves A Brand Story.',
+      body: [
+        'For Lush Meadows, Zurich Graphics developed a complete residential brochure design that combined architectural storytelling, strategic content, and luxury print aesthetics to position the project as an aspirational weekend villa destination.',
+      ],
+    },
+  ],
 }
 
 /** studies that skip the PortfolioInfo block (their intro section covers the same ground) */
@@ -223,10 +242,58 @@ export const CASE_STUDY_LAYOUTS: Record<string, CaseStudySectionSpec[]> = {
     { type: 'row', images: [{ num: 4, width: 40 }, { num: 5, width: 60 }] },
     { type: 'actual', num: 6 },
     { type: 'actual', num: 7 },
+    {
+      type: 'story',
+      heading: '',
+      num: 7.5,
+      blocks: [
+        { type: 'lead', items: ["Designing a real estate brochure isn't about showcasing amenities.", 'It\'s about creating aspiration.'] },
+        { type: 'paragraph', items: ['The objective was to transform architectural plans and project specifications into an emotional buying experience while maintaining a premium brand identity.'] },
+      ],
+    },
     { type: 'labeled', label: 'Logo Icon', num: 9, layout: 'side' },
     { type: 'row', images: [{ num: 10 }, { num: 11 }, { num: 12 }], actualSize: true },
+    {
+      type: 'story',
+      heading: '',
+      num: 12.5,
+      blocks: [
+        { type: 'lead', items: ['We approached Lush Meadows as a branding exercise rather than a brochure.'] },
+        { type: 'paragraph', items: ["Through refined layouts, compelling copywriting, premium typography, and immersive visuals, we created a luxury property brochure that reflected the project's calm, nature-inspired lifestyle while strengthening buyer confidence."] },
+      ],
+    },
     { type: 'row', images: [{ num: 14 }, { num: 15 }], spaceBelow: true },
+    {
+      type: 'story',
+      heading: '',
+      num: 15.5,
+      blocks: [
+        { type: 'paragraph', items: ["The final villa brochure design became a powerful sales tool, helping communicate the project's premium positioning with clarity and consistency."] },
+        { type: 'lead', items: ["Because exceptional real estate marketing collateral doesn't just inform.", 'It influences decisions.'] },
+      ],
+    },
     { type: 'labeled', label: 'Stall Panel Design', num: 17 },
+    {
+      type: 'story',
+      heading: '',
+      num: 17.5,
+      blocks: [
+        { type: 'list', items: [
+          'Residential Villa Brochure Design',
+          'Luxury Real Estate Brochure Design',
+          'Real Estate Branding & Identity',
+          'Property Marketing Collateral Design',
+          'Architectural Brochure Layout Design',
+          'Premium Copywriting & Content Strategy',
+          'Luxury Print Design & Production',
+          'Master Plan & Amenities Presentation',
+          'Visual Storytelling for Real Estate',
+          'Sales-Driven Brochure Design',
+          'Brand Positioning for Residential Projects',
+          'High-End Marketing Communication',
+        ] },
+      ],
+    },
   ],
   'satyam-surya-manhattan': [
     { type: 'actual', num: 2 },
@@ -291,9 +358,58 @@ export const CASE_STUDY_LAYOUTS: Record<string, CaseStudySectionSpec[]> = {
   ],
   'reva-allizza': [
     { type: 'actual', num: 2 },
+    {
+      type: 'story',
+      heading: '',
+      num: 3.5,
+      blocks: [
+        { type: 'lead', items: ["Luxury isn't built with specifications.", "It's built with perception."] },
+        { type: 'paragraph', items: ['The project offered everything buyers expect from premium villa living. The real challenge was presenting those strengths through a residential brochure design that felt elegant, structured, and worthy of the lifestyle it promised.'] },
+        { type: 'lead', items: ['People trust what they can imagine.'] },
+      ],
+    },
     { type: 'split', main: 4, stacked: [5, 6], gap: 0, stackedFit: 'fill' },
     { type: 'split', main: 8, stacked: [9, 10], gap: 0 },
+    {
+      type: 'story',
+      heading: '',
+      num: 10.5,
+      blocks: [
+        { type: 'lead', items: ['Every page had a purpose.', 'Every visual had a voice.'] },
+        { type: 'paragraph', items: ["Through thoughtful real estate brochure design, premium layouts, architectural storytelling, and carefully structured content, we created a communication system that balanced aspiration with clarity. The result wasn't just a brochure—it became an extension of the project's identity."] },
+        { type: 'lead', items: ['Design attracts attention. Storytelling earns trust.'] },
+      ],
+    },
     { type: 'row', images: [{ num: 11 }, { num: 12 }] },
+    {
+      type: 'story',
+      heading: '',
+      num: 12.5,
+      blocks: [
+        { type: 'lead', items: ['Reva Allizza entered the market with a brand that reflected its ambition.'] },
+        { type: 'paragraph', items: ["The property branding, premium marketing collateral, and architectural presentation elevated buyer perception while strengthening the project's premium positioning in Bharuch's residential market."] },
+        { type: 'lead', items: ['Some projects build homes.', 'The memorable ones build belonging.'] },
+      ],
+    },
+    {
+      type: 'story',
+      heading: '',
+      num: 18.5,
+      blocks: [
+        { type: 'list', items: [
+          'Premium Residential Villa Branding',
+          'Real Estate Brochure Design',
+          'Property Branding & Identity',
+          'Architectural Visual Storytelling',
+          'Luxury Marketing Collateral',
+          'Master Plan Presentation',
+          'Premium Print Design',
+          'Sales-Focused Brand Communication',
+          'Residential Project Branding',
+          'High-End Real Estate Creative',
+        ] },
+      ],
+    },
   ],
   'happy-mall': [
     { type: 'actual', num: 2 },
