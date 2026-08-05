@@ -8,7 +8,9 @@ export function getHomeBrochureImages(): string[] {
   const base = CDN_BASE ?? '/Brochure-image'
   return Array.from({ length: TOTAL_PAGES }, (_, i) => {
     const num = String(i + 1).padStart(2, '0')
-    const name = i === 8 ? '09 ' : num // source file "09 .webp" has a trailing space
+    // page 1 was re-uploaded under a versioned name to bust CDN cache; "09 .webp"
+    // (source has a trailing space) is the other filename quirk in this set
+    const name = i === 0 ? '01-v2' : i === 8 ? '09 ' : num
     return `${base}/${name}.webp`
   })
 }
