@@ -22,24 +22,29 @@ const IMG = {
 // have a sane mobile equivalent, so flipping flex-direction on the existing
 // panels would fight that math rather than fix it. Same content, read top
 // to bottom instead of left to right.
-const MOBILE_ITEMS: Array<{ type: 'heading' | 'image' | 'text'; text?: string; src?: string }> = [
+const MOBILE_ITEMS: Array<{ type: 'heading' | 'image' | 'text' | 'label'; text?: string; src?: string }> = [
   { type: 'heading', text: 'Our Work' },
   { type: 'image', src: IMG.i1 },
+  { type: 'label', text: 'Site Brochure' },
   { type: 'text', text: "We'll let it do the talking. Inside are identities that found their edge, campaigns that owned their space and projects that became brands." },
   { type: 'image', src: IMG.i2 },
   { type: 'image', src: IMG.i3 },
+  { type: 'label', text: 'Company Profile' },
   { type: 'text', text: 'Built in the studio. Tested in the market. Remembered across cities.' },
   { type: 'text', text: 'The Skyline Remembers Great Architecture. The Market Remembers Great Branding. This Is Where We Made Our Mark.' },
   { type: 'image', src: IMG.i4 },
   { type: 'image', src: IMG.i5 },
+  { type: 'label', text: 'Campaign' },
   { type: 'text', text: 'Every project becomes a case study our clients are proud to share, from first sketch to the finished brand on the ground.' },
   { type: 'image', src: IMG.i6 },
   { type: 'image', src: IMG.i7 },
+  { type: 'label', text: '360 Branding' },
   { type: 'text', text: 'From Naming To Launch: One Connected Creative Journey, Across Every Touchpoint.' },
   { type: 'image', src: IMG.i8 },
   { type: 'image', src: IMG.i9 },
+  { type: 'label', text: 'Print Media' },
   { type: 'text', text: 'A Compelling Position. A Powerful Story. A Brand Built To Be Chosen.' },
-  { type: 'heading', text: 'The Work Speaks' },
+  { type: 'heading', text: 'Stall Design' },
   { type: 'image', src: IMG.i10 },
   { type: 'text', text: 'Over three decades of experience, a deep understanding of Indian realty and a strategy-first approach: identities that found their edge, campaigns that owned their space and projects that became brands.' },
 ]
@@ -161,6 +166,14 @@ export default function Fitness() {
                   {mi.text}
                 </h2>
               )}
+              {mi.type === 'label' && (
+                <p style={{
+                  fontSize: '1.6rem', fontWeight: 700, letterSpacing: '0.1em',
+                  color: '#000', margin: 0,
+                }}>
+                  {mi.text}
+                </p>
+              )}
               {mi.type === 'text' && (
                 <p style={{
                   fontSize: '1.4rem', lineHeight: 1.6,
@@ -222,6 +235,9 @@ export default function Fitness() {
               <img src={IMG.i1} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: '80% 20%' }} />
             </div>
             <div style={{ flexShrink: 0, width: '22vw' }}>
+              <p style={{ fontSize: '2.5rem', fontWeight: 700, letterSpacing: '0.1em', color: '#000', marginBottom: '1.2rem' }}>
+                Site Brochure
+              </p>
               <p style={{ fontSize: 'clamp(1.1rem, 1.1vw, 1.4rem)', lineHeight: 1.65, letterSpacing: '0.04em', color: '#000' }}>
                 We&apos;ll let it do the talking. Inside are identities that found their edge,
                 campaigns that owned their space and projects that became brands.
@@ -238,13 +254,14 @@ export default function Fitness() {
             <div style={{ flexShrink: 0, width: '22vw', height: '72vh', overflow: 'hidden' }}>
               {/* eslint-disable-next-line @next/next/no-img-element */}
               <img src={IMG.i3} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
-              <p style={{ fontSize: 'clamp(1rem, 1vw, 1.25rem)', lineHeight: 1.6, letterSpacing: '0.04em', color: '#000', marginTop: '2rem' }}>
-                Built in the studio. Tested in the market. Remembered across cities.
-              </p>
+             
             </div>
             <div style={{ flexShrink: 0, width: '20vw' }}>
-              <p style={{ fontSize: 'clamp(1.4rem, 1.8vw, 2.4rem)', fontWeight: 600, lineHeight: 1.25, letterSpacing: '0.02em', color: '#000' }}>
-                The Skyline Remembers Great Architecture. The Market Remembers Great Branding. This Is Where We Made Our Mark.
+            <p style={{ fontSize: '2.5rem', fontWeight: 700, letterSpacing: '0.1em', color: '#000', marginTop: '2rem', marginBottom: '0.6rem' }}>
+                Company Profile
+              </p>
+              <p style={{ fontSize: 'clamp(1.1rem, 1.1vw, 1.4rem)', lineHeight: 1.65, letterSpacing: '0.04em', color: '#000' }}>
+              The Skyline Remembers Great Architecture. The Market Remembers Great Branding. This Is Where We Made Our Mark.
               </p>
             </div>
           </div>
@@ -260,7 +277,10 @@ export default function Fitness() {
               <img src={IMG.i5} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
             </div>
             <div style={{ flexShrink: 0, width: '18vw' }}>
-              <p style={{ fontSize: 'clamp(1rem, 1vw, 1.25rem)', lineHeight: 1.65, letterSpacing: '0.04em', color: '#000' }}>
+              <p style={{ fontSize: '2.5rem', fontWeight: 700, letterSpacing: '0.1em', color: '#000', marginBottom: '1.2rem' }}>
+                Campaign
+              </p>
+              <p style={{ fontSize: 'clamp(1.1rem, 1.1vw, 1.4rem)', lineHeight: 1.65, letterSpacing: '0.04em', color: '#000' }}>
                 Every project becomes a case study our clients are proud to share, from first
                 sketch to the finished brand on the ground.
               </p>
@@ -278,7 +298,10 @@ export default function Fitness() {
               <img src={IMG.i7} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: '50% 20%' }} />
             </div>
             <div style={{ flexShrink: 0, width: '20vw' }}>
-              <p style={{ fontSize: 'clamp(1.4rem, 1.8vw, 2.4rem)', fontWeight: 600, lineHeight: 1.25, letterSpacing: '0.02em', color: '#000' }}>
+              <p style={{ fontSize: '2.5rem', fontWeight: 700, letterSpacing: '0.1em', color: '#000', marginBottom: '1.2rem' }}>
+                360 Branding
+              </p>
+              <p style={{ fontSize: 'clamp(1.1rem, 1.1vw, 1.4rem)', lineHeight: 1.65, letterSpacing: '0.04em', color: '#000' }}>
                 From Naming To Launch: One Connected Creative Journey, Across Every Touchpoint.
               </p>
             </div>
@@ -295,7 +318,10 @@ export default function Fitness() {
               <img src={IMG.i9} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: '50% 20%' }} />
             </div>
             <div style={{ flexShrink: 0, width: '20vw' }}>
-              <p style={{ fontSize: 'clamp(1.4rem, 1.8vw, 2.4rem)', fontWeight: 600, lineHeight: 1.25, letterSpacing: '0.02em', color: '#000' }}>
+              <p style={{ fontSize: '2.5rem', fontWeight: 700, letterSpacing: '0.1em', color: '#000', marginBottom: '1.2rem' }}>
+                Print Media
+              </p>
+              <p style={{ fontSize: 'clamp(1.1rem, 1.1vw, 1.4rem)', lineHeight: 1.65, letterSpacing: '0.04em', color: '#000' }}>
                 A Compelling Position. A Powerful Story. A Brand Built To Be Chosen.
               </p>
             </div>
@@ -306,7 +332,7 @@ export default function Fitness() {
           <div style={{ display: 'flex', height: '100vh', alignItems: 'center', padding: '0 6rem', gap: '5rem', flexShrink: 0 }}>
             <div style={{ flexShrink: 0, width: '20vw' }}>
               <h2 style={{ fontSize: 'clamp(2rem, 2.8vw, 3.6rem)', fontWeight: 600, lineHeight: 1.1, letterSpacing: '0.02em', color: '#000', margin: 0 }}>
-                The Work<br />Speaks
+                Stall Design
               </h2>
             </div>
             <div style={{ flexShrink: 0, width: '38vw', height: '78vh', overflow: 'hidden' }}>
