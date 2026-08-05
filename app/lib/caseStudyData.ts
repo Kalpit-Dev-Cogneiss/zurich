@@ -31,9 +31,23 @@ const desc = [
   "It has survived not only many decades, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised thanks to these sheets and more recently with desktop publishing software like Aldus PageMaker and Microsoft Word including versions of Lorem Ipsum.",
 ]
 
-// per-study override for the '@mumbai'-style location tag shown in PortfolioInfo
+// per-study override for the auto-generated title (toTitle() capitalizes
+// each word but can't know acronyms or intentional misspellings)
+const TITLE_OVERRIDES: Record<string, string> = {
+  'tsl': 'TSL',
+  'rk-landmark': 'RK Landmakr',
+}
+
+// per-study override for the location tag shown in PortfolioInfo
 const LOCATION_OVERRIDES: Record<string, string> = {
-  'festive-vibes': 'Ahmedabad, Gujarat',
+  'festive-vibes': 'Ahmedabad',
+  'greenleaf-heritage': 'Vadodara',
+  'happy-mall': 'Vadodara',
+  'lush-meadows': 'Kantharpura',
+  'reva-allizza': 'Bharuch',
+  'rk-landmark': 'Rajkot',
+  'satyam-surya-manhattan': 'Mumbai',
+  'tsl': 'Surat',
 }
 
 function toSlug(folderName: string) {
@@ -67,13 +81,13 @@ function readCaseStudy(folderName: string): CaseStudy | null {
 
   if (images.length === 0) return null
 
-  const title = toTitle(folderName)
   const slug = toSlug(folderName)
+  const title = TITLE_OVERRIDES[slug] ?? toTitle(folderName)
 
   return {
     slug,
     title,
-    location: LOCATION_OVERRIDES[slug] ?? '@mumbai',
+    location: LOCATION_OVERRIDES[slug] ?? 'Mumbai',
     projectType: 'Case study',
     client: `${title} Group`,
     description: desc,

@@ -9,7 +9,7 @@ import PortfolioImageRow from '@/app/components/portfolio/PortfolioImageRow'
 import TurnJSBook from '@/app/components/ui/TurnJSBook'
 import Link from 'next/link'
 import SvgIcon from '@/app/components/ui/SvgIcon'
-import { getProjectBySlug, getAllProjectSlugs, getProjectsByCategory } from '@/app/lib/portfolioData'
+import { getProjectBySlug, getAllProjectSlugs, portfolioProjects } from '@/app/lib/portfolioData'
 import { getBrochureImages } from '@/app/lib/portfolioBrochure'
 import { portfolioSeo } from '@/app/lib/seoData'
 
@@ -59,13 +59,12 @@ export default async function PortfolioDetailPage({
     ? getBrochureImages(project.brochureFolder)
     : []
 
-  // Previous/next cycle within the same category/tab the project belongs
-  // to — matches the back button also returning to that tab, not the
-  // whole unfiltered portfolio.
-  const categoryProjects = getProjectsByCategory(project.category)
-  const currentIndex = categoryProjects.findIndex((p) => p.slug === project.slug)
-  const prevProject = categoryProjects[(currentIndex - 1 + categoryProjects.length) % categoryProjects.length]
-  const nextProject = categoryProjects[(currentIndex + 1) % categoryProjects.length]
+  // Previous/next cycle across the whole portfolio — once a category's
+  // projects are exhausted, it rolls into the next category's, wrapping
+  // back to the start at the very end.
+  const currentIndex = portfolioProjects.findIndex((p) => p.slug === project.slug)
+  const prevProject = portfolioProjects[(currentIndex - 1 + portfolioProjects.length) % portfolioProjects.length]
+  const nextProject = portfolioProjects[(currentIndex + 1) % portfolioProjects.length]
 
   return (
     <>

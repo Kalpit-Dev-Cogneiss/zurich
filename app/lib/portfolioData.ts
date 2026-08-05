@@ -40,7 +40,7 @@ const residentialProjects: ProjectData[] = [
   {
     slug: 'satyam-surya-manhattan',
     title: 'Satyam Surya Manhattan',
-    location: '@mumbai',
+    location: 'Mumbai',
     projectType: 'Luxurious\n3BHK apartment',
     client: 'Satyam Group',
     category: 'residential',
@@ -55,7 +55,7 @@ const residentialProjects: ProjectData[] = [
   {
     slug: 'vivanta-sky-towers',
     title: 'Vivanta Sky Towers',
-    location: '@mumbai',
+    location: 'Bharuch',
     projectType: 'Ultra-luxury\nSky residences',
     client: 'Vivanta Group',
     category: 'residential',
@@ -70,7 +70,7 @@ const residentialProjects: ProjectData[] = [
   {
     slug: 'festival-vibes',
     title: 'Festival Vibes',
-    location: '@ahmedabad',
+    location: 'Ahmedabad',
     projectType: 'Luxurious\nResidential complex',
     client: 'Festival Group',
     category: 'residential',
@@ -85,7 +85,7 @@ const residentialProjects: ProjectData[] = [
   {
     slug: 'the-palatial-gardens',
     title: 'The Palatial Gardens',
-    location: '@mumbai',
+    location: 'Rajkot',
     projectType: 'Palatial\nGarden residences',
     client: 'Palatial Group',
     category: 'residential',
@@ -100,7 +100,7 @@ const residentialProjects: ProjectData[] = [
   {
     slug: 'sanskruti-ryan-residency',
     title: 'Sanskruti Ryan Residency',
-    location: '@mumbai',
+    location: 'Indore',
     projectType: 'Contemporary\nResidential living',
     client: 'Sanskruti Group',
     category: 'residential',
@@ -115,7 +115,7 @@ const residentialProjects: ProjectData[] = [
   {
     slug: 'palladium-highstreet',
     title: 'Palladium Highstreet',
-    location: '@silvassa',
+    location: 'Silvassa',
     projectType: 'Premium\nResidential space',
     client: 'Palladium Group',
     category: 'residential',
@@ -130,7 +130,7 @@ const residentialProjects: ProjectData[] = [
   {
     slug: 'keystone-skyvillas-xl',
     title: 'Keystone Skyvillas XL',
-    location: '@mumbai',
+    location: 'Vadodara',
     projectType: 'Exclusive\nSky villas',
     client: 'Keystone Group',
     category: 'residential',
@@ -145,7 +145,7 @@ const residentialProjects: ProjectData[] = [
   {
     slug: 'vraj-hillview',
     title: 'Vraj Hillview',
-    location: '@mumbai',
+    location: 'Nashik',
     projectType: 'Scenic\nHillside residences',
     client: 'Vraj Group',
     category: 'residential',
@@ -161,7 +161,7 @@ const residentialProjects: ProjectData[] = [
   {
     slug: 'aatlantis-the-castle',
     title: 'Aatlantis The Castle',
-    location: '@mumbai',
+    location: 'Mumbai',
     projectType: 'Majestic\nCastle residences',
     client: 'Aatlantis Group',
     category: 'residential',
@@ -177,7 +177,7 @@ const residentialProjects: ProjectData[] = [
   {
     slug: 'greenleaf-heritage',
     title: 'Greenleaf Heritage',
-    location: '@mumbai',
+    location: 'Vadodara',
     projectType: 'Eco-friendly\nHeritage homes',
     client: 'Greenleaf Group',
     category: 'residential',
@@ -193,7 +193,7 @@ const residentialProjects: ProjectData[] = [
   {
     slug: 'vivera',
     title: 'Vivera',
-    location: '@mumbai',
+    location: 'Dabhoi',
     projectType: 'Modern\nLiving experience',
     client: 'Vivera Group',
     category: 'residential',
@@ -207,7 +207,7 @@ const residentialProjects: ProjectData[] = [
   {
     slug: 'vyom-by-balajee',
     title: 'Vyom By Balajee',
-    location: '@mumbai',
+    location: 'Dhanbad',
     projectType: 'Celestial\nResidential tower',
     client: 'Balajee Group',
     category: 'residential',
@@ -226,7 +226,7 @@ const commercialProjects: ProjectData[] = [
   {
     slug: 'krupa-aspire',
     title: 'Krupa Aspire',
-    location: '@mumbai',
+    location: 'Ahmedabad',
     projectType: 'Commercial\nHub',
     client: 'Krupa Group',
     category: 'commercial',
@@ -240,8 +240,8 @@ const commercialProjects: ProjectData[] = [
   },
   {
     slug: 'rk-landmark',
-    title: 'RK Landmark',
-    location: '@mumbai',
+    title: 'RK Landmakr',
+    location: 'Rajkot',
     projectType: 'Commercial\nLandmark',
     client: 'RK Group',
     category: 'commercial',
@@ -256,7 +256,7 @@ const commercialProjects: ProjectData[] = [
   {
     slug: 'skyline-excellent',
     title: 'Skyline Excellent',
-    location: '@mumbai',
+    location: 'Bharuch',
     projectType: 'Commercial\nExcellence',
     client: 'Skyline Group',
     category: 'commercial',
@@ -271,7 +271,7 @@ const commercialProjects: ProjectData[] = [
   {
     slug: 'tsl',
     title: 'TSL',
-    location: '@mumbai',
+    location: 'Surat',
     projectType: 'Commercial\nProject',
     client: 'TSL Group',
     category: 'commercial',
@@ -286,7 +286,7 @@ const commercialProjects: ProjectData[] = [
   {
     slug: 'vs-monolith',
     title: 'VS Monolith',
-    location: '@mumbai',
+    location: 'Vadodara',
     projectType: 'Commercial\nMonolith',
     client: 'VS Group',
     category: 'commercial',
@@ -305,7 +305,7 @@ const mallProjects: ProjectData[] = [
   {
     slug: 'happy-mall',
     title: 'Happy Mall',
-    location: '@vadodara',
+    location: 'Vadodara',
     projectType: 'Shopping\nMall',
     client: 'Siddheshwar Group',
     category: 'mall',
@@ -320,7 +320,7 @@ const mallProjects: ProjectData[] = [
   {
     slug: 'vcm',
     title: 'Vinod City Mall',
-    location: '@mumbai',
+    location: 'Rajasthan',
     projectType: 'City\nMall',
     client: 'Vinod Group',
     category: 'mall',
@@ -339,7 +339,7 @@ const duplexVillaProjects: ProjectData[] = [
   {
     slug: 'manogya',
     title: 'Manogya',
-    location: '@mumbai',
+    location: 'Dhanbad',
     projectType: 'Luxury\nDuplex villas',
     client: 'Manogya Group',
     category: 'duplex-villa',
@@ -354,7 +354,7 @@ const duplexVillaProjects: ProjectData[] = [
   {
     slug: 'atc',
     title: 'Darshanam Kingsville 2',
-    location: '@mumbai',
+    location: 'Vadodara',
     projectType: 'Villa\nDevelopment',
     client: 'Darshanam Group',
     category: 'duplex-villa',
@@ -369,7 +369,7 @@ const duplexVillaProjects: ProjectData[] = [
   {
     slug: 'keystone-51',
     title: 'Keystone 51',
-    location: '@mumbai',
+    location: 'Vadodara',
     projectType: 'Duplex\nVillas',
     client: 'Keystone Group',
     category: 'duplex-villa',
@@ -384,7 +384,7 @@ const duplexVillaProjects: ProjectData[] = [
   {
     slug: 'oceanic-villa',
     title: 'Oceanic Villa',
-    location: '@mumbai',
+    location: 'Vadodara',
     projectType: 'Oceanfront\nVilla estates',
     client: 'Oceanic Group',
     category: 'duplex-villa',
@@ -403,7 +403,7 @@ const openPlotProjects: ProjectData[] = [
   {
     slug: 'reva-allizza',
     title: 'Reva Allizza',
-    location: '@bharuch',
+    location: 'Bharuch',
     projectType: 'Open plot\nDevelopment',
     client: 'Reva Group',
     category: 'open-plot',
@@ -418,7 +418,7 @@ const openPlotProjects: ProjectData[] = [
   {
     slug: 'raamah-eldoraa',
     title: 'Raamah Eldoraa',
-    location: '@mumbai',
+    location: 'Vadodara',
     projectType: 'Premium\nOpen plots',
     client: 'Raamah Group',
     category: 'open-plot',
@@ -433,7 +433,7 @@ const openPlotProjects: ProjectData[] = [
   {
     slug: 'keystone-woods',
     title: 'Keystone Woods',
-    location: '@mumbai',
+    location: 'Vadodara',
     projectType: 'Woodland\nPlots',
     client: 'Keystone Group',
     category: 'open-plot',
@@ -452,7 +452,7 @@ const industrialParkProjects: ProjectData[] = [
   {
     slug: 'aatmiya-industrial-park',
     title: 'Aatmiya Industrial Park',
-    location: '@mumbai',
+    location: 'Vadodara',
     projectType: 'Industrial\nPark development',
     client: 'Aatmiya Group',
     category: 'industrial-park',
@@ -466,7 +466,7 @@ const industrialParkProjects: ProjectData[] = [
   {
     slug: 'shivbhumi-industrial-park',
     title: 'Shivbhumi Industrial Park',
-    location: '@mumbai',
+    location: 'Vadodara',
     projectType: 'Industrial\nPark complex',
     client: 'Brookfields Group',
     category: 'industrial-park',
@@ -484,7 +484,7 @@ const corporateBrochureProjects: ProjectData[] = [
   {
     slug: 'accord-design',
     title: 'Accord Design',
-    location: '@mumbai',
+    location: 'Dahej',
     projectType: 'Corporate\nBrochure',
     client: 'Accord Group',
     category: 'corporate-brochure',
@@ -499,7 +499,7 @@ const corporateBrochureProjects: ProjectData[] = [
   {
     slug: 'elite-design',
     title: 'Elite Design',
-    location: '@mumbai',
+    location: 'Surat',
     projectType: 'Corporate\nBrochure',
     client: 'Elite Group',
     category: 'corporate-brochure',
@@ -514,7 +514,7 @@ const corporateBrochureProjects: ProjectData[] = [
   {
     slug: 'ratnam',
     title: 'Ratnam',
-    location: '@mumbai',
+    location: 'Vadodara',
     projectType: 'Corporate\nBrochure',
     client: 'Ratnam Group',
     category: 'corporate-brochure',
@@ -529,7 +529,7 @@ const corporateBrochureProjects: ProjectData[] = [
   {
     slug: 'samruddhi',
     title: 'Samruddhi',
-    location: '@mumbai',
+    location: 'Vadodara',
     projectType: 'Corporate\nBrochure',
     client: 'Samruddhi Group',
     category: 'corporate-brochure',
@@ -544,7 +544,7 @@ const corporateBrochureProjects: ProjectData[] = [
   {
     slug: 'krrish-group',
     title: 'Krrish Group',
-    location: '@mumbai',
+    location: 'Nashik',
     projectType: 'Corporate\nBrochure',
     client: 'Krrish Group',
     category: 'corporate-brochure',
@@ -563,7 +563,7 @@ const campaignProjects: ProjectData[] = [
   {
     slug: 'greenleaf-heritage-campaign',
     title: 'Greenleaf Heritage',
-    location: '@mumbai',
+    location: 'Vadodara',
     projectType: 'Campaign\nDesign',
     client: 'Greenleaf Group',
     category: 'campaign',
@@ -597,7 +597,7 @@ const campaignProjects: ProjectData[] = [
   {
     slug: 'sky-gateway',
     title: 'Sky Gateway',
-    location: '@mumbai',
+    location: 'Vadodara',
     projectType: 'Campaign\nDesign',
     client: 'Sky Gateway Group',
     category: 'campaign',
@@ -633,7 +633,7 @@ const farmhouseProjects: ProjectData[] = [
   {
     slug: 'lush-meadows',
     title: 'Lush Meadows',
-    location: '@mumbai',
+    location: 'Kantharpura',
     projectType: 'Luxury\nFarmhouse',
     client: 'Lush Group',
     category: 'farmhouse',
@@ -648,7 +648,7 @@ const farmhouseProjects: ProjectData[] = [
   {
     slug: 'the-lakeview',
     title: 'The Lakeview',
-    location: '@mumbai',
+    location: 'Dahod',
     projectType: 'Lakeside\nFarmhouse',
     client: 'Lakeview Group',
     category: 'farmhouse',

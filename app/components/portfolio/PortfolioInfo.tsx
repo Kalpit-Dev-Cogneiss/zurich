@@ -20,7 +20,7 @@ interface PortfolioInfoProps {
 }
 
 export default function PortfolioInfo({
-  location = '@mumbai',
+  location = 'Mumbai',
   projectType = 'Luxurious\n3BHK apartment',
   client = 'Satyam Group',
   title = 'Satyam Surya Manhattan',
