@@ -177,7 +177,7 @@ export default function TurnJSBook({ images }: TurnJSBookProps) {
                 src="${src}"
                 alt="Page ${index + 1}"
                 draggable="false"
-                style="width:100%;height:100%;object-fit:contain;object-position:center;display:block;user-select:none;pointer-events:none;"
+                style="width:100%;height:100%;object-fit:fill;object-position:center;display:block;user-select:none;pointer-events:none;"
               />
             </div>
           `)
