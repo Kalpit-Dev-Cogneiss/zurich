@@ -166,7 +166,9 @@
       "Bash(git show *)",
       "Bash(powershell -Command \"Get-ChildItem -Path 'D:\\\\zurich-new\\\\public\\\\case-study' -Directory | Select-Object Name\")",
       "Bash(powershell -Command \"Get-ChildItem -Path 'D:\\\\zurich-new\\\\public\\\\case-study\\\\lush meadows' -File | Select-Object Name\" 2>&1)",
-      "Bash(powershell -Command 'Get-Process -Name node -ErrorAction SilentlyContinue | Where-Object {$_.CommandLine -like '\\\\''*next*'\\\\''} | Stop-Process -Force')"
+      "Bash(powershell -Command 'Get-Process -Name node -ErrorAction SilentlyContinue | Where-Object {$_.CommandLine -like '\\\\''*next*'\\\\''} | Stop-Process -Force')",
+      "Bash(command -v magick)",
+      "Bash(command -v convert)"
     ]
   }
 }
