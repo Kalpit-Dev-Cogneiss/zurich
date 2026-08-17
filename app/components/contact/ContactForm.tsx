@@ -35,21 +35,29 @@ const numStyle: React.CSSProperties = {
  */
 export default function ContactForm() {
   const [sent, setSent] = useState(false)
+  const [sending, setSending] = useState(false)
+  const [error, setError] = useState('')
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    const data = new FormData(e.currentTarget)
-    const name = String(data.get('name') || '')
-    const email = String(data.get('email') || '')
-    const phone = String(data.get('phone') || '')
-    const message = String(data.get('message') || '')
+    const form = e.currentTarget
+    const data = new FormData(form)
+    setError('')
+    setSending(true)
 
-    const subject = encodeURIComponent(`Project enquiry: ${name}`)
-    const body = encodeURIComponent(
-      `Name: ${name}\nEmail: ${email}\nPhone: ${phone}\n\n${message}`
-    )
-    window.location.href = `mailto:${CONTACT_EMAIL}?subject=${subject}&body=${body}`
-    setSent(true)
+    try {
+      const res = await fetch('/api/contact', { method: 'POST', body: data })
+      if (!res.ok) {
+        const body = await res.json().catch(() => null)
+        throw new Error(body?.error || 'Something went wrong. Please try again.')
+      }
+      form.reset()
+      setSent(true)
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'Something went wrong. Please try again.')
+    } finally {
+      setSending(false)
+    }
   }
 
   const focus = (e: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement>) =>
@@ -125,8 +133,9 @@ export default function ContactForm() {
                 margin: 0,
                 maxWidth: 460,
               }}>
-                Your mail app should have opened with the message ready to send.
-                If it didn&apos;t, write to us directly at{' '}
+                We&apos;ve got your message and sent a confirmation to your inbox.
+                A strategist will be in touch within one business day. In the
+                meantime, reach us directly at{' '}
                 <a href={`mailto:${CONTACT_EMAIL}`} style={{ color: '#fff' }}>
                   {CONTACT_EMAIL}
                 </a>.
@@ -212,6 +221,7 @@ export default function ContactForm() {
               <div className="contact-submit-wrap" style={{ paddingLeft: '8.4rem', marginTop: '4rem' }}>
                 <button
                   type="submit"
+                  disabled={sending}
                   style={{
                     display: 'inline-flex',
                     alignItems: 'center',
@@ -222,15 +232,25 @@ export default function ContactForm() {
                     fontSize: '1.2rem',
                     letterSpacing: '0.12em',
                     border: 'none',
-                    cursor: 'pointer',
+                    cursor: sending ? 'default' : 'pointer',
+                    opacity: sending ? 0.6 : 1,
                     fontFamily: 'inherit',
                     transition: 'opacity 0.3s ease',
                   }}
-                  onMouseEnter={e => (e.currentTarget.style.opacity = '0.85')}
-                  onMouseLeave={e => (e.currentTarget.style.opacity = '1')}
+                  onMouseEnter={e => { if (!sending) e.currentTarget.style.opacity = '0.85' }}
+                  onMouseLeave={e => { if (!sending) e.currentTarget.style.opacity = '1' }}
                 >
-                  Send Message
+                  {sending ? 'Sending…' : 'Send Message'}
                 </button>
+                {error && (
+                  <p style={{
+                    marginTop: '1.6rem',
+                    fontSize: '1.2rem',
+                    color: 'rgba(255,120,120,0.9)',
+                  }}>
+                    {error}
+                  </p>
+                )}
               </div>
             </AnimateReveal>
           </form>

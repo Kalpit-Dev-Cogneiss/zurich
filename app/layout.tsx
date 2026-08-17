@@ -16,6 +16,11 @@ export const metadata: Metadata = {
   description: pageSeo.home.description,
   keywords: pageSeo.home.keywords,
   metadataBase: new URL('https://zurichgraphics.com'),
+  verification: {
+    other: {
+      'msvalidate.01': 'D17B2FBA4DB9B71D276B1A6CE3622C93',
+    },
+  },
   openGraph: {
     type: 'website',
     title: pageSeo.home.title,
