@@ -42,6 +42,7 @@ export default function ContactForm() {
     e.preventDefault()
     const form = e.currentTarget
     const data = new FormData(form)
+    data.set('page', window.location.pathname)
     setError('')
     setSending(true)
 

@@ -38,6 +38,8 @@ const labelStyle: React.CSSProperties = {
 
 export default function EnquireModal({ open, onClose }: EnquireModalProps) {
   const [sent, setSent] = useState(false)
+  const [sending, setSending] = useState(false)
+  const [error, setError] = useState('')
 
   // Pause Lenis (smooth-scroll intercepts wheel/touch regardless of overflow)
   // and lock native scroll behind the modal while it's open.
@@ -61,25 +63,35 @@ export default function EnquireModal({ open, onClose }: EnquireModalProps) {
   const blur = (e: React.FocusEvent<HTMLInputElement | HTMLTextAreaElement>) =>
     (e.currentTarget.style.borderBottomColor = 'rgba(255,255,255,0.2)')
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
-    const data = new FormData(e.currentTarget)
-    const name = String(data.get('name') || '')
-    const email = String(data.get('email') || '')
-    const phone = String(data.get('phone') || '')
-    const message = String(data.get('message') || '')
+    const form = e.currentTarget
+    const data = new FormData(form)
+    data.set('page', window.location.pathname)
+    setError('')
+    setSending(true)
 
-    const subject = encodeURIComponent(`Quick enquiry, ${name}`)
-    const body = encodeURIComponent(
-      `Name: ${name}\nEmail: ${email}\nPhone: ${phone}\n\n${message}`
-    )
-    window.location.href = `mailto:${CONTACT_EMAIL}?subject=${subject}&body=${body}`
-    setSent(true)
+    try {
+      const res = await fetch('/api/contact', { method: 'POST', body: data })
+      if (!res.ok) {
+        const body = await res.json().catch(() => null)
+        throw new Error(body?.error || 'Something went wrong. Please try again.')
+      }
+      form.reset()
+      setSent(true)
+    } catch (err) {
+      setError(err instanceof Error ? err.message : 'Something went wrong. Please try again.')
+    } finally {
+      setSending(false)
+    }
   }
 
   const handleClose = () => {
     onClose()
-    setTimeout(() => setSent(false), 400)
+    setTimeout(() => {
+      setSent(false)
+      setError('')
+    }, 400)
   }
 
   return (
@@ -155,8 +167,8 @@ export default function EnquireModal({ open, onClose }: EnquireModalProps) {
                   color: 'rgba(255,255,255,0.55)',
                   margin: 0,
                 }}>
-                  Your mail app should have opened with the message ready to send.
-                  If it did not, write to us directly at{' '}
+                  We&apos;ve got your message and will get back to you within a day.
+                  In the meantime, write to us directly at{' '}
                   <a href={`mailto:${CONTACT_EMAIL}`} style={{ color: '#fff' }}>
                     {CONTACT_EMAIL}
                   </a>.
@@ -205,6 +217,7 @@ export default function EnquireModal({ open, onClose }: EnquireModalProps) {
 
                   <button
                     type="submit"
+                    disabled={sending}
                     style={{
                       alignSelf: 'flex-start',
                       display: 'inline-flex',
@@ -217,15 +230,21 @@ export default function EnquireModal({ open, onClose }: EnquireModalProps) {
                       fontSize: '1.2rem',
                       letterSpacing: '0.06em',
                       border: 'none',
-                      cursor: 'pointer',
+                      cursor: sending ? 'default' : 'pointer',
+                      opacity: sending ? 0.6 : 1,
                       fontFamily: 'inherit',
                       transition: 'opacity 0.3s ease',
                     }}
-                    onMouseEnter={(e) => (e.currentTarget.style.opacity = '0.85')}
-                    onMouseLeave={(e) => (e.currentTarget.style.opacity = '1')}
+                    onMouseEnter={(e) => { if (!sending) e.currentTarget.style.opacity = '0.85' }}
+                    onMouseLeave={(e) => { if (!sending) e.currentTarget.style.opacity = '1' }}
                   >
-                    Send Enquiry
+                    {sending ? 'Sending…' : 'Send Enquiry'}
                   </button>
+                  {error && (
+                    <p style={{ margin: 0, fontSize: '1.2rem', color: 'rgba(255,120,120,0.9)' }}>
+                      {error}
+                    </p>
+                  )}
                 </form>
               </>
             )}
