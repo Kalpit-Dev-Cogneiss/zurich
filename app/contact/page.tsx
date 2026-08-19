@@ -5,12 +5,14 @@ import Marquee from '@/app/components/ui/Marquee'
 import ContactMain from '@/app/components/contact/ContactMain'
 import ContactForm from '@/app/components/contact/ContactForm'
 import { pageSeo } from '@/app/lib/seoData'
+import { buildMetadata } from '@/app/lib/seo'
 
-export const metadata = {
+export const metadata = buildMetadata({
   title: pageSeo.contact.title,
   description: pageSeo.contact.description,
   keywords: pageSeo.contact.keywords,
-}
+  path: '/contact',
+})
 
 export default function ContactPage() {
   return (

@@ -14,6 +14,7 @@ interface PortfolioHeroProps {
 }
 
 export default function PortfolioHero({
+  title,
   imageSrc,
   imageAlt,
   backHref,
@@ -67,6 +68,25 @@ export default function PortfolioHero({
           <SvgIcon id="long-arrow-left" width={14} height={12} style={{ color: '#fff' }} />
           Back
         </Link>
+      )}
+
+      {/* Visually-hidden but crawlable — the visual title lives inside the
+          hero image itself, so this gives the page a real, descriptive H1
+          without duplicating on-screen text. */}
+      {title && (
+        <h1 style={{
+          position: 'absolute',
+          width: 1,
+          height: 1,
+          padding: 0,
+          margin: -1,
+          overflow: 'hidden',
+          clip: 'rect(0, 0, 0, 0)',
+          whiteSpace: 'nowrap',
+          border: 0,
+        }}>
+          {title}
+        </h1>
       )}
 
       <style>{`

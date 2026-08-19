@@ -12,6 +12,7 @@ import SvgIcon from '@/app/components/ui/SvgIcon'
 import { getProjectBySlug, getAllProjectSlugs, portfolioProjects } from '@/app/lib/portfolioData'
 import { getBrochureImages } from '@/app/lib/portfolioBrochure'
 import { portfolioSeo } from '@/app/lib/seoData'
+import { buildMetadata } from '@/app/lib/seo'
 
 export async function generateStaticParams() {
   const slugs = getAllProjectSlugs()
@@ -30,17 +31,21 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 
   const seo = portfolioSeo[slug]
   if (seo) {
-    return {
+    return buildMetadata({
       title: seo.title,
       description: seo.description,
       keywords: seo.keywords,
-    }
+      path: `/portfolio/${slug}`,
+      image: project.images.hero,
+    })
   }
 
-  return {
+  return buildMetadata({
     title: `${project.title} | Portfolio`,
     description: `Discover ${project.title} - ${project.projectType}`,
-  }
+    path: `/portfolio/${slug}`,
+    image: project.images.hero,
+  })
 }
 
 export default async function PortfolioDetailPage({

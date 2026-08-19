@@ -12,6 +12,7 @@ import CaseStudyStorySection from '@/app/components/case-study/CaseStudyStorySec
 import { getCaseStudyBySlug, getAllCaseStudySlugs, type CaseStudy } from '@/app/lib/caseStudyData'
 import { CASE_STUDY_LAYOUTS, CASE_STUDY_INFO_BLOCKS, HIDE_INFO_SLUGS, SPACE_BELOW_SINGLES_SLUGS, type CaseStudySectionSpec } from '@/app/lib/caseStudyLayouts'
 import { caseStudySeo } from '@/app/lib/seoData'
+import { buildMetadata } from '@/app/lib/seo'
 
 export async function generateStaticParams() {
   return getAllCaseStudySlugs().map(slug => ({ slug }))
@@ -24,17 +25,21 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
 
   const seo = caseStudySeo[slug]
   if (seo) {
-    return {
+    return buildMetadata({
       title: seo.title,
       description: seo.description,
       keywords: seo.keywords,
-    }
+      path: `/case-study/${slug}`,
+      image: study.hero,
+    })
   }
 
-  return {
+  return buildMetadata({
     title: `${study.title} | Case Study`,
     description: `${study.title}. A Zurich Graphics case study.`,
-  }
+    path: `/case-study/${slug}`,
+    image: study.hero,
+  })
 }
 
 type Section =

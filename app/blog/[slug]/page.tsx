@@ -1,10 +1,12 @@
 import { notFound } from 'next/navigation'
 import Link from 'next/link'
+import Script from 'next/script'
 import Header from '@/app/components/layout/Header'
 import Footer from '@/app/components/layout/Footer'
 import PageCTA from '@/app/components/ui/PageCTA'
 import { getAllBlogPosts, getBlogPostBySlug } from '@/app/lib/blogData'
 import BlogContent from '@/app/components/blog/BlogContent'
+import { buildMetadata, buildBlogPostingJsonLd, buildFaqJsonLd } from '@/app/lib/seo'
 
 export async function generateStaticParams() {
   return getAllBlogPosts().map((post) => ({ slug: post.slug }))
@@ -14,10 +16,13 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const { slug } = await params
   const post = getBlogPostBySlug(slug)
   if (!post) return { title: 'Post not found' }
-  return {
+  return buildMetadata({
     title: `${post.title} | Zurich Graphics`,
     description: post.excerpt,
-  }
+    path: `/blog/${slug}`,
+    image: post.cover,
+    type: 'article',
+  })
 }
 
 export default async function BlogPostPage({ params }: { params: Promise<{ slug: string }> }) {
@@ -29,8 +34,19 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
     day: 'numeric', month: 'long', year: 'numeric',
   })
 
+  const blogPostingJsonLd = buildBlogPostingJsonLd(post)
+  const faqJsonLd = buildFaqJsonLd(post.content)
+
   return (
     <>
+      <Script id="blogposting-jsonld" type="application/ld+json">
+        {JSON.stringify(blogPostingJsonLd)}
+      </Script>
+      {faqJsonLd && (
+        <Script id="faq-jsonld" type="application/ld+json">
+          {JSON.stringify(faqJsonLd)}
+        </Script>
+      )}
       <Header />
       <main style={{ background: '#000', minHeight: '100vh' }}>
         <article className="blog-article" style={{ padding: '13rem 4rem 4rem' }}>

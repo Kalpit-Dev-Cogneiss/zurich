@@ -6,25 +6,24 @@ import SmoothScroll from '@/app/components/ui/SmoothScroll'
 import ScrollToTop from '@/app/components/ui/ScrollToTop'
 import ScrollSnap from '@/app/components/ui/ScrollSnap'
 import { pageSeo } from '@/app/lib/seoData'
+import { buildMetadata, organizationJsonLd } from '@/app/lib/seo'
 
 // Same GTM container and Google tag (gtag.js) IDs live on zurichgraphics.com.
 const GTM_ID = 'GTM-PNFXSXZC'
 const GOOGLE_TAG_ID = 'GT-P3MNJNH'
 
 export const metadata: Metadata = {
-  title: pageSeo.home.title,
-  description: pageSeo.home.description,
-  keywords: pageSeo.home.keywords,
+  ...buildMetadata({
+    title: pageSeo.home.title,
+    description: pageSeo.home.description,
+    keywords: pageSeo.home.keywords,
+    path: '/',
+  }),
   metadataBase: new URL('https://zurichgraphics.com'),
   verification: {
     other: {
       'msvalidate.01': 'D17B2FBA4DB9B71D276B1A6CE3622C93',
     },
-  },
-  openGraph: {
-    type: 'website',
-    title: pageSeo.home.title,
-    description: pageSeo.home.description,
   },
 }
 
@@ -46,6 +45,9 @@ gtag('js', new Date());
 gtag('config', '${GOOGLE_TAG_ID}');`}
       </Script>
       <body>
+        <Script id="organization-jsonld" type="application/ld+json" strategy="beforeInteractive">
+          {JSON.stringify(organizationJsonLd)}
+        </Script>
         <noscript>
           <iframe
             src={`https://www.googletagmanager.com/ns.html?id=${GTM_ID}`}

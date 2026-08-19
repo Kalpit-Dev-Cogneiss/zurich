@@ -86,53 +86,55 @@ export default function Hero() {
         </motion.div>
       </div>
 
-      {/* ── TOP-LEFT headline — starts at same top as header ── */}
-      {mounted && (
-        <div className="hero-headline" style={{
-          position: 'absolute',
-          top: '2.4rem',
-          left: '4rem',
-          zIndex: 6,
-          maxWidth: 'calc(33% - 4rem)',
-        }}>
-          <motion.p
-            initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.9, ease: [0.7, 0, 0.3, 1], delay: 0.3 }}
-            style={{
-              color: '#fff',
-              fontSize: '3.6rem',
-              fontWeight: 600,
-              lineHeight: '38px',
-              letterSpacing: '0.02em',
-              marginBottom: '2.8rem',
-              whiteSpace: 'pre-line',
-            }}
-          >
-            India&apos;s Premier Agency For Powerful Real Estate Brands
-          </motion.p>
+      {/* ── TOP-LEFT headline — starts at same top as header ──
+          Always rendered (not gated behind `mounted`) so the H1 is present
+          in the server-rendered HTML for crawlers; framer-motion already
+          renders the `initial` state on the server and animates to
+          `animate` once it hydrates, so the reveal looks identical. */}
+      <div className="hero-headline" style={{
+        position: 'absolute',
+        top: '2.4rem',
+        left: '4rem',
+        zIndex: 6,
+        maxWidth: 'calc(33% - 4rem)',
+      }}>
+        <motion.h1
+          initial={{ opacity: 0, y: 16 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.9, ease: [0.7, 0, 0.3, 1], delay: 0.3 }}
+          style={{
+            color: '#fff',
+            fontSize: '3.6rem',
+            fontWeight: 600,
+            lineHeight: '38px',
+            letterSpacing: '0.02em',
+            marginBottom: '2.8rem',
+            whiteSpace: 'pre-line',
+          }}
+        >
+          India&apos;s Premier Agency For Powerful Real Estate Brands
+        </motion.h1>
 
-          <motion.img
-            src="/zurich-logo-White.svg"
-            alt="Zurich Graphics"
-            initial={{ opacity: 0, y: 16 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.9, ease: [0.7, 0, 0.3, 1], delay: 0.45 }}
-            style={{ display: 'block', width: 'clamp(120px, 15vw, 220px)', height: 'auto', marginBottom: '2.4rem' }}
-          />
+        <motion.img
+          src="/zurich-logo-White.svg"
+          alt="Zurich Graphics"
+          initial={{ opacity: 0, y: 16 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.9, ease: [0.7, 0, 0.3, 1], delay: 0.45 }}
+          style={{ display: 'block', width: 'clamp(120px, 15vw, 220px)', height: 'auto', marginBottom: '2.4rem' }}
+        />
 
-          <motion.a
-            href="#about"
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 0.9, ease: [0.7, 0, 0.3, 1], delay: 0.6 }}
-            aria-label="Scroll Down"
-            style={{ display: 'inline-block', lineHeight: 0, color: '#fff' }}
-          >
-            <SvgIcon id="long-arrow-down" width={14} height={41} style={{ color: '#fff' }} />
-          </motion.a>
-        </div>
-      )}
+        <motion.a
+          href="#about"
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          transition={{ duration: 0.9, ease: [0.7, 0, 0.3, 1], delay: 0.6 }}
+          aria-label="Scroll Down"
+          style={{ display: 'inline-block', lineHeight: 0, color: '#fff' }}
+        >
+          <SvgIcon id="long-arrow-down" width={14} height={41} style={{ color: '#fff' }} />
+        </motion.a>
+      </div>
 
       {/* ── GIANT BRAND NAME at bottom ── */}
       <motion.div

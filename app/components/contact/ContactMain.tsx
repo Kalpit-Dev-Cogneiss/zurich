@@ -120,15 +120,16 @@ export default function ContactMain() {
       )}
 
       {/* giant wordmark */}
-      <div>
+      <h1 style={{ margin: 0 }}>
         <div style={{ overflow: 'hidden' }}>
           {mounted && (
-            <motion.p
+            <motion.span
               className="contact-wordmark"
               initial={{ y: '110%' }}
               animate={{ y: '0%' }}
               transition={{ duration: 1.2, ease: EASE, delay: 0.15 }}
               style={{
+                display: 'block',
                 fontSize: 'clamp(8rem, 18vw, 22rem)',
                 fontWeight: 600,
                 lineHeight: 0.92,
@@ -137,13 +138,13 @@ export default function ContactMain() {
               }}
             >
               A “Hello”
-            </motion.p>
+            </motion.span>
           )}
         </div>
         <div className="contact-line2" style={{ overflow: 'hidden', display: 'flex', alignItems: 'center', gap: '3vw' }}>
           {mounted && (
             <>
-              <motion.p
+              <motion.span
                 className="contact-wordmark"
                 initial={{ y: '110%' }}
                 animate={{ y: '0%' }}
@@ -163,7 +164,7 @@ export default function ContactMain() {
                     under the "s" of "Let's" above, at any screen size */}
                 <span aria-hidden="true" style={{ visibility: 'hidden' }}>Let&apos;</span>
                 <span>Will Do.</span>
-              </motion.p>
+              </motion.span>
 
               {/* spinning badge */}
               <motion.div
@@ -209,7 +210,7 @@ export default function ContactMain() {
             </>
           )}
         </div>
-      </div>
+      </h1>
 
       {/* bottom — email as the CTA + phone */}
       {mounted && (

@@ -121,26 +121,26 @@ export default function AboutManifesto() {
       )}
 
       {/* manifesto lines */}
-      <div style={{ position: 'relative', zIndex: 1, display: 'flex', flexDirection: 'column', gap: '1.2rem' }}>
+      <h1 style={{ position: 'relative', zIndex: 1, display: 'flex', flexDirection: 'column', gap: '1.2rem', margin: 0 }}>
         {lines.map((line, i) => (
           <div key={line.text} style={{ display: 'flex', justifyContent: line.align, overflow: 'hidden' }}>
             {mounted && (
-              <motion.p
+              <motion.span
                 className="about-manifesto-line"
                 initial={{ y: '110%' }}
                 animate={{ y: '0%' }}
                 transition={{ duration: 1.2, ease: EASE, delay: 0.15 + i * 0.14 }}
-                style={{ ...lineStyle, x: line.x, ...(line.outlined ? {
+                style={{ ...lineStyle, display: 'block', x: line.x, ...(line.outlined ? {
                   color: 'transparent',
                   WebkitTextStroke: '1.5px rgba(255,255,255,0.85)',
                 } : {}) }}
               >
                 {line.text}
-              </motion.p>
+              </motion.span>
             )}
           </div>
         ))}
-      </div>
+      </h1>
 
       {/* bottom row — intro + scroll cue */}
       {mounted && (

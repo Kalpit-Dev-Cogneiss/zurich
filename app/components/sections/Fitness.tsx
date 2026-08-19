@@ -22,30 +22,30 @@ const IMG = {
 // have a sane mobile equivalent, so flipping flex-direction on the existing
 // panels would fight that math rather than fix it. Same content, read top
 // to bottom instead of left to right.
-const MOBILE_ITEMS: Array<{ type: 'heading' | 'image' | 'text' | 'label'; text?: string; src?: string }> = [
+const MOBILE_ITEMS: Array<{ type: 'heading' | 'image' | 'text' | 'label'; text?: string; src?: string; alt?: string }> = [
   { type: 'heading', text: 'Our Work' },
-  { type: 'image', src: IMG.i1 },
+  { type: 'image', src: IMG.i1, alt: 'Real estate site brochure design by Zurich Graphics' },
   { type: 'label', text: 'Site Brochure' },
   { type: 'text', text: "We'll let it do the talking. Inside are identities that found their edge, campaigns that owned their space and projects that became brands." },
-  { type: 'image', src: IMG.i2 },
-  { type: 'image', src: IMG.i3 },
+  { type: 'image', src: IMG.i2, alt: 'Real estate company profile design by Zurich Graphics' },
+  { type: 'image', src: IMG.i3, alt: 'Corporate company profile brochure layout by Zurich Graphics' },
   { type: 'label', text: 'Company Profile' },
   { type: 'text', text: 'Built in the studio. Tested in the market. Remembered across cities.' },
   { type: 'text', text: 'The Skyline Remembers Great Architecture. The Market Remembers Great Branding. This Is Where We Made Our Mark.' },
-  { type: 'image', src: IMG.i4 },
-  { type: 'image', src: IMG.i5 },
+  { type: 'image', src: IMG.i4, alt: 'Real estate campaign creative by Zurich Graphics' },
+  { type: 'image', src: IMG.i5, alt: 'Real estate marketing campaign design by Zurich Graphics' },
   { type: 'label', text: 'Campaign' },
   { type: 'text', text: 'Every project becomes a case study our clients are proud to share, from first sketch to the finished brand on the ground.' },
-  { type: 'image', src: IMG.i6 },
-  { type: 'image', src: IMG.i7 },
+  { type: 'image', src: IMG.i6, alt: '360 degree real estate branding by Zurich Graphics' },
+  { type: 'image', src: IMG.i7, alt: 'Integrated 360 degree branding touchpoints by Zurich Graphics' },
   { type: 'label', text: '360 Branding' },
   { type: 'text', text: 'From Naming To Launch: One Connected Creative Journey, Across Every Touchpoint.' },
-  { type: 'image', src: IMG.i8 },
-  { type: 'image', src: IMG.i9 },
+  { type: 'image', src: IMG.i8, alt: 'Real estate print media advertisement by Zurich Graphics' },
+  { type: 'image', src: IMG.i9, alt: 'Newspaper and print advertising design by Zurich Graphics' },
   { type: 'label', text: 'Print Media' },
   { type: 'text', text: 'A Compelling Position. A Powerful Story. A Brand Built To Be Chosen.' },
   { type: 'heading', text: 'Stall Design' },
-  { type: 'image', src: IMG.i10 },
+  { type: 'image', src: IMG.i10, alt: 'Real estate exhibition stall design by Zurich Graphics' },
   { type: 'text', text: 'Over three decades of experience, a deep understanding of Indian realty and a strategy-first approach: identities that found their edge, campaigns that owned their space and projects that became brands.' },
 ]
 
@@ -185,7 +185,7 @@ export default function Fitness() {
               {mi.type === 'image' && (
                 <div style={{ width: '100%', aspectRatio: '4/3', overflow: 'hidden' }}>
                   {/* eslint-disable-next-line @next/next/no-img-element */}
-                  <img src={mi.src} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
+                  <img src={mi.src} alt={mi.alt || ''} style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
                 </div>
               )}
             </AnimateReveal>
@@ -232,7 +232,7 @@ export default function Fitness() {
             </div>
             <div style={{ flexShrink: 0, width: '38vw', height: '78vh', overflow: 'hidden' }}>
               {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src={IMG.i1} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: '80% 20%' }} />
+              <img src={IMG.i1} alt="Real estate site brochure design by Zurich Graphics" style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: '80% 20%' }} />
             </div>
             <div style={{ flexShrink: 0, width: '22vw' }}>
               <p style={{ fontSize: '2.5rem', fontWeight: 700, letterSpacing: '0.1em', color: '#000', marginBottom: '1.2rem' }}>
@@ -249,11 +249,11 @@ export default function Fitness() {
           <div style={{ display: 'flex', height: '100vh', alignItems: 'center', padding: '0 4rem', gap: '3rem', flexShrink: 0 }}>
             <div style={{ flexShrink: 0, width: '20vw', height: '65vh', overflow: 'hidden' }}>
               {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src={IMG.i2} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+              <img src={IMG.i2} alt="Real estate company profile design by Zurich Graphics" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
             </div>
             <div style={{ flexShrink: 0, width: '22vw', height: '72vh', overflow: 'hidden' }}>
               {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src={IMG.i3} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+              <img src={IMG.i3} alt="Corporate company profile brochure layout by Zurich Graphics" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
              
             </div>
             <div style={{ flexShrink: 0, width: '20vw' }}>
@@ -270,11 +270,11 @@ export default function Fitness() {
           <div style={{ display: 'flex', height: '100vh', alignItems: 'center', padding: '0 4rem', gap: '3rem', flexShrink: 0 }}>
             <div style={{ flexShrink: 0, width: '28vw', height: '78vh', overflow: 'hidden' }}>
               {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src={IMG.i4} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: '20% 0%' }} />
+              <img src={IMG.i4} alt="Real estate campaign creative by Zurich Graphics" style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: '20% 0%' }} />
             </div>
             <div style={{ flexShrink: 0, width: '28vw', height: '75vh', overflow: 'hidden' }}>
               {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src={IMG.i5} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+              <img src={IMG.i5} alt="Real estate marketing campaign design by Zurich Graphics" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
             </div>
             <div style={{ flexShrink: 0, width: '18vw' }}>
               <p style={{ fontSize: '2.5rem', fontWeight: 700, letterSpacing: '0.1em', color: '#000', marginBottom: '1.2rem' }}>
@@ -291,11 +291,11 @@ export default function Fitness() {
           <div style={{ display: 'flex', height: '100vh', alignItems: 'center', padding: '0 4rem', gap: '3rem', flexShrink: 0 }}>
             <div style={{ flexShrink: 0, width: '28vw', height: '72vh', overflow: 'hidden' }}>
               {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src={IMG.i6} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+              <img src={IMG.i6} alt="360 degree real estate branding by Zurich Graphics" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
             </div>
             <div style={{ flexShrink: 0, width: '48vw', height: '78vh', overflow: 'hidden' }}>
               {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src={IMG.i7} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: '50% 20%' }} />
+              <img src={IMG.i7} alt="Integrated 360 degree branding touchpoints by Zurich Graphics" style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: '50% 20%' }} />
             </div>
             <div style={{ flexShrink: 0, width: '20vw' }}>
               <p style={{ fontSize: '2.5rem', fontWeight: 700, letterSpacing: '0.1em', color: '#000', marginBottom: '1.2rem' }}>
@@ -311,11 +311,11 @@ export default function Fitness() {
           <div style={{ display: 'flex', height: '100vh', alignItems: 'center', padding: '0 4rem', gap: '3rem', flexShrink: 0 }}>
             <div style={{ flexShrink: 0, width: '28vw', height: '72vh', overflow: 'hidden' }}>
               {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src={IMG.i8} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
+              <img src={IMG.i8} alt="Real estate print media advertisement by Zurich Graphics" style={{ width: '100%', height: '100%', objectFit: 'cover' }} />
             </div>
             <div style={{ flexShrink: 0, width: '48vw', height: '78vh', overflow: 'hidden' }}>
               {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src={IMG.i9} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: '50% 20%' }} />
+              <img src={IMG.i9} alt="Newspaper and print advertising design by Zurich Graphics" style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: '50% 20%' }} />
             </div>
             <div style={{ flexShrink: 0, width: '20vw' }}>
               <p style={{ fontSize: '2.5rem', fontWeight: 700, letterSpacing: '0.1em', color: '#000', marginBottom: '1.2rem' }}>
@@ -337,7 +337,7 @@ export default function Fitness() {
             </div>
             <div style={{ flexShrink: 0, width: '38vw', height: '78vh', overflow: 'hidden' }}>
               {/* eslint-disable-next-line @next/next/no-img-element */}
-              <img src={IMG.i10} alt="" style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: '80% 20%' }} />
+              <img src={IMG.i10} alt="Real estate exhibition stall design by Zurich Graphics" style={{ width: '100%', height: '100%', objectFit: 'cover', objectPosition: '80% 20%' }} />
             </div>
             <div style={{ flexShrink: 0, width: '22vw' }}>
               <p style={{ fontSize: 'clamp(1.1rem, 1.1vw, 1.4rem)', lineHeight: 1.65, letterSpacing: '0.04em', color: '#000' }}>

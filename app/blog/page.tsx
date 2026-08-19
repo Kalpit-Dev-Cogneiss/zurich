@@ -3,12 +3,14 @@ import Footer from '@/app/components/layout/Footer'
 import { getAllBlogPosts } from '@/app/lib/blogData'
 import BlogCard from '@/app/components/blog/BlogCard'
 import { pageSeo } from '@/app/lib/seoData'
+import { buildMetadata } from '@/app/lib/seo'
 
-export const metadata = {
+export const metadata = buildMetadata({
   title: pageSeo.blog.title,
   description: pageSeo.blog.description,
   keywords: pageSeo.blog.keywords,
-}
+  path: '/blog',
+})
 
 export default function BlogPage() {
   const posts = getAllBlogPosts()

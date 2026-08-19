@@ -9,12 +9,14 @@ import AboutStats from '@/app/components/about/AboutStats'
 import AboutFounder from '@/app/components/about/AboutFounder'
 import AboutCraft from '@/app/components/about/AboutCraft'
 import { pageSeo } from '@/app/lib/seoData'
+import { buildMetadata } from '@/app/lib/seo'
 
-export const metadata = {
+export const metadata = buildMetadata({
   title: pageSeo.about.title,
   description: pageSeo.about.description,
   keywords: pageSeo.about.keywords,
-}
+  path: '/about',
+})
 
 export default function AboutPage() {
   return (

@@ -3,12 +3,14 @@ import Footer from '@/app/components/layout/Footer'
 import { getAllCaseStudies } from '@/app/lib/caseStudyData'
 import CaseStudyCard from '@/app/components/case-study/CaseStudyCard'
 import { pageSeo } from '@/app/lib/seoData'
+import { buildMetadata } from '@/app/lib/seo'
 
-export const metadata = {
+export const metadata = buildMetadata({
   title: pageSeo.caseStudy.title,
   description: pageSeo.caseStudy.description,
   keywords: pageSeo.caseStudy.keywords,
-}
+  path: '/case-study',
+})
 
 export default function CaseStudyIndexPage() {
   const studies = getAllCaseStudies()

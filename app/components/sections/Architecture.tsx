@@ -17,8 +17,9 @@ const IMG = {
   decor6: '/images/3d-mobile app.png',
 }
 
-function ParallaxImg({ src, style, imgStyle }: {
+function ParallaxImg({ src, alt = '', style, imgStyle }: {
   src: string
+  alt?: string
   style?: React.CSSProperties
   imgStyle?: React.CSSProperties
 }) {
@@ -32,7 +33,7 @@ function ParallaxImg({ src, style, imgStyle }: {
         {/* eslint-disable-next-line @next/next/no-img-element */}
         <img
           src={src}
-          alt=""
+          alt={alt}
           style={{
             width: '100%', height: '100%',
             objectFit: 'cover', display: 'block',
@@ -84,6 +85,7 @@ export default function Architecture() {
       {/* image-1 — full width, tall */}
       <ParallaxImg
         src={IMG.image1}
+        alt="Real estate brand identity and campaign work by Zurich Graphics"
         style={{ width: '100%', aspectRatio: '16/7' }}
       />
 
@@ -188,12 +190,12 @@ function DecorLayers() {
   const y6 = useTransform(scrollYProgress, [0, 1], ['14%', '-14%']) 
 
   const layers = [
-    { src: IMG.decor1, y: y1, size: '33%', top: '15%', left: '10%' },        // Logo - top far left
-    { src: IMG.decor2, y: y2, size: '20%', top: '42%', left: '48%' },       // Brochure - top left-center
-    { src: IMG.decor3, y: y3, size: '20%', top: '41.5%', left: '69%' },      // Letterhead - top right-center
-    { src: IMG.decor6, y: y6, size: '8%', top: '15%', left: '48%' },      // Mobile app - bottom far left
-    { src: IMG.decor5, y: y5, size: '15%', top: '65%', left: '32%' },     // Magazine - bottom left-center
-    { src: IMG.decor4, y: y4, size: '12%', top: '15%', left: '58%' },     // Hoarding - bottom right-center (largest)
+    { src: IMG.decor1, alt: 'Real estate logo design mockup', y: y1, size: '33%', top: '15%', left: '10%' },        // Logo - top far left
+    { src: IMG.decor2, alt: 'Real estate brochure design mockup', y: y2, size: '20%', top: '42%', left: '48%' },       // Brochure - top left-center
+    { src: IMG.decor3, alt: 'Corporate letterhead design mockup', y: y3, size: '20%', top: '41.5%', left: '69%' },      // Letterhead - top right-center
+    { src: IMG.decor6, alt: 'Real estate mobile app design mockup', y: y6, size: '8%', top: '15%', left: '48%' },      // Mobile app - bottom far left
+    { src: IMG.decor5, alt: 'Real estate magazine ad design mockup', y: y5, size: '15%', top: '65%', left: '32%' },     // Magazine - bottom left-center
+    { src: IMG.decor4, alt: 'Real estate hoarding design mockup', y: y4, size: '12%', top: '15%', left: '58%' },     // Hoarding - bottom right-center (largest)
   ]
 
   return (
@@ -223,7 +225,7 @@ function DecorLayers() {
           {/* eslint-disable-next-line @next/next/no-img-element */}
           <img
             src={layer.src}
-            alt=""
+            alt={layer.alt}
             loading="lazy"
             style={{
               width: '100%',

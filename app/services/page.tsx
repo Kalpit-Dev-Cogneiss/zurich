@@ -9,12 +9,15 @@ import FAQAccordion from '@/app/components/ui/FAQAccordion'
 import ServicesShowcase from '@/app/components/services/ServicesShowcase'
 import { getAllServices, GENERAL_FAQ } from '@/app/lib/servicesData'
 import { pageSeo } from '@/app/lib/seoData'
+import { buildMetadata } from '@/app/lib/seo'
 
-export const metadata = {
+export const metadata = buildMetadata({
   title: pageSeo.services.title,
   description: pageSeo.services.description,
   keywords: pageSeo.services.keywords,
-}
+  path: '/services',
+  image: '/images/services-page-hero-banner.jpeg',
+})
 
 export default function ServicesPage() {
   const services = getAllServices()

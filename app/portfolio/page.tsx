@@ -14,12 +14,14 @@ import {
   farmhouseProjects,
 } from '@/app/lib/portfolioData'
 import { pageSeo } from '@/app/lib/seoData'
+import { buildMetadata } from '@/app/lib/seo'
 
-export const metadata = {
+export const metadata = buildMetadata({
   title: pageSeo.portfolio.title,
   description: pageSeo.portfolio.description,
   keywords: pageSeo.portfolio.keywords,
-}
+  path: '/portfolio',
+})
 
 const projectsByCategory = {
   residential: residentialProjects,
