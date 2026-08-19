@@ -1,6 +1,5 @@
 import { notFound } from 'next/navigation'
 import Link from 'next/link'
-import Script from 'next/script'
 import Header from '@/app/components/layout/Header'
 import Footer from '@/app/components/layout/Footer'
 import PageCTA from '@/app/components/ui/PageCTA'
@@ -39,13 +38,19 @@ export default async function BlogPostPage({ params }: { params: Promise<{ slug:
 
   return (
     <>
-      <Script id="blogposting-jsonld" type="application/ld+json">
-        {JSON.stringify(blogPostingJsonLd)}
-      </Script>
+      {/* Plain <script>, not next/script — next/script defers actual tag
+          creation to client-side JS, so JS-less crawlers never see it. */}
+      <script
+        id="blogposting-jsonld"
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(blogPostingJsonLd) }}
+      />
       {faqJsonLd && (
-        <Script id="faq-jsonld" type="application/ld+json">
-          {JSON.stringify(faqJsonLd)}
-        </Script>
+        <script
+          id="faq-jsonld"
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
+        />
       )}
       <Header />
       <main style={{ background: '#000', minHeight: '100vh' }}>

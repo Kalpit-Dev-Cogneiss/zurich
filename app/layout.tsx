@@ -45,9 +45,16 @@ gtag('js', new Date());
 gtag('config', '${GOOGLE_TAG_ID}');`}
       </Script>
       <body>
-        <Script id="organization-jsonld" type="application/ld+json" strategy="beforeInteractive">
-          {JSON.stringify(organizationJsonLd)}
-        </Script>
+        {/* Plain <script>, not next/script — next/script (even with
+            strategy="beforeInteractive") injects this via a client-side
+            bootstrap array instead of emitting a literal
+            <script type="application/ld+json"> tag, so JS-less crawlers
+            never see it in the raw HTML. */}
+        <script
+          id="organization-jsonld"
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{ __html: JSON.stringify(organizationJsonLd) }}
+        />
         <noscript>
           <iframe
             src={`https://www.googletagmanager.com/ns.html?id=${GTM_ID}`}
