@@ -149,6 +149,26 @@ export const CASE_STUDY_INFO_BLOCKS: Record<string, CaseStudyInfoBlock[]> = {
       ],
     },
   ],
+  'satyam-surya-manhattan': [
+    {
+      title: 'When A Skyline Becomes A Statement.',
+      subtitle: "Some Landmarks Redefine A City's Horizon.\nOthers Redefine The Way People Experience Everyday Living.",
+      body: [
+        "Satyam Surya Manhattan was envisioned as a premium residential high-rise where contemporary architecture, luxury residences, curated amenities, and vibrant retail spaces come together as one destination. Zurich Graphics translated that vision into a compelling real estate branding experience that reflects sophistication at every touchpoint.",
+        'Because exceptional living deserves exceptional presentation.',
+      ],
+    },
+  ],
+  'rk-landmark': [
+    {
+      title: 'Business Begins With The Right Address.',
+      subtitle: "A Landmark Isn't Built With Concrete.\nIt's Built With Confidence.",
+      body: [
+        "That's exactly what RK Landmark was created to deliver.",
+        "Designed for ambitious businesses, premium retail showrooms, and modern office spaces, RK Landmark demanded an identity that reflected its stature. Zurich Graphics crafted a commercial branding experience that transformed architectural excellence into a compelling business proposition — one that speaks to entrepreneurs, investors, and growing brands alike.",
+      ],
+    },
+  ],
 }
 
 /** studies that skip the PortfolioInfo block (their intro section covers the same ground) */
@@ -230,12 +250,66 @@ export const CASE_STUDY_LAYOUTS: Record<string, CaseStudySectionSpec[]> = {
   'tsl': [
     {
       type: 'intro',
-      label: 'TSL',
-      body: "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged.",
-      location: 'Location : TBD',
+      label: 'Not Just A Building. A Business Statement.',
+      subtitle: "Every Successful Venture Deserves More Than An Office.\nIt Deserves An Identity.",
+      body: [
+        'TSL is envisioned as a premium commercial landmark where modern architecture, high-street retail, and contemporary workspaces come together to create an address that inspires confidence and attracts opportunity.',
+        'Built to be noticed. Designed to perform.',
+        'Because every thriving business begins with the right foundation.',
+      ],
+      location: 'Location : Surat, Gujarat',
       num: 2,
     },
+    {
+      type: 'story',
+      heading: '',
+      num: 4.5,
+      blocks: [
+        { type: 'lead', items: ['Space attracts.', 'Experience converts.'] },
+        { type: 'paragraph', items: ['The project already possessed architectural excellence, premium planning, and exceptional visibility. The real challenge was translating these strengths into a brand experience that investors could trust and businesses could proudly associate with.'] },
+        { type: 'lead', items: ['Perception creates value before possession does.'] },
+      ],
+    },
     { type: 'row', images: [{ num: 7 }, { num: 8 }], spaceBelow: true },
+    {
+      type: 'story',
+      heading: '',
+      num: 8.5,
+      blocks: [
+        { type: 'lead', items: ['Every page earned attention.', 'Every visual built confidence.'] },
+        { type: 'paragraph', items: ['From commercial branding and brochure design to architectural storytelling and 3D visualization, every element was crafted with one purpose — to communicate aspiration with clarity and position TSL as a destination where businesses belong.'] },
+        { type: 'lead', items: ['Good design gets noticed.', 'Great branding gets remembered.'] },
+      ],
+    },
+    {
+      type: 'story',
+      heading: '',
+      num: 12.5,
+      blocks: [
+        { type: 'lead', items: ['A landmark with a lasting impression.'] },
+        { type: 'paragraph', items: ["TSL entered the market with a commercial identity that reflects ambition, credibility, and timeless appeal. Every touchpoint strengthens buyer confidence while reinforcing its position as one of Surat's premium business destinations."] },
+        { type: 'lead', items: ['Some projects create spaces.', 'Exceptional ones create opportunities.'] },
+      ],
+    },
+    {
+      type: 'story',
+      heading: '',
+      num: 15.5,
+      blocks: [
+        { type: 'list', items: [
+          'Premium Commercial Landmark',
+          'High-Street Retail Destination',
+          'Modern Office Spaces',
+          'Commercial Real Estate Branding',
+          'Commercial Brochure Design',
+          '3D Architectural Visualization',
+          'Architectural Storytelling',
+          'Premium Marketing Collateral',
+          'Property Branding & Identity',
+          'Sales-Focused Brand Communication',
+        ] },
+      ],
+    },
   ],
   'lush-meadows': [
     { type: 'labeled', label: 'Logo Design', num: 2 },
@@ -300,10 +374,58 @@ export const CASE_STUDY_LAYOUTS: Record<string, CaseStudySectionSpec[]> = {
     { type: 'actual', num: 3 },
     { type: 'actual', num: 4 },
     { type: 'row', images: [{ num: 5 }, { num: 6 }], actualSize: true },
+    {
+      type: 'story',
+      heading: '',
+      num: 6.5,
+      blocks: [
+        { type: 'lead', items: ['Luxury is never explained.', 'It is experienced.'] },
+        { type: 'paragraph', items: ["The project offered iconic tower architecture, premium 2 & 3 BHK residences, lifestyle amenities, landscaped podium spaces, and modern retail avenues. The challenge was transforming these strengths into a real estate brochure design that felt refined, aspirational, and aligned with the expectations of today's premium homebuyers. Every detail needed to inspire confidence before the first site visit."] },
+        { type: 'lead', items: ['Great brands create belief before conversations begin.'] },
+      ],
+    },
     { type: 'row', images: [{ num: 9 }, { num: 10 }, { num: 11 }] },
+    {
+      type: 'story',
+      heading: '',
+      num: 12.5,
+      blocks: [
+        { type: 'lead', items: ['Every spread created anticipation.', 'Every visual strengthened perception.'] },
+        { type: 'paragraph', items: ["Through strategic property branding, premium brochure design, architectural storytelling, immersive layouts, and carefully structured communication, we developed a complete marketing experience that showcased the project's scale, elegance, and lifestyle. Every page balanced luxury with clarity, ensuring buyers connected emotionally while understanding the project's value."] },
+        { type: 'lead', items: ['Design captures attention. Brand stories create desire.'] },
+      ],
+    },
     { type: 'split', main: 14, stacked: [15, 16] },
     { type: 'row', images: [{ num: 19 }, { num: 20 }] },
+    {
+      type: 'story',
+      heading: '',
+      num: 20.5,
+      blocks: [
+        { type: 'paragraph', items: ['Satyam Surya Manhattan launched with a premium identity worthy of its stature. The residential project branding, luxury marketing collateral, and architectural presentation elevated buyer perception, strengthened market positioning, and established the project as a distinguished residential destination in Kharghar, Navi Mumbai.'] },
+        { type: 'lead', items: ['Some towers reach the skyline.', 'The remarkable ones define it.'] },
+      ],
+    },
     { type: 'actual', num: 22.5 },
+    {
+      type: 'story',
+      heading: '',
+      num: 28.5,
+      blocks: [
+        { type: 'list', items: [
+          'Premium Residential High-Rise Branding',
+          'Real Estate Brochure Design',
+          'Property Branding & Identity',
+          'Architectural Visual Storytelling',
+          'Luxury Marketing Collateral',
+          '3D Architectural Visualization',
+          'Premium Print Design',
+          'Sales-Focused Brand Communication',
+          'Residential Project Branding',
+          'High-End Real Estate Creative',
+        ] },
+      ],
+    },
   ],
   'festive-vibes': [
     { type: 'actual', num: 2 },
@@ -473,6 +595,56 @@ export const CASE_STUDY_LAYOUTS: Record<string, CaseStudySectionSpec[]> = {
       num: 17.6,
       blocks: [
         { type: 'lead', items: ['A mall is judged by its footfall.', 'A brand is remembered for the experience it offers.', 'Happy Mall had both in its DNA.'] },
+      ],
+    },
+  ],
+  'rk-landmark': [
+    {
+      type: 'story',
+      heading: '',
+      num: 3.5,
+      blocks: [
+        { type: 'lead', items: ['Commercial spaces are everywhere.', 'Business destinations are rare.', 'The difference lies in perception.'] },
+        { type: 'paragraph', items: ['The project needed more than a brochure. It required a premium commercial identity that communicated credibility, investment value, and business potential. Every detail had to inspire confidence before the first site visit.'] },
+      ],
+    },
+    {
+      type: 'story',
+      heading: '',
+      num: 7.5,
+      blocks: [
+        { type: 'lead', items: ['Every layout served a purpose.', 'Every visual reinforced trust.', 'Every page moved the conversation forward.'] },
+        { type: 'paragraph', items: ['Through strategic commercial brochure design, premium visual storytelling, architectural presentation, and sales-focused content, we created a brand experience that highlighted location, infrastructure, and business opportunity. The result was a marketing asset that looked as professional as the businesses it was built to welcome.'] },
+      ],
+    },
+    {
+      type: 'story',
+      heading: '',
+      num: 11.5,
+      blocks: [
+        { type: 'lead', items: ['Businesses saw opportunity.', 'Investors saw value.', 'The market saw a landmark.'] },
+        { type: 'paragraph', items: ["RK Landmark launched with a premium commercial identity that strengthened its positioning in Rajkot's growing business district. The brochure, branding, and marketing collateral established a strong first impression while showcasing the project as a future-ready destination for offices, retail showrooms, and commercial investment."] },
+      ],
+    },
+    {
+      type: 'story',
+      heading: '',
+      num: 14.5,
+      blocks: [
+        { type: 'list', items: [
+          'Premium Commercial Building Branding',
+          'Commercial Brochure Design',
+          'Office Space Marketing',
+          'Retail Showroom Branding',
+          'Commercial Property Branding',
+          'Corporate Identity Design',
+          'Architectural Visual Storytelling',
+          'Sales-Focused Marketing Collateral',
+          'Commercial Real Estate Branding',
+          'Premium Print Design',
+          'Business Address Positioning',
+          'Commercial Investment Communication',
+        ] },
       ],
     },
   ],

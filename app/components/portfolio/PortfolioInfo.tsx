@@ -9,25 +9,22 @@ interface InfoBlock {
 }
 
 interface PortfolioInfoProps {
-  location?: string
-  projectType?: string
-  client?: string
-  title?: string
-  description?: string[]
+  location: string
+  projectType: string
+  client: string
+  title: string
+  description: string[]
   /** overrides title/description with a sequence of title/subtitle/body
    * pairs — e.g. a "hook + sub-hook + copy" pattern repeated per idea */
   blocks?: InfoBlock[]
 }
 
 export default function PortfolioInfo({
-  location = 'Mumbai',
-  projectType = 'Luxurious\n3BHK apartment',
-  client = 'Satyam Group',
-  title = 'Satyam Surya Manhattan',
-  description = [
-    'Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry\'s standard dummy text ever since 1966, when designers at Letraset and James Mosley, the librarian at St Bride Printing Library in London, took a 1914 Cicero translation and scrambled it to make dummy text for Letraset\'s Body Type sheets. It has survived not only many decades, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised thanks to these sheets and more recently with desktop publishing software like Aldus PageMaker and Microsoft Word including versions of Lorem Ipsum.',
-    'St Bride Printing Library in London, took a 1914 Cicero translation and scrambled it to make dummy text for Letraset\'s Body Type sheets. It has survived not only many decades, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised thanks to these sheets and more recently with desktop publishing software like Aldus PageMaker and Microsoft Word including versions of Lorem Ipsum.',
-  ],
+  location,
+  projectType,
+  client,
+  title,
+  description,
   blocks,
 }: PortfolioInfoProps) {
   const ref = useRef<HTMLElement>(null)

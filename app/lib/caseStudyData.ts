@@ -24,18 +24,17 @@ export interface CaseStudy {
 const CASE_STUDY_DIR = path.join(process.cwd(), 'public', 'case-study')
 const IMAGE_EXT = /\.(jpe?g|png|webp)$/i
 
-// same placeholder-copy convention as app/lib/portfolioData.ts — swap in the
-// real copy per case study once it's ready
+// fallback copy for a case study folder that hasn't been given real content
+// yet — override it via CASE_STUDY_INFO_BLOCKS or an 'intro' layout entry
 const desc = [
-  "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since 1966, when designers at Letraset and James Mosley, the librarian at St Bride Printing Library in London, took a 1914 Cicero translation and scrambled it to make dummy text for Letraset's Body Type sheets.",
-  "It has survived not only many decades, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised thanks to these sheets and more recently with desktop publishing software like Aldus PageMaker and Microsoft Word including versions of Lorem Ipsum.",
+  'Case study copy coming soon.',
 ]
 
 // per-study override for the auto-generated title (toTitle() capitalizes
 // each word but can't know acronyms or intentional misspellings)
 const TITLE_OVERRIDES: Record<string, string> = {
   'tsl': 'TSL',
-  'rk-landmark': 'RK Landmakr',
+  'rk-landmark': 'RK Landmark',
 }
 
 // per-study override for the location tag shown in PortfolioInfo
