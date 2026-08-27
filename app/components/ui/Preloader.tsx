@@ -108,6 +108,14 @@ export default function Preloader() {
               height: Z_MARK_HEIGHT,
             }}
           >
+            <div
+              className="preloader-zmark-scale"
+              style={{
+                position: "relative",
+                width: "100%",
+                height: "100%",
+              }}
+            >
             <svg
               ref={zSvgRef}
               viewBox={Z_VIEWBOX}
@@ -210,6 +218,27 @@ export default function Preloader() {
             </svg>
 
             <div
+              ref={taglineRef}
+              style={{
+                position: "absolute",
+                top: `calc(50% + ${CIRCLE_RADIUS + 32}px)`,
+                left: "50%",
+                transform: "translateX(-50%)",
+                whiteSpace: "nowrap",
+                color: "#fff",
+                fontSize: "3rem",
+                fontWeight: 600,
+                letterSpacing: "0.24em",
+                fontFamily: "'Times New Roman', Times, serif",
+                fontStyle: "italic",
+                opacity: 0,
+              }}
+            >
+              excelling realty
+            </div>
+            </div>
+
+            <div
               ref={loaderOverlayRef}
               style={{
                 position: "absolute",
@@ -258,29 +287,23 @@ export default function Preloader() {
                 />
               </svg>
             </div>
-
-            <div
-              ref={taglineRef}
-              style={{
-                position: "absolute",
-                top: `calc(50% + ${CIRCLE_RADIUS + 32}px)`,
-                left: "50%",
-                transform: "translateX(-50%)",
-                whiteSpace: "nowrap",
-                color: "#fff",
-                fontSize: "3rem",
-                fontWeight: 600,
-                letterSpacing: "0.24em",
-                fontFamily: "'Times New Roman', Times, serif",
-                fontStyle: "italic",
-                opacity: 0,
-              }}
-            >
-              excelling realty
-            </div>
           </div>
         </div>
       </div>
+
+      <style>{`
+        @media (max-width: 640px) {
+          .preloader-zmark-scale {
+            transform: scale(0.62);
+            transform-origin: center center;
+          }
+        }
+        @media (max-width: 400px) {
+          .preloader-zmark-scale {
+            transform: scale(0.5);
+          }
+        }
+      `}</style>
     </div>
   );
 }
