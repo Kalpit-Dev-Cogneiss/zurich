@@ -3,6 +3,22 @@ import { getTransporter } from '@/app/lib/mailer'
 import { contactAutoReplyEmail, contactNotificationEmail } from '@/app/lib/emailTemplates'
 import { formatLeadSource, upsertHubspotContact } from '@/app/lib/hubspot'
 
+async function verifyRecaptcha(token: string, remoteip: string | null): Promise<boolean> {
+  const params = new URLSearchParams({
+    secret: process.env.RECAPTCHA_SECRET_KEY!,
+    response: token,
+  })
+  if (remoteip) params.set('remoteip', remoteip)
+
+  const res = await fetch('https://www.google.com/recaptcha/api/siteverify', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+    body: params,
+  })
+  const result = await res.json().catch(() => null)
+  return Boolean(result?.success)
+}
+
 export async function POST(request: NextRequest) {
   const data = await request.formData()
   const name = String(data.get('name') || '').trim()
@@ -10,9 +26,20 @@ export async function POST(request: NextRequest) {
   const phone = String(data.get('phone') || '').trim()
   const message = String(data.get('message') || '').trim()
   const page = String(data.get('page') || '').trim()
+  const captchaToken = String(data.get('g-recaptcha-response') || '').trim()
 
   if (!name || !email || !message) {
     return NextResponse.json({ error: 'Name, email, and message are required.' }, { status: 400 })
+  }
+
+  if (!captchaToken) {
+    return NextResponse.json({ error: 'Please verify you are not a robot.' }, { status: 400 })
+  }
+
+  const remoteip = request.headers.get('x-forwarded-for')?.split(',')[0]?.trim() || null
+  const captchaValid = await verifyRecaptcha(captchaToken, remoteip)
+  if (!captchaValid) {
+    return NextResponse.json({ error: 'reCAPTCHA verification failed. Please try again.' }, { status: 400 })
   }
 
   const lead = { name, email, phone, message, source: formatLeadSource(page) }

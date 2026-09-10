@@ -1,8 +1,9 @@
 'use client'
-import { useState } from 'react'
+import { useRef, useState } from 'react'
 import SplitText from '@/app/components/ui/SplitText'
 import AnimateReveal from '@/app/components/ui/AnimateReveal'
 import ContactMap from '@/app/components/contact/ContactMap'
+import Recaptcha, { RecaptchaHandle } from '@/app/components/ui/Recaptcha'
 
 const CONTACT_EMAIL = 'zurichai360@gmail.com'
 
@@ -37,13 +38,21 @@ export default function ContactForm() {
   const [sent, setSent] = useState(false)
   const [sending, setSending] = useState(false)
   const [error, setError] = useState('')
+  const [captchaToken, setCaptchaToken] = useState<string | null>(null)
+  const captchaRef = useRef<RecaptchaHandle>(null)
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     const form = e.currentTarget
+    setError('')
+
+    if (!captchaToken) {
+      setError('Please verify you are not a robot.')
+      return
+    }
+
     const data = new FormData(form)
     data.set('page', window.location.pathname)
-    setError('')
     setSending(true)
 
     try {
@@ -56,6 +65,7 @@ export default function ContactForm() {
       setSent(true)
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Something went wrong. Please try again.')
+      captchaRef.current?.reset()
     } finally {
       setSending(false)
     }
@@ -215,6 +225,12 @@ export default function ContactForm() {
                     onBlur={blur}
                   />
                 </div>
+              </div>
+            </AnimateReveal>
+
+            <AnimateReveal delay={0.4} y={36}>
+              <div className="contact-submit-wrap" style={{ paddingLeft: '8.4rem', marginTop: '2rem' }}>
+                <Recaptcha ref={captchaRef} onChange={setCaptchaToken} />
               </div>
             </AnimateReveal>
 

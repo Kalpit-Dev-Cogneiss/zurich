@@ -1,8 +1,9 @@
 'use client'
-import { useEffect, useState } from 'react'
+import { useEffect, useRef, useState } from 'react'
 import { motion, AnimatePresence } from 'framer-motion'
 import type Lenis from 'lenis'
 import SvgIcon from '@/app/components/ui/SvgIcon'
+import Recaptcha, { RecaptchaHandle } from '@/app/components/ui/Recaptcha'
 
 const CONTACT_EMAIL = 'zurichai360@gmail.com'
 const EASE: [number, number, number, number] = [0.7, 0, 0.3, 1]
@@ -40,6 +41,8 @@ export default function EnquireModal({ open, onClose }: EnquireModalProps) {
   const [sent, setSent] = useState(false)
   const [sending, setSending] = useState(false)
   const [error, setError] = useState('')
+  const [captchaToken, setCaptchaToken] = useState<string | null>(null)
+  const captchaRef = useRef<RecaptchaHandle>(null)
 
   // Pause Lenis (smooth-scroll intercepts wheel/touch regardless of overflow)
   // and lock native scroll behind the modal while it's open.
@@ -66,9 +69,15 @@ export default function EnquireModal({ open, onClose }: EnquireModalProps) {
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     const form = e.currentTarget
+    setError('')
+
+    if (!captchaToken) {
+      setError('Please verify you are not a robot.')
+      return
+    }
+
     const data = new FormData(form)
     data.set('page', window.location.pathname)
-    setError('')
     setSending(true)
 
     try {
@@ -81,6 +90,7 @@ export default function EnquireModal({ open, onClose }: EnquireModalProps) {
       setSent(true)
     } catch (err) {
       setError(err instanceof Error ? err.message : 'Something went wrong. Please try again.')
+      captchaRef.current?.reset()
     } finally {
       setSending(false)
     }
@@ -91,6 +101,7 @@ export default function EnquireModal({ open, onClose }: EnquireModalProps) {
     setTimeout(() => {
       setSent(false)
       setError('')
+      setCaptchaToken(null)
     }, 400)
   }
 
@@ -117,6 +128,7 @@ export default function EnquireModal({ open, onClose }: EnquireModalProps) {
         >
           <motion.div
             className="enquire-modal-scroll"
+            data-lenis-prevent
             onClick={(e) => e.stopPropagation()}
             initial={{ opacity: 0, y: 30, scale: 0.98 }}
             animate={{ opacity: 1, y: 0, scale: 1 }}
@@ -128,7 +140,8 @@ export default function EnquireModal({ open, onClose }: EnquireModalProps) {
               maxWidth: 560,
               maxHeight: '90vh',
               overflowY: 'auto',
-              scrollbarWidth: 'none',
+              scrollbarWidth: 'thin',
+              scrollbarColor: 'rgba(255,255,255,0.3) transparent',
               background: '#000',
               border: '1px solid rgba(255,255,255,0.12)',
               color: '#fff',
@@ -215,6 +228,8 @@ export default function EnquireModal({ open, onClose }: EnquireModalProps) {
                     <textarea id="eq-message" name="message" required rows={3} placeholder="Branding, brochure, campaign, exhibition..." style={{ ...fieldStyle, resize: 'vertical' }} onFocus={focus} onBlur={blur} />
                   </div>
 
+                  <Recaptcha ref={captchaRef} onChange={setCaptchaToken} />
+
                   <button
                     type="submit"
                     disabled={sending}
@@ -256,7 +271,17 @@ export default function EnquireModal({ open, onClose }: EnquireModalProps) {
               color: rgba(255,255,255,0.25);
             }
             .enquire-modal-scroll::-webkit-scrollbar {
-              display: none;
+              width: 5px;
+            }
+            .enquire-modal-scroll::-webkit-scrollbar-track {
+              background: transparent;
+            }
+            .enquire-modal-scroll::-webkit-scrollbar-thumb {
+              background: rgba(255,255,255,0.3);
+              border-radius: 0;
+            }
+            .enquire-modal-scroll::-webkit-scrollbar-thumb:hover {
+              background: rgba(255,255,255,0.5);
             }
           `}</style>
         </motion.div>
