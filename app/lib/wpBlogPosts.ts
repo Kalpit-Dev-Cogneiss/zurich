@@ -1075,7 +1075,7 @@ export const WP_BLOG_POSTS: BlogPost[] = [
     excerpt: 'Have you heard branding is what makes or breaks a real estate brand? If you haven’t, hear it now. In 2024, the real estate industry in India is witnessing a…',
     date: '2025-03-20',
     category: 'Marketing',
-    cover: '/images/blog/top-10-real-estate-marketing-and-design-agencies-redefining-branding-in-india-in-2024/cover.webp',
+    cover: '/Top 10 Real Estate Marketing and Design Agencies Redefining Branding in India in 2024.jpeg',
     content: [
       { type: 'paragraph', text: 'Have you heard branding is what makes or breaks a real estate brand? If you haven’t, hear it now. In 2024, the real estate industry in India is witnessing a surge in digital transformation, with top real estate companies prioritizing their digital presence. For this, they turn to the best real estate branding agency in India. And there are plenty. The advertising agencies for real estate in India are leading the way in helping real estate professionals and companies in the realty sector to achieve successful brand value.' },
       { type: 'paragraph', text: 'A real estate marketing agency leverages insight and data to create design services that help real estate companies reach new heights in their branding efforts. When it comes to design and branding, digital design agencies are unmatched in their ability to create creative and innovative solutions for their clients. They work closely with real estate partners and real estate agents to understand their needs and create marketing strategies that cater to their target audience.' },
@@ -1243,7 +1243,7 @@ export const WP_BLOG_POSTS: BlogPost[] = [
     excerpt: 'Hoardings work! They are one of the oldest formats of advertising and they are thriving to this day. When it comes to real estate outdoor advertising, hoarding…',
     date: '2025-03-20',
     category: 'Advertising',
-    cover: '/images/blog/innovative-design-concepts-for-property-hoardings-across-various-industries/cover.webp',
+    cover: '/Innovative Design Concepts for Property Hoardings across Various Industries.jpeg',
     content: [
       { type: 'paragraph', text: 'Hoardings work! They are one of the oldest formats of advertising and they are thriving to this day. When it comes to real estate outdoor advertising, hoarding plays a very important part as it creates an awareness of the property amongst other promoters, buyers, investors, or tenants. They provide an avenue to showcase the brand identity and details of the real estate project. A well-designed hoarding will create an interest in the minds of the potential buyers and lead them to generate potential leads. Strategic placement of the hoarding and designing will be beneficial for the project.' },
       { type: 'paragraph', text: 'If you’re looking for some innovative ideas for your property marketing, your search ends here. Let’s discuss some of the property hoarding concepts that will boost your real estate branding.' },
