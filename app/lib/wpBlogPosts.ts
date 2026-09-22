@@ -9,7 +9,7 @@ export const WP_BLOG_POSTS: BlogPost[] = [
     excerpt: 'Discover how real estate branding builds buyer trust, differentiates properties, and accelerates sales. Explore top agency selection tips and strategies for 2026.',
     date: '2026-08-20',
     category: 'Branding',
-    cover: '/images/blog/real-estate-brand-strategy-guide-2026/cover.jpg',
+    cover: '/Real-Estate-Brand-Strategy-Guide-2026-How-Great-Brands-Sell-Before-the-Sales-Team-Does.jpeg',
     content: [
       { type: 'paragraph', text: 'Real estate branding is the strategic process of positioning a property project to build buyer trust, differentiate it from local competitors, and improve sales velocity through consistent messaging, visual identity, architectural storytelling, and customer experience. According to market analysts, branded residential developments command a 10% to 15% price premium and close sales up to 30% faster than unbranded equivalents.' },
       { type: 'paragraph', text: 'Property markets are not about just bricks and mortar. Today’s buyers are brand conscious and do not just buy developer-ready realty, but the image and reputation of the realty developers.' },
@@ -76,7 +76,7 @@ export const WP_BLOG_POSTS: BlogPost[] = [
     excerpt: 'Real estate advertising in 2026 blends branding, outdoor, and digital. See which strategies actually sell projects, from Vadodara to Mumbai.',
     date: '2026-08-20',
     category: 'Marketing',
-    cover: '/images/blog/real-estate-advertising-india-2026/cover.jpg',
+    cover: '/Real-Estate-Advertising-What-Actually-Sells-in-2026.jpeg',
     content: [
       { type: 'paragraph', text: 'Property markets are a dynamic ecosystem where old promotional practices get rendered ineffective. A decade ago, real estate developers would have erected multiple highway hoardings, placed an ad in a newspaper on the launch weekend and expected a rush of buyers at the sales office. Today, a buyer is likely to research multiple listings before contacting a project’s sales desk. Prospective buyers are comparing prices, floor plans, and municipal approvals on their phones before visiting a project’s model home. Developers can no longer rely on a single channel to drive sales in a competitive city.' },
       { type: 'paragraph', text: 'India’s real estate market is a steadily growing industry, which means that competition for buyers is now higher than ever. According to research by Mordor Intelligence and Expert Market Research, the value of India’s real estate market is expected to reach between USD 585 billion and USD 620 billion in 2026, growing at an annual rate of 8 to 13 percent. A higher supply of projects means that real estate developers must get more creative with their marketing if they want to stand out from their competitors.' },
