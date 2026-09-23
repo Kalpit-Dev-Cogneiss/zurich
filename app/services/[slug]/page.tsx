@@ -2,9 +2,10 @@ import { notFound } from 'next/navigation'
 import Link from 'next/link'
 import Header from '@/app/components/layout/Header'
 import Footer from '@/app/components/layout/Footer'
-import PageCTA from '@/app/components/ui/PageCTA'
 import FAQAccordion from '@/app/components/ui/FAQAccordion'
+import PortfolioCard from '@/app/components/portfolio/PortfolioCard'
 import { getAllServices, getServiceBySlug } from '@/app/lib/servicesData'
+import { portfolioProjects } from '@/app/lib/portfolioData'
 import { buildMetadata } from '@/app/lib/seo'
 
 export async function generateStaticParams() {
@@ -264,39 +265,6 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
                     </div>
                   )}
 
-                  {/* Start Project Card */}
-                  <div
-                    style={{
-                      padding: '2.8rem',
-                      borderRadius: '20px',
-                      background: 'linear-gradient(135deg, rgba(255,255,255,0.07) 0%, rgba(255,255,255,0.02) 100%)',
-                      border: '1px solid rgba(255, 255, 255, 0.12)',
-                    }}
-                  >
-                    <h4 style={{ fontSize: '1.8rem', color: '#fff', margin: 0, marginBottom: '0.8rem', fontWeight: 600 }}>
-                      Ready to build your realty brand?
-                    </h4>
-                    <p style={{ fontSize: '1.35rem', color: 'rgba(255,255,255,0.6)', margin: 0, marginBottom: '2rem', lineHeight: 1.5 }}>
-                      Discuss your upcoming development or branding requirements with our experts.
-                    </p>
-                    <Link
-                      href="/contact"
-                      style={{
-                        display: 'block',
-                        width: '100%',
-                        textAlign: 'center',
-                        padding: '1.4rem 1.8rem',
-                        background: '#ffffff',
-                        color: '#000000',
-                        borderRadius: '10px',
-                        fontWeight: 600,
-                        fontSize: '1.4rem',
-                        transition: 'opacity 0.2s ease',
-                      }}
-                    >
-                      Start a Project &rarr;
-                    </Link>
-                  </div>
                 </div>
               </aside>
             </div>
@@ -325,6 +293,63 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
                 </div>
               </div>
             )}
+
+            {/* Portfolio Section */}
+            {service.relatedPortfolioCategories && service.relatedPortfolioCategories.length > 0 && (() => {
+              const relatedProjects = portfolioProjects
+                .filter(p => service.relatedPortfolioCategories.includes(p.category))
+                .slice(0, 6)
+              if (relatedProjects.length === 0) return null
+              return (
+                <div style={{ marginTop: '8rem', paddingTop: '6rem', borderTop: '1px solid rgba(255, 255, 255, 0.1)' }}>
+                  <div style={{ display: 'flex', alignItems: 'flex-end', justifyContent: 'space-between', gap: '2rem', marginBottom: '4rem', flexWrap: 'wrap' }}>
+                    <div>
+                      <span style={{ display: 'block', fontSize: '1.1rem', letterSpacing: '0.14em', textTransform: 'uppercase', color: 'rgba(255,255,255,0.45)', marginBottom: '1.2rem' }}>
+                        Our Work
+                      </span>
+                      <h2 style={{ fontSize: 'clamp(2.8rem, 3.6vw, 4.4rem)', fontWeight: 600, lineHeight: 1.1, letterSpacing: '0.01em', color: '#fff', margin: 0 }}>
+                        Selected Projects
+                      </h2>
+                    </div>
+                    <Link
+                      href="/portfolio"
+                      style={{
+                        display: 'inline-flex',
+                        alignItems: 'center',
+                        gap: '0.8rem',
+                        fontSize: '1.35rem',
+                        letterSpacing: '0.04em',
+                        color: 'rgba(255,255,255,0.6)',
+                        border: '1px solid rgba(255,255,255,0.2)',
+                        borderRadius: '100px',
+                        padding: '0.9rem 2rem',
+                        transition: 'color 0.2s, border-color 0.2s',
+                        whiteSpace: 'nowrap',
+                      }}
+                    >
+                      View All Work
+                      <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
+                        <line x1="5" y1="12" x2="19" y2="12" />
+                        <polyline points="12 5 19 12 12 19" />
+                      </svg>
+                    </Link>
+                  </div>
+                  <div style={{ display: 'grid', gridTemplateColumns: 'repeat(auto-fill, minmax(340px, 1fr))', gap: '2.4rem' }} className="service-portfolio-grid">
+                    {relatedProjects.map((project, i) => (
+                      <PortfolioCard
+                        key={project.slug}
+                        slug={project.slug}
+                        title={project.title}
+                        imageSrc={project.images.hero}
+                        projectType={project.projectType.replace('\n', ' ')}
+                        location={project.location}
+                        index={i}
+                      />
+                    ))}
+                  </div>
+                </div>
+              )
+            })()}
 
             {/* FAQ Section if available */}
             {service.faq && service.faq.length > 0 && (
@@ -492,12 +517,6 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
           </div>
         </article>
 
-        <PageCTA
-          eyebrow="Ready when you are"
-          heading="Let's build something exceptional"
-          buttonLabel="Get in touch"
-          href="/contact"
-        />
       </main>
       <Footer />
 
@@ -513,6 +532,11 @@ export default async function ServiceDetailPage({ params }: { params: Promise<{ 
         }
         .service-nav-link:hover span:last-child {
           opacity: 0.7;
+        }
+        @media (max-width: 767px) {
+          .service-portfolio-grid {
+            grid-template-columns: 1fr !important;
+          }
         }
         @media (max-width: 640px) {
           .service-nav-row {

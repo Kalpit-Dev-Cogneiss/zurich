@@ -1,3 +1,5 @@
+import type { ProjectCategory } from './portfolioData'
+
 export interface FAQItem {
   question: string
   answer: string
@@ -14,6 +16,7 @@ export interface ServiceData {
   secondaryImage: string
   gallery: [string, string]
   faq: FAQItem[]
+  relatedPortfolioCategories: ProjectCategory[]
 }
 
 export const SERVICES: ServiceData[] = [
@@ -39,6 +42,7 @@ export const SERVICES: ServiceData[] = [
       { question: 'How Long Does A Positioning Project Take?', answer: 'Typically two to three weeks, from the first site and market read to a locked position and messaging framework your team can brief every vendor from.' },
       { question: 'Do You Work From Research Or Gut Instinct?', answer: 'Both. We start with site visits, competitor audits and buyer conversations, then pressure-test every idea against what actually moves a decision in this category.' },
     ],
+    relatedPortfolioCategories: ['campaign', 'corporate-brochure'],
   },
   {
     slug: 'naming-brand-identity',
@@ -62,6 +66,7 @@ export const SERVICES: ServiceData[] = [
       { question: 'Do You Check Names Are Legally Available?', answer: 'We screen every shortlisted name for obvious trademark and local project-name clashes before it goes to you, though final legal clearance sits with your counsel.' },
       { question: 'Can You Redesign An Identity That Already Exists?', answer: 'Yes. We regularly sharpen or fully rebuild identities for projects that launched with a rushed or inconsistent mark.' },
     ],
+    relatedPortfolioCategories: ['corporate-brochure', 'residential'],
   },
   {
     slug: 'brochure-design',
@@ -85,6 +90,7 @@ export const SERVICES: ServiceData[] = [
       { question: 'How Many Pages Is A Typical Project Brochure?', answer: 'Most run 16 to 32 pages depending on the number of unit types and amenities, though we have built single-fold leave-behinds and 60-page collector\'s editions too.' },
       { question: 'Do You Manage The Print Run As Well?', answer: 'Yes, we oversee paper selection, proofing and the press run with our print partners so the final brochure matches what was approved on screen.' },
     ],
+    relatedPortfolioCategories: ['residential', 'commercial', 'mall'],
   },
   {
     slug: 'campaign-design',
@@ -108,6 +114,7 @@ export const SERVICES: ServiceData[] = [
       { question: 'Do You Also Plan The Media Buy?', answer: 'We design and adapt the campaign across formats; for media planning and buying we work alongside your media agency or can recommend partners we trust.' },
       { question: 'Can A Campaign Be Phased Across Launch Stages?', answer: 'Yes, we typically plan a pre-launch teaser, a launch push and a possession or milestone phase, each with its own key message built on the same idea.' },
     ],
+    relatedPortfolioCategories: ['campaign'],
   },
   {
     slug: '360-project-branding',
@@ -131,6 +138,7 @@ export const SERVICES: ServiceData[] = [
       { question: 'What Counts As A Touchpoint Here?', answer: 'Anything a buyer sees or reads: hoardings, brochures, signage, sales office branding, reels, even the WhatsApp catalogue your sales team shares.' },
       { question: 'Can You Audit A Project That Is Already Mid-Launch?', answer: 'Yes, we run a consistency audit across existing touchpoints, flag the gaps, and bring everything back in line with one brief.' },
     ],
+    relatedPortfolioCategories: ['residential', 'commercial', 'campaign'],
   },
   {
     slug: 'reels-digital-communication',
@@ -154,6 +162,7 @@ export const SERVICES: ServiceData[] = [
       { question: 'How Many Reels Do You Produce A Month?', answer: 'Most retainers run 8 to 12 reels a month, mixing project walkthroughs, amenity highlights and quick-answer content, scoped to your launch calendar.' },
       { question: 'Do You Shoot New Footage Or Edit Existing Footage?', answer: 'Both. We can shoot fresh site footage on a schedule, or work from your existing photo and video library when a fast turnaround is needed.' },
     ],
+    relatedPortfolioCategories: ['campaign', 'residential'],
   },
   {
     slug: 'corporate-project-films',
@@ -177,6 +186,7 @@ export const SERVICES: ServiceData[] = [
       { question: 'Do You Handle Drone And 3D Render Footage?', answer: 'Yes, we coordinate drone shoots where permitted and can blend in 3D-render sequences for phases of the project that are not built yet.' },
       { question: 'What Is The Typical Turnaround For A Project Film?', answer: 'A three to five minute film usually takes three to four weeks end to end, from script and recce to the final graded edit.' },
     ],
+    relatedPortfolioCategories: ['corporate-brochure', 'commercial'],
   },
   {
     slug: 'print-outdoor-media',
@@ -200,6 +210,7 @@ export const SERVICES: ServiceData[] = [
       { question: 'Do You Coordinate With Printing And Hoarding Vendors Directly?', answer: 'Yes, we brief and review proofs with your print and hoarding vendors so the final output matches the approved design, colour included.' },
       { question: 'Can The Same Creative Scale From A Hoarding To A Newspaper Ad?', answer: 'That is exactly how we design it, one key visual and message adapted to each format\'s size, distance and reading time.' },
     ],
+    relatedPortfolioCategories: ['campaign', 'commercial'],
   },
   {
     slug: 'exhibition-stall-designs',
@@ -223,6 +234,7 @@ export const SERVICES: ServiceData[] = [
       { question: 'Do You Supervise The Stall Build On-Site?', answer: 'Yes, we send a production lead to oversee setup at the venue so the stall matches the approved 3D visual, down to lighting and signage placement.' },
       { question: 'Can You Design For A Recurring Expo Circuit?', answer: 'We can design a modular stall system that adapts across multiple expos and city venues without rebuilding the concept each time.' },
     ],
+    relatedPortfolioCategories: ['commercial', 'mall'],
   },
 ]
 
