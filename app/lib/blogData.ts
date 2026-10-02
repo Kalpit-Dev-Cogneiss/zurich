@@ -1,4 +1,5 @@
 import { WP_BLOG_POSTS } from './wpBlogPosts'
+import { FESTIVE_BLOG_POSTS } from './festiveBlogPosts'
 
 export type BlogBlock =
   | { type: 'paragraph'; text: string }
@@ -16,10 +17,12 @@ export interface BlogPost {
   category: string
   cover: string
   content: BlogBlock[]
+  seoTitle?: string
+  seoDescription?: string
 }
 
 export function getAllBlogPosts(): BlogPost[] {
-  return [...WP_BLOG_POSTS].sort(
+  return [...FESTIVE_BLOG_POSTS, ...WP_BLOG_POSTS].sort(
     (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
   )
 }

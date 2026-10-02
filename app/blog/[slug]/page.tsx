@@ -20,8 +20,8 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   const post = getBlogPostBySlug(slug)
   if (!post) return { title: 'Post not found' }
   return buildMetadata({
-    title: `${post.title} | Zurich Graphics`,
-    description: post.excerpt,
+    title: post.seoTitle ?? `${post.title} | Zurich Graphics`,
+    description: post.seoDescription ?? post.excerpt,
     path: `/blog/${slug}`,
     image: post.cover,
     type: 'article',
