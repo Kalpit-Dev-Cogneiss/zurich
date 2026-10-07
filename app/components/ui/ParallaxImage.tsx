@@ -5,6 +5,9 @@ import { cdn } from '@/app/lib/cdn'
 
 type ParallaxImageProps = {
   src: string
+  /** Optional responsive source used at and below `mobileBreakpoint`. */
+  mobileSrc?: string
+  mobileBreakpoint?: number
   alt?: string
   className?: string
   /** style for the clipping container (set width/height/aspectRatio here) */
@@ -23,6 +26,8 @@ type ParallaxImageProps = {
  */
 export default function ParallaxImage({
   src,
+  mobileSrc,
+  mobileBreakpoint = 960,
   alt = '',
   className,
   style,
@@ -47,20 +52,25 @@ export default function ParallaxImage({
       <motion.div
         style={{ y, position: 'absolute', inset: `-${pad}% 0`, willChange: 'transform' }}
       >
-        {/* eslint-disable-next-line @next/next/no-img-element */}
-        <img
-          loading="lazy"
-          src={cdn(src)}
-          alt={alt}
-          style={{
-            width: '100%',
-            height: '100%',
-            objectFit: 'cover',
-            objectPosition,
-            display: 'block',
-            ...imgStyle,
-          }}
-        />
+        <picture style={{ display: 'block', width: '100%', height: '100%' }}>
+          {mobileSrc && (
+            <source media={`(max-width: ${mobileBreakpoint}px)`} srcSet={cdn(mobileSrc)} />
+          )}
+          {/* eslint-disable-next-line @next/next/no-img-element */}
+          <img
+            loading="lazy"
+            src={cdn(src)}
+            alt={alt}
+            style={{
+              width: '100%',
+              height: '100%',
+              objectFit: 'cover',
+              objectPosition,
+              display: 'block',
+              ...imgStyle,
+            }}
+          />
+        </picture>
       </motion.div>
     </div>
   )

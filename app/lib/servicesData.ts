@@ -8,6 +8,13 @@ export interface FAQItem {
 export interface ProcessStep {
   step: string
   detail: string
+  /** Monochrome SVG served from /public, tinted via CSS mask. Omit to fall back to the built-in line icon. */
+  icon?: string
+}
+
+export interface Deliverable {
+  title: string
+  desc: string
 }
 
 export interface ServiceData {
@@ -15,9 +22,21 @@ export interface ServiceData {
   num: number
   title: string
   tagline: string
+  seoTitle: string
+  seoDescription: string
+  seoKeywords: string
   description: string[]
   highlights: string[]
+  deliverables: Deliverable[]
   image: string
+  /** Full-bleed hero banner, 1920x1080. Served above `heroImageMobile` from 768px up. */
+  heroImage: string
+  /** Portrait hero banner, 440x956, used below 768px. */
+  heroImageMobile: string
+  /** Portrait artwork for The Idea section on desktop. */
+  ideaImage?: string
+  /** Landscape artwork for The Idea section below 960px. */
+  ideaImageMobile?: string
   secondaryImage: string
   gallery: [string, string]
   faq: FAQItem[]
@@ -32,6 +51,9 @@ export const SERVICES: ServiceData[] = [
     num: 1,
     title: 'Brand Strategy & Consulting',
     tagline: 'The Master Plan Needs A Master Thought.',
+    seoTitle: 'Real Estate Brand Strategy & Positioning Consulting | Zurich Graphics',
+    seoDescription: "Define your project's unfair market advantage. Zurich Graphics offers real estate brand strategy consulting, positioning frameworks, and competitive value alignment for developers.",
+    seoKeywords: 'real estate brand strategy consulting, real estate brand strategy consulting for developers, real estate brand positioning consultant, real estate brand strategy and positioning consulting for project launch, real estate campaign planning agency, real estate brand consulting services, hire real estate brand strategy consultant',
     description: [
       "Land gives a project its address. A clear idea gives it a place in the market. To find that idea, we study the site, read the market, understand the buyer and get close to the developer's ambition. Somewhere in that mix is the project's real edge. We bring it forward, sharpen it and turn it into a position the buyer can immediately understand while the brand can confidently own.",
       "Once that master thought lands, the brand knows exactly where to go. The name finds its voice. The identity gets its attitude. The brochure builds the case. The campaign and sales communication carry it into the market. Different expressions. One direction. That's real estate brand strategy consulting at Zurich Graphics: one clear thought, strong enough to keep the entire brand moving as one.",
@@ -42,7 +64,17 @@ export const SERVICES: ServiceData[] = [
       'A single, ownable brand position',
       'A messaging framework every vendor can follow',
     ],
+    deliverables: [
+      { title: 'Brand Positioning Dossiers', desc: 'Comprehensive strategic documents defining project positioning, target buyer profiles, key differentiators, and competitive moats.' },
+      { title: 'Message Architecture & Taglines', desc: 'Core messaging frameworks, headline banks, campaign hooks, and project taglines tailored for distinct media channels.' },
+      { title: 'Launch Strategy & Rollout Blueprints', desc: 'Sequenced roadmaps detailing pre-launch, main launch, and sustainment communication timelines.' },
+      { title: 'Sales Enablement Messaging Guides', desc: 'Talk tracks, objection-handling frameworks, and value-realization guides for channel partners and internal sales teams.' },
+    ],
     image: '/images/Service_Brand-strategy.jpeg',
+    heroImage: '/services/brand-strategy-positioning.webp',
+    heroImageMobile: '/services/brand-strategy-positioning-mobile.webp',
+    ideaImage: '/services/BrandStrategy&Consulting_theidea.jpg',
+    ideaImageMobile: '/services/BrandStrategy&Consulting_theidea_mobile.jpg',
     secondaryImage: '/images/Work Process_001.jpg',
     gallery: ['/images/Services_004.jpg', '/images/Services_005.jpg'],
     faq: [
@@ -63,6 +95,9 @@ export const SERVICES: ServiceData[] = [
     num: 2,
     title: 'Naming & Brand Identity',
     tagline: 'A Good Name Travels. A Strong Identity Arrives With It.',
+    seoTitle: 'Premium Real Estate Naming & Brand Identity Design Services',
+    seoDescription: 'Distinctive project naming, wordmark creation, and real estate logo and brand identity design. Discover how Zurich Graphics crafts identities that endure.',
+    seoKeywords: 'real estate logo and brand identity design, logo design agency, professional logo design company, corporate stationery design company, real estate logo and brand identity in Vadodara, flex board and signage design company, packaging design company',
     description: [
       'A project name has a busy life. It needs to sound right the first time and stay remembered long after. We begin wide, explore every direction and test each possibility for meaning, rhythm, relevance and recall. Then we keep only the names strong enough to carry the project without needing a lengthy explanation.',
       'Once the name is final, we create a visual world around it. The wordmark, palette, typography and brand elements of real estate logo and brand identity design are shaped to work together wherever the project appears. Different spaces. Yet, one unmistakable identity.',
@@ -73,7 +108,17 @@ export const SERVICES: ServiceData[] = [
       'Colour, type and motif guidelines',
       'A brand manual every vendor can build from',
     ],
+    deliverables: [
+      { title: 'Corporate & Project Logos', desc: 'Tailored wordmarks and symbols crafted for residential, commercial, and mixed-use developments.' },
+      { title: 'Corporate Stationery Design', desc: 'Elegant visiting cards, letterheads, envelopes, and brand folders that make a polished impression in corporate settings.' },
+      { title: 'Custom Packaging & Gifting Kits', desc: 'Premium presentation boxes, welcome kits for buyers, and corporate gifting designs that extend your brand experience.' },
+      { title: 'Site Signage & Flex Board Design', desc: 'Striking site entrance signs, directionals, and high-impact flex board designs built for clear roadside visibility.' },
+    ],
     image: '/images/Service_Naming-brand.jpeg',
+    heroImage: '/services/naming-brand-identity.webp',
+    heroImageMobile: '/services/naming-brand-identity-mobile.webp',
+    ideaImage: '/services/Naming&BrandIdentity_theidea.jpg',
+    ideaImageMobile: '/services/Naming&BrandIdentity_theidea_mobile.jpg',
     secondaryImage: '/images/Work Process_002.jpg',
     gallery: ['/images/Services_006.jpg', '/images/Services_007.jpg'],
     faq: [
@@ -83,10 +128,10 @@ export const SERVICES: ServiceData[] = [
     relatedPortfolioCategories: ['corporate-brochure', 'residential'],
     marqueeKeywords: ['Name Exploration', 'Legal Screening', 'Wordmark Design', 'Colour System', 'Typography', 'Brand Manual'],
     process: [
-      { step: 'Explore Wide', detail: 'We start with territories, not names — each exploring a different strategic direction before committing to specific executions.' },
-      { step: 'Pressure-Test', detail: 'Every shortlisted name is stress-tested for meaning, rhythm, recall, cultural resonance and basic trademark availability.' },
-      { step: 'Design the Mark', detail: 'The chosen name gets a visual world — wordmark, type system, palette and brand elements designed to work at every scale.' },
-      { step: 'Write the Rules', detail: 'Everything goes into a brand manual: a single source of truth that keeps the identity consistent across every vendor and touchpoint.' },
+      { step: 'Explore Wide', icon: '/services/icons/naming-brand-identity/01.svg', detail: 'We start with territories, not names — each exploring a different strategic direction before committing to specific executions.' },
+      { step: 'Pressure-Test', icon: '/services/icons/naming-brand-identity/02.svg', detail: 'Every shortlisted name is stress-tested for meaning, rhythm, recall, cultural resonance and basic trademark availability.' },
+      { step: 'Design the Mark', icon: '/services/icons/naming-brand-identity/03.svg', detail: 'The chosen name gets a visual world — wordmark, type system, palette and brand elements designed to work at every scale.' },
+      { step: 'Write the Rules', icon: '/services/icons/naming-brand-identity/04.svg', detail: 'Everything goes into a brand manual: a single source of truth that keeps the identity consistent across every vendor and touchpoint.' },
     ],
   },
   {
@@ -94,6 +139,9 @@ export const SERVICES: ServiceData[] = [
     num: 3,
     title: 'Brochure Design',
     tagline: 'Made To Leave The Site. Designed To Stay In Mind.',
+    seoTitle: 'Real Estate Brochure Design Company | High-Converting Project Brochures',
+    seoDescription: 'Transform site visits into home sales. Zurich Graphics crafts narrative-driven real estate project brochures, sales kits, and luxury collateral that command attention.',
+    seoKeywords: 'brochure design company, real estate brochure design agency, professional brochure design company, luxury real estate brochure design agency, real estate brochure design in Indore, real estate project brochure design for launch',
     description: [
       'Most site visits end at the gate. A good brochure gets invited home. It lands on the coffee table, gets passed around the family and opens again when the project returns to the conversation. That is the life we design for in real estate brochure design.',
       'We begin with an idea strong enough to pull people in, then let every spread do its job. Location, lifestyle, planning, amenities and details unfold without making the brochure feel like homework. Words and visuals keep the pace. Paper, texture and print finishes add the right personality. Indeed, a project story that sits well in the hand and better in the mind.',
@@ -104,7 +152,17 @@ export const SERVICES: ServiceData[] = [
       'Print production and paper selection',
       'Digital and interactive brochure formats',
     ],
+    deliverables: [
+      { title: 'Luxury Project Launch Brochures', desc: "Hardbound collector's editions and multi-page landscape brochures for premium residential and commercial developments." },
+      { title: 'Sales Office Leave-Behinds', desc: 'Sleek, single-fold or tri-fold project summaries tailored for quick site visits and property expos.' },
+      { title: 'Floor Plan & Unit Folders', desc: 'Pocket folders designed to hold customized unit layouts, pricing sheets, and payment schedules during sales consultations.' },
+      { title: 'Corporate Profile Brochures', desc: 'Highlighting developer legacy, completed portfolio landmarks, and brand history for institutional investors and bank partners.' },
+    ],
     image: '/images/Services_Brochure Design__670 X 502.jpeg',
+    heroImage: '/services/brochure-design.webp',
+    heroImageMobile: '/services/brochure-design-mobile.webp',
+    ideaImage: '/services/Brochure Design_theidea.jpg',
+    ideaImageMobile: '/services/Brochure Design_theidea_mobile.jpg',
     secondaryImage: '/images/Work Process_003.jpg',
     gallery: ['/images/Services_008.jpg', '/images/Services_009.jpg'],
     faq: [
@@ -114,10 +172,10 @@ export const SERVICES: ServiceData[] = [
     relatedPortfolioCategories: ['residential', 'commercial', 'mall'],
     marqueeKeywords: ['Narrative Mapping', 'Layout Design', 'Photography Direction', 'Print Production', 'Paper Selection', 'Finishing'],
     process: [
-      { step: 'Set the Narrative', detail: 'We map the story arc before a single page is laid out — how the project opens, what it reveals, and how it builds conviction by the back cover.' },
-      { step: 'Design the Layout', detail: 'Typography, imagery, hierarchy and white space work together so every spread moves the story forward and makes the project feel real.' },
-      { step: 'Direct Photography', detail: 'If shooting is needed, we brief and direct it. If content exists, we select and sequence it so every image earns its place on the page.' },
-      { step: 'Produce & Print', detail: 'Paper, finish and format are handled with the same care as the design. What the reader holds should feel as premium as the project it represents.' },
+      { step: 'Set the Narrative', icon: '/services/icons/brochure-design/01.svg', detail: 'We map the story arc before a single page is laid out — how the project opens, what it reveals, and how it builds conviction by the back cover.' },
+      { step: 'Design the Layout', icon: '/services/icons/brochure-design/02.svg', detail: 'Typography, imagery, hierarchy and white space work together so every spread moves the story forward and makes the project feel real.' },
+      { step: 'Direct Photography', icon: '/services/icons/brochure-design/03.svg', detail: 'If shooting is needed, we brief and direct it. If content exists, we select and sequence it so every image earns its place on the page.' },
+      { step: 'Produce & Print', icon: '/services/icons/brochure-design/04.svg', detail: 'Paper, finish and format are handled with the same care as the design. What the reader holds should feel as premium as the project it represents.' },
     ],
   },
   {
@@ -125,6 +183,9 @@ export const SERVICES: ServiceData[] = [
     num: 4,
     title: 'Campaign Design',
     tagline: 'One Idea With More Than One Address.',
+    seoTitle: 'Real Estate Campaign Design & Advertising Agency | Zurich Graphics',
+    seoDescription: 'Launch real estate developments with high-impact advertising campaigns. Zurich Graphics crafts 360-degree campaign designs, outdoor hoardings, print ads, and launch collateral.',
+    seoKeywords: 'real estate campaign design agency, 360 degree campaign design, real estate marketing campaign design, real estate ad agency, property launch advertising collateral, outdoor hoarding design for real estate',
     description: [
       'A project can have a lot to say. A campaign needs to know what to say first. Through 360 degree campaign design, we find that central thought and build the entire launch around it. The message then moves across hoardings, print, digital communication and the sales lounge, adapted to suit each space without losing its original direction.',
       'A hoarding has seconds. Digital has a thumb-scroll. Print gets a little longer. The sales lounge gets the conversation. We shape the message for each moment while keeping the brand unmistakably connected.',
@@ -135,7 +196,17 @@ export const SERVICES: ServiceData[] = [
       'Launch, pre-launch and possession phasing',
       'Sales collateral aligned to the campaign',
     ],
+    deliverables: [
+      { title: 'Outdoor Advertising (OOH)', desc: 'High-impact highway hoardings, unipoles, gantry ads, and strategic city center billboards.' },
+      { title: 'Site Office & Boundary Branding', desc: 'Site barricade wraps, facade signage, main entry gates, and perimeter campaign graphics.' },
+      { title: 'Print Media Campaigns', desc: 'Full-page national newspaper ads, jacket ads, luxury magazine spreads, and supplement features.' },
+      { title: 'Event & Expo Collateral', desc: 'Stage backdrops, exhibition stall graphics, roll-up standees, and VIP invite kits for channel partner meets and buyer previews.' },
+    ],
     image: '/images/Services_Campaign Design_670 X 502.jpeg',
+    heroImage: '/services/campaign-design.webp',
+    heroImageMobile: '/services/campaign-design-mobile.webp',
+    ideaImage: '/services/Campaign Design_theidea.jpg',
+    ideaImageMobile: '/services/Campaign Design_theidea_mobile.jpg',
     secondaryImage: '/images/Work Process_004.jpg',
     gallery: ['/images/Services_010.jpg', '/images/Services_004.jpg'],
     faq: [
@@ -145,10 +216,10 @@ export const SERVICES: ServiceData[] = [
     relatedPortfolioCategories: ['campaign'],
     marqueeKeywords: ['Key Visual', 'Media Adaptation', 'Launch Phasing', 'Sales Collateral', 'Pre-Launch Teaser', 'Campaign Idea'],
     process: [
-      { step: 'Find the Key Visual', detail: 'One image, one thought — the campaign\'s central visual that every format adapts from. We do not move forward until this is right.' },
-      { step: 'Adapt Across Formats', detail: 'The key visual travels — hoarding, newspaper, digital, sales collateral — adapted for each medium\'s distance, duration and mindset.' },
-      { step: 'Phase the Launch', detail: 'Pre-launch teaser, launch push, possession milestone. Each phase builds on the awareness the last one created.' },
-      { step: 'Measure & Iterate', detail: 'Enquiries, site visits, broker conversations are read back into the creative so every subsequent piece works harder than the last.' },
+      { step: 'Find the Key Visual', icon: '/services/icons/campaign-design/01.svg', detail: 'One image, one thought — the campaign\'s central visual that every format adapts from. We do not move forward until this is right.' },
+      { step: 'Adapt Across Formats', icon: '/services/icons/campaign-design/02.svg', detail: 'The key visual travels — hoarding, newspaper, digital, sales collateral — adapted for each medium\'s distance, duration and mindset.' },
+      { step: 'Phase the Launch', icon: '/services/icons/campaign-design/03.svg', detail: 'Pre-launch teaser, launch push, possession milestone. Each phase builds on the awareness the last one created.' },
+      { step: 'Measure & Iterate', icon: '/services/icons/campaign-design/04.svg', detail: 'Enquiries, site visits, broker conversations are read back into the creative so every subsequent piece works harder than the last.' },
     ],
   },
   {
@@ -156,6 +227,9 @@ export const SERVICES: ServiceData[] = [
     num: 5,
     title: '360° Project Branding',
     tagline: "The Address Changes. The Brand Doesn't.",
+    seoTitle: '360 Degree Real Estate Branding Agency | Zurich Graphics',
+    seoDescription: 'Complete end-to-end real estate branding solutions. From positioning and identity to site experience and launches, discover how Zurich Graphics builds integrated property brands.',
+    seoKeywords: 'real estate branding agency, 360 degree branding agency, best real estate branding agency in india, integrated branding agency for real estate, real estate branding company, 360 degree branding agency covering strategy design and advertising, real estate branding for residential apartment projects',
     description: [
       'The gap between a project\'s advertising and its actual sales experience is where trust is lost fastest. A polished campaign followed by an inconsistent sales office undoes weeks of media spend in a single site visit.',
       '360° branding writes the rules once, typography, colour, tone, imagery, so every vendor producing a brochure, a signage panel or a reel works from the same brief. A buyer should not be able to tell where one touchpoint ends and the next begins.',
@@ -166,7 +240,15 @@ export const SERVICES: ServiceData[] = [
       'Vendor-ready brand guidelines',
       'Cross-touchpoint consistency audits',
     ],
+    deliverables: [
+      { title: 'Brand Strategy & Identity', desc: 'Naming, logo systems, color palettes, and comprehensive brand manuals.' },
+      { title: 'Sales Gallery Experience', desc: 'Sales lounge graphics, scale model surroundings, site office signage, and VIP preview setups.' },
+      { title: 'Print & Outdoor Advertising', desc: 'Highway hoardings, newspaper launch spreads, magazine features, and site enclosure designs.' },
+      { title: 'Marketing Collateral', desc: 'Luxury launch brochures, investor decks, floor plan kits, and site visit leave-behinds.' },
+    ],
     image: '/images/Services_360 Branding Design_670 X 502.jpeg',
+    heroImage: '/services/360-project-branding.webp',
+    heroImageMobile: '/services/360-project-branding-mobile.webp',
     secondaryImage: '/images/Work Process_005.jpg',
     gallery: ['/images/Services_005.jpg', '/images/Services_006.jpg'],
     faq: [
@@ -176,10 +258,10 @@ export const SERVICES: ServiceData[] = [
     relatedPortfolioCategories: ['residential', 'commercial', 'campaign'],
     marqueeKeywords: ['Consistency Audit', 'Brand Architecture', 'Vendor Brief', 'Touchpoint Systems', 'Site Signage', 'Sales Office Branding'],
     process: [
-      { step: 'Audit the Gaps', detail: 'We walk through every touchpoint — hoardings, brochures, signage, reels — mapping where the brand breaks down or confuses buyers.' },
-      { step: 'Write One Brief', detail: 'A master brand brief is created. Typography, colour, tone and imagery rules come from a single source so every vendor works from the same page.' },
-      { step: 'Build the System', detail: 'The brand system is built out — from site entrance signage to sales office environment, from digital catalogue to possession kit.' },
-      { step: 'Deploy & Audit', detail: 'As touchpoints go live, we audit for consistency. Nothing reaches buyers out of brand. The system is maintained until the project is handed over.' },
+      { step: 'Audit the Gaps', icon: '/services/icons/360-project-branding/01.svg', detail: 'We walk through every touchpoint — hoardings, brochures, signage, reels — mapping where the brand breaks down or confuses buyers.' },
+      { step: 'Write One Brief', icon: '/services/icons/360-project-branding/02.svg', detail: 'A master brand brief is created. Typography, colour, tone and imagery rules come from a single source so every vendor works from the same page.' },
+      { step: 'Build the System', icon: '/services/icons/360-project-branding/03.svg', detail: 'The brand system is built out — from site entrance signage to sales office environment, from digital catalogue to possession kit.' },
+      { step: 'Deploy & Audit', icon: '/services/icons/360-project-branding/04.svg', detail: 'As touchpoints go live, we audit for consistency. Nothing reaches buyers out of brand. The system is maintained until the project is handed over.' },
     ],
   },
   {
@@ -187,6 +269,9 @@ export const SERVICES: ServiceData[] = [
     num: 6,
     title: 'Reels & Digital Communication',
     tagline: 'Scroll-Stopping Content That Moves Fast, Speaks Sharp And Keeps The Project In Conversation.',
+    seoTitle: 'DVC & Reels Ad Production Company for Real Estate | Zurich Graphics',
+    seoDescription: 'Stop the scroll and capture property buyer attention. Zurich Graphics produces high-converting Instagram Reels, DVCs, and social-first video ads for real estate launches.',
+    seoKeywords: 'dvc and reels ad production company, real estate social media marketing agency, ai powered tvc ad maker, ai generated real estate video ads, best real estate digital marketing agency for lead generation, real estate digital marketing agency for seo and social media, dvc and instagram reels ad production company for real estate',
     description: [
       'On a feed, a reel is competing with everything else in a thumb\'s flick. If the first three seconds do not promise something, a feeling of scale, of light, of a life being lived in the space, the rest of the thirty do not matter.',
       'We cut for sound-off viewing first, since most reels are watched muted, then layer sound design in as a second pass. Captions carry the story; music carries the mood.',
@@ -197,7 +282,17 @@ export const SERVICES: ServiceData[] = [
       'Community and enquiry response support',
       'Performance-led creative iteration',
     ],
+    deliverables: [
+      { title: 'Instagram Reels & TikTok Format Ads', desc: 'High-energy vertical videos highlighting site location, construction updates, and sample flat walkthroughs.' },
+      { title: 'Digital Video Commercials (DVCs)', desc: 'Polished 15-to-30-second digital commercials tailored for Meta and YouTube ad campaigns.' },
+      { title: 'AI-Generated Property Video Ads', desc: 'Fast-turnaround video ads utilizing AI rendering and smart voiceovers for promotional campaigns and festive offers.' },
+      { title: 'Social Media Ad Creative Suites', desc: 'Static and motion graphic carousel ads, interactive story creatives, and digital launch announcements.' },
+    ],
     image: '/images/Services_Reels_670 X 502.jpeg',
+    heroImage: '/services/reels-digital-communication.webp',
+    heroImageMobile: '/services/reels-digital-communication-mobile.webp',
+    ideaImage: '/services/Reels & Digital Communication_theidea.jpg',
+    ideaImageMobile: '/services/Reels & Digital Communication_theidea_mobile.jpg',
     secondaryImage: '/images/Work Process_006.jpg',
     gallery: ['/images/Services_Reels_2.jpg', '/images/Services_007.jpg'],
     faq: [
@@ -207,10 +302,10 @@ export const SERVICES: ServiceData[] = [
     relatedPortfolioCategories: ['campaign', 'residential'],
     marqueeKeywords: ['Content Calendar', 'Short-Form Video', 'Social Strategy', 'Sound Design', 'Community Management', 'Performance Analytics'],
     process: [
-      { step: 'Plan the Calendar', detail: 'We map content tied to your launch phases — pre-launch awareness, enquiry conversion, possession celebration — so every post has a strategic purpose.' },
-      { step: 'Create & Produce', detail: 'Scripts, direction, editing and sound are handled in-house. We shoot on-site or edit existing footage, always cutting for sound-off viewing first.' },
-      { step: 'Publish & Manage', detail: 'Content goes live on schedule, captions are written for clarity, and every enquiry or comment receives a timely, on-brand response.' },
-      { step: 'Optimise', detail: 'Performance data feeds back into the next content cycle. Creative that works gets more. What does not gets rethought — fast.' },
+      { step: 'Plan the Calendar', icon: '/services/icons/reels-digital-communication/01.svg', detail: 'We map content tied to your launch phases — pre-launch awareness, enquiry conversion, possession celebration — so every post has a strategic purpose.' },
+      { step: 'Create & Produce', icon: '/services/icons/reels-digital-communication/02.svg', detail: 'Scripts, direction, editing and sound are handled in-house. We shoot on-site or edit existing footage, always cutting for sound-off viewing first.' },
+      { step: 'Publish & Manage', icon: '/services/icons/reels-digital-communication/03.svg', detail: 'Content goes live on schedule, captions are written for clarity, and every enquiry or comment receives a timely, on-brand response.' },
+      { step: 'Optimise', icon: '/services/icons/reels-digital-communication/04.svg', detail: 'Performance data feeds back into the next content cycle. Creative that works gets more. What does not gets rethought — fast.' },
     ],
   },
   {
@@ -218,6 +313,9 @@ export const SERVICES: ServiceData[] = [
     num: 7,
     title: 'Corporate & Project Films',
     tagline: 'The Project Has A Story. Roll It.',
+    seoTitle: 'Real Estate TVC Ad Agency & Project Film Production | Zurich Graphics',
+    seoDescription: 'Captivate investors and home buyers with cinematic real estate films. Zurich Graphics produces high-impact TV commercials, corporate films, and AI-powered project walkthroughs.',
+    seoKeywords: 'tvc ad agency, ai powered tvc ad maker, dvc and reels ad production company, ai generated real estate video ads, tv commercial production agency, tvc ad agency for real estate project launch films, best tvc ad agency for real estate brands, digital video commercial production company',
     description: [
       'Film lets a project move, breathe and make an impression before its doors even open. Scale becomes visible. Spaces feel real. The corporate vision finds a voice. Whether it is a project film, walkthrough or corporate story, we begin with one clear narrative and build every frame around it.',
       "Our team handles the journey from the first site visit and script to the final edit, sound and colour grade. Each film is made to work wherever it plays. Be it on a large sales-lounge screen, inside a presentation or on a phone in a broker's hand. Different screens. Same story. Full impact.",
@@ -228,7 +326,17 @@ export const SERVICES: ServiceData[] = [
       'Drone, cinematic and 3D-render sequences',
       'Sound design and colour grading',
     ],
+    deliverables: [
+      { title: 'Flagship Project Launch Films', desc: 'Immersive, narrative-driven 2-to-3-minute feature films created for mega-townships and luxury residential towers.' },
+      { title: 'TV Commercials (TVCs) & DVCs', desc: 'High-impact 15-to-30-second broadcast and digital commercials optimized for mass reach and pre-launch campaigns.' },
+      { title: 'Corporate Developer Legacy Films', desc: 'Documentary-style corporate films highlighting developer heritage, completed landmarks, and corporate governance for institutional stakeholders.' },
+      { title: 'Architectural Walkthroughs & AI Films', desc: 'Hyper-realistic 3D walkthroughs enhanced with AI rendering to showcase unbuilt commercial spaces and residential layouts.' },
+    ],
     image: '/images/Services_Corporate Video_670 X 502.jpeg',
+    heroImage: '/services/corporate-project-films.webp',
+    heroImageMobile: '/services/corporate-project-films-mobile.webp',
+    ideaImage: '/services/Corporate & Project Films_theidea.jpg',
+    ideaImageMobile: '/services/Corporate & Project Films_theidea_mobile.jpg',
     secondaryImage: '/images/Work Process_007.jpg',
     gallery: ['/images/Services_008.jpg', '/images/Services_010.jpg'],
     faq: [
@@ -238,10 +346,10 @@ export const SERVICES: ServiceData[] = [
     relatedPortfolioCategories: ['corporate-brochure', 'commercial'],
     marqueeKeywords: ['Script & Storyboard', 'Drone Footage', 'Cinematic Editing', 'Colour Grading', 'Sound Design', 'Multi-Format Delivery'],
     process: [
-      { step: 'Script & Storyboard', detail: 'Every film begins with a narrative — a single story arc that gives every frame a reason to exist. Alignment before the camera moves.' },
-      { step: 'Shoot & Record', detail: 'On-site, in the studio or in post — drone sequences, walkthroughs, interviews, 3D renders — all coordinated from one production brief.' },
-      { step: 'Edit & Grade', detail: 'The edit finds the film\'s pace. Sound design, music and colour grading give it the personality the project deserves — always purposeful.' },
-      { step: 'Deliver All Cuts', detail: 'Full-length film, sixty-second digital cut, thirty-second social edit. One production run. Every format the project will ever need.' },
+      { step: 'Script & Storyboard', icon: '/services/icons/corporate-project-films/01.svg', detail: 'Every film begins with a narrative — a single story arc that gives every frame a reason to exist. Alignment before the camera moves.' },
+      { step: 'Shoot & Record', icon: '/services/icons/corporate-project-films/02.svg', detail: 'On-site, in the studio or in post — drone sequences, walkthroughs, interviews, 3D renders — all coordinated from one production brief.' },
+      { step: 'Edit & Grade', icon: '/services/icons/corporate-project-films/03.svg', detail: 'The edit finds the film\'s pace. Sound design, music and colour grading give it the personality the project deserves — always purposeful.' },
+      { step: 'Deliver All Cuts', icon: '/services/icons/corporate-project-films/04.svg', detail: 'Full-length film, sixty-second digital cut, thirty-second social edit. One production run. Every format the project will ever need.' },
     ],
   },
   {
@@ -249,6 +357,9 @@ export const SERVICES: ServiceData[] = [
     num: 8,
     title: 'Print & Outdoor Media',
     tagline: 'Turning Every Hoarding, Newspaper Ad And Site Surface Into A Reason To Look.',
+    seoTitle: 'Real Estate Outdoor Advertising Agency & Print Media | Zurich Graphics',
+    seoDescription: 'Command skyline visibility and high-traffic corridors. Zurich Graphics delivers high-impact real estate outdoor hoardings, newspaper jackets, and site barricade design.',
+    seoKeywords: 'real estate advertising agency, outdoor advertising agency for real estate, real estate hoarding design and fabrication, real estate print media advertising agency, real estate ooh advertising agency, outdoor advertising agency for real estate hoardings and billboards, best outdoor advertising agency for real estate builders, hoarding design and fabrication for real estate projects',
     description: [
       "The road is busy. So is the newspaper. Nobody is waiting around to decode an ad. That's why we keep the thought sharp, the message quick and the visual strong enough to do its job in a few passing seconds.",
       'Hoardings, newspaper ads, site façades, boundary wraps and other outdoor formats are designed as one connected campaign. We adapt the idea to each space while keeping the brand instantly recognisable. And because outdoor communication has to face more than an audience, we stay closely involved in production too. Scale, visibility, materials and finishes are all considered. Built to catch the eye. Made to handle the real world.',
@@ -259,7 +370,17 @@ export const SERVICES: ServiceData[] = [
       'Site boundary and gate branding',
       'Production oversight and vendor coordination',
     ],
+    deliverables: [
+      { title: 'Highway Billboards & City Hoardings', desc: 'High-impact mega-format hoardings, unipoles, gantries, and strategic city-center displays positioned along prime commuting corridors.' },
+      { title: 'Site Barricade & Boundary Wraps', desc: 'Immersive perimeter enclosure graphics, boundary wall wraps, and entrance gate arches that transform construction sites into active sales environments.' },
+      { title: 'Print Newspaper & Magazine Features', desc: 'Front-page newspaper jackets, full-page launch announcements, supplement ads, and luxury property magazine spreads.' },
+      { title: 'Transit & Municipal Advertising', desc: 'Airport lounge media, bus shelter branding, pillar wraps, and directional signage leading directly to your site office.' },
+    ],
     image: '/images/Services_Print Media_670 X 502.jpeg',
+    heroImage: '/services/print-outdoor-media.webp',
+    heroImageMobile: '/services/print-outdoor-media-mobile.webp',
+    ideaImage: '/services/Print & Outdoor Media_theidea.jpg',
+    ideaImageMobile: '/services/Print & Outdoor Media_theidea_mobile.jpg',
     secondaryImage: '/images/Work Process_001.jpg',
     gallery: ['/images/Services_009.jpg', '/images/Services_001.jpg'],
     faq: [
@@ -269,10 +390,10 @@ export const SERVICES: ServiceData[] = [
     relatedPortfolioCategories: ['campaign', 'commercial'],
     marqueeKeywords: ['Hoarding Design', 'Newspaper Ads', 'Site Branding', 'Production Oversight', 'Format Adaptation', 'Vendor Coordination'],
     process: [
-      { step: 'Concept the Idea', detail: 'The campaign thought becomes a key visual strong enough to work from sixty feet at highway speed. Three seconds to read — or it does not go forward.' },
-      { step: 'Adapt the Formats', detail: 'The key visual is adapted for every format — size, copy and visual hierarchy rethought for each medium\'s distance and available attention.' },
-      { step: 'Proof & Produce', detail: 'We brief and review proofs with your print and hoarding vendors. Colour, scale and finish are verified before production begins.' },
-      { step: 'Install & Confirm', detail: 'For hoardings and site branding, production is supervised so the final install matches the approved design — no stretched logos or wrong colours.' },
+      { step: 'Concept the Idea', icon: '/services/icons/print-outdoor-media/01.svg', detail: 'The campaign thought becomes a key visual strong enough to work from sixty feet at highway speed. Three seconds to read — or it does not go forward.' },
+      { step: 'Adapt the Formats', icon: '/services/icons/print-outdoor-media/02.svg', detail: 'The key visual is adapted for every format — size, copy and visual hierarchy rethought for each medium\'s distance and available attention.' },
+      { step: 'Proof & Produce', icon: '/services/icons/print-outdoor-media/03.svg', detail: 'We brief and review proofs with your print and hoarding vendors. Colour, scale and finish are verified before production begins.' },
+      { step: 'Install & Confirm', icon: '/services/icons/print-outdoor-media/04.svg', detail: 'For hoardings and site branding, production is supervised so the final install matches the approved design — no stretched logos or wrong colours.' },
     ],
   },
   {
@@ -280,6 +401,9 @@ export const SERVICES: ServiceData[] = [
     num: 9,
     title: 'Exhibition & Stall Designs',
     tagline: 'Before The Handshake, Comes The Head-Turn.',
+    seoTitle: 'Real Estate Exhibition Stall Design & Fabrication | Zurich Graphics',
+    seoDescription: 'Stand out at property expos and trade shows. Zurich Graphics crafts 3D real estate exhibition stall designs, scale-model environments, and immersive pavilion experiences.',
+    seoKeywords: 'real estate exhibition stall design company, exhibition and event branding agency, best exhibition stall design company for property expos, real estate exhibition stall design and fabrication, real estate exhibition stall design fabrication and installation agency, exhibition stall design services, event branding and activation agency, best exhibition and event branding agency for real estate',
     description: [
       'Expo halls come with crowds, conversations and plenty of reasons to keep walking. We give visitors one good reason to stop. The stall catches the eye, opens up naturally and makes stepping inside feel like the obvious next move.',
       "Layout, lighting, materials, graphics and signage are all shaped around the project's central idea. The campaign's personality simply moves into the space, recognisable at a glance and engaging up close. Before the first hello, the project has already made an impression. And long after the handshake, it stays remembered. That is real estate exhibition stall design at Zurich Graphics.",
@@ -290,7 +414,17 @@ export const SERVICES: ServiceData[] = [
       'On-ground production supervision',
       'Collateral and giveaway design',
     ],
+    deliverables: [
+      { title: 'Custom Expo Pavilions', desc: 'Bespoke 3D exhibition booths engineered specifically for high-profile real estate expos and international property shows.' },
+      { title: 'Scale-Model Staging Units', desc: 'Custom pedestal bases with LED spotlights, glass enclosures, and overhead branding frames to make physical project models pop.' },
+      { title: 'Modular & Reusable Booths', desc: 'Scalable exhibition structures designed for easy disassembly, transport, and re-erection across multiple city expos.' },
+      { title: 'VIP Sales Lounges & Registration Desks', desc: 'Premium reception counters, branded acoustic partitions, and comfortable seating setups tailored for closing high-value unit bookings.' },
+    ],
     image: '/images/Exhibition & Stall Designs_670 X 502.jpeg',
+    heroImage: '/services/exhibition-stall-designs.webp',
+    heroImageMobile: '/services/exhibition-stall-designs-mobile.webp',
+    ideaImage: '/services/Exhibition & Stall Designs_theidea.jpg',
+    ideaImageMobile: '/services/Exhibition & Stall Designs_theidea_mobile.jpg',
     secondaryImage: '/images/Work Process_002.jpg',
     gallery: ['/images/Services_002.jpg', '/images/Services_010.jpg'],
     faq: [
@@ -300,10 +434,10 @@ export const SERVICES: ServiceData[] = [
     relatedPortfolioCategories: ['commercial', 'mall'],
     marqueeKeywords: ['Stall Concept', '3D Visualisation', 'Material Specification', 'Production Management', 'On-Ground Supervision', 'Collateral Design'],
     process: [
-      { step: 'Concept the Space', detail: 'We start with a clear spatial idea — how the stall reads from thirty feet, how it opens as visitors approach, and what makes them stop and step inside.' },
-      { step: 'Visualise in 3D', detail: 'The concept is built in three dimensions — floor plan, render and material palette — so what is approved is exactly what gets built, with no surprises on the day.' },
-      { step: 'Produce & Fabricate', detail: 'We brief and manage fabrication with partners who understand the standard we expect. Material, lighting and finish are confirmed before build begins.' },
-      { step: 'Set Up & Supervise', detail: 'Our production lead is on-site to oversee setup, ensure the stall matches the approved render and brief the sales team on how to use the space.' },
+      { step: 'Concept the Space', icon: '/services/icons/exhibition-stall-designs/01.svg', detail: 'We start with a clear spatial idea — how the stall reads from thirty feet, how it opens as visitors approach, and what makes them stop and step inside.' },
+      { step: 'Visualise in 3D', icon: '/services/icons/exhibition-stall-designs/02.svg', detail: 'The concept is built in three dimensions — floor plan, render and material palette — so what is approved is exactly what gets built, with no surprises on the day.' },
+      { step: 'Produce & Fabricate', icon: '/services/icons/exhibition-stall-designs/03.svg', detail: 'We brief and manage fabrication with partners who understand the standard we expect. Material, lighting and finish are confirmed before build begins.' },
+      { step: 'Set Up & Supervise', icon: '/services/icons/exhibition-stall-designs/04.svg', detail: 'Our production lead is on-site to oversee setup, ensure the stall matches the approved render and brief the sales team on how to use the space.' },
     ],
   },
 ]

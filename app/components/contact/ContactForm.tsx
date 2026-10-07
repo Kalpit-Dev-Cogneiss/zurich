@@ -80,6 +80,7 @@ export default function ContactForm() {
     { num: '01', label: 'What Should We Call You?', name: 'name', type: 'text', placeholder: 'Your name', required: true },
     { num: '02', label: 'Where Do We Reply?', name: 'email', type: 'email', placeholder: 'you@company.com', required: true },
     { num: '03', label: 'A Number, If Calls Are Easier', name: 'phone', type: 'tel', placeholder: '+91', required: false },
+    { num: '04', label: 'Location', name: 'location', type: 'text', placeholder: 'City, Country', required: true },
   ]
 
   return (
@@ -200,7 +201,7 @@ export default function ContactForm() {
                 gap: '2.4rem',
                 padding: '1.2rem 0',
               }}>
-                <span style={numStyle}>04</span>
+                <span style={numStyle}>05</span>
                 <div>
                   <label
                     htmlFor="cf-message"

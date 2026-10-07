@@ -5,11 +5,16 @@ import ParallaxImage from '@/app/components/ui/ParallaxImage'
 
 const pad = (n: number) => String(n).padStart(2, '0')
 
+/**
+ * Card media uses the 16:9 hero banner, cropped to the 4:3 frame — the
+ * portrait `heroImageMobile` crop is built for a full-screen hero and loses
+ * too much of its subject in a landscape box.
+ */
 function ServiceMedia({ service }: { service: ServiceData }) {
   return (
     <AnimateReveal>
       <div style={{ position: 'relative', width: '100%', aspectRatio: '4 / 3', overflow: 'hidden' }}>
-        <ParallaxImage src={service.image} alt={service.title} strength={8} />
+        <ParallaxImage src={service.heroImage} alt={service.title} strength={8} />
       </div>
     </AnimateReveal>
   )

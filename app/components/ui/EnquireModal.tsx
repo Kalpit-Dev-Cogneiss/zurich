@@ -224,6 +224,10 @@ export default function EnquireModal({ open, onClose }: EnquireModalProps) {
                     <input id="eq-phone" name="phone" type="tel" placeholder="+91" style={fieldStyle} onFocus={focus} onBlur={blur} />
                   </div>
                   <div>
+                    <label style={labelStyle} htmlFor="eq-location">Location</label>
+                    <input id="eq-location" name="location" type="text" required placeholder="City, Country" autoComplete="address-level2" style={fieldStyle} onFocus={focus} onBlur={blur} />
+                  </div>
+                  <div>
                     <label style={labelStyle} htmlFor="eq-message">What do you need?</label>
                     <textarea id="eq-message" name="message" required rows={3} placeholder="Branding, brochure, campaign, exhibition..." style={{ ...fieldStyle, resize: 'vertical' }} onFocus={focus} onBlur={blur} />
                   </div>
@@ -267,7 +271,7 @@ export default function EnquireModal({ open, onClose }: EnquireModalProps) {
 
           <style>{`
             #eq-name::placeholder, #eq-email::placeholder,
-            #eq-phone::placeholder, #eq-message::placeholder {
+            #eq-phone::placeholder, #eq-location::placeholder, #eq-message::placeholder {
               color: rgba(255,255,255,0.25);
             }
             .enquire-modal-scroll::-webkit-scrollbar {

@@ -19,7 +19,7 @@ if command -v aws &>/dev/null; then
     --delete
 
   # Public images — long cache, but not immutable (filenames can be reused)
-  for dir in gallery-image portfolio case-study images assets Brochure-image daily-schedule; do
+  for dir in gallery-image portfolio case-study images assets Brochure-image daily-schedule services; do
     if [ -d "public/$dir" ]; then
       aws s3 sync "public/$dir" "s3://$STATIC_BUCKET/$dir" \
         --cache-control "public, max-age=2592000" \

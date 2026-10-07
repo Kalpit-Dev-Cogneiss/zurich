@@ -24,6 +24,7 @@ export async function POST(request: NextRequest) {
   const name = String(data.get('name') || '').trim()
   const email = String(data.get('email') || '').trim()
   const phone = String(data.get('phone') || '').trim()
+  const location = String(data.get('location') || '').trim()
   const message = String(data.get('message') || '').trim()
   const page = String(data.get('page') || '').trim()
   const captchaToken = String(data.get('g-recaptcha-response') || '').trim()
@@ -42,7 +43,7 @@ export async function POST(request: NextRequest) {
     return NextResponse.json({ error: 'reCAPTCHA verification failed. Please try again.' }, { status: 400 })
   }
 
-  const lead = { name, email, phone, message, source: formatLeadSource(page) }
+  const lead = { name, email, phone, location, message, source: formatLeadSource(page) }
   const fromAddress = process.env.SMTP_USER!
   const toAddress = process.env.CONTACT_TO_EMAIL || fromAddress
 
