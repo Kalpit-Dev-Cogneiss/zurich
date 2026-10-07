@@ -11,6 +11,10 @@ import type { ServiceData } from '@/app/lib/servicesData'
 import type { ProjectData } from '@/app/lib/portfolioData'
 import { cdn } from '@/app/lib/cdn'
 
+/* Temporarily hidden sections — flip to true to restore. */
+const SHOW_VISUAL_SHOWCASE = false
+const SHOW_SELECTED_PROJECTS = false
+
 /* ─── shared animation helpers ─────────────────────────── */
 function fadeUp(delay = 0) {
   return {
@@ -643,6 +647,7 @@ export default function ServiceDetailClient({ service, prevService, nextService,
       {/* ══════════════════════════════════════════
           06 · GALLERY — asymmetric parallax
       ══════════════════════════════════════════ */}
+      {SHOW_VISUAL_SHOWCASE && (
       <section className="svc-gallery" style={{ padding: '0 5.6rem 12rem' }}>
         <div style={{ maxWidth: 1300, margin: '0 auto' }}>
           <motion.span {...fadeUp()} style={{
@@ -662,11 +667,12 @@ export default function ServiceDetailClient({ service, prevService, nextService,
           </div>
         </div>
       </section>
+      )}
 
       {/* ══════════════════════════════════════════
           07 · PORTFOLIO — selected work
       ══════════════════════════════════════════ */}
-      {relatedProjects.length > 0 && (
+      {SHOW_SELECTED_PROJECTS && relatedProjects.length > 0 && (
         <section
           className="svc-portfolio"
           style={{ borderTop: '1px solid rgba(255,255,255,0.07)', padding: '0 5.6rem 12rem' }}

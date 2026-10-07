@@ -84,10 +84,10 @@ export const SERVICES: ServiceData[] = [
     relatedPortfolioCategories: ['campaign', 'corporate-brochure'],
     marqueeKeywords: ['Market Research', 'Buyer Profiling', 'Competitive Audit', 'Brand Positioning', 'Messaging Architecture', 'Strategic Brief'],
     process: [
-      { step: 'Read the Market', detail: 'We start with a forensic audit of your site, competitors and buyer landscape — finding what actually moves decisions in your category.' },
-      { step: 'Find the Edge', detail: 'Every project has something no competitor can honestly claim. We dig until we find it, then test it against what buyers are paying attention to.' },
-      { step: 'Build the Position', detail: 'One clear, ownable idea is shaped into a brand position. Not a tagline. A strategic stake in the ground the whole brand can build from.' },
-      { step: 'Write the Brief', detail: 'The position becomes a messaging framework — architecture your team and every vendor can brief from. Everyone aligned. The brand stays sharp.' },
+      { step: 'Read the Market', icon: '/services/icons/brand-strategy-and-consulting/01.svg', detail: 'We start with a forensic audit of your site, competitors and buyer landscape — finding what actually moves decisions in your category.' },
+      { step: 'Find the Edge', icon: '/services/icons/brand-strategy-and-consulting/02.svg', detail: 'Every project has something no competitor can honestly claim. We dig until we find it, then test it against what buyers are paying attention to.' },
+      { step: 'Build the Position', icon: '/services/icons/brand-strategy-and-consulting/03.svg', detail: 'One clear, ownable idea is shaped into a brand position. Not a tagline. A strategic stake in the ground the whole brand can build from.' },
+      { step: 'Write the Brief', icon: '/services/icons/brand-strategy-and-consulting/04.svg', detail: 'The position becomes a messaging framework — architecture your team and every vendor can brief from. Everyone aligned. The brand stays sharp.' },
     ],
   },
   {
@@ -120,7 +120,7 @@ export const SERVICES: ServiceData[] = [
     ideaImage: '/services/Naming&BrandIdentity_theidea.jpg',
     ideaImageMobile: '/services/Naming&BrandIdentity_theidea_mobile.jpg',
     secondaryImage: '/images/Work Process_002.jpg',
-    gallery: ['/images/Services_006.jpg', '/images/Services_007.jpg'],
+    gallery: ['/services/visual-showcase-image/naming-brand-identity-1.jpg', '/services/visual-showcase-image/naming-brand-identity-2.jpg'],
     faq: [
       { question: 'Do You Check Names Are Legally Available?', answer: 'We screen every shortlisted name for obvious trademark and local project-name clashes before it goes to you, though final legal clearance sits with your counsel.' },
       { question: 'Can You Redesign An Identity That Already Exists?', answer: 'Yes. We regularly sharpen or fully rebuild identities for projects that launched with a rushed or inconsistent mark.' },
@@ -164,7 +164,7 @@ export const SERVICES: ServiceData[] = [
     ideaImage: '/services/Brochure Design_theidea.jpg',
     ideaImageMobile: '/services/Brochure Design_theidea_mobile.jpg',
     secondaryImage: '/images/Work Process_003.jpg',
-    gallery: ['/images/Services_008.jpg', '/images/Services_009.jpg'],
+    gallery: ['/services/visual-showcase-image/brochure-design-1.jpg', '/services/visual-showcase-image/brochure-design-2.jpg'],
     faq: [
       { question: 'How Many Pages Is A Typical Project Brochure?', answer: 'Most run 16 to 32 pages depending on the number of unit types and amenities, though we have built single-fold leave-behinds and 60-page collector\'s editions too.' },
       { question: 'Do You Manage The Print Run As Well?', answer: 'Yes, we oversee paper selection, proofing and the press run with our print partners so the final brochure matches what was approved on screen.' },
@@ -208,7 +208,7 @@ export const SERVICES: ServiceData[] = [
     ideaImage: '/services/Campaign Design_theidea.jpg',
     ideaImageMobile: '/services/Campaign Design_theidea_mobile.jpg',
     secondaryImage: '/images/Work Process_004.jpg',
-    gallery: ['/images/Services_010.jpg', '/images/Services_004.jpg'],
+    gallery: ['/services/visual-showcase-image/campaign-design-1.jpg', '/services/visual-showcase-image/campaign-design-2.jpg'],
     faq: [
       { question: 'Do You Also Plan The Media Buy?', answer: 'We design and adapt the campaign across formats; for media planning and buying we work alongside your media agency or can recommend partners we trust.' },
       { question: 'Can A Campaign Be Phased Across Launch Stages?', answer: 'Yes, we typically plan a pre-launch teaser, a launch push and a possession or milestone phase, each with its own key message built on the same idea.' },
@@ -250,7 +250,7 @@ export const SERVICES: ServiceData[] = [
     heroImage: '/services/360-project-branding.webp',
     heroImageMobile: '/services/360-project-branding-mobile.webp',
     secondaryImage: '/images/Work Process_005.jpg',
-    gallery: ['/images/Services_005.jpg', '/images/Services_006.jpg'],
+    gallery: ['/services/visual-showcase-image/360-project-branding-1.jpg', '/services/visual-showcase-image/360-project-branding-2.jpg'],
     faq: [
       { question: 'What Counts As A Touchpoint Here?', answer: 'Anything a buyer sees or reads: hoardings, brochures, signage, sales office branding, reels, even the WhatsApp catalogue your sales team shares.' },
       { question: 'Can You Audit A Project That Is Already Mid-Launch?', answer: 'Yes, we run a consistency audit across existing touchpoints, flag the gaps, and bring everything back in line with one brief.' },
@@ -382,7 +382,7 @@ export const SERVICES: ServiceData[] = [
     ideaImage: '/services/Print & Outdoor Media_theidea.jpg',
     ideaImageMobile: '/services/Print & Outdoor Media_theidea_mobile.jpg',
     secondaryImage: '/images/Work Process_001.jpg',
-    gallery: ['/images/Services_009.jpg', '/images/Services_001.jpg'],
+    gallery: ['/services/visual-showcase-image/print-outdoor-media-1.jpg', '/services/visual-showcase-image/print-outdoor-media-2.jpg'],
     faq: [
       { question: 'Do You Coordinate With Printing And Hoarding Vendors Directly?', answer: 'Yes, we brief and review proofs with your print and hoarding vendors so the final output matches the approved design, colour included.' },
       { question: 'Can The Same Creative Scale From A Hoarding To A Newspaper Ad?', answer: 'That is exactly how we design it, one key visual and message adapted to each format\'s size, distance and reading time.' },
@@ -426,7 +426,7 @@ export const SERVICES: ServiceData[] = [
     ideaImage: '/services/Exhibition & Stall Designs_theidea.jpg',
     ideaImageMobile: '/services/Exhibition & Stall Designs_theidea_mobile.jpg',
     secondaryImage: '/images/Work Process_002.jpg',
-    gallery: ['/images/Services_002.jpg', '/images/Services_010.jpg'],
+    gallery: ['/services/visual-showcase-image/exhibition-stall-designs-1.jpg', '/services/visual-showcase-image/exhibition-stall-designs-2.jpg'],
     faq: [
       { question: 'Do You Supervise The Stall Build On-Site?', answer: 'Yes, we send a production lead to oversee setup at the venue so the stall matches the approved 3D visual, down to lighting and signage placement.' },
       { question: 'Can You Design For A Recurring Expo Circuit?', answer: 'We can design a modular stall system that adapts across multiple expos and city venues without rebuilding the concept each time.' },
