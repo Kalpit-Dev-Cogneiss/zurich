@@ -1,4 +1,5 @@
 'use client'
+import Link from 'next/link'
 import type { ServiceData } from '@/app/lib/servicesData'
 import AnimateReveal from '@/app/components/ui/AnimateReveal'
 import ParallaxImage from '@/app/components/ui/ParallaxImage'
@@ -69,6 +70,28 @@ function ServiceContent({ service, index, total }: { service: ServiceData; index
           </p>
         ))}
       </div>
+
+      <Link
+        href={`/services/${service.slug}`}
+        aria-label={`Explore ${service.title}`}
+        style={{
+          display: 'inline-flex',
+          alignItems: 'center',
+          gap: '1.2rem',
+          fontSize: '1.2rem',
+          letterSpacing: '0.12em',
+          color: '#fff',
+          textDecoration: 'none',
+          borderBottom: '1px solid rgba(255,255,255,0.4)',
+          paddingBottom: '0.8rem',
+        }}
+      >
+        Explore Service
+        <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" aria-hidden="true">
+          <line x1="5" y1="12" x2="19" y2="12" />
+          <polyline points="12 5 19 12 12 19" />
+        </svg>
+      </Link>
     </AnimateReveal>
   )
 }
