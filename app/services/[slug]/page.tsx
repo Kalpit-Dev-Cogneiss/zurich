@@ -16,10 +16,11 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
   if (!service) return { title: 'Service Not Found' }
 
   return buildMetadata({
-    title: `${service.title} | Zurich Graphics Services`,
-    description: service.tagline,
+    title: service.seoTitle,
+    description: service.seoDescription,
+    keywords: service.seoKeywords,
     path: `/services/${slug}`,
-    image: service.image,
+    image: service.heroImage,
   })
 }
 

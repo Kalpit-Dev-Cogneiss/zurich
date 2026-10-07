@@ -20,6 +20,7 @@ export async function upsertHubspotContact(lead: ContactLead) {
   const token = process.env.HUBSPOT_ACCESS_TOKEN
   if (!token) throw new Error('HubSpot is not configured — missing HUBSPOT_ACCESS_TOKEN')
 
+  const locationProperty = process.env.HUBSPOT_LOCATION_PROPERTY || 'city'
   const messageProperty = process.env.HUBSPOT_MESSAGE_PROPERTY || 'message'
   const [firstname, ...rest] = lead.name.trim().split(/\s+/)
   const lastname = rest.join(' ')
@@ -40,6 +41,7 @@ export async function upsertHubspotContact(lead: ContactLead) {
             firstname,
             ...(lastname ? { lastname } : {}),
             ...(lead.phone ? { phone: lead.phone } : {}),
+            ...(lead.location ? { [locationProperty]: lead.location } : {}),
             ...(lead.source ? { lead_source: lead.source } : {}),
             [messageProperty]: lead.message,
           },

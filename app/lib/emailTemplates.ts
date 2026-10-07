@@ -2,6 +2,7 @@ export type ContactLead = {
   name: string
   email: string
   phone?: string
+  location?: string
   message: string
   source?: string
 }
@@ -112,6 +113,7 @@ export function contactNotificationEmail(lead: ContactLead) {
   const name = escapeHtml(lead.name)
   const email = escapeHtml(lead.email)
   const phone = lead.phone ? escapeHtml(lead.phone) : '—'
+  const location = lead.location ? escapeHtml(lead.location) : '—'
   const messageHtml = escapeHtml(lead.message).replace(/\n/g, '<br />')
 
   const body = `
@@ -127,6 +129,7 @@ export function contactNotificationEmail(lead: ContactLead) {
   ${field('Name', name)}
   ${field('Email', `<a href="mailto:${email}" style="color:${BRAND.white}; text-decoration: underline;">${email}</a>`)}
   ${field('Phone', phone === '—' ? phone : `<a href="tel:${phone}" style="color:${BRAND.white}; text-decoration: underline;">${phone}</a>`)}
+  ${field('Location', location)}
   ${field('Project', messageHtml)}
   ${footerCta('Reply to ' + lead.name.split(' ')[0], `mailto:${email}`)}
   <tr><td style="padding-top: 44px;"></td></tr>`
@@ -134,7 +137,7 @@ export function contactNotificationEmail(lead: ContactLead) {
   return {
     subject: `New enquiry: ${lead.name}`,
     html: shell(body, `${lead.name} submitted the contact form on zurichgraphics.com`),
-    text: `New website enquiry\n\nName: ${lead.name}\nEmail: ${lead.email}\nPhone: ${lead.phone || '—'}\n\n${lead.message}`,
+    text: `New website enquiry\n\nName: ${lead.name}\nEmail: ${lead.email}\nPhone: ${lead.phone || '—'}\nLocation: ${lead.location || '—'}\n\n${lead.message}`,
   }
 }
 

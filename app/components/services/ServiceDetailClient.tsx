@@ -11,6 +11,10 @@ import type { ServiceData } from '@/app/lib/servicesData'
 import type { ProjectData } from '@/app/lib/portfolioData'
 import { cdn } from '@/app/lib/cdn'
 
+/* Temporarily hidden sections — flip to true to restore. */
+const SHOW_VISUAL_SHOWCASE = false
+const SHOW_SELECTED_PROJECTS = false
+
 /* ─── shared animation helpers ─────────────────────────── */
 function fadeUp(delay = 0) {
   return {
@@ -87,6 +91,33 @@ const STEP_ICONS = [
     <circle cx="16" cy="32" r="4" />
   </svg>,
 ]
+
+/* Service-specific step icon — a monochrome SVG tinted via CSS mask so it
+   inherits the card's colour. Falls back to the built-in line set when a
+   step has no artwork of its own. */
+function StepIcon({ icon, index, size }: { icon?: string; index: number; size: string | number }) {
+  if (!icon) {
+    return <div style={{ width: size, height: size }}>{STEP_ICONS[index % STEP_ICONS.length]}</div>
+  }
+  return (
+    <div
+      aria-hidden="true"
+      style={{
+        width: size,
+        height: size,
+        background: 'currentColor',
+        WebkitMaskImage: `url("${icon}")`,
+        maskImage: `url("${icon}")`,
+        WebkitMaskSize: 'contain',
+        maskSize: 'contain',
+        WebkitMaskRepeat: 'no-repeat',
+        maskRepeat: 'no-repeat',
+        WebkitMaskPosition: 'center',
+        maskPosition: 'center',
+      }}
+    />
+  )
+}
 
 /* ─── Process section — horizontal flow, icon-driven ─────── */
 function ProcessSection({ steps }: { steps: ServiceData['process'] }) {
@@ -277,9 +308,7 @@ function ProcessSection({ steps }: { steps: ServiceData['process'] }) {
                     boxShadow: '0 8px 32px rgba(0,0,0,0.55), inset 0 1px 0 rgba(255,255,255,0.15)',
                   }}
                 >
-                  <div style={{ width: '44%', height: '44%' }}>
-                    {STEP_ICONS[i % STEP_ICONS.length]}
-                  </div>
+                  <StepIcon icon={steps[i].icon} index={i} size={steps[i].icon ? '50%' : '44%'} />
                 </motion.div>
               </div>
             </div>
@@ -314,7 +343,7 @@ function ProcessSection({ steps }: { steps: ServiceData['process'] }) {
               display: 'flex', alignItems: 'center', justifyContent: 'center',
               color: '#fff',
             }}>
-              <div style={{ width: 22, height: 22 }}>{STEP_ICONS[i % STEP_ICONS.length]}</div>
+              <StepIcon icon={s.icon} index={i} size={s.icon ? 25 : 22} />
             </div>
             <div>
               <span style={{ display: 'block', fontSize: '1rem', color: 'rgba(255,255,255,0.22)', letterSpacing: '0.1em', fontWeight: 600, marginBottom: '0.4rem' }}>
@@ -402,8 +431,18 @@ export default function ServiceDetailClient({ service, prevService, nextService,
 
         {/* Image */}
         <motion.div style={{ scale: heroImgScale, y: heroImgY, position: 'absolute', inset: 0, willChange: 'transform' }}>
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img src={cdn(service.image)} alt={service.title} style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }} />
+          {/* Desktop banner is 16:9; mobile ships a portrait 440x956 crop. */}
+          <picture style={{ display: 'block', width: '100%', height: '100%' }}>
+            <source media="(max-width: 767px)" srcSet={cdn(service.heroImageMobile)} />
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img
+              src={cdn(service.heroImage)}
+              alt={service.title}
+              fetchPriority="high"
+              decoding="async"
+              style={{ width: '100%', height: '100%', objectFit: 'cover', display: 'block' }}
+            />
+          </picture>
         </motion.div>
         <div aria-hidden="true" style={{
           position: 'absolute', inset: 0,
@@ -495,13 +534,19 @@ export default function ServiceDetailClient({ service, prevService, nextService,
             </div>
 
             {/* Right: a tall image that travels down the section alongside the copy */}
-            {service.secondaryImage && (
+            {(service.ideaImage || service.secondaryImage) && (
               <motion.div
                 {...fadeIn(0.15)}
                 className="svc-idea-image"
                 style={{ position: 'sticky', top: '14rem', borderRadius: '16px', overflow: 'hidden', aspectRatio: '3/4', border: '1px solid rgba(255,255,255,0.08)' }}
               >
-                <ParallaxImage src={cdn(service.secondaryImage)} alt="" strength={14} style={{ height: '100%' }} />
+                <ParallaxImage
+                  src={service.ideaImage || service.secondaryImage}
+                  mobileSrc={service.ideaImageMobile}
+                  alt={`${service.title} — The Idea`}
+                  strength={14}
+                  style={{ height: '100%' }}
+                />
               </motion.div>
             )}
           </div>
@@ -518,7 +563,7 @@ export default function ServiceDetailClient({ service, prevService, nextService,
       {/* ══════════════════════════════════════════
           05 · DELIVERABLES — what you receive
       ══════════════════════════════════════════ */}
-      {false && service.highlights.length > 0 && (
+      {service.deliverables.length > 0 && (
         <section
           className="svc-delivers"
           style={{ borderTop: '1px solid rgba(255,255,255,0.07)', padding: '0 5.6rem 12rem' }}
@@ -543,7 +588,7 @@ export default function ServiceDetailClient({ service, prevService, nextService,
 
             {/* Items — a single interactive list; hover inverts the index, draws the arrow */}
             <div style={{ borderTop: '1px solid rgba(255,255,255,0.07)' }}>
-              {service.highlights.map((item, i) => (
+              {service.deliverables.map((item, i) => (
                 <motion.div
                   key={i}
                   {...fadeUp(i * 0.06)}
@@ -566,15 +611,24 @@ export default function ServiceDetailClient({ service, prevService, nextService,
                   }}>
                     {String(i + 1).padStart(2, '0')}
                   </span>
-                  <p style={{
-                    flex: 1,
-                    fontSize: 'clamp(1.8rem, 2.4vw, 2.8rem)',
-                    color: 'rgba(255,255,255,0.85)',
-                    lineHeight: 1.3, margin: 0,
-                    fontWeight: 600, letterSpacing: '-0.01em',
-                  }}>
-                    {item}
-                  </p>
+                  <div style={{ flex: 1 }}>
+                    <p style={{
+                      fontSize: 'clamp(1.8rem, 2.4vw, 2.8rem)',
+                      color: 'rgba(255,255,255,0.85)',
+                      lineHeight: 1.3, margin: 0,
+                      fontWeight: 600, letterSpacing: '-0.01em',
+                    }}>
+                      {item.title}
+                    </p>
+                    <p style={{
+                      fontSize: 'clamp(1.3rem, 1.3vw, 1.6rem)',
+                      color: 'rgba(255,255,255,0.4)',
+                      lineHeight: 1.6, margin: '0.8rem 0 0',
+                      fontWeight: 400, maxWidth: 620,
+                    }}>
+                      {item.desc}
+                    </p>
+                  </div>
                   <svg
                     className="svc-deliver-arrow"
                     width="28" height="28" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1.5"
@@ -593,6 +647,7 @@ export default function ServiceDetailClient({ service, prevService, nextService,
       {/* ══════════════════════════════════════════
           06 · GALLERY — asymmetric parallax
       ══════════════════════════════════════════ */}
+      {SHOW_VISUAL_SHOWCASE && (
       <section className="svc-gallery" style={{ padding: '0 5.6rem 12rem' }}>
         <div style={{ maxWidth: 1300, margin: '0 auto' }}>
           <motion.span {...fadeUp()} style={{
@@ -612,11 +667,12 @@ export default function ServiceDetailClient({ service, prevService, nextService,
           </div>
         </div>
       </section>
+      )}
 
       {/* ══════════════════════════════════════════
           07 · PORTFOLIO — selected work
       ══════════════════════════════════════════ */}
-      {relatedProjects.length > 0 && (
+      {SHOW_SELECTED_PROJECTS && relatedProjects.length > 0 && (
         <section
           className="svc-portfolio"
           style={{ borderTop: '1px solid rgba(255,255,255,0.07)', padding: '0 5.6rem 12rem' }}
