@@ -20,8 +20,8 @@ const SOCIAL_LINKS = [
 ]
 
 const BRANDS = [
-  { name: 'Octik AI Lab', src: '/Octik _Icon_white.png', href: 'https://octikailab.com/' },
   { name: 'Lucid', src: '/lucid-dark.svg', href: 'https://lucidtheartistry.com/' },
+  { name: 'Octik AI Lab', src: '/Octik _Icon_white.png', href: 'https://octikailab.com/' },
 ]
 
 export default function Footer() {
