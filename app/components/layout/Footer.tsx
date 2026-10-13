@@ -19,6 +19,11 @@ const SOCIAL_LINKS = [
   },
 ]
 
+const BRANDS = [
+  { name: 'Octik AI Lab', src: '/Octik _Icon_white.png', href: 'https://octikailab.com/' },
+  { name: 'Lucid', src: '/lucid-dark.svg', href: 'https://lucidtheartistry.com/' },
+]
+
 export default function Footer() {
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' })
@@ -123,22 +128,40 @@ export default function Footer() {
             </button>
           </div>
 
-          {/* Right - Credits */}
+          {/* Right - Our Brands */}
           <div style={{ textAlign: 'right' }}>
-            <p
-              rel="noopener noreferrer"
+            <h3
               style={{
-                fontSize: '0.9rem',
-                color: 'rgba(255,255,255,0.5)',
-                textDecoration: 'none',
-                letterSpacing: '0.05em',
-                transition: 'color 0.3s ease',
+                fontSize: '1.4rem',
+                fontWeight: 600,
+                color: '#fff',
+                marginBottom: '1.6rem',
               }}
-              onMouseEnter={(e) => (e.currentTarget.style.color = 'rgba(255,255,255,0.8)')}
-              onMouseLeave={(e) => (e.currentTarget.style.color = 'rgba(255,255,255,0.5)')}
             >
-              Site by Octik AI Lab
-            </p>
+              Our Brands
+            </h3>
+            <div style={{ display: 'flex', gap: '1.4rem', justifyContent: 'flex-end' }}>
+              {BRANDS.map((b) => (
+                <a
+                  key={b.name}
+                  href={b.href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={b.name}
+                  style={{ display: 'block', transition: 'opacity 0.3s ease' }}
+                  onMouseEnter={(e) => (e.currentTarget.style.opacity = '0.7')}
+                  onMouseLeave={(e) => (e.currentTarget.style.opacity = '1')}
+                >
+                  {/* eslint-disable-next-line @next/next/no-img-element */}
+                  <img
+                    loading="lazy"
+                    src={cdn(b.src)}
+                    alt={b.name}
+                    style={{ width: '5.2rem', height: '5.2rem', borderRadius: '50%', display: 'block' }}
+                  />
+                </a>
+              ))}
+            </div>
           </div>
         </div>
       </div>
@@ -156,7 +179,7 @@ export default function Footer() {
           footer > div > div:last-child > div {
             text-align: center !important;
           }
-          footer > div > div:last-child > div:first-child > div {
+          footer > div > div:last-child > div > div {
             justify-content: center !important;
           }
         }
