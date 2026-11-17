@@ -1,5 +1,6 @@
 'use client'
 import { cdn } from '@/app/lib/cdn'
+import { CONTACT_EMAIL, CONTACT_PHONE } from '@/app/lib/seo'
 
 const SOCIAL_LINKS = [
   {
@@ -68,21 +69,32 @@ export default function Footer() {
         <div
           style={{
             display: 'grid',
-            gridTemplateColumns: '1fr 4fr 1fr',
+            gridTemplateColumns: '2fr 3fr 2fr',
             alignItems: 'end',
             gap: '2rem',
           }}
         >
-          {/* Left - Copyright + social */}
+          {/* Left - Contact + social */}
           <div>
-            <p style={{
-              fontSize: '0.9rem',
-              color: 'rgba(255,255,255,0.5)',
-              letterSpacing: '0.05em',
-              marginBottom: '1.6rem',
-            }}>
-              © 2026 Zurich Graphics
-            </p>
+            <div style={{ display: 'flex', flexDirection: 'column', gap: '1.2rem', marginBottom: '2rem' }}>
+              {[
+                { href: `mailto:${CONTACT_EMAIL}`, label: CONTACT_EMAIL, icon: 'M3 5h18a1 1 0 0 1 1 1v12a1 1 0 0 1-1 1H3a1 1 0 0 1-1-1V6a1 1 0 0 1 1-1Zm1 2.6V17h16V7.6l-8 5.4-8-5.4ZM5.6 7 12 11.3 18.4 7H5.6Z' },
+                { href: `tel:${CONTACT_PHONE.replace(/[\s-]/g, '')}`, label: CONTACT_PHONE, icon: 'M6.6 10.8a15.1 15.1 0 0 0 6.6 6.6l2.2-2.2a1 1 0 0 1 1-.25c1.1.37 2.3.57 3.6.57a1 1 0 0 1 1 1V20a1 1 0 0 1-1 1C10.6 21 3 13.4 3 4a1 1 0 0 1 1-1h3.5a1 1 0 0 1 1 1c0 1.25.2 2.45.57 3.57a1 1 0 0 1-.25 1L6.6 10.8Z' },
+              ].map((c) => (
+                <a
+                  key={c.href}
+                  href={c.href}
+                  style={{ display: 'flex', alignItems: 'center', gap: '1rem', color: 'rgba(255,255,255,0.85)', fontSize: '1.5rem', transition: 'color 0.3s ease', wordBreak: 'break-word' }}
+                  onMouseEnter={(e) => (e.currentTarget.style.color = '#fff')}
+                  onMouseLeave={(e) => (e.currentTarget.style.color = 'rgba(255,255,255,0.85)')}
+                >
+                  <svg width="22" height="22" viewBox="0 0 24 24" fill="currentColor" aria-hidden="true" style={{ flexShrink: 0 }}>
+                    <path d={c.icon} />
+                  </svg>
+                  <span>{c.label}</span>
+                </a>
+              ))}
+            </div>
             <div style={{ display: 'flex', gap: '1.4rem' }}>
               {SOCIAL_LINKS.map((s) => (
                 <a
@@ -126,6 +138,14 @@ export default function Footer() {
                 style={{ height: 'clamp(2.8rem, 6vw, 8rem)', width: 'auto' }}
               />
             </button>
+            <p style={{
+              fontSize: '1.3rem',
+              color: 'rgba(255,255,255,0.7)',
+              letterSpacing: '0.05em',
+              marginTop: '2rem',
+            }}>
+              © 2026 Zurich Graphics
+            </p>
           </div>
 
           {/* Right - Our Brands */}
