@@ -271,13 +271,15 @@ export default function ContactMain() {
           <a
             href={`tel:${CONTACT_PHONE.replace(/\s/g, '')}`}
             style={{
-              fontSize: '1.6rem',
-              letterSpacing: '0.08em',
-              color: 'rgba(255,255,255,0.6)',
-              transition: 'color 0.3s ease',
+              fontSize: 'clamp(1.8rem, 2vw, 2.6rem)',
+              fontWeight: 500,
+              letterSpacing: '0.04em',
+              lineHeight: 1.2,
+              color: '#fff',
+              transition: 'opacity 0.3s ease',
             }}
-            onMouseEnter={e => (e.currentTarget.style.color = '#fff')}
-            onMouseLeave={e => (e.currentTarget.style.color = 'rgba(255,255,255,0.6)')}
+            onMouseEnter={e => (e.currentTarget.style.opacity = '0.7')}
+            onMouseLeave={e => (e.currentTarget.style.opacity = '1')}
           >
             {CONTACT_PHONE}
           </a>
